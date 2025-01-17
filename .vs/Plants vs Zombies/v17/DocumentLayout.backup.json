@@ -1,0 +1,198 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\maingame\\plants\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:maingame\\plants\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\maingame\\plants\\peashootersingle\\peashootersingle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:maingame\\plants\\peashootersingle\\peashootersingle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\maingame\\zombies\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:maingame\\zombies\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\maingame\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:maingame\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\maingame\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:maingame\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\zombiehand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\zombiehand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\startadventurebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\startadventurebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\mainmenu_selectorscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\mainmenu_selectorscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\woodsign2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\woodsign2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|c:\\users\\hytomz\\documents\\godot\\plants-vs-zombies\\mainmenu\\quit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B8C299-852F-471B-B419-739CDD2BA355}|Plants vs Zombies.csproj|solutionrelative:mainmenu\\quit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Plants\\Bullet.cs",
+              "RelativeDocumentMoniker": "MainGame\\Plants\\Bullet.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Plants\\Bullet.cs",
+              "RelativeToolTip": "MainGame\\Plants\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T04:36:21.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PeaShooterSingle.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Plants\\PeaShooterSingle\\PeaShooterSingle.cs",
+              "RelativeDocumentMoniker": "MainGame\\Plants\\PeaShooterSingle\\PeaShooterSingle.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Plants\\PeaShooterSingle\\PeaShooterSingle.cs",
+              "RelativeToolTip": "MainGame\\Plants\\PeaShooterSingle\\PeaShooterSingle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T13:19:07.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Zombie.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Zombies\\Zombie.cs",
+              "RelativeDocumentMoniker": "MainGame\\Zombies\\Zombie.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Zombies\\Zombie.cs",
+              "RelativeToolTip": "MainGame\\Zombies\\Zombie.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADwvxQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T13:55:42.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainGame.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\MainGame.cs",
+              "RelativeDocumentMoniker": "MainGame\\MainGame.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\MainGame.cs",
+              "RelativeToolTip": "MainGame\\MainGame.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAywA0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:05:44.622Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Quit.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\Quit.cs",
+              "RelativeDocumentMoniker": "MainMenu\\Quit.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\Quit.cs",
+              "RelativeToolTip": "MainMenu\\Quit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T13:30:17.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Button.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\Button.cs",
+              "RelativeDocumentMoniker": "MainMenu\\Button.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\Button.cs",
+              "RelativeToolTip": "MainMenu\\Button.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T13:25:44.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ZombieHand.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\ZombieHand.cs",
+              "RelativeDocumentMoniker": "MainMenu\\ZombieHand.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\ZombieHand.cs",
+              "RelativeToolTip": "MainMenu\\ZombieHand.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvyMAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T14:02:44.73Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StartAdventureButton.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\StartAdventureButton.cs",
+              "RelativeDocumentMoniker": "MainMenu\\StartAdventureButton.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\StartAdventureButton.cs",
+              "RelativeToolTip": "MainMenu\\StartAdventureButton.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:09:54.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Camera.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Camera.cs",
+              "RelativeDocumentMoniker": "MainGame\\Camera.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainGame\\Camera.cs",
+              "RelativeToolTip": "MainGame\\Camera.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAIwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T09:03:56.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WoodSign2.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\WoodSign2.cs",
+              "RelativeDocumentMoniker": "MainMenu\\WoodSign2.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\WoodSign2.cs",
+              "RelativeToolTip": "MainMenu\\WoodSign2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T13:58:42.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainMenu_SelectorScreen.cs",
+              "DocumentMoniker": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\MainMenu_SelectorScreen.cs",
+              "RelativeDocumentMoniker": "MainMenu\\MainMenu_SelectorScreen.cs",
+              "ToolTip": "C:\\Users\\HYTomZ\\Documents\\Godot\\plants-vs-zombies\\MainMenu\\MainMenu_SelectorScreen.cs",
+              "RelativeToolTip": "MainMenu\\MainMenu_SelectorScreen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T09:13:13.241Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

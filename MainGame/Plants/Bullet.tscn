@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://epqd25ox8xq7"]
+
+[ext_resource type="Texture2D" uid="uid://clailt5us12nb" path="res://art/MainGame/Plants/Bullet/ProjectilePea.png" id="1_47fwu"]
+[ext_resource type="Script" path="res://MainGame/Plants/Bullet.cs" id="1_toxup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipsjy"]
+radius = 12.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kbus"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_toxup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_47fwu")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_ipsjy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_1kbus")
