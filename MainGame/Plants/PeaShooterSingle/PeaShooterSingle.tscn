@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://o8tl5cyn71pv"]
+[gd_scene load_steps=24 format=3 uid="uid://bh5ipjbx6k7py"]
 
 [ext_resource type="Script" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.cs" id="1_1y4xh"]
 [ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="2_8gnc4"]
 [ext_resource type="Texture2D" uid="uid://clomnwlnr7p0p" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_blink1.png" id="2_e7dgn"]
+[ext_resource type="PackedScene" uid="uid://epqd25ox8xq7" path="res://MainGame/Plants/Bullet.tscn" id="2_nh87p"]
 [ext_resource type="Animation" uid="uid://cg5mfclohotk6" path="res://MainGame/Plants/PeaShooterSingle/Idle.tres" id="2_x832e"]
 [ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_lefttip.png" id="3_rbrxk"]
 [ext_resource type="Animation" uid="uid://dbu2a7ulj40e2" path="res://MainGame/Plants/PeaShooterSingle/Blink.tres" id="4_d21o8"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="4_v86f1"]
 [ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_righttip.png" id="4_wlrgw"]
 [ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_bottom.png" id="5_bu5ns"]
 [ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_top.png" id="6_b2clo"]
@@ -15,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bh24x4q5el042" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_sprout.png" id="12_kn5d0"]
 [ext_resource type="Texture2D" uid="uid://d301xyd8tipo8" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_Head.png" id="13_nd4h7"]
 [ext_resource type="Texture2D" uid="uid://dsse36p2cqmuh" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_mouth.png" id="14_ly4gj"]
+[ext_resource type="Animation" uid="uid://c4w15oxqancqv" path="res://MainGame/Plants/PeaShooterSingle/Head_Idle.tres" id="16_45rku"]
+[ext_resource type="Animation" uid="uid://cjgfbfe76tx2" path="res://MainGame/Plants/PeaShooterSingle/Head_Shooting.tres" id="17_6n7na"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iv4oo"]
 _data = {
@@ -42,74 +46,85 @@ _data = {
 "RESET": SubResource("Animation_ytrw4")
 }
 
-[node name="PeaShooterSingle" type="Node2D"]
-position = Vector2(112, 75)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nfmd"]
+_data = {
+"Head_Idle": ExtResource("16_45rku"),
+"Head_Shooting": ExtResource("17_6n7na")
+}
+
+[node name="PeaShooterSingle" type="CanvasGroup"]
 script = ExtResource("1_1y4xh")
+BulletScene = ExtResource("2_nh87p")
 
 [node name="Idle" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iv4oo")
 }
-autoplay = "Idle"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3, 51)
+texture = ExtResource("4_v86f1")
+centered = false
 
 [node name="Backleaf" type="Sprite2D" parent="."]
-position = Vector2(27.6, 54.9947)
-scale = Vector2(0.593842, 0.467342)
+position = Vector2(27.7, 53)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("2_8gnc4")
 centered = false
 
 [node name="Backleaf_left_tip" type="Sprite2D" parent="."]
-position = Vector2(24.5053, 55.7869)
-rotation = -0.0287532
-scale = Vector2(0.627684, 0.515)
+position = Vector2(25, 53.9)
+rotation = 0.008727
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("3_rbrxk")
 centered = false
 
 [node name="Backleaf_right_tip" type="Sprite2D" parent="."]
-position = Vector2(48.0947, 54.7895)
-rotation = 0.0743606
-scale = Vector2(0.653184, 0.50021)
+position = Vector2(47, 52.9)
+rotation = 0.005236
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("4_wlrgw")
 centered = false
 
 [node name="Stalk_bottom" type="Sprite2D" parent="."]
-position = Vector2(38.9816, 49.0974)
-rotation = 0.291333
-scale = Vector2(0.560974, 0.733578)
-skew = -0.103985
+position = Vector2(36.1, 52.6)
+rotation = 0.034907
+scale = Vector2(0.555, 0.555)
+skew = -0.0122177
 texture = ExtResource("5_bu5ns")
 centered = false
 
 [node name="Stalk_top" type="Sprite2D" parent="."]
-position = Vector2(35.4684, 36.7947)
-rotation = 0.227674
-scale = Vector2(0.564053, 0.843394)
-skew = -0.0751408
+position = Vector2(31, 45.3)
+rotation = 0.031416
+scale = Vector2(0.555, 0.555)
+skew = -0.0139627
 texture = ExtResource("6_b2clo")
 centered = false
 
 [node name="Frontleaf" type="Sprite2D" parent="."]
-position = Vector2(22.1026, 55.5947)
-scale = Vector2(0.580895, 0.516131)
+position = Vector2(22.8, 54.4)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("7_xtxf1")
 centered = false
 
 [node name="Frontleaf_right_tip" type="Sprite2D" parent="."]
-position = Vector2(55.9869, 56.5)
-rotation = -0.13168
-scale = Vector2(0.707578, 0.543053)
+position = Vector2(56.3, 56)
+rotation = -0.024435
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("8_6nxol")
 centered = false
 
 [node name="Frontleaf_left_tip" type="Sprite2D" parent="."]
-position = Vector2(19.4053, 60.7895)
-rotation = 0.102376
-scale = Vector2(0.62021, 0.550842)
+position = Vector2(19.4, 61.6)
+rotation = 0.022689
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("9_hnol1")
 centered = false
 
 [node name="Anim_stem" type="Node2D" parent="."]
-position = Vector2(41.0711, 43.0921)
+position = Vector2(37.6, 48.7)
 
 [node name="Head" type="Node2D" parent="."]
 
@@ -119,29 +134,36 @@ libraries = {
 "": SubResource("AnimationLibrary_rrocw")
 }
 
+[node name="Head" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_5nfmd")
+}
+
 [node name="Anim_sprout" type="Sprite2D" parent="Head"]
-position = Vector2(7.5, 28.2)
+position = Vector2(7.7, 27.7)
 rotation = 6.02313
-scale = Vector2(0.786, 0.652)
+scale = Vector2(0.799, 0.799)
 texture = ExtResource("12_kn5d0")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Head"]
-position = Vector2(19.1, 14)
-scale = Vector2(0.555, 0.555)
+position = Vector2(19.2, 17.8)
+scale = Vector2(0.555, 0.5)
 texture = ExtResource("13_nd4h7")
 centered = false
 
 [node name="Idle_mouth" type="Sprite2D" parent="Head"]
-position = Vector2(52.4, 13.9)
-scale = Vector2(0.555, 0.555)
+position = Vector2(52.4, 17.8)
+rotation = 2.07603e-05
+scale = Vector2(0.555, 0.5)
+skew = -2.07603e-05
 texture = ExtResource("14_ly4gj")
 centered = false
 
 [node name="Idle_shoot_blink" type="Sprite2D" parent="Head"]
 visible = false
-position = Vector2(37.7, 19.9)
-scale = Vector2(0.555, 0.521)
+position = Vector2(38.4, 21.6)
+scale = Vector2(0.555, 0.519)
 texture = ExtResource("2_e7dgn")
 centered = false
 
@@ -152,11 +174,12 @@ scale = Vector2(0.555, 0.555)
 texture = ExtResource("2_e7dgn")
 centered = false
 
-[node name="Button" type="Button" parent="."]
-offset_left = 48.0
-offset_top = 137.0
-offset_right = 153.0
-offset_bottom = 214.0
-text = "shoot"
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
-[connection signal="button_up" from="Button" to="." method="Shoot"]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(35, 60)
+scale = Vector2(0.555, 0.555)
+
+[connection signal="animation_finished" from="Head/Head" to="." method="StopShooting"]
+[connection signal="timeout" from="Timer" to="." method="Shoot"]

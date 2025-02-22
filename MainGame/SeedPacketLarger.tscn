@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://igh26sahnl2e"]
+
+[ext_resource type="Texture2D" uid="uid://kbb6af4ifc7a" path="res://art/MainGame/SeedPacket_Larger.png" id="1_qkslk"]
+[ext_resource type="Script" path="res://MainGame/SeedPacketLarger.cs" id="2_obxxw"]
+[ext_resource type="PackedScene" uid="uid://bh5ipjbx6k7py" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.tscn" id="3_suhbp"]
+[ext_resource type="Texture2D" uid="uid://cqrbaprqhitl2" path="res://art/MainGame/SeedPacketSilhouette.png" id="4_mv0vt"]
+[ext_resource type="Script" path="res://MainGame/Area2d.cs" id="5_viycb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aceck"]
+size = Vector2(100, 140)
+
+[node name="SeedPacketLarger" type="Sprite2D"]
+texture_filter = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qkslk")
+centered = false
+script = ExtResource("2_obxxw")
+SeedScene = ExtResource("3_suhbp")
+metadata/_edit_group_ = true
+
+[node name="SeedPacketSilhouette" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("4_mv0vt")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(50, 70)
+collision_layer = 17
+collision_mask = 21
+script = ExtResource("5_viycb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_aceck")
+
+[connection signal="input_event" from="Area2D" to="." method="OnInputEvent"]
+[connection signal="mouse_entered" from="Area2D" to="." method="OnMouseEnter"]
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="OnMouseEnter"]

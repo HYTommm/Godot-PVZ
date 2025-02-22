@@ -15,6 +15,9 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="Plants vs Zombies"
+config/name_localized={
+"zh_CN": "植物大战僵尸"
+}
 run/main_scene="res://MainMenu/MainMenu_SelectorScreen.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
@@ -27,6 +30,10 @@ window/size/viewport_height=600
 [dotnet]
 
 project/assembly_name="Plants vs Zombies"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [input]
 
@@ -47,6 +54,7 @@ mouse_right={
 2d_physics/layer_2="plants"
 2d_physics/layer_3="zombies"
 2d_physics/layer_4="bullets"
+2d_physics/layer_5="packets"
 
 [physics]
 

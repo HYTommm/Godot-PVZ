@@ -8,11 +8,12 @@ public partial class Button : Sprite2D
 	public bool picked = false;
 	public AudioStreamPlayer BleepSound = new AudioStreamPlayer();
 	public AudioStreamPlayer TapSound = new AudioStreamPlayer();
-	MainMenu_SelectorScreen main = new MainMenu_SelectorScreen();
+	[Export]
+	MainNode2D main = new MainNode2D();
 	public override void _Ready()
 	{
 		pos = Position;
-		main = GetNode<MainMenu_SelectorScreen>("/root/MainMenu_SelectorScreen");
+		
 
 		BleepSound.Stream = (AudioStream)GD.Load("res://sounds/bleep.ogg");
 		TapSound.Stream = (AudioStream)GD.Load("res://sounds/tap.ogg");
