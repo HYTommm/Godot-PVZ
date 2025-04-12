@@ -36,13 +36,6 @@ public partial class PeaShooterSingle : Plants
 
 	public override void _Idle()
 	{
-		//Task task1 = new Task(() => anim_Idle.Play("Idle", customSpeed: SpeedScaleOfIdle));
-		//Task task2 = new Task(() => anim_Head.Play("Head_Idle", customSpeed: SpeedScaleOfIdle));
-		//Task.Run()
-		//Parallel.Invoke(
-		//	() => anim_Idle.Play("Idle", customSpeed: SpeedScaleOfIdle),
-		//	() => anim_Head.Play("Head_Idle", customSpeed: SpeedScaleOfIdle)
-		//);
 		anim_Idle.CallDeferred("play", "Idle", -1, SpeedScaleOfIdle);
 		anim_Head.CallDeferred("play", "Head_Idle", -1, SpeedScaleOfIdle);
 	}
