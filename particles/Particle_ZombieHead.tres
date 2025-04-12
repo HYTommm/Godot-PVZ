@@ -1,0 +1,36 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://dkuhfvox6rv0j"]
+
+[sub_resource type="Curve" id="Curve_ho4bi"]
+_data = [Vector2(0.95, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vcpgn"]
+curve = SubResource("Curve_ho4bi")
+
+[sub_resource type="Curve" id="Curve_7or1e"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+bake_resolution = 200
+_data = [Vector2(0, 1), 0.0, -0.6875, 0, 1, Vector2(0.8, 0.45), -0.6875, -0.45, 1, 1, Vector2(1, 0.36), -0.45, -1.01099, 1, 1]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fltug"]
+curve = SubResource("Curve_7or1e")
+
+[resource]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0.199, -0.98, 0)
+spread = 18.5
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+angular_velocity_curve = SubResource("CurveTexture_fltug")
+gravity = Vector3(0, 170, 0)
+scale_min = 0.8
+scale_max = 0.8
+alpha_curve = SubResource("CurveTexture_vcpgn")
+collision_mode = 1
+collision_friction = 0.5
+collision_bounce = 0.3
+collision_use_scale = true
