@@ -1,4 +1,6 @@
-[gd_resource type="Animation" format=3 uid="uid://di032ya6pjonx"]
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://di032ya6pjonx"]
+
+[ext_resource type="Texture2D" uid="uid://b4ie6ojmjj0s0" path="res://art/MainGame/Zombie/Zombie_outerarm_hand.png" id="1_1tcyq"]
 
 [resource]
 resource_name = "Walk"
@@ -1360,36 +1362,34 @@ tracks/112/keys = {
 "update": 0,
 "values": [-4e-07, 2e-07, 4e-07, 0.0, -1e-07, -1e-07, 1e-07, 1e-07, 4e-07, -3e-07, -4e-07, -4e-07, -1e-07, -3e-07, -3e-07, 4e-07, -1e-07, 0.0, 2e-07, 3e-07, 1e-07, -1e-07, -2e-07, 3e-07, 3e-07, -4e-07, -1e-07, 5e-07, -2e-07, 0.0, 3e-07, 3e-07, -4e-07, -1e-07, 2e-07, 4e-07, -4e-07, -3e-07, 2e-07, -1e-07, -4e-07, -4e-07, 0.0, 0.0, 3e-07, 0.0]
 }
-tracks/113/type = "method"
+tracks/113/type = "value"
 tracks/113/imported = false
-tracks/113/enabled = false
-tracks/113/path = NodePath(".")
+tracks/113/enabled = true
+tracks/113/path = NodePath(".:isMoving")
 tracks/113/interp = 1
 tracks/113/loop_wrap = true
 tracks/113/keys = {
-"times": PackedFloat32Array(0.0833333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&""],
-"method": &"PosUpdate"
-}]
-}
-tracks/114/type = "value"
-tracks/114/imported = false
-tracks/114/enabled = true
-tracks/114/path = NodePath(".:isMoving")
-tracks/114/interp = 1
-tracks/114/loop_wrap = true
-tracks/114/keys = {
 "times": PackedFloat32Array(3.83333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/114/type = "value"
+tracks/114/imported = false
+tracks/114/enabled = true
+tracks/114/path = NodePath("Anim_innerarm3:visible")
+tracks/114/interp = 1
+tracks/114/loop_wrap = true
+tracks/114/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/115/type = "value"
 tracks/115/imported = false
 tracks/115/enabled = true
-tracks/115/path = NodePath("Anim_innerarm3:visible")
+tracks/115/path = NodePath("Anim_innerarm2:visible")
 tracks/115/interp = 1
 tracks/115/loop_wrap = true
 tracks/115/keys = {
@@ -1401,7 +1401,7 @@ tracks/115/keys = {
 tracks/116/type = "value"
 tracks/116/imported = false
 tracks/116/enabled = true
-tracks/116/path = NodePath("Anim_innerarm2:visible")
+tracks/116/path = NodePath("Anim_innerarm1:visible")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
 tracks/116/keys = {
@@ -1413,12 +1413,12 @@ tracks/116/keys = {
 tracks/117/type = "value"
 tracks/117/imported = false
 tracks/117/enabled = true
-tracks/117/path = NodePath("Anim_innerarm1:visible")
+tracks/117/path = NodePath("Zombie_outerarm_hand:texture")
 tracks/117/interp = 1
 tracks/117/loop_wrap = true
 tracks/117/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 3.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("1_1tcyq"), ExtResource("1_1tcyq")]
 }
