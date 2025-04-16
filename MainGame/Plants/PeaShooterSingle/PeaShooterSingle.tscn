@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bh5ipjbx6k7py"]
+[gd_scene load_steps=28 format=3 uid="uid://bh5ipjbx6k7py"]
 
 [ext_resource type="Script" uid="uid://cdrujtqsasomx" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.cs" id="1_1y4xh"]
 [ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="2_8gnc4"]
@@ -69,6 +69,12 @@ _data = {
 &"Head_Shooting2": ExtResource("17_ajeql"),
 &"RESET": SubResource("Animation_kq65k")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajeql"]
+size = Vector2(60, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq65k"]
+size = Vector2(20, 80)
 
 [node name="PeaShooterSingle" type="CanvasGroup"]
 script = ExtResource("1_1y4xh")
@@ -197,5 +203,21 @@ wait_time = 2.0
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(35, 60)
 scale = Vector2(0.555, 0.555)
+
+[node name="BaseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseArea"]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_ajeql")
+debug_color = Color(0.3, 0.6, 0.45, 0.42)
+
+[node name="DefenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_kq65k")
+debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
 [connection signal="animation_finished" from="Head/Head" to="." method="StopShooting"]

@@ -98,6 +98,19 @@ public abstract partial class Plants : Node2D
 	}
 
 	/// <summary>
+	/// 虚函数，用于对植物扣血
+	/// </summary>
+	/// <param name="damage">扣血量</param>
+	public virtual void Hurt(int damage)
+	{
+		HP -= damage; // 扣血
+		if (HP <= 0) // 生命值小于等于0
+		{
+			FreePlant(); // 释放植物
+		}
+	}
+
+	/// <summary>
 	/// 设置植物的颜色
 	/// </summary>
 	/// <param name="color">颜色</param>
@@ -120,10 +133,11 @@ public abstract partial class Plants : Node2D
 	/// <summary>
 	/// 释放植物
 	/// </summary>
-	public void FreePlant()
+	public virtual void FreePlant()
 	{
 		if (Index >= 0)
 			GetParent<MainGame>().RemovePlant(this);
+		
 		Visible = false;
 	}
 }

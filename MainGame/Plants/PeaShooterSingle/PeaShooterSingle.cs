@@ -45,7 +45,7 @@ public partial class PeaShooterSingle : Plants
 		base._Ready();
 		anim_Idle = GetNode<AnimationPlayer>("./Idle");
 		anim_Head = GetNode<AnimationPlayer>("./Head/Head");
-		SpeedScaleOfIdle = mainGame.RNG.RandfRange(1.45f, 1.65f);
+		SpeedScaleOfIdle = mainGame.RNG.RandfRange(1.2f, 1.6f);
 
 		Stem = GetNode<Node2D>("./Anim_stem");
 		Head = GetNode<Node2D>("./Head");
@@ -68,7 +68,7 @@ public partial class PeaShooterSingle : Plants
 	public override void _PhysicsProcess(double delta)
 	{
 		Head.Position = headPos + (Stem.Position - const_StemPos); // 头部跟随茎移动
-		if (canShoot && mainGame != null) //如果可以射击且主游戏不为空
+		if (canShoot && mainGame != null && HP > 0) //如果可以射击且主游戏不为空
 		{
 			//GD.Print("can shoot");
 			//GD.Print("mainGame.zombies.Count: " + mainGame.zombies.Length);
@@ -78,7 +78,9 @@ public partial class PeaShooterSingle : Plants
 				if (zombie != null) // 如果僵尸不为空
 				{
 					//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
-					if (zombie.isDead == false && zombie.Row == Row) // 如果僵尸不死亡且在同一行
+					if (zombie.isDead == false && zombie.Row == Row && 
+						zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + const_StemPos.X &&
+						zombie.DefenseArea.GlobalPosition.X < mainGame.GameScene.CameraCenterPos.X + 800) // 如果僵尸不死亡且在同一行
 					{
 						Shoot(); // 射击
 						break;
@@ -120,7 +122,7 @@ public partial class PeaShooterSingle : Plants
 		await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
 		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
 		//GD.Print(bullet);
-		bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, 7); // 设置子弹位置为头部的嘴部
+		bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
 		bullet.ShadowPositionY = GetNode<Node2D>("Shadow").GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
 		AddChild(bullet); // 添加子弹到场景中
 		shootSound.Play(); // 播放射击音效
@@ -168,5 +170,11 @@ public partial class PeaShooterSingle : Plants
 		// 计时器开启
 		//GetNode<Timer>("./Timer").Start();
 		CallDeferred("Shoot");
+	}
+
+	public override void FreePlant()
+	{
+		base.FreePlant();
+		RemoveChild(GetNode<Area2D>("./DefenseArea"));
 	}
 }
