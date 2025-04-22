@@ -385,6 +385,7 @@ texture = ExtResource("21_xwfus")
 centered = false
 
 [node name="Anim_hair" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2.6, 6.2)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("22_e6mnr")
