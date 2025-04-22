@@ -139,7 +139,6 @@ public partial class Zombie : Node2D
 				// 在这里处理每个重叠的区域
 				if (area != null && area.GetParent<Plants>() is Plants plant && plant != null && plant.Row == Row && plant.isPlanted && plant.HP > 0)
 				{
-					//Print("Plant HP: " + plant.HP.ToString());
 					// 处理植物
 					if (plant.Index >= max_stack)
 					{
