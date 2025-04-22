@@ -56,7 +56,8 @@ public abstract partial class Plants : Node2D
 	public override void _Ready()
 	{
 		mainGame = GetNode<MainGame>("/root/MainGame");
-		GD.Print(mainGame);
+        AddChild(PlantSound); // 添加种植音效播放器
+        GD.Print(mainGame);
 	}
 
 	/// <summary>
@@ -91,7 +92,7 @@ public abstract partial class Plants : Node2D
 		}
 
 		_Idle(); // 开始待机状态
-		AddChild(PlantSound); // 添加种植音效播放器
+		
 		PlantSound.VolumeDb = -5; // 设置音量
 		PlantSound.Play(); // 播放种植音效
 		

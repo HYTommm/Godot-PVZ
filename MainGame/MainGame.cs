@@ -20,6 +20,11 @@ public partial class MainGame : MainNode2D
 
 	// 阳光数量
 	public int SunCount = 0;
+	// 阳光刷新倒计时
+	public Timer SunTimer = new Timer();
+	// 已刷新阳光数量
+	public int SunRefreshedCount = 0;
+	
 	
 	
 	// 植物栈
@@ -58,8 +63,10 @@ public partial class MainGame : MainNode2D
 		camera = GetNode<Camera>("./Camera");// 设置相机
 		animation = GetNode<AnimationPlayer>("./CanvasLayer/AnimationPlayer");// 设置动画播放器
 		seedBank = GetNode<SeedBank>("./CanvasLayer/SeedBank");// 设置种子卡槽
-		
 
+		SunTimer.Timeout += RefreshSun;
+		AddChild(SunTimer);
+		
 		SelectSeedCard();// 进入选卡环节
 	}
 
@@ -151,6 +158,7 @@ public partial class MainGame : MainNode2D
 		ZombieMaxWave = 20; // 初始化最大波数
 		SunCount = 525; // 初始化阳光数量
 		seedBank.UpdateSunCount(); // 更新阳光数量
+		RefreshSunTimer(); // 刷新阳光计时器
 	}
 
 	// 选中种子
@@ -437,6 +445,41 @@ public partial class MainGame : MainNode2D
 	{
 		isGameOver = true;
 		GD.Print("Game Over");
+	}
+
+	// 刷新阳光
+	public void RefreshSun()
+	{
+		GD.Print("RefreshSun");
+		Sun sun = GD.Load<PackedScene>("res://MainGame/Sun.tscn").Instantiate() as Sun; // 实例化太阳
+		sun.Position = new Vector2(RNG.RandfRange(100, 700) + GameScene.CameraCenterPos.X, 90);// 设置太阳的位置
+		sun.GroundPosY = RNG.RandiRange(200, 500); // 设置太阳的高度
+		AddChild(sun);// 添加太阳到场景中
+		SunRefreshedCount += 25;
+
+		// 天降阳光的时间间隔T和本局游戏内已掉落的阳光数量有关。
+		// 设已掉落的阳光数量为x，A = 10x + 425，B为0~274之间的随机数
+		// 若A <= 950,则T = A + B，若A > 950，则T = 950 + B
+
+		RefreshSunTimer();
+	
+	}
+
+	// 刷新阳光计时器
+	public void RefreshSunTimer()
+	{
+
+		int SunRefreshTimeA = 10 * SunRefreshedCount + 425;
+		int SunRefreshTimeB = RNG.RandiRange(0, 274);
+		if (SunRefreshTimeA > 950)
+		{
+			SunRefreshTimeA = 950;
+		}
+		int SunRefreshTime = SunRefreshTimeA + SunRefreshTimeB;
+
+		SunTimer.WaitTime = SunRefreshTime / 1000f;
+		SunTimer.Start();
+		GD.Print("SunRefreshTime: " + SunRefreshTime);
 	}
 
 }

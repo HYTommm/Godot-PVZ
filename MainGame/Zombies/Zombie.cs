@@ -137,7 +137,7 @@ public partial class Zombie : Node2D
 			foreach (Area2D area in overlappingAreas)
 			{
 				// 在这里处理每个重叠的区域
-				if (area.GetParent<Plants>() is Plants plant && plant != null && plant.Row == Row && plant.isPlanted && plant.HP > 0)
+				if (area != null && area.GetParent<Plants>() is Plants plant && plant != null && plant.Row == Row && plant.isPlanted && plant.HP > 0)
 				{
 					//Print("Plant HP: " + plant.HP.ToString());
 					// 处理植物
@@ -150,7 +150,6 @@ public partial class Zombie : Node2D
 			}
 			
 
-			//Print("current_max_stack_array_index: " + current_max_stack_array_index.ToString());
 			Area2D AttackPlantArea = null;
 			Plants AttackPlant = null;
 			if (current_max_stack_array_index != -1)
@@ -175,32 +174,10 @@ public partial class Zombie : Node2D
 			}
 			else
 			{
-				Print("No Plant");
+				
 				AttackTemp = 0;
 
-				if (AttackPlantArea == null)
-				{
-					Print("Attack Plant Area is null");
-					
-				}
-				else
-				{
-					if (AttackPlant == null)
-					{
-						Print("Attack Plant Parent is null");
-					}
-					else
-					{
-						if (AttackPlant.HP <= 0)
-							{
-								Print("Plant HP <= 0");
-							}
-						else if (!AttackPlant.isPlanted)
-							{
-								Print("Plant is not planted");
-							}
-					}
-				}
+				
 
 				Print(animation.CurrentAnimation);
 				if (animation.CurrentAnimation == "Zombie_eat")
@@ -227,12 +204,12 @@ public partial class Zombie : Node2D
 		}
 	}
 
-	async public void ContinueMove(StringName animName)
+	public void ContinueMove(StringName animName)
 	{
 		ContinueMove(animName, 0);
 	}
 
-
+	
 	async public void ContinueMove(StringName animName = null, float customBlend = 0)
 	{
 		// 停止移动

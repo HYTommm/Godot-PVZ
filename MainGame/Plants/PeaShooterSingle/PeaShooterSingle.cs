@@ -31,6 +31,7 @@ public partial class PeaShooterSingle : Plants
 	public PeaShooterSingle()
 	{
 		SunCost = 100; // 阳光消耗
+		//CDtime = CDTime.FAST; // 冷却时间
 		CDtime = CDTime.FAST; // 冷却时间
 	}
 
@@ -68,26 +69,33 @@ public partial class PeaShooterSingle : Plants
 	public override void _PhysicsProcess(double delta)
 	{
 		Head.Position = headPos + (Stem.Position - const_StemPos); // 头部跟随茎移动
+
 		if (canShoot && mainGame != null && HP > 0) //如果可以射击且主游戏不为空
 		{
-			//GD.Print("can shoot");
-			//GD.Print("mainGame.zombies.Count: " + mainGame.zombies.Length);
+
+
+			GD.Print("can shoot");
+			GD.Print("mainGame.zombies.Count: " + mainGame.zombies.Length);
 			for (int i = 0; i < mainGame.zombies.Length; i++) // 遍历所有僵尸
 			{
 				Zombie zombie = mainGame.zombies[i]; // 取出僵尸
 				if (zombie != null) // 如果僵尸不为空
 				{
 					//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
-					if (zombie.isDead == false && zombie.Row == Row && 
-						zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + const_StemPos.X &&
-						zombie.DefenseArea.GlobalPosition.X < mainGame.GameScene.CameraCenterPos.X + 800) // 如果僵尸不死亡且在同一行
+					if (zombie.isDead == false && zombie.Row == Row && // 如果僵尸不死亡且在同一行
+						zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + const_StemPos.X && // 僵尸防守区域在植物的右侧
+						zombie.DefenseArea.GlobalPosition.X < mainGame.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
 					{
 						Shoot(); // 射击
 						break;
 					}
 				}
 			}
+
 		}
+
+		
+
 		else if (canShoot == false)
 		{
 			//GD.Print("cannot shoot");

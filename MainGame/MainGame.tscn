@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://b5akfnehqqfju" path="res://MainGame/MainGame.cs" id="1_wqycq"]
 [ext_resource type="PackedScene" uid="uid://cpy4ha2doqxgb" path="res://MainGame/seed_bank.tscn" id="2_76kvo"]
 [ext_resource type="Script" uid="uid://boxgd8xoh4c23" path="res://MainGame/Camera.cs" id="2_822an"]
-[ext_resource type="PackedScene" uid="uid://0wbicixp8008" path="res://MainGame/Sun.tscn" id="6_5y8m1"]
 [ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="6_pnguv"]
+[ext_resource type="Script" uid="uid://c7i6fq16bcsd3" path="res://MainGame/tiaoshi_button.gd" id="7_8e541"]
 
 [sub_resource type="Animation" id="Animation_6xno4"]
 length = 0.001
@@ -79,7 +79,7 @@ texture = ExtResource("1_ic8i7")
 centered = false
 
 [node name="Zombie2" parent="." instance=ExtResource("6_pnguv")]
-position = Vector2(925, 338)
+position = Vector2(927, 338)
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -87,17 +87,12 @@ position_smoothing_enabled = true
 position_smoothing_speed = 23.0
 script = ExtResource("2_822an")
 
-[node name="Sun" parent="." instance=ExtResource("6_5y8m1")]
-z_index = 2
-position = Vector2(383, 245)
-GroundPosY = 300
+[node name="Button" type="Button" parent="."]
+offset_left = 847.0
+offset_top = 76.0
+offset_right = 929.0
+offset_bottom = 133.0
+text = "调试"
+script = ExtResource("7_8e541")
 
-[node name="Sun2" parent="." instance=ExtResource("6_5y8m1")]
-z_index = 2
-position = Vector2(667, 169)
-GroundPosY = 500
-
-[node name="Sun3" parent="." instance=ExtResource("6_5y8m1")]
-z_index = 2
-position = Vector2(863, 213)
-GroundPosY = 400
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

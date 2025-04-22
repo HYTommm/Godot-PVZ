@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://igh26sahnl2e"]
+[gd_scene load_steps=13 format=3 uid="uid://igh26sahnl2e"]
 
 [ext_resource type="Texture2D" uid="uid://kbb6af4ifc7a" path="res://art/MainGame/SeedPacket_Larger.png" id="1_qkslk"]
 [ext_resource type="Script" uid="uid://dprseex6qptlk" path="res://MainGame/SeedPacketLarger.cs" id="2_obxxw"]
 [ext_resource type="Texture2D" uid="uid://b3713ymdomei" path="res://particles/SeedPacketFlash.png" id="4_5264g"]
 [ext_resource type="Texture2D" uid="uid://cqrbaprqhitl2" path="res://art/MainGame/SeedPacketSilhouette.png" id="4_mv0vt"]
+[ext_resource type="FontFile" uid="uid://bhoepk0eqjiwi" path="res://fonts/wryh+pico12num.ttf" id="5_1adfj"]
 [ext_resource type="Shader" uid="uid://tbfdkm4hbwv3" path="res://MainGame/SeedPacketLarger.gdshader" id="5_7dt0y"]
 [ext_resource type="Script" uid="uid://crrvjsotvcn4u" path="res://MainGame/Area2d.cs" id="5_viycb"]
 
@@ -102,13 +103,14 @@ libraries = {
 }
 
 [node name="Label" type="Label" parent="."]
-offset_left = 3.0
-offset_top = 54.0
-offset_right = 45.0
-offset_bottom = 67.0
+offset_left = 2.0
+offset_top = 51.0
+offset_right = 32.0
+offset_bottom = 69.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 1
+theme_override_fonts/font = ExtResource("5_1adfj")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
 
 [node name="CostColorRect" type="ColorRect" parent="."]
 offset_right = 50.0

@@ -39,18 +39,15 @@ public partial class Bullet : Node2D
 	async public void OnAreaEntered(Area2D area)
 	{
 		//GD.Print("Bullet collided with " + area.Name);
-		
-
+		IsDisappear = true; // 子弹消失
+		GetNode<Sprite2D>("Sprite2D").Visible = false; // 子弹不可见
+		GetNode<Sprite2D>("Shadow").Visible = false; // 子弹阴影不可见
+		//GetNode<Area2D>("./Area2D").CallDeferred("set_monitoring", false); // 停止检测子弹碰撞
+		GetNode<Area2D>("./Area2D").SetDeferred("monitoring", false); // 停止检测子弹碰撞
 		// 判断子弹是否击中僵尸
-		if (area.GetNode("..") is Zombie zombie && !IsDisappear) 
+		if (area.GetNode("..") is Zombie zombie) 
 		{
-			IsDisappear = true; // 子弹消失
-			GetNode<Sprite2D>("Sprite2D").Visible = false; // 子弹不可见
-			GetNode<Sprite2D>("Shadow").Visible = false; // 子弹阴影不可见
-			//GetNode<Area2D>("./Area2D").CallDeferred("set_monitoring", false); // 停止检测子弹碰撞
-			GetNode<Area2D>("./Area2D").SetDeferred("monitoring", false); // 停止检测子弹碰撞
-
-
+			
 			GD.Print("Bullet hit zombie"); 
 			//僵尸扣血
 			zombie.Hurt(Damage);

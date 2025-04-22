@@ -25,6 +25,8 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -55,6 +57,7 @@ mouse_right={
 2d_physics/layer_4="bullets"
 2d_physics/layer_5="packets"
 
-[physics]
+[rendering]
 
-common/physics_ticks_per_second=30
+textures/vram_compression/import_etc2_astc=true
+occlusion_culling/use_occlusion_culling=true

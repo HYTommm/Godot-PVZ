@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cor7g84qx52w7"]
+[gd_scene load_steps=45 format=3 uid="uid://cor7g84qx52w7"]
 
 [ext_resource type="Texture2D" uid="uid://dhdgwk51ra0yr" path="res://art/MainGame/Plants/SunFlower/SunFlower_blink2.png" id="1_dknli"]
 [ext_resource type="Script" uid="uid://cifyblddd5bf5" path="res://MainGame/Plants/Sunflower/SunFlower.cs" id="1_oxdg1"]
@@ -2649,6 +2649,9 @@ _data = {
 &"SunLight": SubResource("Animation_41nh4")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wihil"]
+size = Vector2(20, 80)
+
 [node name="SunFlower" type="CanvasGroup"]
 clip_children = 2
 material = SubResource("ShaderMaterial_kdids")
@@ -2877,3 +2880,12 @@ centered = false
 libraries = {
 &"": SubResource("AnimationLibrary_3mbi3")
 }
+
+[node name="DefenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_wihil")
+debug_color = Color(0.7, 0.4, 0.7, 0.42)
