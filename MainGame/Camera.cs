@@ -6,8 +6,6 @@ public partial class Camera : Camera2D
 	[Signal]
 	public delegate void MoveEndEventHandler();
 
-	//public Vector2 CenterPos = new(220, 0);
-	//public Vector2 RightPos = new(600, 0);
 	public Vector2 StartMovePos = Vector2.Zero;
 	public Vector2 EndMovePos = Vector2.Zero;
 
