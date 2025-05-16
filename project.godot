@@ -20,7 +20,6 @@ config/name_localized={
 }
 run/main_scene="res://MainMenu/MainMenu_SelectorScreen.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-config/icon="uid://rmj8i85oteuw"
 config/windows_native_icon="res://icon/PVZ_ICON.ico"
 
 [display]
@@ -29,7 +28,6 @@ window/size/viewport_width=800
 window/size/viewport_height=600
 window/size/resizable=false
 window/stretch/mode="canvas_items"
-mouse_cursor/custom_image="uid://cuor6ljdi5olm"
 mouse_cursor/custom_image_hotspot=Vector2(5, 5)
 
 [dotnet]
