@@ -1,0 +1,257 @@
+[gd_scene load_steps=35 format=3 uid="uid://c4pak2uihe0s"]
+
+[ext_resource type="Script" uid="uid://4e7mlloo1s3a" path="res://MainMenu/MainMenu_SelectorScreen.cs" id="1_repe6"]
+[ext_resource type="Texture2D" uid="uid://cx652qpnwb63s" path="res://art/MainMenu/BG/SelectorScreen_BG.jpg" id="2_pk63s"]
+[ext_resource type="Texture2D" uid="uid://c311d7b1rcyqd" path="res://art/MainMenu/BG/SelectorScreen_BG_Center.png" id="3_v4cgi"]
+[ext_resource type="Texture2D" uid="uid://bbqq8fy3ljokx" path="res://art/MainMenu/BG/SelectorScreen_BG_Left.png" id="4_3pr5g"]
+[ext_resource type="Texture2D" uid="uid://wbogaqfbky4f" path="res://art/MainMenu/BG/SelectorScreen_BG_Right.png" id="5_rsg4t"]
+[ext_resource type="Texture2D" uid="uid://b3ehg1ecf3phl" path="res://art/MainMenu/Buttons/SelectorScreen_StartAdventure_Button_double.png" id="6_dw6ha"]
+[ext_resource type="Script" uid="uid://d3mbwd5lb8o5x" path="res://MainMenu/StartAdventureButton.cs" id="7_nk3so"]
+[ext_resource type="Texture2D" uid="uid://dcccm0kx4ku8j" path="res://art/MainMenu/Buttons/SelectorScreen_Adventure_button_double.png" id="8_ccvj7"]
+[ext_resource type="Texture2D" uid="uid://bjhlkyl817kby" path="res://art/MainMenu/Vase/SelectorScreen_Help1_double.png" id="9_in0xe"]
+[ext_resource type="Script" uid="uid://cs0jiqr7srqds" path="res://MainMenu/Help.cs" id="10_cvj23"]
+[ext_resource type="Texture2D" uid="uid://bo2l3n2kn6p2p" path="res://art/MainMenu/Vase/SelectorScreen_Options_double.png" id="11_07l5e"]
+[ext_resource type="Texture2D" uid="uid://e7bl8svrufrx" path="res://art/MainMenu/Vase/SelectorScreen_Flower1.png" id="11_hnb20"]
+[ext_resource type="Texture2D" uid="uid://crw6i64d2q1f7" path="res://art/MainMenu/Vase/SelectorScreen_Flower2.png" id="12_c1koc"]
+[ext_resource type="Script" uid="uid://r8lf0b2bmsmn" path="res://MainMenu/Options.cs" id="12_e5mpn"]
+[ext_resource type="Texture2D" uid="uid://cj2m3f1yfiojj" path="res://art/MainMenu/Vase/SelectorScreen_Quit_double.png" id="13_7yo4n"]
+[ext_resource type="Texture2D" uid="uid://bndsb1g1kqwoq" path="res://art/MainMenu/Vase/SelectorScreen_Flower3.png" id="13_lof2u"]
+[ext_resource type="Script" uid="uid://biiycidmbeag2" path="res://MainMenu/Quit.cs" id="14_w66ex"]
+[ext_resource type="Texture2D" uid="uid://c2useodhxayh2" path="res://art/MainMenu/WoodSign/SelectorScreen_WoodSign1.png" id="14_y24e0"]
+[ext_resource type="Texture2D" uid="uid://4v4flht3lamq" path="res://art/MainMenu/Leaf/SelectorScreen_Leaf2.png" id="15_iwvhs"]
+[ext_resource type="Texture2D" uid="uid://dsas83tt6hq01" path="res://art/MainMenu/Leaf/SelectorScreen_Leaves.png" id="16_6a15d"]
+[ext_resource type="Texture2D" uid="uid://bp4afd4m1fufq" path="res://art/MainMenu/Leaf/SelectorScreen_Leaf3.png" id="17_6sw60"]
+[ext_resource type="Texture2D" uid="uid://cm285hw0gv0x0" path="res://art/MainMenu/Leaf/SelectorScreen_Leaf4.png" id="18_nqc0h"]
+[ext_resource type="Texture2D" uid="uid://b2rfvj4rryka6" path="res://art/MainMenu/WoodSign/SelectorScreen_WoodSign2_double.png" id="19_fenbu"]
+[ext_resource type="Texture2D" uid="uid://dl1dpju4ev1wo" path="res://art/MainMenu/Leaf/SelectorScreen_Leaf1.png" id="19_qwa5s"]
+[ext_resource type="Texture2D" uid="uid://dyd5h6dd3oy3s" path="res://art/MainMenu/Leaf/SelectorScreen_Leaf5.png" id="20_82h1e"]
+[ext_resource type="Script" uid="uid://bm3ji7rlnp0nx" path="res://MainMenu/WoodSign2.cs" id="20_qgg5r"]
+[ext_resource type="Texture2D" uid="uid://bx564vabbegli" path="res://art/MainMenu/WoodSign/SelectorScreen_WoodSign3.png" id="21_gxyee"]
+[ext_resource type="PackedScene" uid="uid://cjbeu45vm0dkk" path="res://MainMenu/ZombieHand.tscn" id="28_swxlp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bloc8"]
+size = Vector2(316.67, 91.3377)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5sfpo"]
+size = Vector2(172.103, 31.3648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmqqh"]
+size = Vector2(48, 46.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dctkk"]
+size = Vector2(80, 46.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fikt7"]
+size = Vector2(61.9583, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htf34"]
+size = Vector2(243.916, 31.8843)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_repe6")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 800.0
+offset_bottom = 600.0
+texture = ExtResource("2_pk63s")
+
+[node name="BgCenter" type="TextureRect" parent="."]
+offset_left = 80.0
+offset_top = 250.0
+offset_right = 800.0
+offset_bottom = 600.0
+size_flags_vertical = 0
+texture = ExtResource("3_v4cgi")
+
+[node name="BG_Left" type="Sprite2D" parent="."]
+position = Vector2(0, 600)
+texture = ExtResource("4_3pr5g")
+offset = Vector2(238, -340)
+
+[node name="BG_Right" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(70, 40)
+texture = ExtResource("5_rsg4t")
+centered = false
+
+[node name="StartAdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("main")]
+position = Vector2(328, 25)
+texture = ExtResource("6_dw6ha")
+centered = false
+hframes = 2
+script = ExtResource("7_nk3so")
+main = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="BG_Right/StartAdventureButton"]
+position = Vector2(162, 73)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/StartAdventureButton/Area2D"]
+rotation = 0.10472
+shape = SubResource("RectangleShape2D_bloc8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BG_Right/StartAdventureButton/Area2D"]
+position = Vector2(-7.82831, -51.6336)
+rotation = 0.10472
+shape = SubResource("RectangleShape2D_5sfpo")
+
+[node name="AdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("main")]
+visible = false
+position = Vector2(335, 39.7)
+texture = ExtResource("8_ccvj7")
+centered = false
+hframes = 2
+script = ExtResource("7_nk3so")
+main = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="BG_Right/AdventureButton"]
+position = Vector2(165, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/AdventureButton/Area2D"]
+position = Vector2(-3, -5)
+rotation = 0.10472
+shape = SubResource("RectangleShape2D_bloc8")
+
+[node name="Help" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("main")]
+position = Vector2(578, 487)
+texture = ExtResource("9_in0xe")
+centered = false
+hframes = 2
+script = ExtResource("10_cvj23")
+main = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="BG_Right/Help"]
+position = Vector2(24, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/Help/Area2D"]
+position = Vector2(0, -9.75)
+shape = SubResource("RectangleShape2D_xmqqh")
+
+[node name="Options" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("main")]
+position = Vector2(494, 449)
+texture = ExtResource("11_07l5e")
+centered = false
+hframes = 2
+script = ExtResource("12_e5mpn")
+main = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="BG_Right/Options"]
+position = Vector2(40, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/Options/Area2D"]
+shape = SubResource("RectangleShape2D_dctkk")
+
+[node name="Quit" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("main")]
+position = Vector2(650, 473)
+texture = ExtResource("13_7yo4n")
+centered = false
+hframes = 2
+script = ExtResource("14_w66ex")
+main = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="BG_Right/Quit"]
+position = Vector2(23.5, 13.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/Quit/Area2D"]
+position = Vector2(-2.97913, 0)
+shape = SubResource("RectangleShape2D_fikt7")
+
+[node name="Flower1" type="Sprite2D" parent="BG_Right"]
+position = Vector2(610, 374)
+texture = ExtResource("11_hnb20")
+centered = false
+
+[node name="Flower2" type="Sprite2D" parent="BG_Right"]
+position = Vector2(570, 397)
+texture = ExtResource("12_c1koc")
+centered = false
+
+[node name="Flower3" type="Sprite2D" parent="BG_Right"]
+position = Vector2(670, 418)
+texture = ExtResource("13_lof2u")
+centered = false
+
+[node name="WoodSign1" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(168.5, 64)
+texture = ExtResource("14_y24e0")
+
+[node name="WoodSign2" type="Sprite2D" parent="." node_paths=PackedStringArray("main")]
+texture_filter = 1
+position = Vector2(24, 125)
+texture = ExtResource("19_fenbu")
+centered = false
+hframes = 2
+script = ExtResource("20_qgg5r")
+main = NodePath("..")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="WoodSign2"]
+position = Vector2(146, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WoodSign2/Area2D"]
+rotation = -0.0261799
+shape = SubResource("RectangleShape2D_htf34")
+
+[node name="WoodSign3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(72, 200)
+texture = ExtResource("21_gxyee")
+
+[node name="ZombieHand" parent="." instance=ExtResource("28_swxlp")]
+position = Vector2(-70, 7)
+
+[node name="Leaf" type="Node" parent="."]
+
+[node name="Leaf2" type="Sprite2D" parent="Leaf"]
+position = Vector2(43, 575)
+texture = ExtResource("15_iwvhs")
+
+[node name="Leaves" type="Sprite2D" parent="Leaf"]
+position = Vector2(120, 569)
+texture = ExtResource("16_6a15d")
+
+[node name="Leaf3" type="Sprite2D" parent="Leaf"]
+position = Vector2(284, 582)
+texture = ExtResource("17_6sw60")
+
+[node name="Leaf4" type="Sprite2D" parent="Leaf"]
+position = Vector2(237, 584)
+texture = ExtResource("18_nqc0h")
+
+[node name="Leaf1" type="Sprite2D" parent="Leaf"]
+position = Vector2(312, 584)
+texture = ExtResource("19_qwa5s")
+
+[node name="Leaf5" type="Sprite2D" parent="Leaf"]
+position = Vector2(260, 587)
+texture = ExtResource("20_82h1e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 800.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0)
+
+[connection signal="input_event" from="BG_Right/StartAdventureButton/Area2D" to="BG_Right/StartAdventureButton" method="OnInputEvent"]
+[connection signal="mouse_entered" from="BG_Right/StartAdventureButton/Area2D" to="BG_Right/StartAdventureButton" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="BG_Right/StartAdventureButton/Area2D" to="BG_Right/StartAdventureButton" method="OnMouseExited"]
+[connection signal="input_event" from="BG_Right/AdventureButton/Area2D" to="BG_Right/AdventureButton" method="OnInputEvent"]
+[connection signal="mouse_entered" from="BG_Right/AdventureButton/Area2D" to="BG_Right/AdventureButton" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="BG_Right/AdventureButton/Area2D" to="BG_Right/AdventureButton" method="OnMouseExited"]
+[connection signal="input_event" from="BG_Right/Help/Area2D" to="BG_Right/Help" method="OnInputEvent"]
+[connection signal="mouse_entered" from="BG_Right/Help/Area2D" to="BG_Right/Help" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="BG_Right/Help/Area2D" to="BG_Right/Help" method="OnMouseExited"]
+[connection signal="input_event" from="BG_Right/Options/Area2D" to="BG_Right/Options" method="OnInputEvent"]
+[connection signal="mouse_entered" from="BG_Right/Options/Area2D" to="BG_Right/Options" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="BG_Right/Options/Area2D" to="BG_Right/Options" method="OnMouseExited"]
+[connection signal="input_event" from="BG_Right/Quit/Area2D" to="BG_Right/Quit" method="OnInputEvent"]
+[connection signal="mouse_entered" from="BG_Right/Quit/Area2D" to="BG_Right/Quit" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="BG_Right/Quit/Area2D" to="BG_Right/Quit" method="OnMouseExited"]
+[connection signal="input_event" from="WoodSign2/Area2D" to="WoodSign2" method="OnInputEvent"]
+[connection signal="mouse_entered" from="WoodSign2/Area2D" to="WoodSign2" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="WoodSign2/Area2D" to="WoodSign2" method="OnMouseExited"]

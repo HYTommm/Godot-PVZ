@@ -1,0 +1,70 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+warnings/check_invalid_track_paths=false
+
+[application]
+
+config/name="Plants vs Zombies"
+config/name_localized={
+"zh_CN": "植物大战僵尸"
+}
+run/main_scene="res://MainMenu/MainMenu_SelectorScreen.tscn"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/icon="uid://rmj8i85oteuw"
+config/windows_native_icon="res://icon/PVZ_ICON.ico"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://cuor6ljdi5olm"
+mouse_cursor/custom_image_hotspot=Vector2(5, 5)
+
+[dotnet]
+
+project/assembly_name="Plants vs Zombies"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
+
+[input]
+
+mouse_left={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(254, 12),"global_position":Vector2(263, 58),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+mouse_right={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(330, 12),"global_position":Vector2(339, 58),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="ground"
+2d_physics/layer_2="plants"
+2d_physics/layer_3="zombies"
+2d_physics/layer_4="bullets"
+2d_physics/layer_5="packets"
+
+[memory]
+
+limits/message_queue/max_size_mb=64
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

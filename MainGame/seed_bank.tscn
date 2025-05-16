@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpy4ha2doqxgb"]
+
+[ext_resource type="Texture2D" uid="uid://xaxbi7ixlgwp" path="res://art/MainGame/SeedBank.png" id="1_3tv4h"]
+[ext_resource type="PackedScene" uid="uid://igh26sahnl2e" path="res://MainGame/SeedPacketLarger.tscn" id="2_ns80v"]
+[ext_resource type="Script" uid="uid://cmmppi1m37giv" path="res://MainGame/SeedBank.cs" id="2_ua34a"]
+[ext_resource type="PackedScene" uid="uid://bh5ipjbx6k7py" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.tscn" id="5_6x7yi"]
+[ext_resource type="AudioStream" uid="uid://7en1bjf4sg5i" path="res://sounds/points.ogg" id="6_jv5um"]
+[ext_resource type="PackedScene" uid="uid://cor7g84qx52w7" path="res://MainGame/Plants/Sunflower/SunFlower.tscn" id="7_8wcx6"]
+
+[sub_resource type="Animation" id="Animation_6x7yi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SunCountLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jv5um"]
+resource_name = "Sun_Count_Flash_warning"
+length = 0.800003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SunCountLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cs2s"]
+_data = {
+&"RESET": SubResource("Animation_6x7yi"),
+&"SunCountFlashWarning": SubResource("Animation_jv5um")
+}
+
+[node name="SeedBank" type="Sprite2D"]
+texture = ExtResource("1_3tv4h")
+centered = false
+script = ExtResource("2_ua34a")
+
+[node name="SeedPacketLarger" parent="." instance=ExtResource("2_ns80v")]
+position = Vector2(78, 8)
+SeedScene = ExtResource("7_8wcx6")
+
+[node name="SeedPacketLarger2" parent="." instance=ExtResource("2_ns80v")]
+position = Vector2(129, 8)
+SeedScene = ExtResource("5_6x7yi")
+
+[node name="SeedPacketLarger3" parent="." instance=ExtResource("2_ns80v")]
+position = Vector2(180, 8)
+SeedScene = ExtResource("5_6x7yi")
+
+[node name="SunCountLabel" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 61.0
+offset_right = 66.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="SunCountFlashWarning" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8cs2s")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jv5um")
+pitch_scale = 1.5

@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://epqd25ox8xq7"]
+
+[ext_resource type="Texture2D" uid="uid://clailt5us12nb" path="res://art/MainGame/Plants/Bullet/ProjectilePea.png" id="1_47fwu"]
+[ext_resource type="Script" uid="uid://dof2s3yu12a6o" path="res://MainGame/Plants/Bullet.cs" id="1_toxup"]
+[ext_resource type="Texture2D" uid="uid://cuoy8u43pxadi" path="res://particles/pea_splats.png" id="3_aj0cv"]
+[ext_resource type="Texture2D" uid="uid://dmi1rhfnv0utk" path="res://art/MainGame/Plants/Bullet/pea_shadows.png" id="4_wc70l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1w30l"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_i6aer"]
+_data = [Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2), -3.58496, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8v4ep"]
+curve = SubResource("Curve_i6aer")
+
+[sub_resource type="Curve" id="Curve_c1xw0"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.6, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_wxqgr"]
+curve = SubResource("Curve_c1xw0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kbus"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 0.9
+scale_curve = SubResource("CurveTexture_wxqgr")
+alpha_curve = SubResource("CurveTexture_8v4ep")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc70l"]
+size = Vector2(56, 27)
+
+[node name="Bullet" type="Node2D"]
+z_index = 2
+script = ExtResource("1_toxup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_47fwu")
+centered = false
+
+[node name="Splats" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_1w30l")
+position = Vector2(25, 14)
+emitting = false
+amount = 1
+texture = ExtResource("3_aj0cv")
+lifetime = 0.1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_1kbus")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("4_wc70l")
+centered = false
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-14, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(28, 13.5)
+shape = SubResource("RectangleShape2D_wc70l")
+debug_color = Color(0.8, 0.1, 0.1, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
+[connection signal="area_shape_entered" from="Area2D" to="." method="OnAreaShapeEntered"]

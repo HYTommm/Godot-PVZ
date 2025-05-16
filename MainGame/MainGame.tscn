@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=3 uid="uid://bs1ikm6rlutci"]
+
+[ext_resource type="Texture2D" uid="uid://ckobsbgvjkrpo" path="res://art/MainGame/background1.jpg" id="1_ic8i7"]
+[ext_resource type="Script" uid="uid://b5akfnehqqfju" path="res://MainGame/MainGame.cs" id="1_wqycq"]
+[ext_resource type="PackedScene" uid="uid://cpy4ha2doqxgb" path="res://MainGame/seed_bank.tscn" id="2_76kvo"]
+[ext_resource type="Script" uid="uid://boxgd8xoh4c23" path="res://MainGame/Camera.cs" id="2_822an"]
+[ext_resource type="PackedScene" uid="uid://dqqtdugtcjbuf" path="res://Menu/GameButton.tscn" id="6_5y8m1"]
+[ext_resource type="Script" uid="uid://c7i6fq16bcsd3" path="res://MainGame/tiaoshi_button.gd" id="7_8e541"]
+
+[sub_resource type="Animation" id="Animation_nuski"]
+resource_name = "Lable"
+length = 0.500003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6xno4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SeedBank:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, -87)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(675, -43)]
+}
+
+[sub_resource type="Animation" id="Animation_lx0le"]
+resource_name = "SeedBank"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SeedBank:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(10, -87), Vector2(10, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333337),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(675, -43), Vector2(675, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tnsum"]
+_data = {
+&"Label": SubResource("Animation_nuski"),
+&"RESET": SubResource("Animation_6xno4"),
+&"SeedBank": SubResource("Animation_lx0le")
+}
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_wqycq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_tnsum")
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -80.0
+offset_right = 142.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+text = "HYTomZ's House"
+horizontal_alignment = 1
+
+[node name="SeedBank" parent="CanvasLayer" instance=ExtResource("2_76kvo")]
+position = Vector2(10, -87)
+
+[node name="GameButton" parent="CanvasLayer" node_paths=PackedStringArray("main") instance=ExtResource("6_5y8m1")]
+position = Vector2(675, -43)
+main = NodePath("../..")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+texture = ExtResource("1_ic8i7")
+centered = false
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_speed = 23.0
+script = ExtResource("2_822an")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 847.0
+offset_top = 76.0
+offset_right = 929.0
+offset_bottom = 133.0
+text = "调试"
+script = ExtResource("7_8e541")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

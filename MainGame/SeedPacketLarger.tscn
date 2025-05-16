@@ -1,0 +1,140 @@
+[gd_scene load_steps=13 format=3 uid="uid://igh26sahnl2e"]
+
+[ext_resource type="Texture2D" uid="uid://kbb6af4ifc7a" path="res://art/MainGame/SeedPacket_Larger.png" id="1_qkslk"]
+[ext_resource type="Script" uid="uid://dprseex6qptlk" path="res://MainGame/SeedPacketLarger.cs" id="2_obxxw"]
+[ext_resource type="Texture2D" uid="uid://b3713ymdomei" path="res://particles/SeedPacketFlash.png" id="4_5264g"]
+[ext_resource type="Texture2D" uid="uid://cqrbaprqhitl2" path="res://art/MainGame/SeedPacketSilhouette.png" id="4_mv0vt"]
+[ext_resource type="FontFile" uid="uid://bhoepk0eqjiwi" path="res://fonts/wryh+pico12num.ttf" id="5_1adfj"]
+[ext_resource type="Shader" uid="uid://tbfdkm4hbwv3" path="res://MainGame/SeedPacketLarger.gdshader" id="5_7dt0y"]
+[ext_resource type="Script" uid="uid://crrvjsotvcn4u" path="res://MainGame/Area2d.cs" id="5_viycb"]
+
+[sub_resource type="Animation" id="Animation_vph3c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SeedPacketFlash:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SeedPacketFlash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1adfj"]
+resource_name = "SeedPacketFlash"
+length = 0.266668
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SeedPacketFlash:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.374374)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SeedPacketFlash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7cord"]
+_data = {
+&"RESET": SubResource("Animation_vph3c"),
+&"SeedPacketFlash": SubResource("Animation_1adfj")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5264g"]
+resource_local_to_scene = true
+shader = ExtResource("5_7dt0y")
+shader_parameter/max_cd_time = 0.0
+shader_parameter/left_cd_time = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aceck"]
+size = Vector2(100, 140)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_obxxw")
+
+[node name="SeedPacketLarger" type="Sprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qkslk")
+centered = false
+
+[node name="SeedPacketSilhouette" type="Sprite2D" parent="."]
+texture = ExtResource("4_mv0vt")
+centered = false
+
+[node name="SeedPacketFlash" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_5264g")
+centered = false
+
+[node name="SeedPacketFlash" type="AnimationPlayer" parent="SeedPacketFlash"]
+root_node = NodePath("../../SeedPacketSilhouette")
+libraries = {
+&"": SubResource("AnimationLibrary_7cord")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 51.0
+offset_right = 32.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1adfj")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+
+[node name="CostColorRect" type="ColorRect" parent="."]
+offset_right = 50.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CDColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5264g")
+offset_right = 50.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(25, 35)
+scale = Vector2(0.5, 0.5)
+collision_layer = 17
+collision_mask = 21
+script = ExtResource("5_viycb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_aceck")
+
+[connection signal="input_event" from="Area2D" to="." method="OnInputEvent"]
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="OnMouseEntered"]
