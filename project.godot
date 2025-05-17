@@ -18,7 +18,7 @@ config/name="Plants vs Zombies"
 config/name_localized={
 "zh_CN": "植物大战僵尸"
 }
-run/main_scene="res://MainMenu/MainMenu_SelectorScreen.tscn"
+run/main_scene="uid://bs1ikm6rlutci"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/windows_native_icon="res://icon/PVZ_ICON.ico"
 
@@ -28,6 +28,7 @@ window/size/viewport_width=800
 window/size/viewport_height=600
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image_hotspot=Vector2(5, 5)
 
 [dotnet]

@@ -55,7 +55,7 @@ public abstract partial class Plants : Node2D
 
 	public override void _Ready()
 	{
-		mainGame = GetNode<MainGame>("/root/MainGame");
+		mainGame = this.GetMainGame();
         AddChild(PlantSound); // 添加种植音效播放器
         GD.Print(mainGame);
 	}
@@ -137,7 +137,7 @@ public abstract partial class Plants : Node2D
 	public virtual void FreePlant()
 	{
 		if (Index >= 0)
-			GetParent<MainGame>().RemovePlant(this);
+            this.GetMainGame().RemovePlant(this);
 		
 		Visible = false;
 	}

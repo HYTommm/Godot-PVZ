@@ -14,10 +14,14 @@ public partial class MainGame : MainNode2D
 	public int ZombieCurrentWaveMaxHP;
 	
 	public Camera camera;
-	AnimationPlayer animation;
-	SeedBank seedBank;
-	Plants seed, seedClone;
-	SeedPacketLarger seedNode;
+	public AnimationPlayer animation;
+	public SeedBank seedBank;
+	public Plants seed, seedClone;
+	public SeedPacketLarger seedPacketNode;
+
+	// 是否可以重叠种植
+	public bool canOverlapPlant = false;
+	
 
 	// 阳光数量
 	public int SunCount = 0;
@@ -45,6 +49,7 @@ public partial class MainGame : MainNode2D
 	// 场景
 	public Scene GameScene;
 
+	/// <summary> 是否正在选中种子卡 </summary>
 	public bool isSeedCardSelected = false;
 	public bool isGameOver = false;
 	public bool isRefreshingZombies = false;
@@ -55,8 +60,9 @@ public partial class MainGame : MainNode2D
 
 	Vector2I MouseUnitPos = new Vector2I();
 
+    public AudioStreamPlayer PutBackPlantSound = new AudioStreamPlayer();
 
-	public override void _Ready()
+    public override void _Ready()
 	{
 		RNG.Randomize();// 随机种子
 		
@@ -67,6 +73,10 @@ public partial class MainGame : MainNode2D
 		camera = GetNode<Camera>("./Camera"); // 设置相机
 		animation = GetNode<AnimationPlayer>("./CanvasLayer/AnimationPlayer");// 设置动画播放器
 		seedBank = GetNode<SeedBank>("./CanvasLayer/SeedBank");// 设置种子卡槽
+
+		PutBackPlantSound.Stream = GD.Load<AudioStream>("res://sounds/tap2.ogg");
+		PutBackPlantSound.VolumeDb = -5;
+		AddChild(PutBackPlantSound);
 
 		SunTimer.Timeout += RefreshSun;
 		SunTimer.OneShot = true;
@@ -89,23 +99,39 @@ public partial class MainGame : MainNode2D
 		// 如果SeedCard被选中
 		if (isSeedCardSelected)
 		{
-			seed.Position = seedNode.GetGlobalMousePosition() - new Vector2(35, 60);
+			seed.Position = seedPacketNode.GetGlobalMousePosition() - new Vector2(35, 60);
 			
 			Vector2 MouseGlobalPos = GetGlobalMousePosition();
 			if (   MouseGlobalPos.X >= GameScene.LawnLeftTopPos.X && MouseGlobalPos.X < GameScene.LawnLeftTopPos.X + GameScene.LawnUnitLength * GameScene.LawnUnitCount.X
-				&& MouseGlobalPos.Y >= GameScene.LawnLeftTopPos.Y && MouseGlobalPos.Y < GameScene.LawnLeftTopPos.Y + GameScene.LawnUnitWidth * GameScene.LawnUnitCount.Y)
+				&& MouseGlobalPos.Y >= GameScene.LawnLeftTopPos.Y && MouseGlobalPos.Y < GameScene.LawnLeftTopPos.Y + GameScene.LawnUnitWidth * GameScene.LawnUnitCount.Y
+				)
 			{
+				/*
 				MouseUnitPos = 
 					new Vector2I((int)((MouseGlobalPos.X - GameScene.LawnLeftTopPos.X) / GameScene.LawnUnitLength),
 								(int)((MouseGlobalPos.Y - GameScene.LawnLeftTopPos.Y) / GameScene.LawnUnitWidth));
+				*/
+				MouseUnitPos.X = (int)((MouseGlobalPos.X - GameScene.LawnLeftTopPos.X) / GameScene.LawnUnitLength);
+				MouseUnitPos.Y = (int)((MouseGlobalPos.Y - GameScene.LawnLeftTopPos.Y) / GameScene.LawnUnitWidth);
 				//GD.Print(MouseUnitPos);
-				seedClone.Position = new Vector2(MouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
-												 MouseUnitPos.Y * GameScene.LawnUnitWidth  + GameScene.LawnLeftTopPos.Y);
-				seedClone.Visible = true;
+
+				if (canOverlapPlant || GameScene.IsLawnUnitPlantEmpty(MouseUnitPos.X, MouseUnitPos.Y))
+				{
+					seedClone.Position = new Vector2(MouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
+															 MouseUnitPos.Y * GameScene.LawnUnitWidth + GameScene.LawnLeftTopPos.Y);
+					seedClone.Visible = true; 
+				}
+				else
+				{
+					seedClone.Visible = false;
+				}
 			}
 			else
 			{
 				seedClone.Visible = false;
+				MouseUnitPos.X = -1;
+				MouseUnitPos.Y = -1;
+			
 			}
 		}
 
@@ -128,8 +154,15 @@ public partial class MainGame : MainNode2D
 			}
 			if (seedClone.Visible == false)
 			{
-				return;
-			}
+				if (MouseUnitPos.X == -1 && MouseUnitPos.Y == -1)
+				{
+					GetViewport().SetInputAsHandled();
+					PutBackPlant();
+					seedPacketNode.SetCDZero();
+					PutBackPlantSound.Play();
+				}
+                return;
+            }
 			PlantSeed();
 		}
 
@@ -174,7 +207,9 @@ public partial class MainGame : MainNode2D
 		// 初始化
 		ZombieCurrentWave = 1; // 初始化当前波数
 		ZombieMaxWave = 20; // 初始化最大波数
-		SunCount = 50; // 初始化阳光数量
+
+		SunCount = 50000; // 初始化阳光数量
+
 		seedBank.UpdateSunCount(); // 更新阳光数量
 		RefreshSunTimer(); // 刷新阳光计时器
 		RefreshZombieTimer(19); // 刷新僵尸计时器
@@ -184,7 +219,7 @@ public partial class MainGame : MainNode2D
 	public void AddSeed(SeedPacketLarger node, Plants seed, Plants seedclone)
 	{
 		// 赋值
-		this.seedNode = node;
+		this.seedPacketNode = node;
 		this.seed = seed;
 		this.seedClone = seedclone;
 
@@ -198,7 +233,7 @@ public partial class MainGame : MainNode2D
 		AddChild(seedClone);
 
 		// 初始化种子
-		seed.Position = seedNode.GetViewport().GetMousePosition() - new Vector2(35, 60);
+		seed.Position = seedPacketNode.GetViewport().GetMousePosition() - new Vector2(35, 60);
 		// 添加植物
 		//seedNode.GetCanvasLayerNode().AddChild(seed);
 		AddChild(seed);
@@ -220,15 +255,27 @@ public partial class MainGame : MainNode2D
 
 		seed.QueueFree();
 		seedClone._Plant(MouseUnitPos.Y, plantStack - 1);
+		GameScene.LawnUnitPlacePlant(MouseUnitPos.X, MouseUnitPos.Y);
 		
 		SunCount -= seedClone.SunCost;
 		GetNode<SeedBank>("./SeedBank").UpdateSunCount();
 
 		//seedNode.ResetCD();
-		seedNode.isCDCooling = true;
+		seedPacketNode.isCDCooling = true;
 		//GD.Print("MainGame: PlantSeed");
 
 	}
+
+	// 释放（松开、放回）植物
+	public void PutBackPlant()
+	{
+		seedClone.Visible = false;
+		seed.Visible = true;
+		seedClone.QueueFree();
+		seed.QueueFree();
+		isSeedCardSelected = false;
+	}
+
 
 	// 刷新僵尸
 	public async void RefreshZombie()

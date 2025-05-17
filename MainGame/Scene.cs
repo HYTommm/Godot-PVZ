@@ -15,6 +15,8 @@ public class Scene
 	protected int LawnUniColCount;
 	protected int LawnUniRowCount;
 	public Vector2I LawnUnitCount;
+	// 草坪二维数组
+	public Lawn[,] LawnArray;
 
 	// 相机中心位置
 	public Vector2 CameraCenterPos;
@@ -46,6 +48,14 @@ public class Scene
 		PLast = new float[LawnUniRowCount];
 		PSecondLast = new float[LawnUniRowCount];
 		SmoothWeight = new float[LawnUniRowCount];
+		LawnArray = new Lawn[LawnUniColCount, LawnUniRowCount];
+		for (int i = 0; i < LawnUniColCount; i++)
+		{
+			for (int j = 0; j < LawnUniRowCount; j++)
+			{
+				LawnArray[i, j] = new Lawn();
+			}
+		}
 
 		float WeightAll = 0;
 		// 初始化草坪权重
@@ -61,6 +71,47 @@ public class Scene
 			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + WeightAll);
 			WeightP[i] += Weight[i] / WeightAll;
 		}
+	}
+
+	/// <summary>
+	/// 查看指定位置是否为空
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	/// <returns></returns>
+	public bool IsLawnUnitPlantEmpty(int row, int col)
+	{
+		return LawnArray[row, col].PlantCount == 0;
+	}
+
+	/// <summary>
+	/// 放置植物
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	public void LawnUnitPlacePlant(int row, int col)
+	{
+		LawnArray[row, col].PlantCount++;
+	}
+
+	/// <summary>
+	/// 移除植物
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	public void LawnUnitRemovePlant(int row, int col)
+	{
+		LawnArray[row, col].PlantCount--;
+	}
+
+	/// <summary>
+	/// 清空指定位置
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	public void LawnUnitClearPlant(int row, int col)
+	{
+		LawnArray[row, col].PlantCount = 0;
 	}
 }
 
@@ -81,34 +132,10 @@ public class LawnDayScene : Scene
 		CameraRightPos = new Vector2(600, 0);
 
 		BackGroundTexture = GD.Load<Texture2D>("res://art/MainGame/background1.jpg");
-		//Weight = new float[LawnUniRowCount];
-		//LastPicked = new float[LawnUniRowCount];
-		//SecondLastPicked = new float[LawnUniRowCount];
-		//WeightP = new float[LawnUniRowCount];
-		//PLast = new float[LawnUniRowCount];
-		//PSecondLast = new float[LawnUniRowCount];
-		//SmoothWeight = new float[LawnUniRowCount];
-
+		
 		Init();
 	}
 
-	//public void Init()
-	//{
-	//	float WeightAll = 0;
-	//	// 初始化草坪权重
-	//	for (int i = 0; i < LawnUniRowCount; i++)
-	//	{
-	//		Weight[i] = 1;
-	//		LastPicked[i] = 0;
-	//		SecondLastPicked[i] = 0;
-	//		WeightAll += Weight[i];
-	//	}
-	//	for (int i = 0; i < LawnUniRowCount; i++)
-	//	{
-	//		Print("Weight[i] = " + Weight[i] + ", WeightAll = " + WeightAll);
-	//		WeightP[i] += Weight[i]/WeightAll;
-	//	}
-	//}
 }
 public class PoolDayScene : Scene
 {

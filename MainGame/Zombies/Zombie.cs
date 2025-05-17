@@ -2,6 +2,7 @@ using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;
+//using PlantsVsZombies;
 
 public partial class Zombie : Node2D
 {
@@ -30,7 +31,7 @@ public partial class Zombie : Node2D
 	/// <summary>最大生命值</summary>
 	public int MaxHP = 270;
 	
-  /// <summary>索引</summary>
+	/// <summary>索引</summary>
 	public int Index = -1;
 	/// <summary>所处波数</summary>
 	public int Wave;
@@ -72,6 +73,7 @@ public partial class Zombie : Node2D
 	private GpuParticles2D ZombieArmParticles; // 外臂粒子动画
 	private GpuParticles2D ZombieHeadParticles; // 头部粒子动画
 
+	
 
 	public override void _Ready()
 	{
@@ -104,7 +106,7 @@ public partial class Zombie : Node2D
 		Zombie_outerarm_hand.Visible = true;
 	
 		// 获取主游戏节点
-		MainGame = GetParent<MainGame>();
+		MainGame = this.GetMainGame();
 	
 		// 获取防御区域节点
 		DefenseArea = GetNode<Area2D>("./DefenseArea");
@@ -330,7 +332,7 @@ public partial class Zombie : Node2D
 		//{
 		//	Die();
 		//}
-		GetParent<MainGame>().UpdateZombieHP();
+		MainGame.UpdateZombieHP();
 	}
 	/// <summary>
 	/// 死亡
@@ -369,7 +371,7 @@ public partial class Zombie : Node2D
 	public void FreeZombie()
 	{
 		if (Index >= 0)
-			GetParent<MainGame>().RemoveZombie(this);
+			MainGame.RemoveZombie(this);
 		Visible = false;
 		//QueueFree();
 	}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpy4ha2doqxgb"]
+[gd_scene load_steps=11 format=3 uid="uid://cpy4ha2doqxgb"]
 
 [ext_resource type="Texture2D" uid="uid://xaxbi7ixlgwp" path="res://art/MainGame/SeedBank.png" id="1_3tv4h"]
 [ext_resource type="PackedScene" uid="uid://igh26sahnl2e" path="res://MainGame/SeedPacketLarger.tscn" id="2_ns80v"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bh5ipjbx6k7py" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.tscn" id="5_6x7yi"]
 [ext_resource type="AudioStream" uid="uid://7en1bjf4sg5i" path="res://sounds/points.ogg" id="6_jv5um"]
 [ext_resource type="PackedScene" uid="uid://cor7g84qx52w7" path="res://MainGame/Plants/Sunflower/SunFlower.tscn" id="7_8wcx6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv5um"]
+size = Vector2(446, 87)
 
 [sub_resource type="Animation" id="Animation_6x7yi"]
 length = 0.001
@@ -48,6 +51,12 @@ _data = {
 texture = ExtResource("1_3tv4h")
 centered = false
 script = ExtResource("2_ua34a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(223, 43.5)
+shape = SubResource("RectangleShape2D_jv5um")
 
 [node name="SeedPacketLarger" parent="." instance=ExtResource("2_ns80v")]
 position = Vector2(78, 8)

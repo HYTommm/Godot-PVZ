@@ -4,7 +4,7 @@ using System;
 public partial class SeedPacketLarger : Node2D
 {
 	
-	MainGame mainGame; // 主游戏节点
+	MainGame MainGame; // 主游戏节点
 	[Export]
 	public PackedScene SeedScene; // 种子节点
 
@@ -20,10 +20,13 @@ public partial class SeedPacketLarger : Node2D
 	public float MaxCDTime; // 最大CD时间
 
 	public bool isCDCooling; // 是否正在冷却CD
+
+	public AudioStreamPlayer SeedLiftSound = new AudioStreamPlayer();
+
 	public override void _Ready()
 	{
 
-		mainGame = GetNode<MainGame>("/root/MainGame"); // 获取主游戏节点
+		MainGame = this.GetMainGame(); // 获取主游戏节点
 		CostColorRect = GetNode<ColorRect>("./CostColorRect"); // 获取花费遮挡阴影节点
 		CDColorRect = GetNode<ColorRect>("./CDColorRect"); // 获取CD遮挡阴影节点
 		SeedPacketFlash = GetNode<AnimationPlayer>("./SeedPacketFlash/SeedPacketFlash"); // 获取种子卡片闪烁节点
@@ -48,14 +51,18 @@ public partial class SeedPacketLarger : Node2D
 			GetNode<Label>("./Label").Text = seedShow.SunCost.ToString(); // 显示花费
 		else
 			GetNode<Label>("./Label").Text = ""; // 隐藏花费
+
+		SeedLiftSound.Stream = GD.Load<AudioStream>("res://sounds/seedlift.ogg"); // 加载种子包拾取音效
+		SeedLiftSound.VolumeDb = -5; // 设置音量
+		AddChild(SeedLiftSound); // 添加种子包拾取音效节点
 	}
 
 	public override void _Process(double delta)
 	{
 
-		if (mainGame != null)
+		if (MainGame != null)
 		{
-			if (mainGame.SunCount < seedShow.SunCost)
+			if (MainGame.SunCount < seedShow.SunCost)
 			{
 				CostColorRect.Visible = true;
 				//SeedPacketFlash.Play("SeedPacketFlash");
@@ -74,7 +81,7 @@ public partial class SeedPacketLarger : Node2D
 		else
 		{
 			//GD.Print(CostColorRect.Visible);
-			if (mainGame.SunCount >= seedShow.SunCost && CostColorRect.Visible == true)
+			if (MainGame.SunCount >= seedShow.SunCost && CostColorRect.Visible == true)
 			{
 				CostColorRect.Visible = false;
 				SeedPacketFlash.Play("SeedPacketFlash");
@@ -96,20 +103,22 @@ public partial class SeedPacketLarger : Node2D
 		
 		if (@event.IsAction("mouse_left"))
 		{
+			GD.Print("接收到输入事件");
 			//GD.Print("SeedPacketLarger: OnInputEvent");
-			if (mainGame.mouse_left_down)
+			if (MainGame.mouse_left_down && MainGame.isSeedCardSelected == false)
 			{
-
-				if (mainGame.SunCount >= seedShow.SunCost && LeftCDTime <= 0.0f)
+				// 如果阳光大于植物 costs 并且 CD 冷却完毕
+				if (MainGame.SunCount >= seedShow.SunCost && LeftCDTime <= 0.0f)
 				{
 					seed = SeedScene.Instantiate<Plants>();
 					seedClone = SeedScene.Instantiate<Plants>();
 					//seed.Scale = new Vector2(2.0f, 2.0f);
 
-					mainGame.AddSeed(this, seed, seedClone); 
+					MainGame.AddSeed(this, seed, seedClone);
+					SeedLiftSound.Play();
 					ResetCD();
 				}
-				else if (mainGame.SunCount < seedShow.SunCost)
+				else if (MainGame.SunCount < seedShow.SunCost)
 				{
 					GetParent<SeedBank>().SunCountFlashWarning();
 				}
@@ -132,6 +141,16 @@ public partial class SeedPacketLarger : Node2D
 		CostColorRect.Visible = true;
 		CDColorRectMaterial.SetShaderParameter("left_cd_time", LeftCDTime);
 	}
+	/// <summary>
+	/// 将CD置为0
+	/// </summary>
+	public void SetCDZero()
+	{
+		LeftCDTime = 0.0f;
+		CostColorRect.Visible = false;
+		CDColorRectMaterial.SetShaderParameter("left_cd_time", LeftCDTime);
+	}
+	
 
 	public void OnMouseEnter()
 	{

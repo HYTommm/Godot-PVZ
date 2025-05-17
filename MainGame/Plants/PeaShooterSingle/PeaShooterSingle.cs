@@ -31,8 +31,8 @@ public partial class PeaShooterSingle : Plants
 	public PeaShooterSingle()
 	{
 		SunCost = 100; // 阳光消耗
+		CDtime = 1f; // 冷却时间
 		//CDtime = CDTime.FAST; // 冷却时间
-		CDtime = CDTime.FAST; // 冷却时间
 	}
 
 	public override void _Idle()
@@ -129,8 +129,7 @@ public partial class PeaShooterSingle : Plants
 			TimeOfIdleWhenShooting = anim_Head.CurrentAnimationPosition; // 记录Idle动画的时间
 
 		canShoot = false; // 禁止射击
-		canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
-		canShootTimer.Start(); // 计时器开启
+		RandomShootTime(); // 随机射击时间
 
 		anim_Head.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0/12.0, 2.85f);  // 头部射击动画
 		await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
@@ -145,11 +144,19 @@ public partial class PeaShooterSingle : Plants
 		//Anim_Shoot.Play("RESET");
 	}
 
-	/// <summary>
-	/// 停止射击动画
-	/// </summary>
-	/// <param name="anim"></param>
-	public void StopShooting(StringName anim)
+    /// <summary> 随机射击时间 </summary>
+    public void RandomShootTime()
+    {
+        canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+        canShootTimer.Start(); // 计时器开启
+    }
+
+
+    /// <summary>
+    /// 停止射击动画
+    /// </summary>
+    /// <param name="anim"></param>
+    public void StopShooting(StringName anim)
 	{
 		if (anim == "Head_Shooting" || anim == "Head_Shooting2")
 		{
@@ -181,7 +188,7 @@ public partial class PeaShooterSingle : Plants
 	public override void _Plant(int row, int index)
 	{
 		base._Plant(row, index);
-		canShoot = true;
+		RandomShootTime(); // 随机射击时间
 	}
 
 	public override void FreePlant()
