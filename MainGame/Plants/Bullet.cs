@@ -61,7 +61,7 @@ public partial class Bullet : Node2D
 			
 			//GD.Print("Bullet hit zombie"); 
 			//僵尸扣血
-			zombie.Hurt(Damage);
+			zombie.Hurt(new Hurt(Damage, HurtType.Direct));
 			//zombie.Die();
 			//是sprite节点不可见
 			

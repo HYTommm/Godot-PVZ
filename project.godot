@@ -18,7 +18,7 @@ config/name="Plants vs Zombies"
 config/name_localized={
 "zh_CN": "植物大战僵尸"
 }
-run/main_scene="uid://bs1ikm6rlutci"
+run/main_scene="uid://c4pak2uihe0s"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/windows_native_icon="res://icon/PVZ_ICON.ico"
 

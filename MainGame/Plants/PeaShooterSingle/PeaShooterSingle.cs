@@ -185,9 +185,9 @@ public partial class PeaShooterSingle : Plants
 	/// </summary>
 	/// <param name="row"></param>
 	/// <param name="index"></param>
-	public override void _Plant(int row, int index)
+	public override void _Plant(int col,int row, int index)
 	{
-		base._Plant(row, index);
+		base._Plant(col, row, index);
 		RandomShootTime(); // 随机射击时间
 	}
 

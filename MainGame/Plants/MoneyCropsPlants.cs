@@ -18,9 +18,9 @@ public abstract partial class MoneyCropsPlants : Plants
 
     }
 
-    public override void _Plant(int row, int index)
+    public override void _Plant(int col, int row, int index)
     {
-        base._Plant(row, index);
+        base._Plant(col, row, index);
         TimerProduce.WaitTime = ProduceTime;
         TimerProduce.OneShot = true;
         TimerProduce.Timeout += _Light;

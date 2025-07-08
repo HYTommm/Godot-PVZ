@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 //using PlantsVsZombies;
 
-public partial class Zombie : Node2D
+public partial class Zombie : HealthEntity
 {
 	/// <summary>僵尸死亡事件</summary>
 	[Signal]
@@ -26,13 +26,6 @@ public partial class Zombie : Node2D
 	/// <summary>地面节点</summary>
 	public Sprite2D Ground;
 
-	/// <summary>生命值</summary>
-	public int HP = 270;
-	/// <summary>最大生命值</summary>
-	public int MaxHP = 270;
-	
-	/// <summary>索引</summary>
-	public int Index = -1;
 	/// <summary>所处波数</summary>
 	public int Wave;
 	/// <summary>所处行</summary>
@@ -63,6 +56,8 @@ public partial class Zombie : Node2D
 	[Export]
 	public bool IsPlayingEatSound = false;
 
+	protected ArmorSystem ArmorSystem { get; } = new ArmorSystem();
+
 	private Sprite2D Zombie_outerarm_upper; // 外臂上部
 	private Sprite2D Zombie_outerarm_lower; // 外臂下部
 	private Sprite2D Zombie_outerarm_hand; // 外臂手
@@ -73,7 +68,12 @@ public partial class Zombie : Node2D
 	private GpuParticles2D ZombieArmParticles; // 外臂粒子动画
 	private GpuParticles2D ZombieHeadParticles; // 头部粒子动画
 
-	
+	public Zombie()
+	{
+		HP = 270;
+		MaxHP = 270;
+		Index = -1;
+	}
 
 	public override void _Ready()
 	{
@@ -308,8 +308,13 @@ public partial class Zombie : Node2D
 	/// 受伤
 	/// </summary>
 	/// <param name="damage"></param>
-	public void Hurt(int damage)
+	public override int Hurt(int damage)
 	{
+		int returnDamage = 0;
+		if (HP <= damage)
+		{
+			returnDamage = damage - HP;
+		}
 		// 减血
 		HP -= damage;
 		// 如果血量 <= 0 则死亡
@@ -333,6 +338,14 @@ public partial class Zombie : Node2D
 		//	Die();
 		//}
 		MainGame.UpdateZombieHP();
+		return returnDamage;
+	}
+
+	public void Hurt(Hurt hurt)
+	{
+		ArmorSystem.ProcessDamage(hurt);
+		GD.Print("Damage: " + hurt.Damage);
+		hurt.HurtHealthEntity(this);
 	}
 	/// <summary>
 	/// 死亡

@@ -8,19 +8,11 @@ using System;
 /// <para>子类需要实现_Idle()</para>
 /// <para>子类可实现_Plant()、_SetColor()、_SetAlpha()。</para>
 /// </summary>
-public abstract partial class Plants : Node2D
+public abstract partial class Plants : HealthEntity
 {
 	/// <summary>种植音效播放器</summary>
 	AudioStreamPlayer PlantSound = new AudioStreamPlayer();
 
-	/// <summary>生命值</summary>
-	public int HP = 300;
-
-	/// <summary>最大生命值</summary>
-	public int MaxHP = 300;
-	
-	/// <summary>植物的索引/栈数</summary>
-	public int Index;
 
 	/// <summary>植物所在行</summary>
 	public int Row;
@@ -52,6 +44,12 @@ public abstract partial class Plants : Node2D
 	/// <summary>主游戏节点</summary>
 	public MainGame mainGame;
 
+	public Plants()
+	{
+		HP = 300; // 设置生命值
+		MaxHP = 300; // 设置最大生命值
+		Index = -1; // 设置索引/栈数
+	}
 
 	public override void _Ready()
 	{
@@ -70,10 +68,11 @@ public abstract partial class Plants : Node2D
 	/// </summary>
 	/// <param name="row">设置植物所在行</param>
 	/// <param name="index">设置植物的索引/栈数</param>
-	public virtual void _Plant(int row, int index)
+	public virtual void _Plant(int col,int row, int index)
 	{
 		Row = row; // 设置植物所在行
-		Index = index; // 设置植物的索引/栈数
+		Col = col; // 设置植物所在列
+        Index = index; // 设置植物的索引/栈数
 		Visible = true; // 显示
 		isPlanted = true; // 设置状态为 已种植
 		//SelfModulate = new Color(1, 1, 1, 1);
@@ -102,13 +101,17 @@ public abstract partial class Plants : Node2D
 	/// 虚函数，用于对植物扣血
 	/// </summary>
 	/// <param name="damage">扣血量</param>
-	public virtual void Hurt(int damage)
+	public override int Hurt(int damage)
 	{
+		int returnDamage = 0;
+		if (HP <= damage)
+			returnDamage = damage - HP;
 		HP -= damage; // 扣血
 		if (HP <= 0) // 生命值小于等于0
 		{
 			FreePlant(); // 释放植物
 		}
+		return returnDamage;
 	}
 
 	/// <summary>

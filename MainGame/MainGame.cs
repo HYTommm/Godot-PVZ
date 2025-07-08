@@ -3,6 +3,7 @@ using static Godot.GD;
 using System;
 using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
+using System.Collections.Generic;
 
 public partial class MainGame : MainNode2D
 {
@@ -45,6 +46,8 @@ public partial class MainGame : MainNode2D
 	// 僵尸刷新倒计时
 	public Timer ZombieTimer = new Timer();
 
+	// 小推车列表
+	public List<LawnMower> lawnMowers = new List<LawnMower>();
 
 	// 场景
 	public Scene GameScene;
@@ -60,15 +63,48 @@ public partial class MainGame : MainNode2D
 
 	Vector2I MouseUnitPos = new Vector2I();
 
-    public AudioStreamPlayer PutBackPlantSound = new AudioStreamPlayer();
+	public AudioStreamPlayer PutBackPlantSound = new AudioStreamPlayer();
 
-    public override void _Ready()
+	public void InitLawnMowers(Scene scene)
+	{
+		GD.Print("InitLawnMower");
+		for (int i = 0; i < scene.LawnUnitCount.Y; i++)
+		{
+			LawnMower lawnMower = Load<PackedScene>("res://MainGame/LawnMower/LawnMower.tscn").Instantiate<LawnMower>();
+			lawnMower.Position = new Vector2(-100, i * scene.LawnUnitSize.Y + scene.LawnMoverPos.Y);
+			//lawnMower.Scale = new Vector2(0.85f, 0.85f);
+			lawnMower.Row = i;
+			lawnMowers.Add(lawnMower);
+			AddChild(lawnMower);
+		}
+	}
+
+	public async void MoveLawnMowers()
+	{
+		for (int i = lawnMowers.Count - 1; i >= 0; i--)
+		{
+			lawnMowers[i].MoveTo(new Vector2(GameScene.LawnMoverPos.X, lawnMowers[i].Position.Y));
+			// 等待0.1秒
+			await ToSignal(GetTree().CreateTimer(0.08), SceneTreeTimer.SignalName.Timeout);
+		}
+	}
+
+	public void SetLawnMowersPosX(int posX)
+	{
+		for (int i = 0; i < lawnMowers.Count; i++)
+		{
+			lawnMowers[i].Position = new Vector2(posX, lawnMowers[i].Position.Y);
+		}
+	}
+
+	public override void _Ready()
 	{
 		RNG.Randomize();// 随机种子
 		
 		GameScene = new LawnDayScene();// 设置场景
 		//GameScene = new PoolDayScene();
 		GetNode<Sprite2D>("./BackGround").Texture = GameScene.BackGroundTexture;// 设置背景
+		InitLawnMowers(GameScene);// 初始化草坪机
 		//GD.Print("GameScene.Weight.Length: " + GameScene.Weight.Length);
 		camera = GetNode<Camera>("./Camera"); // 设置相机
 		animation = GetNode<AnimationPlayer>("./CanvasLayer/AnimationPlayer");// 设置动画播放器
@@ -161,8 +197,8 @@ public partial class MainGame : MainNode2D
 					seedPacketNode.SetCDZero();
 					PutBackPlantSound.Play();
 				}
-                return;
-            }
+				return;
+			}
 			PlantSeed();
 		}
 
@@ -183,10 +219,11 @@ public partial class MainGame : MainNode2D
 	// 开始游戏
 	async public void Game()
 	{
+		SetLawnMowersPosX(155); // 移动草坪机
 		// 移动相机到中心位置
 		camera.Move(GameScene.CameraCenterPos, 1);
 		await ToSignal(camera, Camera.SignalName.MoveEnd);
-
+		MoveLawnMowers(); // 移动草坪机
 		// 显示种子卡槽
 		animation.Play("SeedBank");
 		await ToSignal(animation, "animation_finished");
@@ -254,7 +291,7 @@ public partial class MainGame : MainNode2D
 		plantStack++;
 
 		seed.QueueFree();
-		seedClone._Plant(MouseUnitPos.Y, plantStack - 1);
+		seedClone._Plant(MouseUnitPos.X, MouseUnitPos.Y, plantStack - 1);
 		GameScene.LawnUnitPlacePlant(MouseUnitPos.X, MouseUnitPos.Y);
 		
 		SunCount -= seedClone.SunCost;
@@ -523,8 +560,8 @@ public partial class MainGame : MainNode2D
 		int tempIndex = plant.Index;
 		plant.Index = plantStack;
 		plantStack = tempIndex;
-
-		//plants[plant.Index] = null;
+		GameScene.LawnUnitClearPlant (plant.Col, plant.Row);
+		plants[plant.Index] = null;
 		//plantStack = plant.Index;
 	}
 

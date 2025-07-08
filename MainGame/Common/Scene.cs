@@ -22,8 +22,13 @@ public class Scene
 	public Vector2 CameraCenterPos;
 	// 相机右边位置
 	public Vector2 CameraRightPos;
-	// 背景图片
-	public Texture2D BackGroundTexture;
+
+    // 小推车位置常量
+    public Vector2 LawnMoverPos;
+
+    // 背景图片
+    public Texture2D BackGroundTexture;
+	
 
 	// 将第i行权重定义为 Weight_i
 	// 将第i行距离上次被选取定义为 LastPicked_i
@@ -130,6 +135,8 @@ public class LawnDayScene : Scene
 
 		CameraCenterPos = new Vector2(220, 0);
 		CameraRightPos = new Vector2(600, 0);
+
+		LawnMoverPos = new Vector2(194.5f, 121f);
 
 		BackGroundTexture = GD.Load<Texture2D>("res://art/MainGame/background1.jpg");
 		
