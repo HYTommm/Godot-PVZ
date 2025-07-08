@@ -1636,6 +1636,7 @@ _data = {
 size = Vector2(35, 57)
 
 [node name="Node2D" type="Node2D"]
+z_index = 10
 script = ExtResource("1_0f7r1")
 
 [node name="Shadow" type="Sprite2D" parent="."]

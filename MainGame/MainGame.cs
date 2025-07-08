@@ -287,6 +287,7 @@ public partial class MainGame : MainNode2D
 		
 		isSeedCardSelected = false;
 
+		plants[plantStack]?.QueueFree();
 		plants[plantStack] = seedClone;
 		plantStack++;
 
@@ -561,7 +562,7 @@ public partial class MainGame : MainNode2D
 		plant.Index = plantStack;
 		plantStack = tempIndex;
 		GameScene.LawnUnitClearPlant (plant.Col, plant.Row);
-		plants[plant.Index] = null;
+		//plants[plant.Index] = null;
 		//plantStack = plant.Index;
 	}
 

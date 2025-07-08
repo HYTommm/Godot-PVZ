@@ -6,9 +6,9 @@ public partial class LawnMower : Node2D
 	private bool _is_moving = false;
 	private Vector2 _start_position;
 	private Vector2 _end_position;
-	private float _speed = 500.0f; // 移动速度
-	private float _normal_speed = 400.0f; // 正常速度
-	private float _slow_down_speed = 300.0f; // 僵尸撞击后减速速度
+	private float _speed = 500.0f; // 移动速度，500是开局时移动至草坪前的速度
+	private float _normal_speed = 350.0f; // 正常速度
+	private float _slow_down_speed = 250.0f; // 僵尸撞击后减速速度
 	private float _slow_down_time = 0f; // 僵尸撞击后减速时间
 	private AudioStreamPlayer EngineSound = new AudioStreamPlayer(); // 发动机声音播放器
 
@@ -39,7 +39,7 @@ public partial class LawnMower : Node2D
 	{
 		_end_position = end_position;
 		_is_moving = true;
-		AnimMoveNormal.Play("LawnMower_normal");
+		AnimMoveNormal.Play(name: "LawnMower_normal", customSpeed: 1.5f);
 	}
 
 	public void Stop()
@@ -72,14 +72,15 @@ public partial class LawnMower : Node2D
 	public void OnAreaEntered(Area2D area)
 	{
 		GD.Print("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
-		if (area.GetNode("..") is Zombie zombie && zombie.Row == Row)
+		if (area.GetNode("../..") is Zombie zombie && zombie.Row == Row)
 		{
+			zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
 			GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
 			if (!_is_moving)
 			{
 				_speed = _normal_speed;
 				EngineSound.Play();
-				MoveTo(new Vector2(1000, Position.Y));
+				MoveTo(new Vector2(1200, Position.Y));
 			}
 			else
 			{

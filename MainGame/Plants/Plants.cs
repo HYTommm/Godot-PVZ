@@ -141,7 +141,7 @@ public abstract partial class Plants : HealthEntity
 	{
 		if (Index >= 0)
             this.GetMainGame().RemovePlant(this);
-		
+		isPlanted = false; // 设置状态为 未种植
 		Visible = false;
 	}
 }

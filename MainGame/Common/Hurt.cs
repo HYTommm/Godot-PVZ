@@ -16,6 +16,8 @@ public enum HurtType
     Explosion = 0b0010_0011, // 可以被一类和二类防具防御
     // 地刺类伤害
     Bomber = 0b0011_0001, // 可以被一类防具防御
+    // 小推车类伤害
+    LawnMower = 0b0100_0011, // 可以被一类和二类防具防御
     // 其他伤害
     Other
 }
