@@ -21,6 +21,7 @@ public enum HurtType
     // 其他伤害
     Other
 }
+
 public partial class Hurt : Node2D
 {
     public int Damage { get; set; }

@@ -196,7 +196,7 @@ collision_use_scale = true
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="Zombie" type="Node2D"]
+[node name="BaseZombie" type="Node2D"]
 z_index = 1
 script = ExtResource("1_wnjia")
 

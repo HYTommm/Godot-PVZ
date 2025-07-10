@@ -17,8 +17,7 @@ public partial class Zombie : HealthEntity
 	/// <summary>是否死亡</summary>
 	public bool isDead = false;
 	/// <summary>位置记录</summary>
-	[Export]
-	public Vector2 Pos;
+	//[Export] public Vector2 Pos;
 	/// <summary>地面位置</summary>
 	public Vector2 ConstGroundPos = new((float)-9.8, 40);
 	public Vector2 LastGroundPos;
@@ -33,9 +32,9 @@ public partial class Zombie : HealthEntity
 	public int Row = -1;
 
 	/// <summary>权重</summary>
-	public int Weight = 400;
+	//public int Weight = 400;
 	/// <summary>等级</summary>
-	public int Grade = 1;
+	//public int Grade = 1;
 	/// <summary>攻击力/秒</summary>
 	public int Attack = 100;
 	/// <summary>暂存攻击</summary>
@@ -74,18 +73,40 @@ public partial class Zombie : HealthEntity
 		HP = 270;
 		MaxHP = 270;
 		Index = -1;
+		GD.Print("Base Zombie Constructor called");
+	}
+
+	public virtual void Init()
+	{
+		GD.Print("Zombie Constructor called");
+	}
+
+
+	public void Init(ZombieTypeEnum zombieTypeEnum)
+	{
+		switch (zombieTypeEnum)
+		{
+			case ZombieTypeEnum.Normal:
+				((NormalZombie)this).Init();
+				break;
+			case ZombieTypeEnum.Conehead:
+				((ConeheadZombie)this).Init();
+				break;
+			case ZombieTypeEnum.Buckethead:
+				//((BucketheadZombie)this).Init();
+				break;
+		}
 	}
 
 	public override void _Ready()
 	{
-		// 初始化僵尸的位置
-		Pos = Position;
 		
 		// 获取动画播放器节点
 		animation = GetNode<AnimationPlayer>("./Zombie/AnimationPlayer");
 		
 		// 获取地面节点
 		Ground = GetNode<Sprite2D>("./Zombie/_ground");
+		LastGroundPos = Ground.Position;
 
 		Zombie_outerarm_upper = GetNode<Sprite2D>("./Zombie/Zombie_outerarm_upper");
 		Zombie_outerarm_lower = GetNode<Sprite2D>("./Zombie/Zombie_outerarm_lower");
@@ -134,7 +155,7 @@ public partial class Zombie : HealthEntity
 		if (isMoving)
 		{
 			//Position = Pos + (ConstGroundPos - Ground.Position);
-			var temp = LastGroundPos - Ground.Position;
+			Vector2 temp = LastGroundPos - Ground.Position;
 			if (temp < Vector2.Zero)
 				Position += temp;
 			LastGroundPos = Ground.Position;
@@ -263,7 +284,7 @@ public partial class Zombie : HealthEntity
 			// 等待下一帧的处理
 			await ToSignal(GetTree(), "process_frame");
 			// 记录当前位置
-			Pos = Position;
+			//Pos = Position;
 			//播放吃植物动画
 			animation.Play("Zombie_eat", 1.0 / 6.0, 3.0f);
 
@@ -301,10 +322,10 @@ public partial class Zombie : HealthEntity
 	/// <param name="damage"></param>
 	public override int Hurt(int damage)
 	{
-		int returnDamage = 0;
+		int returnDamage = damage;
 		if (HP <= damage)
 		{
-			returnDamage = damage - HP;
+			returnDamage = HP > 0 ? HP : 0;
 		}
 		// 减血
 		HP -= damage;

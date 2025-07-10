@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcy00bamnnqm3"]
+
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_ank4t"]
+[ext_resource type="Script" uid="uid://c04msrsgs6opl" path="res://MainGame/Zombies/ConeheadZombie.cs" id="2_0dedt"]
+
+[node name="ConeheadZombie" instance=ExtResource("1_ank4t")]
+script = ExtResource("2_0dedt")
+
+[node name="Anim_cone" parent="Zombie" index="29"]
+visible = true

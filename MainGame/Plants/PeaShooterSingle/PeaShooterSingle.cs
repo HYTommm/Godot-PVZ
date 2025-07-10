@@ -144,19 +144,19 @@ public partial class PeaShooterSingle : Plants
 		//Anim_Shoot.Play("RESET");
 	}
 
-    /// <summary> 随机射击时间 </summary>
-    public void RandomShootTime()
-    {
-        canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
-        canShootTimer.Start(); // 计时器开启
-    }
+	/// <summary> 随机射击时间 </summary>
+	public void RandomShootTime()
+	{
+		canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+		canShootTimer.Start(); // 计时器开启
+	}
 
 
-    /// <summary>
-    /// 停止射击动画
-    /// </summary>
-    /// <param name="anim"></param>
-    public void StopShooting(StringName anim)
+	/// <summary>
+	/// 停止射击动画
+	/// </summary>
+	/// <param name="anim"></param>
+	public void StopShooting(StringName anim)
 	{
 		if (anim == "Head_Shooting" || anim == "Head_Shooting2")
 		{

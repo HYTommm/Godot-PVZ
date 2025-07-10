@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ee6hitnguoqq"]
+
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_3v7er"]
+[ext_resource type="Script" uid="uid://dr3mtoscewka1" path="res://MainGame/Zombies/NormalZombie.cs" id="2_loqst"]
+
+[node name="NormalZombie" instance=ExtResource("1_3v7er")]
+script = ExtResource("2_loqst")
