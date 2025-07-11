@@ -27,6 +27,9 @@ public partial class Hurt : Node2D
     public int Damage { get; set; }
     public HurtType HurtType { get; set; }
 
+    // 受击方是否被允许发出音效
+    public bool enableTargetHitSFX = true;
+
     public Hurt(int damage, HurtType hurtType)
     {
         Damage = damage;
@@ -38,4 +41,5 @@ public partial class Hurt : Node2D
         Damage -= entity.Hurt(Damage);
         return this;
     }
+
 }

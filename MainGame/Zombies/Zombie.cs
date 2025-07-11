@@ -346,6 +346,7 @@ public partial class Zombie : HealthEntity
 		return returnDamage;
 	}
 
+
 	public async void Hurt(Hurt hurt)
 	{
 		ArmorSystem.ProcessDamage(hurt);
