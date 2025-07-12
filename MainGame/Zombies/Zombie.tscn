@@ -397,7 +397,6 @@ texture = ExtResource("22_e6mnr")
 centered = false
 
 [node name="Anim_cone" type="Sprite2D" parent="Zombie"]
-visible = false
 position = Vector2(13.1, -18.7)
 rotation = 0.087266
 scale = Vector2(0.8, 0.8)
