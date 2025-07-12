@@ -12,9 +12,9 @@ public partial class Cone : Armor
 		HP = 370;
 		MaxHP = 370;
 		Type = ArmorTypeEnum.Primary;
-		
-		WearLevelTextures.Add(2 / 3f, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone2.png"));
-		WearLevelTextures.Add(1 / 3f, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone3.png"));
+		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone1.png");
+		WearLevelTextures.Add(226, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone2.png"));
+		WearLevelTextures.Add(113, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone3.png"));
 		
 	}
 
