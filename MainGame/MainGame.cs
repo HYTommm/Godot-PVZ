@@ -290,14 +290,19 @@ public partial class MainGame : MainNode2D
 		
 		isSeedCardSelected = false;
 
+		
 		int tempIndex = -1;
+		GD.Print("plantStack: " + plantStack);
 		if (plants[plantStack] != null)
 		{
+			GD.Print("plants[plantStack] != null");
 			tempIndex = plants[plantStack].Index;
+			GD.Print("tempIndex: " + tempIndex);
 			plants[plantStack]?.QueueFree();
 		}
 
 		plants[plantStack] = seedClone;
+		seedClone.Index = plantStack;
 
 		if (tempIndex != -1)
 		{
@@ -309,7 +314,7 @@ public partial class MainGame : MainNode2D
 		}
 
 		seed.QueueFree();
-		seedClone._Plant(MouseUnitPos.X, MouseUnitPos.Y, plantStack - 1);
+		seedClone._Plant(MouseUnitPos.X, MouseUnitPos.Y, seedClone.Index);
 		GameScene.LawnUnitPlacePlant(MouseUnitPos.X, MouseUnitPos.Y);
 		
 		SunCount -= seedClone.SunCost;

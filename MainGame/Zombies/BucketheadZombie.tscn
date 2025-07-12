@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dod2qt022n33c"]
+
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_on1qn"]
+[ext_resource type="Script" uid="uid://clxj4f0qup8va" path="res://MainGame/Zombies/BucketheadZombie.cs" id="2_on1qn"]
+
+[node name="BucketheadZombie" instance=ExtResource("1_on1qn")]
+script = ExtResource("2_on1qn")
+
+[node name="Anim_bucket" parent="Zombie" index="30"]
+visible = true
+
+[node name="TextEdit" parent="." index="2"]
+text = "bucket"

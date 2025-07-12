@@ -58,15 +58,16 @@ public partial class Zombie : HealthEntity
 
 	protected ArmorSystem ArmorSystem { get; } = new ArmorSystem();
 
-	private Sprite2D Zombie_outerarm_upper; // 外臂上部
-	private Sprite2D Zombie_outerarm_lower; // 外臂下部
-	private Sprite2D Zombie_outerarm_hand; // 外臂手
-	private Sprite2D Zombie_head; // 头
-	private Sprite2D Zombie_jaw; // 下巴
-	private Sprite2D Zombie_hair; // 头发
-	private Sprite2D Zombie_tongue; // 舌头
-	private GpuParticles2D ZombieArmParticles; // 外臂粒子动画
-	private GpuParticles2D ZombieHeadParticles; // 头部粒子动画
+	protected Sprite2D Zombie_outerarm_upper; // 外臂上部
+	protected Sprite2D Zombie_outerarm_lower; // 外臂下部
+	protected Sprite2D Zombie_outerarm_hand;  // 外臂手
+	protected Sprite2D Zombie_head;           // 头
+	protected Sprite2D Zombie_jaw;            // 下巴
+	protected Sprite2D Zombie_hair;           // 头发
+	protected Sprite2D Zombie_tongue;         // 舌头
+
+	protected GpuParticles2D ZombieArmParticles; // 外臂粒子动画
+	protected GpuParticles2D ZombieHeadParticles; // 头部粒子动画
 
 	public Zombie()
 	{
@@ -93,7 +94,7 @@ public partial class Zombie : HealthEntity
 				((ConeheadZombie)this).Init();
 				break;
 			case ZombieTypeEnum.Buckethead:
-				//((BucketheadZombie)this).Init();
+				((BucketheadZombie)this).Init();
 				break;
 		}
 	}
@@ -154,7 +155,6 @@ public partial class Zombie : HealthEntity
 		
 		if (isMoving)
 		{
-			//Position = Pos + (ConstGroundPos - Ground.Position);
 			Vector2 temp = LastGroundPos - Ground.Position;
 			if (temp < Vector2.Zero)
 				Position += temp;

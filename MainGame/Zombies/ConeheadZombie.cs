@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 using System;
 
 public partial class ConeheadZombie : Zombie
@@ -18,7 +19,7 @@ public partial class ConeheadZombie : Zombie
 	public override void _Ready()
 	{
 		base._Ready();
-		Cone Cone = new Cone(GetNode<Sprite2D>("Zombie/Anim_cone"));
+		Cone Cone = new Cone(GetNode<Sprite2D>("Zombie/Anim_cone"), new List<Sprite2D>() { Zombie_hair });
 		ArmorSystem.AddArmor(Cone);
 	}
 }

@@ -73,7 +73,8 @@ public abstract partial class Plants : HealthEntity
 		Row = row; // 设置植物所在行
 		Col = col; // 设置植物所在列
         Index = index; // 设置植物的索引/栈数
-		Visible = true; // 显示
+        GetNode<TextEdit>("./TextEdit").Text = Index.ToString(); // 设置TextEdit显示栈数
+        Visible = true; // 显示
 		isPlanted = true; // 设置状态为 已种植
 		//SelfModulate = new Color(1, 1, 1, 1);
 		_SetColor(new Color(1, 1, 1, 1)); // 设置颜色

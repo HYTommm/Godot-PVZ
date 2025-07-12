@@ -14,25 +14,41 @@ public abstract partial class Armor : HealthEntity
 {
 	protected Dictionary<int, Texture2D> WearLevelTextures = new Dictionary<int, Texture2D>();
 	protected int WearLevel = 0;
-	public Sprite2D Sprite;
+	public Sprite2D ArmorSprite;
+	public List<Sprite2D> HideParts = new List<Sprite2D>();
 	public ArmorTypeEnum Type { get; set; }
 
 	protected AudioStreamPlayer2D Sound = new AudioStreamPlayer2D();
 
-	public Armor(Sprite2D sprite)
+	public Armor(Sprite2D sprite, List<Sprite2D> hideParts)
 	{
-		Sprite = sprite;
+		ArmorSprite = sprite;
+		HideParts = hideParts;
+		hideParts.ForEach(x => x.Visible = false);
 		//Sound.VolumeDb -= 6;
-		Sprite.AddChild(Sound);
+		ArmorSprite.AddChild(Sound);
 	}
 
 	public override int Hurt(int damage)
 	{
 		int returnDamage = damage;
-		if (damage > HP)
+		if (damage >= HP)
 		{
-			returnDamage = HP > 0 ? HP : 0;
-			Sprite.Visible = false;
+			if (HP > 0)
+			{
+				returnDamage = HP;
+				ArmorSprite.Visible = false;
+				HideParts.ForEach(x => x.Visible = true);
+			}
+			else
+			{
+				returnDamage = 0;
+			}
+			
+		}
+		if (returnDamage > 0)
+		{
+			PlaySound();
 		}
 		HP -= damage;
 		SetWearLevel();
@@ -55,7 +71,7 @@ public abstract partial class Armor : HealthEntity
 				{
 					GD.Print("更换装备" + level.Value);
 					WearLevel = index;
-					Sprite.Texture = level.Value;
+					ArmorSprite.Texture = level.Value;
 				}
 			}
 		}

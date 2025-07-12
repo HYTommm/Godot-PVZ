@@ -210,4 +210,9 @@ position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_kq65k")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10
+
 [connection signal="animation_finished" from="Head/Head" to="." method="StopShooting"]

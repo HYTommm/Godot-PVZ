@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 public partial class Cone : Armor
 {
-	public Cone(Sprite2D sprite) : base(sprite)
+	public Cone(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
 	{
 		HP = 370;
 		MaxHP = 370;
 		Type = ArmorTypeEnum.Primary;
+		
 		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone1.png");
 		WearLevelTextures.Add(226, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone2.png"));
 		WearLevelTextures.Add(113, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone3.png"));
@@ -20,16 +21,7 @@ public partial class Cone : Armor
 
 	public override int Hurt(int damage)
 	{
-		var r = base.Hurt(damage);
-		if (HP <= 0)
-		{
-			Sprite.Visible = false;
-		}
-		if (r > 0)
-		{
-			PlaySound();
-		}
-		return r;
+		return base.Hurt(damage);
 	}
 
 	public override void PlaySound()

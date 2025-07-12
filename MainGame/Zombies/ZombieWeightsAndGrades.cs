@@ -27,7 +27,7 @@ public class ZombieWeightsAndGrades
         ZombieTotalWeight = ZombieWeightsDict.Sum(x => x.Value);
 
         ZombieGradesDict.Add(ZombieTypeEnum.Normal, 1);
-        ZombieGradesDict.Add(ZombieTypeEnum.Conehead, 1);
+        ZombieGradesDict.Add(ZombieTypeEnum.Conehead, 2);
         ZombieGradesDict.Add(ZombieTypeEnum.Buckethead, 4);
     }
 
