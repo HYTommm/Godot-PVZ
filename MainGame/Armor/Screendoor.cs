@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class Bucket : Armor
+public partial class Screendoor : Armor
 {
-	public Bucket(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Screendoor(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 1100;
 		MaxHP = 1100;
-		Type = ArmorTypeEnum.Primary;
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket1.png");
-		WearLevelTextures.Add(733, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket2.png"));
-		WearLevelTextures.Add(366, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket3.png"));
+		Type = ArmorTypeEnum.Secondary;
+		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_screendoor1.png");
+		WearLevelTextures.Add(733, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_screendoor2.png"));
+		WearLevelTextures.Add(366, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_screendoor3.png"));
 		
 	}
 

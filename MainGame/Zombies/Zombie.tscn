@@ -222,46 +222,39 @@ position = Vector2(-9.8, 40)
 centered = false
 
 [node name="Anim_innerarm3" type="Sprite2D" parent="Zombie"]
-position = Vector2(4, 42.8)
-rotation = 1.06814
-scale = Vector2(0.791, 0.791)
+position = Vector2(24.4, 81.2)
+rotation = -0.099484
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_6pykm")
 centered = false
 
 [node name="Anim_innerarm2" type="Sprite2D" parent="Zombie"]
-position = Vector2(19.2, 47.6)
-rotation = 1.22173
-scale = Vector2(0.845, 0.796)
-skew = 0.34383
+position = Vector2(23.8, 67.1)
+rotation = -0.099484
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_jlj50")
 centered = false
 
 [node name="Anim_innerarm1" type="Sprite2D" parent="Zombie"]
-position = Vector2(37.6, 36.3)
-rotation = 1.29678
-scale = Vector2(0.905, 1.05)
-skew = -0.319396
+position = Vector2(27.1, 46.1)
+rotation = 0.020944
+scale = Vector2(0.999, 0.999)
 texture = ExtResource("4_p8jt5")
 centered = false
 
 [node name="Zombie_flaghand" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(-9.2, 50.1)
-rotation = -0.55676
-scale = Vector2(0.799, 0.799)
 texture = ExtResource("5_rqfs4")
 centered = false
 
 [node name="Zombie_innerarm_screendoor" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(1, 48.4)
-scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_iwuni")
 centered = false
 
 [node name="Zombie_neck" type="Sprite2D" parent="Zombie"]
-position = Vector2(29.6, 33.9)
-rotation = 0.012217
+position = Vector2(29.4, 34)
+rotation = 0.001745
 scale = Vector2(0.838, 0.798)
 texture = ExtResource("7_4gcfp")
 centered = false
@@ -374,24 +367,24 @@ centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(4.2, 36.6)
-rotation = 0.101229
+position = Vector2(32.9, 83.1)
+rotation = -0.050615
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("29_o7o7o")
 centered = false
 
 [node name="Zombie_outerarm_upper" type="Sprite2D" parent="Zombie"]
-position = Vector2(47.4, 40.2)
-rotation = 0.774926
-scale = Vector2(0.796, 0.796)
+position = Vector2(42.7, 42.5)
+rotation = -0.050615
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("20_aioke")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(37.4, 50.6)
-rotation = 1.7366
-scale = Vector2(0.799, 0.799)
+position = Vector2(36.3, 66)
+rotation = -0.050615
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("21_xwfus")
 centered = false
 

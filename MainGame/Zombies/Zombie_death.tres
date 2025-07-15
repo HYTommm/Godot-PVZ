@@ -1762,103 +1762,103 @@ tracks/143/keys = {
 tracks/144/type = "value"
 tracks/144/imported = false
 tracks/144/enabled = true
-tracks/144/path = NodePath("Zombie/Anim_hair:self_modulate")
+tracks/144/path = NodePath("Zombie/Anim_cone:position")
 tracks/144/interp = 1
 tracks/144/loop_wrap = true
 tracks/144/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7)]
 }
 tracks/145/type = "value"
 tracks/145/imported = false
 tracks/145/enabled = true
-tracks/145/path = NodePath("Zombie/Anim_cone:position")
+tracks/145/path = NodePath("Zombie/Anim_cone:rotation")
 tracks/145/interp = 1
 tracks/145/loop_wrap = true
 tracks/145/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7), Vector2(13.1, -18.7)]
+"values": [0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266]
 }
 tracks/146/type = "value"
 tracks/146/imported = false
 tracks/146/enabled = true
-tracks/146/path = NodePath("Zombie/Anim_cone:rotation")
+tracks/146/path = NodePath("Zombie/Anim_cone:scale")
 tracks/146/interp = 1
 tracks/146/loop_wrap = true
 tracks/146/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266, 0.087266]
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
 }
 tracks/147/type = "value"
 tracks/147/imported = false
 tracks/147/enabled = true
-tracks/147/path = NodePath("Zombie/Anim_cone:scale")
+tracks/147/path = NodePath("Zombie/Anim_cone:skew")
 tracks/147/interp = 1
 tracks/147/loop_wrap = true
 tracks/147/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 }
 tracks/148/type = "value"
 tracks/148/imported = false
 tracks/148/enabled = true
-tracks/148/path = NodePath("Zombie/Anim_cone:skew")
+tracks/148/path = NodePath("Zombie/Anim_cone:texture")
 tracks/148/interp = 1
 tracks/148/loop_wrap = true
 tracks/148/keys = {
-"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-}
-tracks/149/type = "value"
-tracks/149/imported = false
-tracks/149/enabled = true
-tracks/149/path = NodePath("Zombie/Anim_cone:texture")
-tracks/149/interp = 1
-tracks/149/loop_wrap = true
-tracks/149/keys = {
 "times": PackedFloat32Array(0, 3.16667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [ExtResource("26_fuck"), ExtResource("26_fuck")]
 }
+tracks/149/type = "value"
+tracks/149/imported = false
+tracks/149/enabled = true
+tracks/149/path = NodePath("Zombie/Anim_bucket:position")
+tracks/149/interp = 1
+tracks/149/loop_wrap = true
+tracks/149/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8)]
+}
 tracks/150/type = "value"
 tracks/150/imported = false
 tracks/150/enabled = true
-tracks/150/path = NodePath("Zombie/Anim_cone:self_modulate")
+tracks/150/path = NodePath("Zombie/Anim_bucket:rotation")
 tracks/150/interp = 1
 tracks/150/loop_wrap = true
 tracks/150/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 }
 tracks/151/type = "value"
 tracks/151/imported = false
 tracks/151/enabled = true
-tracks/151/path = NodePath("Zombie/Anim_bucket:position")
+tracks/151/path = NodePath("Zombie/Anim_bucket:scale")
 tracks/151/interp = 1
 tracks/151/loop_wrap = true
 tracks/151/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8), Vector2(1.5, -8)]
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
 }
 tracks/152/type = "value"
 tracks/152/imported = false
 tracks/152/enabled = true
-tracks/152/path = NodePath("Zombie/Anim_bucket:rotation")
+tracks/152/path = NodePath("Zombie/Anim_bucket:skew")
 tracks/152/interp = 1
 tracks/152/loop_wrap = true
 tracks/152/keys = {
@@ -1870,48 +1870,12 @@ tracks/152/keys = {
 tracks/153/type = "value"
 tracks/153/imported = false
 tracks/153/enabled = true
-tracks/153/path = NodePath("Zombie/Anim_bucket:scale")
+tracks/153/path = NodePath("Zombie/Anim_bucket:texture")
 tracks/153/interp = 1
 tracks/153/loop_wrap = true
 tracks/153/keys = {
-"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
-}
-tracks/154/type = "value"
-tracks/154/imported = false
-tracks/154/enabled = true
-tracks/154/path = NodePath("Zombie/Anim_bucket:skew")
-tracks/154/interp = 1
-tracks/154/loop_wrap = true
-tracks/154/keys = {
-"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-}
-tracks/155/type = "value"
-tracks/155/imported = false
-tracks/155/enabled = true
-tracks/155/path = NodePath("Zombie/Anim_bucket:texture")
-tracks/155/interp = 1
-tracks/155/loop_wrap = true
-tracks/155/keys = {
 "times": PackedFloat32Array(0, 3.16667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [ExtResource("27_fuck"), ExtResource("27_fuck")]
-}
-tracks/156/type = "value"
-tracks/156/imported = false
-tracks/156/enabled = true
-tracks/156/path = NodePath("Zombie/Anim_bucket:self_modulate")
-tracks/156/interp = 1
-tracks/156/loop_wrap = true
-tracks/156/keys = {
-"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }

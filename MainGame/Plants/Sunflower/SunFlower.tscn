@@ -2891,6 +2891,7 @@ shape = SubResource("RectangleShape2D_wihil")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
 [node name="TextEdit" type="TextEdit" parent="."]
+visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10

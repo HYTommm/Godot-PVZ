@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu7yf8d4ltb2g"]
+
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_djaoq"]
+[ext_resource type="Script" uid="uid://dmh5hlc8k22au" path="res://MainGame/Zombies/ScreendoorZombie.cs" id="2_djaoq"]
+
+[node name="ScreendoorZombie" instance=ExtResource("1_djaoq")]
+script = ExtResource("2_djaoq")
+
+[node name="Anim_innerarm1" parent="Zombie" index="5"]
+position = Vector2(23.9, 47.1)
+rotation = -0.099484
+scale = Vector2(1, 1)
+
+[node name="Anim_screendoor" parent="Zombie" index="22"]
+position = Vector2(-2.2, 32.2)
+rotation = 0.0
+scale = Vector2(0.8, 0.8)
+skew = 0.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Zombie/Anim_cone" index="0"]
+
+[node name="TextEdit" parent="." index="2"]
+text = "screendoor"

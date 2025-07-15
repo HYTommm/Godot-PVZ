@@ -1,7 +1,7 @@
 using Godot;
 using static Godot.GD;
 
-public class Scene
+public abstract partial class Scene : Node
 {
 	// 草坪左上原点
 	public Vector2 LawnLeftTopPos;
@@ -12,8 +12,8 @@ public class Scene
 	public Vector2 LawnUnitSize;
 
 	// 草坪长宽单位数量
-	protected int LawnUniColCount;
-	protected int LawnUniRowCount;
+	protected int LawnUnitColCount;
+	protected int LawnUnitRowCount;
 	public Vector2I LawnUnitCount;
 	// 草坪二维数组
 	public Lawn[,] LawnArray;
@@ -46,17 +46,17 @@ public class Scene
 	public float[] SmoothWeight;
 	public void Init()
 	{
-		Weight = new float[LawnUniRowCount];
-		LastPicked = new float[LawnUniRowCount];
-		SecondLastPicked = new float[LawnUniRowCount];
-		WeightP = new float[LawnUniRowCount];
-		PLast = new float[LawnUniRowCount];
-		PSecondLast = new float[LawnUniRowCount];
-		SmoothWeight = new float[LawnUniRowCount];
-		LawnArray = new Lawn[LawnUniColCount, LawnUniRowCount];
-		for (int i = 0; i < LawnUniColCount; i++)
+		Weight = new float[LawnUnitRowCount];
+		LastPicked = new float[LawnUnitRowCount];
+		SecondLastPicked = new float[LawnUnitRowCount];
+		WeightP = new float[LawnUnitRowCount];
+		PLast = new float[LawnUnitRowCount];
+		PSecondLast = new float[LawnUnitRowCount];
+		SmoothWeight = new float[LawnUnitRowCount];
+		LawnArray = new Lawn[LawnUnitColCount, LawnUnitRowCount];
+		for (int i = 0; i < LawnUnitColCount; i++)
 		{
-			for (int j = 0; j < LawnUniRowCount; j++)
+			for (int j = 0; j < LawnUnitRowCount; j++)
 			{
 				LawnArray[i, j] = new Lawn();
 			}
@@ -64,14 +64,14 @@ public class Scene
 
 		float WeightAll = 0;
 		// 初始化草坪权重
-		for (int i = 0; i < LawnUniRowCount; i++)
+		for (int i = 0; i < LawnUnitRowCount; i++)
 		{
 			Weight[i] = 1;
 			LastPicked[i] = 0;
 			SecondLastPicked[i] = 0;
 			WeightAll += Weight[i];
 		}
-		for (int i = 0; i < LawnUniRowCount; i++)
+		for (int i = 0; i < LawnUnitRowCount; i++)
 		{
 			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + WeightAll);
 			WeightP[i] += Weight[i] / WeightAll;
@@ -120,7 +120,7 @@ public class Scene
 	}
 }
 
-public class LawnDayScene : Scene
+public partial class LawnDayScene : Scene
 {
 	public LawnDayScene()
 	{
@@ -129,22 +129,22 @@ public class LawnDayScene : Scene
 		LawnUnitWidth = 100;
 		LawnUnitSize = new Vector2(LawnUnitLength, LawnUnitWidth);
 
-		LawnUniColCount = 9;
-		LawnUniRowCount = 5;
-		LawnUnitCount = new Vector2I(LawnUniColCount, LawnUniRowCount);
+		LawnUnitColCount = 9;
+		LawnUnitRowCount = 5;
+		LawnUnitCount = new Vector2I(LawnUnitColCount, LawnUnitRowCount);
 
 		CameraCenterPos = new Vector2(220, 0);
 		CameraRightPos = new Vector2(600, 0);
 
 		LawnMoverPos = new Vector2(194.5f, 121f);
 
-		BackGroundTexture = GD.Load<Texture2D>("res://art/MainGame/background1.jpg");
+		BackGroundTexture = Load<Texture2D>("res://art/MainGame/background1.jpg");
 		
 		Init();
 	}
 
 }
-public class PoolDayScene : Scene
+public partial class PoolDayScene : Scene
 {
 	public PoolDayScene()
 	{
@@ -153,9 +153,9 @@ public class PoolDayScene : Scene
 		LawnUnitWidth = 85;
 		LawnUnitSize = new Vector2(LawnUnitLength, LawnUnitWidth);
 
-		LawnUniColCount = 9;
-		LawnUniRowCount = 6;
-		LawnUnitCount = new Vector2I(LawnUniColCount, LawnUniRowCount);
+		LawnUnitColCount = 9;
+		LawnUnitRowCount = 6;
+		LawnUnitCount = new Vector2I(LawnUnitColCount, LawnUnitRowCount);
 
 		CameraCenterPos = new Vector2(220, 0);
 		CameraRightPos = new Vector2(600, 0);

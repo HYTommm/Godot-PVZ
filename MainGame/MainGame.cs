@@ -102,7 +102,7 @@ public partial class MainGame : MainNode2D
 	public override void _Ready()
 	{
 		RNG.Randomize();// 随机种子
-		ZombieWeightsAndGrades.SetZombieAllowed(new List<ZombieTypeEnum>() { ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead });
+		ZombieWeightsAndGrades.SetZombieAllowed(new List<ZombieTypeEnum>() { ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead/*, ZombieTypeEnum.Screendoor*/ });
 		
 		GameScene = new LawnDayScene();// 设置场景
 		//GameScene = new PoolDayScene();
@@ -607,7 +607,7 @@ public partial class MainGame : MainNode2D
 	public void RefreshSun()
 	{
 		GD.Print("RefreshSun");
-		Sun sun = GD.Load<PackedScene>("res://MainGame/Sun.tscn").Instantiate() as Sun; // 实例化阳光
+		Sun sun = GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() as Sun; // 实例化阳光
 		sun.Position = new Vector2(RNG.RandfRange(100, 700) + GameScene.CameraCenterPos.X, 90); // 设置阳光的位置
 		sun.GroundPosY = RNG.RandiRange(200, 500); // 设置阳光的地面高度
 		AddChild(sun); // 添加阳光到场景中

@@ -1,6 +1,7 @@
 using Godot;
 //using Godot.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum ArmorTypeEnum
 {
@@ -15,16 +16,21 @@ public abstract partial class Armor : HealthEntity
 	protected Dictionary<int, Texture2D> WearLevelTextures = new Dictionary<int, Texture2D>();
 	protected int WearLevel = 0;
 	public Sprite2D ArmorSprite;
+
+	public List<Sprite2D> ShowParts = new List<Sprite2D>();
 	public List<Sprite2D> HideParts = new List<Sprite2D>();
 	public ArmorTypeEnum Type { get; set; }
 
 	protected AudioStreamPlayer2D Sound = new AudioStreamPlayer2D();
 
-	public Armor(Sprite2D sprite, List<Sprite2D> hideParts)
+	public Armor(Sprite2D sprite, List<Sprite2D> showParts, List<Sprite2D> hideParts)
 	{
-		ArmorSprite = sprite;
+		ArmorSprite = sprite;	
+		ShowParts = showParts;
 		HideParts = hideParts;
-		hideParts.ForEach(x => x.Visible = false);
+		ArmorSprite.Visible = true;
+		ShowParts.ForEach(x => x.Visible = true);
+		HideParts.ForEach(x => x.Visible = false);
 		//Sound.VolumeDb -= 6;
 		ArmorSprite.AddChild(Sound);
 	}
@@ -37,8 +43,10 @@ public abstract partial class Armor : HealthEntity
 			if (HP > 0)
 			{
 				returnDamage = HP;
-				ArmorSprite.Visible = false;
+				ArmorSprite.SelfModulate = new Color(0, 0, 0, 0);
+				ShowParts.ForEach(x => x.Visible = false);
 				HideParts.ForEach(x => x.Visible = true);
+				PlayParticles();
 			}
 			else
 			{
@@ -56,6 +64,16 @@ public abstract partial class Armor : HealthEntity
 	}
 
 	public abstract void PlaySound();
+
+	public virtual void PlayParticles()
+	{
+		var particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
+		GD.Print("particles count: " + particles.Count);
+		if (particles.Count > 0)
+		{
+			particles.Cast<GpuParticles2D>().ToList().ForEach(x => x.Emitting = true);
+		}
+	}
 
 	public void SetWearLevel()
 	{

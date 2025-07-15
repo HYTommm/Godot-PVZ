@@ -19,7 +19,10 @@ public partial class BucketheadZombie : Zombie
 	public override void _Ready()
 	{
 		base._Ready();
-		Bucket Bucket = new Bucket(GetNode<Sprite2D>("Zombie/Anim_bucket"), new List<Sprite2D>() { Zombie_hair });
+		Bucket Bucket = new Bucket(
+			GetNode<Sprite2D>("Zombie/Anim_bucket"),
+			new List<Sprite2D>(),
+			new List<Sprite2D>() { Zombie_hair });
 		ArmorSystem.AddArmor(Bucket);
 	}
 }

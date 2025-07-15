@@ -1,6 +1,13 @@
 #ifndef PARTICALS_PARAMATERS_H
 #define PARTICALS_PARAMATERS_H
 
+uniform vec3 direction; // 发射方向/角度
+uniform float spread; // 发射角度的随机发散区间
+uniform float inherit_emitter_velocity_ratio = 0.0; // 粒子速度的继承系数
+uniform vec3 velocity_pivot = vec3(0.0); // 径向速度的参考中心点（枢轴点）
+uniform vec3 gravity; // 重力
+uniform float collision_friction; // 摩擦系数
+uniform float collision_bounce; // 弹性系数
 
 // DisplayParameters 显示参数
 uniform float scale_min;                 
@@ -40,7 +47,8 @@ uniform float damping_min;
 uniform float damping_max;                // 阻尼系数
 
 uniform sampler2D alpha_curve : repeat_disable; // 透明度曲线
-
+uniform sampler2D orbit_velocity_curve : repeat_disable; // 轨道速度曲线
+uniform sampler2D angular_velocity_texture : repeat_disable; // 角度速度曲线
 uniform vec3 emission_shape_offset = vec3(0.0); 
 uniform vec3 emission_shape_scale = vec3(1.0);  // 发射形状的偏移和缩放
 

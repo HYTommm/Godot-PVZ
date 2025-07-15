@@ -42,7 +42,7 @@ public partial class SunFlower : MoneyCropsPlants
 	{
 		if (!isPlanted)
 			return;
-		Sun sun = GD.Load<PackedScene>("res://MainGame/Sun.tscn").Instantiate() as Sun; // 实例化太阳
+		Sun sun = GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() as Sun; // 实例化太阳
 		sun.Position = new Vector2(Position.X + 40, Position.Y + 20);// 设置太阳的位置
 		sun.Scale = new Vector2(0.3f, 0.3f); // 设置太阳的大小
 		GetParent().AddChild(sun);// 添加太阳到场景中

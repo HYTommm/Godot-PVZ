@@ -58,6 +58,9 @@ public partial class Zombie : HealthEntity
 
 	protected ArmorSystem ArmorSystem { get; } = new ArmorSystem();
 
+	protected Sprite2D Anim_innerarm1; // 内臂上部
+	protected Sprite2D Anim_innerarm2; // 内臂下部
+	protected Sprite2D Anim_innerarm3; // 内臂手
 	protected Sprite2D Zombie_outerarm_upper; // 外臂上部
 	protected Sprite2D Zombie_outerarm_lower; // 外臂下部
 	protected Sprite2D Zombie_outerarm_hand;  // 外臂手
@@ -96,6 +99,9 @@ public partial class Zombie : HealthEntity
 			case ZombieTypeEnum.Buckethead:
 				((BucketheadZombie)this).Init();
 				break;
+			case ZombieTypeEnum.Screendoor:
+				((ScreendoorZombie)this).Init();
+				break;
 		}
 	}
 
@@ -109,6 +115,9 @@ public partial class Zombie : HealthEntity
 		Ground = GetNode<Sprite2D>("./Zombie/_ground");
 		LastGroundPos = Ground.Position;
 
+		Anim_innerarm1 = GetNode<Sprite2D>("./Zombie/Anim_innerarm1");
+		Anim_innerarm2 = GetNode<Sprite2D>("./Zombie/Anim_innerarm2");
+		Anim_innerarm3 = GetNode<Sprite2D>("./Zombie/Anim_innerarm3");
 		Zombie_outerarm_upper = GetNode<Sprite2D>("./Zombie/Zombie_outerarm_upper");
 		Zombie_outerarm_lower = GetNode<Sprite2D>("./Zombie/Zombie_outerarm_lower");
 		Zombie_outerarm_hand = GetNode<Sprite2D>("./Zombie/Zombie_outerarm_hand");

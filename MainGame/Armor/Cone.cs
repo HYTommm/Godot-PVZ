@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Cone : Armor
 {
-	public Cone(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Cone(Sprite2D sprite,List<Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 370;
 		MaxHP = 370;
@@ -26,7 +26,7 @@ public partial class Cone : Armor
 
 	public override void PlaySound()
 	{
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
+		uint random = GD.Randi() % 2; // 随机播放音效
 		switch (random)
 		{
 			case 0:
@@ -38,4 +38,5 @@ public partial class Cone : Armor
 		}
 		Sound.Play();
 	}
+
 }

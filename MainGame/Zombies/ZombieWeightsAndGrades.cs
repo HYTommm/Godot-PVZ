@@ -23,12 +23,14 @@ public class ZombieWeightsAndGrades
         ZombieWeightsDict.Add(ZombieTypeEnum.Normal, 4000);
         ZombieWeightsDict.Add(ZombieTypeEnum.Conehead, 2000);
         ZombieWeightsDict.Add(ZombieTypeEnum.Buckethead, 1000);
+        ZombieWeightsDict.Add(ZombieTypeEnum.Screendoor, 1500);
 
         ZombieTotalWeight = ZombieWeightsDict.Sum(x => x.Value);
 
-        ZombieGradesDict.Add(ZombieTypeEnum.Normal, 1);
-        ZombieGradesDict.Add(ZombieTypeEnum.Conehead, 2);
-        ZombieGradesDict.Add(ZombieTypeEnum.Buckethead, 4);
+        ZombieGradesDict.Add(ZombieTypeEnum.Normal, 5);
+        ZombieGradesDict.Add(ZombieTypeEnum.Conehead, 1); // 2
+        ZombieGradesDict.Add(ZombieTypeEnum.Buckethead, 1); // 4
+        ZombieGradesDict.Add(ZombieTypeEnum.Screendoor, 1); // 3
     }
 
     /// <summary>
@@ -58,12 +60,20 @@ public class ZombieWeightsAndGrades
     /// <param name="allowedZombies"></param>
     public void SetZombieAllowed(List<ZombieTypeEnum> allowedZombies)
     {
-        ZombieAllowedDict.Clear();
+        // ZombieAllowedDict.Clear()
+        foreach (var key in ZombieAllowedDict.Keys.ToList())
+        {
+            ZombieAllowedDict[key] = false;
+        }
         foreach (ZombieTypeEnum zombie in allowedZombies)
         {
-            ZombieAllowedDict.Add(zombie, true);
+            ZombieAllowedDict[zombie] = true;
         }
-        ZombieTotalWeight = ZombieWeightsDict.Sum(x => x.Value);
+        ZombieTotalWeight = ZombieWeightsDict
+                            .Where(pair =>
+                                ZombieAllowedDict.ContainsKey(pair.Key) && // 确保键存在
+                                ZombieAllowedDict[pair.Key])
+                            .Sum(x => x.Value);
     }
 
     /// <summary>
