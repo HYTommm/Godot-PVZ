@@ -157,7 +157,7 @@ public partial class MainGame : MainNode2D
 				if (canOverlapPlant || GameScene.IsLawnUnitPlantEmpty(MouseUnitPos.X, MouseUnitPos.Y))
 				{
 					seedClone.Position = new Vector2(MouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
-															 MouseUnitPos.Y * GameScene.LawnUnitWidth + GameScene.LawnLeftTopPos.Y);
+													 MouseUnitPos.Y * GameScene.LawnUnitWidth  + GameScene.LawnLeftTopPos.Y);
 					seedClone.Visible = true; 
 				}
 				else
@@ -251,6 +251,7 @@ public partial class MainGame : MainNode2D
 		SunCount = 50000; // 初始化阳光数量
 
 		seedBank.UpdateSunCount(); // 更新阳光数量
+		GameScene.PlayAllBGM(); // 播放BGM
 		RefreshSunTimer(); // 刷新阳光计时器
 		RefreshZombieTimer(19); // 刷新僵尸计时器
 	}

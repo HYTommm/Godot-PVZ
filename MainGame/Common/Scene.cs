@@ -29,14 +29,24 @@ public abstract partial class Scene : Node
     // 背景图片
     public Texture2D BackGroundTexture;
 
-	// 普通BGM
-	public AudioStream BgmNormal;
+	// 普通BGM_前奏
+	public AudioStream BgmNormalPre;
 	// 普通BGM_循环
 	public AudioStream BgmNormalLoop;
-	// 高潮BGM
-	public AudioStream BgmHigh;
+	// 高潮BGM_前奏
+	public AudioStream BgmHighPre;
 	// 高潮BGM_循环
 	public AudioStream BgmHighLoop;
+
+	// 普通BGM的前奏是否播放完毕
+	public bool BgmNormalPrePlayed = false;
+	// 高潮BGM的前奏是否播放完毕
+	public bool BgmHighPrePlayed = false;
+
+	// 普通BGM播放器
+	public AudioStreamPlayer BgmNormalPlayer;
+	// 高潮BGM播放器
+	public AudioStreamPlayer BgmHighPlayer;
 	
 
 	// 将第i行权重定义为 Weight_i
@@ -85,7 +95,34 @@ public abstract partial class Scene : Node
 			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + WeightAll);
 			WeightP[i] += Weight[i] / WeightAll;
 		}
-	}
+
+		BgmNormalPlayer = this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM");
+		BgmHighPlayer = this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM2");
+
+		BgmNormalPlayer.Finished += OnBgmNormalPreFinished;
+		BgmHighPlayer.Finished += OnBgmHighPreFinished;
+
+    }
+
+	public void OnBgmNormalPreFinished()
+	{
+        if (BgmNormalPrePlayed)
+        {
+            BgmNormalPlayer.Stream = BgmNormalLoop;
+            BgmNormalPlayer.Play();
+        }
+		BgmNormalPlayer.Play();
+    }
+
+	public void OnBgmHighPreFinished()
+	{
+        if (BgmHighPrePlayed)
+        {
+            BgmHighPlayer.Stream = BgmHighLoop;
+            BgmHighPlayer.Play();
+        }
+		BgmHighPlayer.Play();
+    }
 
 	/// <summary>
 	/// 查看指定位置是否为空
@@ -128,10 +165,31 @@ public abstract partial class Scene : Node
 		LawnArray[row, col].PlantCount = 0;
 	}
 
-	public void TurnToHighBGM()
+
+	public virtual void TurnToNormalBGM()
 	{
-		this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM").VolumeDb = -80; 
-		this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM2").VolumeDb = 0;
+		BgmNormalPlayer.VolumeDb = 0;
+		BgmHighPlayer.VolumeDb = -5;
+	}
+
+	public virtual void TurnToHighBGM()
+	{
+		BgmNormalPlayer.VolumeDb = -80;
+		BgmHighPlayer.VolumeDb = -5;
+	}
+
+	public virtual void PlayAllBGM()
+	{
+		BgmNormalPlayer.Stream = BgmNormalPre;
+		BgmNormalPlayer.Play();
+		BgmHighPlayer.Stream = BgmHighPre;
+		BgmHighPlayer.Play();
+	}
+
+	public virtual void StopAllBGM()
+	{
+		BgmNormalPlayer.Stop();
+		BgmHighPlayer.Stop();
 	}
 }
 
@@ -155,14 +213,24 @@ public partial class LawnDayScene : Scene
 
 		BackGroundTexture = Load<Texture2D>("res://art/MainGame/background1.jpg");
 
-		BgmNormal = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");
+		BgmNormalPre = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");
 		BgmNormalLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_nodrum.ogg");
 
-		BgmHigh = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_drum.ogg");
+		BgmHighPre = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_drum.ogg");
 		BgmHighLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_drum.ogg");
 		
 		Init();
 	}
+
+	public override void TurnToNormalBGM()
+	{
+        this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM2").VolumeDb = -80;
+    }
+
+    public override void TurnToHighBGM()
+    {
+        this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM2").VolumeDb = -5;
+    }
 
 }
 public partial class PoolDayScene : Scene
