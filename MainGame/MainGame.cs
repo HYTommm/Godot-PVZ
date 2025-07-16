@@ -103,8 +103,8 @@ public partial class MainGame : MainNode2D
 	{
 		RNG.Randomize();// 随机种子
 		ZombieWeightsAndGrades.SetZombieAllowed(new List<ZombieTypeEnum>() { ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead, ZombieTypeEnum.Screendoor });
-		
-		GameScene = new LawnDayScene();// 设置场景
+		GetNode<Node>("/root").PrintTreePretty();
+		GameScene = new LawnDayScene(GetNode<Node>("/root/Global"));// 设置场景
 		//GameScene = new PoolDayScene();
 		GetNode<Sprite2D>("./BackGround").Texture = GameScene.BackGroundTexture;// 设置背景
 		InitLawnMowers(GameScene);// 初始化草坪机
@@ -251,6 +251,7 @@ public partial class MainGame : MainNode2D
 		SunCount = 50000; // 初始化阳光数量
 
 		seedBank.UpdateSunCount(); // 更新阳光数量
+		GameScene.TurnToNormalBGM();
 		GameScene.PlayAllBGM(); // 播放BGM
 		RefreshSunTimer(); // 刷新阳光计时器
 		RefreshZombieTimer(19); // 刷新僵尸计时器
