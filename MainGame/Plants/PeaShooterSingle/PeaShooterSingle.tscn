@@ -17,8 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bh24x4q5el042" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_sprout.png" id="12_kn5d0"]
 [ext_resource type="Texture2D" uid="uid://d301xyd8tipo8" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_Head.png" id="13_nd4h7"]
 [ext_resource type="Texture2D" uid="uid://dsse36p2cqmuh" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_mouth.png" id="14_ly4gj"]
-[ext_resource type="Animation" uid="uid://c4w15oxqancqv" path="res://MainGame/Plants/Head_Idle.tres" id="16_45rku"]
-[ext_resource type="Animation" uid="uid://cjgfbfe76tx2" path="res://MainGame/Plants/Head_Shooting.tres" id="17_6n7na"]
+[ext_resource type="Animation" uid="uid://c4w15oxqancqv" path="res://MainGame/Plants/PeaShooterSingle/Head_Idle.tres" id="16_45rku"]
+[ext_resource type="Animation" uid="uid://cjgfbfe76tx2" path="res://MainGame/Plants/PeaShooterSingle/Head_Shooting.tres" id="17_6n7na"]
 [ext_resource type="Animation" uid="uid://cakd1xfg7v3ug" path="res://MainGame/Plants/PeaShooterSingle/Head_Shooting2.tres" id="17_ajeql"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iv4oo"]
@@ -211,6 +211,7 @@ shape = SubResource("RectangleShape2D_kq65k")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
 [node name="TextEdit" type="TextEdit" parent="."]
+visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10

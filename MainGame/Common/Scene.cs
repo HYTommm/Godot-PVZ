@@ -28,6 +28,15 @@ public abstract partial class Scene : Node
 
     // 背景图片
     public Texture2D BackGroundTexture;
+
+	// 普通BGM
+	public AudioStream BgmNormal;
+	// 普通BGM_循环
+	public AudioStream BgmNormalLoop;
+	// 高潮BGM
+	public AudioStream BgmHigh;
+	// 高潮BGM_循环
+	public AudioStream BgmHighLoop;
 	
 
 	// 将第i行权重定义为 Weight_i
@@ -118,6 +127,12 @@ public abstract partial class Scene : Node
 	{
 		LawnArray[row, col].PlantCount = 0;
 	}
+
+	public void TurnToHighBGM()
+	{
+		this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM").VolumeDb = -80; 
+		this.GetGlobalNode().GetNode<AudioStreamPlayer>("BGM2").VolumeDb = 0;
+	}
 }
 
 public partial class LawnDayScene : Scene
@@ -139,6 +154,12 @@ public partial class LawnDayScene : Scene
 		LawnMoverPos = new Vector2(194.5f, 121f);
 
 		BackGroundTexture = Load<Texture2D>("res://art/MainGame/background1.jpg");
+
+		BgmNormal = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");
+		BgmNormalLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_nodrum.ogg");
+
+		BgmHigh = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_drum.ogg");
+		BgmHighLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_drum.ogg");
 		
 		Init();
 	}

@@ -58,6 +58,11 @@ public partial class Zombie : HealthEntity
 
 	protected ArmorSystem ArmorSystem { get; } = new ArmorSystem();
 
+
+	public int CriticalHP1;
+	public int CriticalHPLast;
+
+
 	protected Sprite2D Anim_innerarm1; // 内臂上部
 	protected Sprite2D Anim_innerarm2; // 内臂下部
 	protected Sprite2D Anim_innerarm3; // 内臂手
@@ -77,6 +82,8 @@ public partial class Zombie : HealthEntity
 		HP = 270;
 		MaxHP = 270;
 		Index = -1;
+		CriticalHP1 = 180;
+		CriticalHPLast = 90;
 		GD.Print("Base Zombie Constructor called");
 	}
 
@@ -184,7 +191,7 @@ public partial class Zombie : HealthEntity
 		// 如果植物在攻击区域内，则攻击
 		var overlappingAreas = AttackArea.GetOverlappingAreas();
 		//Print(overlappingAreas.Count);
-		if (AttackArea != null && overlappingAreas.Count > 0 && !isDying)
+		if (AttackArea != null && overlappingAreas.Count > 0 && !isDying && !isDead)
 		{
 			int max_stack = -1;
 			Area2D AttackPlantArea = null;
@@ -255,7 +262,7 @@ public partial class Zombie : HealthEntity
 	public void OnAreaEntered(Area2D area)
 	{
 		// 如果检测到植物进入攻击区域，则播放攻击动画
-		if (area.GetNode("..") is Plants plant && plant != null && plant.Row == Row && plant.isPlanted && !isDying)
+		if (area.GetNode("..") is Plants plant && plant != null && plant.Row == Row && plant.isPlanted && !isDying && !isDead)
 		{
 			Eat();
 		}
@@ -304,7 +311,7 @@ public partial class Zombie : HealthEntity
 		}
 	}
 
-	public void PlayEatSound()
+	public virtual void PlayEatSound()
 	{
 		IsPlayingEatSound = true;
 		uint random = GD.Randi() % 3; // 随机播放啃食音效
@@ -339,11 +346,11 @@ public partial class Zombie : HealthEntity
 		// 减血
 		HP -= damage;
 		// 如果血量 <= 0 则死亡
-		if (HP <= 180 && HP + damage > 180)
+		if (HP <= CriticalHP1 && HP + damage > CriticalHP1)
 		{
 			DropArm(); // 断臂
 		}
-		if (HP < 90 && HP + damage >= 90)
+		if (HP < CriticalHPLast && HP + damage >= CriticalHPLast)
 		{
 			Dying(); // 开始濒死
 		}
