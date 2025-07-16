@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Newspaper : Armor
 {
-	public Newspaper(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Newspaper(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 150;
 		MaxHP = 150;

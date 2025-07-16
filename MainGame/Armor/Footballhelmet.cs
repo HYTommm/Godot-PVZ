@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Footballhelmet : Armor
 {
-	public Footballhelmet(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Footballhelmet(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 1400;
 		MaxHP = 1400;
