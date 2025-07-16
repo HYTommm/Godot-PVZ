@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Wallnuthead : Armor
 {
-	public Wallnuthead(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Wallnuthead(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 1100;
 		MaxHP = 1100;

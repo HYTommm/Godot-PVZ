@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Hardhat : Armor
 {
-	public Hardhat(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Hardhat(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 100;
 		MaxHP = 100;

@@ -102,7 +102,7 @@ public partial class MainGame : MainNode2D
 	public override void _Ready()
 	{
 		RNG.Randomize();// 随机种子
-		ZombieWeightsAndGrades.SetZombieAllowed(new List<ZombieTypeEnum>() { ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead/*, ZombieTypeEnum.Screendoor*/ });
+		ZombieWeightsAndGrades.SetZombieAllowed(new List<ZombieTypeEnum>() { ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead, ZombieTypeEnum.Screendoor });
 		
 		GameScene = new LawnDayScene();// 设置场景
 		//GameScene = new PoolDayScene();

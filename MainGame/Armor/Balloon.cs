@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Balloon : Armor
 {
-	public Balloon(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Balloon(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 20;
 		MaxHP = 20;

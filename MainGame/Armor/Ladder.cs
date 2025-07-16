@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Ladder : Armor
 {
-	public Ladder(Sprite2D sprite, List<Sprite2D> hideParts) : base(sprite, hideParts)
+	public Ladder(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
 	{
 		HP = 500;
 		MaxHP = 500;
