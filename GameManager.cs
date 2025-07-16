@@ -7,5 +7,10 @@ public static partial class GameManager
     {
         return node.GetNode<MainGame>("/root/MainGame");
     }
+
+    public static Node GetGlobalNode(this Node node)
+    {
+        return node.GetNode<Node>("/root/Global");
+    }
 }
 
