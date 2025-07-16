@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://dmf7okj4vqmt7"]
+
+[ext_resource type="Texture2D" uid="uid://dc2ee4afj7wka" path="res://art/MainGame/Plants/WallNut/Wallnut_body.png" id="0_fuck"]
+[ext_resource type="Script" uid="uid://87bnsrjl4mxu" path="res://MainGame/Plants/WallNut/Wallnut.cs" id="1_86vom"]
+[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_idle.tres" id="1_anim"]
+[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_face.tres" id="2_anim"]
+[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_twitch.tres" id="3_anim"]
+[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_twice.tres" id="4_anim"]
+[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_thrice.tres" id="5_anim"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_idle"]
+_data = {
+&"Wallnut_idle": ExtResource("1_anim")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_face"]
+_data = {
+&"Wallnut_face": ExtResource("2_anim")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_twitch"]
+_data = {
+&"Wallnut_blink_twitch": ExtResource("3_anim")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_twice"]
+_data = {
+&"Wallnut_blink_twice": ExtResource("4_anim")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_thrice"]
+_data = {
+&"Wallnut_blink_thrice": ExtResource("5_anim")
+}
+
+[node name="Wallnut" type="CanvasGroup"]
+script = ExtResource("1_86vom")
+
+[node name="_ground" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Anim_idle" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Anim_face" type="Sprite2D" parent="."]
+position = Vector2(6.9, 3.6)
+scale = Vector2(0.7, 0.719)
+texture = ExtResource("0_fuck")
+centered = false
+
+[node name="Anim_blink_twitch" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Anim_blink_twice" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Anim_blink_thrice" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Anim_Wallnut_idle" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_Wallnut_idle")
+}
+
+[node name="Anim_Wallnut_face" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_Wallnut_face")
+}
+
+[node name="Anim_Wallnut_blink_twitch" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_Wallnut_blink_twitch")
+}
+
+[node name="Anim_Wallnut_blink_twice" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_Wallnut_blink_twice")
+}
+
+[node name="Anim_Wallnut_blink_thrice" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_Wallnut_blink_thrice")
+}
