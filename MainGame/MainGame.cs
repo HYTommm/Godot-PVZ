@@ -44,7 +44,9 @@ public partial class MainGame : MainNode2D
 	// 僵尸数组
 	public Zombie[] zombies = new Zombie[1000];
 	public int[] zombiesNumOfRow = new int[10];
-	public Zombie[, ] zombiesOfRow = new Zombie[10, 1000];
+	// 僵尸总数
+	public int ZombieNum = 0;
+	//public Zombie[, ] zombiesOfRow = new Zombie[10, 1000];
 	// 僵尸刷新倒计时
 	public Timer ZombieTimer = new Timer();
 
@@ -66,6 +68,9 @@ public partial class MainGame : MainNode2D
 	Vector2I MouseUnitPos = new Vector2I();
 
 	public AudioStreamPlayer PutBackPlantSound = new AudioStreamPlayer();
+
+	public bool isClimaxing = false; // 游戏是否处于高潮状态
+
 
 	public void InitLawnMowers(Scene scene)
 	{
@@ -209,7 +214,7 @@ public partial class MainGame : MainNode2D
 	// 选择种子卡
 	async public void SelectSeedCard()
 	{
-		
+		GameScene.PlaySelectSeedCardBGM();
 		await ToSignal(GetTree().CreateTimer(1.3), SceneTreeTimer.SignalName.Timeout);
 		animation.Play("Label");
 		camera.Move(GameScene.CameraRightPos, 1.25);
@@ -222,6 +227,7 @@ public partial class MainGame : MainNode2D
 	// 开始游戏
 	async public void Game()
 	{
+		
 		SetLawnMowersPosX(155); // 移动草坪机
 		// 移动相机到中心位置
 		camera.Move(GameScene.CameraCenterPos, 1);
@@ -230,7 +236,7 @@ public partial class MainGame : MainNode2D
 		// 显示种子卡槽
 		animation.Play("SeedBank");
 		await ToSignal(animation, "animation_finished");
-
+		GameScene.TurnOffAllBGM_FadeOut(animation.CurrentAnimationLength);
 		// 将种子卡槽移动到节点树的外层
 		Vector2 SeedBankGlobalPos = seedBank.GlobalPosition;
 		seedBank.GetParent().RemoveChild(seedBank);
@@ -251,8 +257,11 @@ public partial class MainGame : MainNode2D
 		SunCount = 50000; // 初始化阳光数量
 
 		seedBank.UpdateSunCount(); // 更新阳光数量
+		//await ToSignal(GetTree().CreateTimer(2f), "timeout");
+
+		GameScene.PlayMaineGameBGM(); // 播放BGM
 		GameScene.TurnToNormalBGM();
-		GameScene.PlayAllBGM(); // 播放BGM
+		
 		RefreshSunTimer(); // 刷新阳光计时器
 		RefreshZombieTimer(19); // 刷新僵尸计时器
 	}
@@ -363,6 +372,7 @@ public partial class MainGame : MainNode2D
 			zombieMaxGrade = (int)(zombieMaxGrade * 2.5);
 		}
 
+		zombieMaxGrade *= 10; // 10倍数
 		// Print("zombieCount: " + zombieCount);
 
 		// 预备僵尸
@@ -419,18 +429,10 @@ public partial class MainGame : MainNode2D
 		for (int i = 0; i < zombieCount; i++)
 		{
 			zombie = PreZombie[i]; // 取出预备僵尸
-			GD.Print("zombie: " + zombie.Name + " Index: " + zombie.Index);
+			AddZombie(zombie);
 
-			int Row = GetRandomZombieRow(); // 随机僵尸所在行
-			Print("Row: " + Row);
-
-			zombie.Refresh(zombie.Index, GameScene, ZombieCurrentWave, Row); // 刷新僵尸
-			zombiesNumOfRow[Row]++; // 该行僵尸数加1
-			//zombiesOfRow[Row, ] = zombie; // 该行僵尸数组加1
-			CallDeferred("add_child", zombie); // 添加到场景树
-			
 			//AddChild(zombie);
-			
+
 			await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout); //等待0.5秒再刷新下一个僵尸
 		}
 		// 如果当前波数大于最大波数，则连接僵尸死亡信号到游戏结束函数
@@ -457,6 +459,23 @@ public partial class MainGame : MainNode2D
 		ZombieTimer.Start(time);
 	}
 
+	// 添加僵尸
+	public void AddZombie(Zombie zombie)
+	{
+		GD.Print("zombie: " + zombie.Name + " Index: " + zombie.Index);
+
+		int Row = GetRandomZombieRow(); // 随机僵尸所在行
+		Print("Row: " + Row);
+
+		zombie.Refresh(zombie.Index, GameScene, ZombieCurrentWave, Row); // 刷新僵尸
+		zombiesNumOfRow[Row]++; // 该行僵尸数加1
+								//zombiesOfRow[Row, ] = zombie; // 该行僵尸数组加1
+		CallDeferred("add_child", zombie); // 添加到场景树
+
+		ZombieNum += 1; // 总僵尸数加1
+		UpdateZombieNum(); // 更新僵尸数
+	}
+
 	// 移除僵尸
 	public void RemoveZombie(Zombie zombie)
 	{
@@ -464,6 +483,30 @@ public partial class MainGame : MainNode2D
 		zombie.Index = zombieStack;
 		//zombies[zombie.Index] = null;
 		zombieStack = tempIndex;
+		ZombieNum--;
+		UpdateZombieNum();
+	}
+
+	public void UpdateZombieNum()
+	{
+		GD.Print("ZombieNum: " + ZombieNum, "isClimaxing: " + isClimaxing);
+		if (isClimaxing)
+		{
+			if (ZombieNum <= 3)
+			{
+				isClimaxing = false;
+				GameScene.TurnToNormalBGM();
+			}
+		}
+		else
+		{
+			if (ZombieNum >= 10)
+			{
+				isClimaxing = true;
+				GD.Print("Turn to HighBGM");
+				GameScene.TurnToHighBGM();
+			}
+		}
 	}
 
 	// 判断全场僵尸血量在总血量的百分比
@@ -474,7 +517,7 @@ public partial class MainGame : MainNode2D
 		{
 			if (zombies[i] != null && zombies[i].Wave == ZombieCurrentWave - 1)
 			{
-				totalHealth += zombies[i].HP;
+				totalHealth += zombies[i].HP > 0 ? zombies[i].HP : 0;
 			}
 		}
 		GD.Print("totalHealth: " + totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);

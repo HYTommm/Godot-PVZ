@@ -223,7 +223,7 @@ public partial class Zombie : HealthEntity
 				AttackPlant.HP > 0 &&
 				AttackPlant.isPlanted)
 			{
-				Print("Eat Plant");
+				//Print("Eat Plant");
 				AttackTemp += Attack * delta; // 攻击暂存
 				int AttackInt = (int)AttackTemp; // 攻击整数
 				AttackTemp -= AttackInt; // 攻击余数
@@ -292,7 +292,10 @@ public partial class Zombie : HealthEntity
 	{
 		
 		if (!IsPlayingEatSound)
+		{
 			PlayEatSound(); // 播放啃食音效
+		}
+
 		if (animation.CurrentAnimation != "Zombie_eat" && animation.CurrentAnimation != "Zombie_death")
 		{
 			// 停止移动

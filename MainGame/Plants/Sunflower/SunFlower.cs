@@ -10,6 +10,7 @@ public partial class SunFlower : MoneyCropsPlants
 
 	public SunFlower()
 	{
+		
 		SunCost = 50; // 设置花费的阳光数量
 		CDtime = CDTime.FAST; // 设置冷却时间
 		
@@ -54,6 +55,10 @@ public partial class SunFlower : MoneyCropsPlants
 		GD.Print("TimerProduce : Time = " + TimerProduce.WaitTime);
 	}
 
+    public override int Hurt(int damage)
+    {
+		return damage;
+    }
 	
 	public override void _Ready()
 	{

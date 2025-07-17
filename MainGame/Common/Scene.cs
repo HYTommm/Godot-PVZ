@@ -29,6 +29,9 @@ public abstract partial class Scene : Node
 	// 背景图片
 	public Texture2D BackGroundTexture;
 
+	// 选卡BGM
+	public AudioStream BgmSelectSeedCard;
+
 	// 普通BGM_前奏
 	public AudioStream BgmNormalPre;
 	// 普通BGM_循环
@@ -68,6 +71,8 @@ public abstract partial class Scene : Node
 	{
 		BgmNormalPlayer = Global.GetNode<AudioStreamPlayer>("BGM1");
 		BgmHighPlayer = Global.GetNode<AudioStreamPlayer>("BGM2");
+		BgmNormalPlayer.VolumeDb = -10;
+		BgmHighPlayer.VolumeDb = -80;
 
 		BgmNormalPlayer.Finished += OnBgmNormalPreFinished;
 		BgmHighPlayer.Finished += OnBgmHighPreFinished;
@@ -112,12 +117,12 @@ public abstract partial class Scene : Node
 
 	public void OnBgmNormalPreFinished()
 	{
-		float db = BgmNormalPlayer.VolumeDb;
+		//float db = BgmNormalPlayer.VolumeDb;
 		if (BgmNormalPrePlayed == false)
 		{
 			BgmNormalPrePlayed = true;
 			BgmNormalPlayer.Stream = BgmNormalLoop;
-			BgmNormalPlayer.VolumeDb = db;
+			//BgmNormalPlayer.VolumeDb = db;
 			BgmNormalPlayer.Play();
 		}
 		BgmNormalPlayer.Play();
@@ -125,12 +130,12 @@ public abstract partial class Scene : Node
 
 	public void OnBgmHighPreFinished()
 	{
-		float db = BgmHighPlayer.VolumeDb;
+		//float db = BgmHighPlayer.VolumeDb;
 		if (BgmHighPrePlayed == false)
 		{
 			BgmHighPrePlayed = true;
 			BgmHighPlayer.Stream = BgmHighLoop;
-			BgmHighPlayer.VolumeDb = db;
+			//BgmHighPlayer.VolumeDb = db;
 			BgmHighPlayer.Play();
 		}
 		BgmHighPlayer.Play();
@@ -180,22 +185,69 @@ public abstract partial class Scene : Node
 
 	public virtual void TurnToNormalBGM()
 	{
-		BgmNormalPlayer.VolumeDb = -10;
-		BgmHighPlayer.VolumeDb = -80;
+
+		//BgmNormalPlayer.VolumeDb = -10;
+		//BgmHighPlayer.VolumeDb = -80;
+		Tween tween = BgmNormalPlayer.CreateTween();
+		tween
+			.TweenProperty(BgmNormalPlayer, "volume_db", -10, 5f)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
+		tween
+			.TweenProperty(BgmHighPlayer, "volume_db", -80, 5f)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
 	}
 
 	public virtual void TurnToHighBGM()
 	{
-		BgmNormalPlayer.VolumeDb = -80;
-		BgmHighPlayer.VolumeDb = -10;
+		//BgmNormalPlayer.VolumeDb = -80;
+		//BgmHighPlayer.VolumeDb = -10;
+
+		Tween tween = BgmNormalPlayer.CreateTween();
+		tween
+			.TweenProperty(BgmNormalPlayer, "volume_db", -80, 5f)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
+		tween
+			.TweenProperty(BgmHighPlayer, "volume_db", -10, 5f)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
+	}
+	public virtual void PlaySelectSeedCardBGM()
+	{
+		BgmNormalPlayer.Stream = BgmSelectSeedCard;
+		BgmHighPlayer.Stream = BgmSelectSeedCard;
+		PlayAllBGM();
 	}
 
-	public virtual void PlayAllBGM()
+	public virtual void PlayMaineGameBGM()
 	{
 		BgmNormalPlayer.Stream = BgmNormalPre;
-		BgmNormalPlayer.Play();
+		BgmNormalPlayer.VolumeDb = -10;
 		BgmHighPlayer.Stream = BgmHighPre;
+		PlayAllBGM();
+	}
+
+	protected virtual void PlayAllBGM()
+	{
+		BgmNormalPlayer.Play();
 		BgmHighPlayer.Play();
+	}
+
+	public virtual void TurnOffAllBGM_FadeOut(double duration = 2f)
+	{
+		TurnBGM_FadeOut(BgmNormalPlayer, duration);
+		TurnBGM_FadeOut(BgmHighPlayer, duration);
+	}
+
+	protected virtual void TurnBGM_FadeOut(AudioStreamPlayer player, double duration)
+	{
+		Tween tween = player.CreateTween();
+		tween
+			.TweenProperty(player, "volume_db", -80, duration)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
 	}
 
 	public virtual void StopAllBGM()
@@ -225,6 +277,8 @@ public partial class LawnDayScene : Scene
 
 		BackGroundTexture = Load<Texture2D>("res://art/MainGame/background1.jpg");
 
+		BgmSelectSeedCard = Load<AudioStream>("res://sounds/MainGame/select_seedcard.ogg");
+
 		BgmNormalPre = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");
 		BgmNormalLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_nodrum.ogg");
 
@@ -234,14 +288,27 @@ public partial class LawnDayScene : Scene
 		Init();
 	}
 
-	public override void TurnToNormalBGM()
-	{
-		BgmHighPlayer.VolumeDb = -80;
-	}
+	//public override void TurnToNormalBGM()
+	//{
+	//	GD.Print("LawnDayScene::TurnToNormalBGM");
+	//	Tween tween = BgmHighPlayer.CreateTween();
+	//	tween
+	//		.TweenProperty(BgmHighPlayer, "volume_db", -80, 5f)
+	//		.SetEase(Tween.EaseType.InOut)
+	//		.SetTrans(Tween.TransitionType.Linear);
+	//}
 
 	public override void TurnToHighBGM()
 	{
-		BgmHighPlayer.VolumeDb = -10;
+		//BgmHighPlayer.VolumeDb = -10;
+		GD.Print("LawnDayScene::TurnToHighBGM");
+		Tween tween = BgmHighPlayer.CreateTween();
+		tween
+			.TweenProperty(BgmHighPlayer, "volume_db", -10, 5f)
+			.SetEase(Tween.EaseType.InOut)
+			.SetTrans(Tween.TransitionType.Linear);
+		// 在 Tween 完成后打印实际音量
+		tween.Finished += () => GD.Print("Final volume: " + BgmHighPlayer.VolumeDb);
 	}
 
 }
