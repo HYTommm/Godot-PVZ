@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static ResourceManager;
 
 public partial class LawnMower : Node2D
 {
@@ -29,8 +30,7 @@ public partial class LawnMower : Node2D
 		AnimMoveNormal = GetNode<AnimationPlayer>("Anim_LawnMower_normal");
 		AnimMoveTricked = GetNode<AnimationPlayer>("Anim_LawnMower_tricked");
 		//EngineSound = GetNode<AudioStreamPlayer>();
-		EngineSound.Stream = GD.Load<AudioStream>("uid://cpmd1s3dsb1kk"); // uid所指向的文件为 res://sounds/lawnmower.ogg
-		EngineSound.VolumeDb = -5;
+		EngineSound.Stream = Sounds.Sound_LawnMower;
 		AddChild(EngineSound);
 		_start_position = Position;
 	}

@@ -1,4 +1,6 @@
 using Godot;
+using static ResourceManager.Sounds;
+using static ResourceManager.Images.Zombies.Armors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,9 @@ public partial class Bucket : Armor
 		HP = 1100;
 		MaxHP = 1100;
 		Type = ArmorTypeEnum.Primary;
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket1.png");
-		WearLevelTextures.Add(733, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket2.png"));
-		WearLevelTextures.Add(366, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_bucket3.png"));
+		sprite.Texture =           ImageZombieArmor_Bucket1;
+		WearLevelTextures.Add(733, ImageZombieArmor_Bucket2);
+		WearLevelTextures.Add(366, ImageZombieArmor_Bucket3);
 		
 	}
 
@@ -29,10 +31,10 @@ public partial class Bucket : Armor
 		switch (random)
 		{
 			case 0:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/shieldhit.ogg");
+				Sound.Stream = Sound_ShieldHit;
 				break;
 			case 1:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/shieldhit2.ogg");
+				Sound.Stream = Sound_ShieldHit2;
 				break;
 		}
 		Sound.Play();

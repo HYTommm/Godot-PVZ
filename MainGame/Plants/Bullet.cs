@@ -1,4 +1,5 @@
 using Godot;
+using static ResourceManager.Sounds;
 using System;
 
 public partial class Bullet : Node2D
@@ -51,10 +52,6 @@ public partial class Bullet : Node2D
 		Shadow.Visible = false; // 子弹阴影不可见
 		Area2D.SetDeferred("monitoring", false); // 停止检测子弹碰撞
 
-		//GetNode<Sprite2D>("Sprite2D").Visible = false; // 子弹不可见
-		//GetNode<Sprite2D>("Shadow").Visible = false; // 子弹阴影不可见
-		////GetNode<Area2D>("./Area2D").CallDeferred("set_monitoring", false); // 停止检测子弹碰撞
-		//GetNode<Area2D>("./Area2D").SetDeferred("monitoring", false); // 停止检测子弹碰撞
 		// 判断子弹是否击中僵尸
 		if (area.GetNode("../..") is Zombie zombie) 
 		{
@@ -76,18 +73,16 @@ public partial class Bullet : Node2D
 			switch (random)
 			{
 				case 0:
-					BulletSplatsSound.Stream = (AudioStream)GD.Load("res://sounds/splat.ogg");
+					BulletSplatsSound.Stream = Sound_Splat;
 					break;
 				case 1:
-					BulletSplatsSound.Stream = (AudioStream)GD.Load("res://sounds/splat2.ogg");
+					BulletSplatsSound.Stream = Sound_Splat2;
 					break;
 				case 2:
-					BulletSplatsSound.Stream = (AudioStream)GD.Load("res://sounds/splat3.ogg");
+					BulletSplatsSound.Stream = Sound_Splat3;
 					break;
 			}
 
-			// 设置爆炸声音的音量 
-			BulletSplatsSound.VolumeDb = -5;
 			// 播放爆炸声音
 			BulletSplatsSound.Play();
 

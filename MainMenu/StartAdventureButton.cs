@@ -1,15 +1,15 @@
 using Godot;
+using static ResourceManager.Sounds;
 using System;
 
 public partial class StartAdventureButton : GameBaseButton
 {
-	public PackedScene MainGameSence;
+	public PackedScene MainGameScene;
 	public override void _Ready()
 	{
 		base._Ready();
-		TapSound.Stream = (AudioStream)GD.Load("res://sounds/gravebutton.ogg");
-		MainGameSence = ResourceLoader.Load<PackedScene>("res://MainGame/MainGame.tscn");
-
+		TapSound.Stream = Sound_GraveButton;
+		MainGameScene = ResourceLoader.Load<PackedScene>("res://MainGame/MainGame.tscn");
 	}
 	public override void GetClicked()
 	{
@@ -23,6 +23,6 @@ public partial class StartAdventureButton : GameBaseButton
 	public void StartGame()
 	{
 		GD.Print("start game");
-		GetTree().ChangeSceneToPacked(MainGameSence);
+		GetTree().ChangeSceneToPacked(MainGameScene);
 	}
 }

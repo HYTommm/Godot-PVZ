@@ -93,7 +93,6 @@ public abstract partial class Plants : HealthEntity
 
 		_Idle(); // 开始待机状态
 		
-		PlantSound.VolumeDb = -5; // 设置音量
 		PlantSound.Play(); // 播放种植音效
 		
 	}

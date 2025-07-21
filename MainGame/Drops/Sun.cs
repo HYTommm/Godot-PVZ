@@ -1,4 +1,5 @@
 using Godot;
+using static ResourceManager;
 using static Godot.GD;
 using System;
 
@@ -22,8 +23,7 @@ public partial class Sun : Drops
 
 	public override void _Ready()
 	{
-		SunSelectSound.Stream = (AudioStream)Load("res://sounds/points.ogg");
-		SunSelectSound.VolumeDb -= 5;
+		SunSelectSound.Stream = Sounds.Sound_Points;
 		AddChild(SunSelectSound);
 		MainGame = this.GetMainGame();
 	}

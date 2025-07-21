@@ -4,6 +4,7 @@ using System;
 using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
 using System.Collections.Generic;
+using static ResourceManager.Sounds;
 
 public partial class MainGame : MainNode2D
 {
@@ -118,8 +119,7 @@ public partial class MainGame : MainNode2D
 		animation = GetNode<AnimationPlayer>("./CanvasLayer/AnimationPlayer");// 设置动画播放器
 		seedBank = GetNode<SeedBank>("./CanvasLayer/SeedBank");// 设置种子卡槽
 
-		PutBackPlantSound.Stream = GD.Load<AudioStream>("res://sounds/tap2.ogg");
-		PutBackPlantSound.VolumeDb = -5;
+		PutBackPlantSound.Stream = Sound_Tap2;
 		AddChild(PutBackPlantSound);
 
 		SunTimer.Timeout += RefreshSun;
@@ -214,7 +214,7 @@ public partial class MainGame : MainNode2D
 	// 选择种子卡
 	async public void SelectSeedCard()
 	{
-		GameScene.PlaySelectSeedCardBGM();
+		GameScene.PlaySelectSeedCardBgm();
 		await ToSignal(GetTree().CreateTimer(1.3), SceneTreeTimer.SignalName.Timeout);
 		animation.Play("Label");
 		camera.Move(GameScene.CameraRightPos, 1.25);
@@ -259,8 +259,8 @@ public partial class MainGame : MainNode2D
 		seedBank.UpdateSunCount(); // 更新阳光数量
 		//await ToSignal(GetTree().CreateTimer(2f), "timeout");
 
-		GameScene.PlayMaineGameBGM(); // 播放BGM
-		GameScene.TurnToNormalBGM();
+		GameScene.PlayMainGameBgm(); // 播放BGM
+		GameScene.TurnToNormalBgm();
 		
 		RefreshSunTimer(); // 刷新阳光计时器
 		RefreshZombieTimer(19); // 刷新僵尸计时器
@@ -495,7 +495,7 @@ public partial class MainGame : MainNode2D
 			if (ZombieNum <= 3)
 			{
 				isClimaxing = false;
-				GameScene.TurnToNormalBGM();
+				GameScene.TurnToNormalBgm();
 			}
 		}
 		else
@@ -504,7 +504,7 @@ public partial class MainGame : MainNode2D
 			{
 				isClimaxing = true;
 				GD.Print("Turn to HighBGM");
-				GameScene.TurnToHighBGM();
+				GameScene.TurnToHighBgm();
 			}
 		}
 	}

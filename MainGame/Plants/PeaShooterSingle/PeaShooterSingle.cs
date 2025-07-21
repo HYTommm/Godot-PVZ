@@ -52,7 +52,6 @@ public partial class PeaShooterSingle : Plants
 		Head = GetNode<Node2D>("./Head");
 
 		shootSound.Stream = (AudioStream)GD.Load("res://sounds/throw.ogg");
-		shootSound.VolumeDb = -5;
 		AddChild(shootSound);
 
 		canShootTimer.WaitTime = mainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间

@@ -31,7 +31,6 @@ public abstract partial class Armor : HealthEntity
 		ArmorSprite.Visible = true;
 		ShowParts.ForEach(x => x.Visible = true);
 		HideParts.ForEach(x => x.Visible = false);
-		//Sound.VolumeDb -= 6;
 		ArmorSprite.AddChild(Sound);
 	}
 

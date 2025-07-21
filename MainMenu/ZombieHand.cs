@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using static ResourceManager.Sounds;
 
 public partial class ZombieHand : Node2D
 {
@@ -14,10 +14,8 @@ public partial class ZombieHand : Node2D
 	public override void _Ready()
 	{
 
-		LoseMusicSound.Stream = (AudioStream)GD.Load("res://sounds/losemusic.ogg");
-		EvilLaughSound.Stream = (AudioStream)GD.Load("res://sounds/evillaugh.ogg");
-		LoseMusicSound.VolumeDb = -5;
-		EvilLaughSound.VolumeDb = -5;
+		LoseMusicSound.Stream = Sound_LoseMusic;
+		EvilLaughSound.Stream = Sound_EvilLaugh;
 		AddChild(LoseMusicSound);
 		AddChild(EvilLaughSound);
 	}

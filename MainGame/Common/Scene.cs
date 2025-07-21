@@ -1,4 +1,6 @@
 using Godot;
+using static ResourceManager.Images.BackGrounds;
+using static ResourceManager.Sounds.Bgm;
 using static Godot.GD;
 
 public abstract partial class Scene : Node
@@ -58,7 +60,7 @@ public abstract partial class Scene : Node
 	// 将第i行出怪权重在总权重的占比称之为 WeightP_i
 	// 将 LastPicked_i 对结果的影响因子称为 PLast_i，
 	// 再将 SecondLastPicked_i 对结果的影响因子称为 PSecondLast_i
-	// 将受到 LastPicked_i 和 SecondLastPicked_i 影响后的Weighti称之为平滑权重，记为 SmoothWeight_i
+	// 将受到 LastPicked_i 和 SecondLastPicked_i 影响后的Weight_i称之为平滑权重，记为 SmoothWeight_i
 	public float[] Weight;
 	public float[] LastPicked;
 	public float[] SecondLastPicked;
@@ -67,11 +69,11 @@ public abstract partial class Scene : Node
 	public float[] PSecondLast;
 	public float[] SmoothWeight;
 
-	public Scene(Node Global)
+	protected Scene(Node global)
 	{
-		BgmNormalPlayer = Global.GetNode<AudioStreamPlayer>("BGM1");
-		BgmHighPlayer = Global.GetNode<AudioStreamPlayer>("BGM2");
-		BgmNormalPlayer.VolumeDb = -10;
+		BgmNormalPlayer = global.GetNode<AudioStreamPlayer>("BGM1");
+		BgmHighPlayer = global.GetNode<AudioStreamPlayer>("BGM2");
+		BgmNormalPlayer.VolumeDb = 0;
 		BgmHighPlayer.VolumeDb = -80;
 
 		BgmNormalPlayer.Finished += OnBgmNormalPreFinished;
@@ -96,19 +98,19 @@ public abstract partial class Scene : Node
 			}
 		}
 
-		float WeightAll = 0;
+		float weightAll = 0;
 		// 初始化草坪权重
 		for (int i = 0; i < LawnUnitRowCount; i++)
 		{
 			Weight[i] = 1;
 			LastPicked[i] = 0;
 			SecondLastPicked[i] = 0;
-			WeightAll += Weight[i];
+			weightAll += Weight[i];
 		}
 		for (int i = 0; i < LawnUnitRowCount; i++)
 		{
-			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + WeightAll);
-			WeightP[i] += Weight[i] / WeightAll;
+			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + weightAll);
+			WeightP[i] += Weight[i] / weightAll;
 		}
 
 		
@@ -183,14 +185,14 @@ public abstract partial class Scene : Node
 	}
 
 
-	public virtual void TurnToNormalBGM()
+	public virtual void TurnToNormalBgm()
 	{
 
 		//BgmNormalPlayer.VolumeDb = -10;
 		//BgmHighPlayer.VolumeDb = -80;
 		Tween tween = BgmNormalPlayer.CreateTween();
 		tween
-			.TweenProperty(BgmNormalPlayer, "volume_db", -10, 5f)
+			.TweenProperty(BgmNormalPlayer, "volume_db", 0, 5f)
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 		tween
@@ -199,7 +201,7 @@ public abstract partial class Scene : Node
 			.SetTrans(Tween.TransitionType.Linear);
 	}
 
-	public virtual void TurnToHighBGM()
+	public virtual void TurnToHighBgm()
 	{
 		//BgmNormalPlayer.VolumeDb = -80;
 		//BgmHighPlayer.VolumeDb = -10;
@@ -210,26 +212,26 @@ public abstract partial class Scene : Node
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 		tween
-			.TweenProperty(BgmHighPlayer, "volume_db", -10, 5f)
+			.TweenProperty(BgmHighPlayer, "volume_db", 0, 5f)
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 	}
-	public virtual void PlaySelectSeedCardBGM()
+	public virtual void PlaySelectSeedCardBgm()
 	{
 		BgmNormalPlayer.Stream = BgmSelectSeedCard;
 		BgmHighPlayer.Stream = BgmSelectSeedCard;
-		PlayAllBGM();
+		PlayAllBgm();
 	}
 
-	public virtual void PlayMaineGameBGM()
+	public virtual void PlayMainGameBgm()
 	{
 		BgmNormalPlayer.Stream = BgmNormalPre;
-		BgmNormalPlayer.VolumeDb = -10;
+		BgmNormalPlayer.VolumeDb = 0;
 		BgmHighPlayer.Stream = BgmHighPre;
-		PlayAllBGM();
+		PlayAllBgm();
 	}
 
-	protected virtual void PlayAllBGM()
+	protected virtual void PlayAllBgm()
 	{
 		BgmNormalPlayer.Play();
 		BgmHighPlayer.Play();
@@ -250,7 +252,7 @@ public abstract partial class Scene : Node
 			.SetTrans(Tween.TransitionType.Linear);
 	}
 
-	public virtual void StopAllBGM()
+	public virtual void StopAllBgm()
 	{
 		BgmNormalPlayer.Stop();
 		BgmHighPlayer.Stop();
@@ -259,7 +261,7 @@ public abstract partial class Scene : Node
 
 public partial class LawnDayScene : Scene
 {
-	public LawnDayScene(Node Global) : base(Global)
+	public LawnDayScene(Node global) : base(global)
 	{
 		LawnLeftTopPos = new Vector2(260, 80);
 		LawnUnitLength = 80;
@@ -275,18 +277,19 @@ public partial class LawnDayScene : Scene
 
 		LawnMoverPos = new Vector2(194.5f, 121f);
 
-		BackGroundTexture = Load<Texture2D>("res://art/MainGame/background1.jpg");
+		BackGroundTexture = ImageBg_DayLawn;
 
-		BgmSelectSeedCard = Load<AudioStream>("res://sounds/MainGame/select_seedcard.ogg");
+		BgmSelectSeedCard = Bgm_SelectSeedCard;
 
-		BgmNormalPre = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");
-		BgmNormalLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_nodrum.ogg");
+		BgmNormalPre = Bgm_DayLawnPart1_NoDrum;
+		BgmNormalLoop = Bgm_DayLawnPart2_NoDrum;
 
-		BgmHighPre = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_drum.ogg");
-		BgmHighLoop = Load<AudioStream>("res://sounds/MainGame/daylawn_part2_drum.ogg");
+		BgmHighPre = Bgm_DayLawnPart1_Drum;
+		BgmHighLoop = Bgm_DayLawnPart2_Drum;
 		
 		Init();
 	}
+
 
 	//public override void TurnToNormalBGM()
 	//{
@@ -298,7 +301,7 @@ public partial class LawnDayScene : Scene
 	//		.SetTrans(Tween.TransitionType.Linear);
 	//}
 
-	public override void TurnToHighBGM()
+	public override void TurnToHighBgm()
 	{
 		//BgmHighPlayer.VolumeDb = -10;
 		GD.Print("LawnDayScene::TurnToHighBGM");
@@ -308,13 +311,13 @@ public partial class LawnDayScene : Scene
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 		// 在 Tween 完成后打印实际音量
-		tween.Finished += () => GD.Print("Final volume: " + BgmHighPlayer.VolumeDb);
+		tween.Finished += () => Print("Final volume: " + BgmHighPlayer.VolumeDb);
 	}
 
 }
 public partial class PoolDayScene : Scene
 {
-	public PoolDayScene(Node Global) : base(Global)
+	public PoolDayScene(Node global) : base(global)
 	{
 		LawnLeftTopPos = new Vector2(260, 80);
 		LawnUnitLength = 80;
@@ -327,7 +330,7 @@ public partial class PoolDayScene : Scene
 
 		CameraCenterPos = new Vector2(220, 0);
 		CameraRightPos = new Vector2(600, 0);
-		BackGroundTexture = GD.Load<Texture2D>("res://art/MainGame/background3.jpg");
+		BackGroundTexture = ImageBg_PoolDay;
 		Init();
 	}
 

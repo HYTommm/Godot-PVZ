@@ -1,26 +1,20 @@
 using Godot;
-using System;
+using static ResourceManager.Sounds;
+using static ResourceManager.Images.Zombies.Armors;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-public partial class Footballhelmet : Armor
+public partial class FootballHelmet : Armor
 {
-	public Footballhelmet(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) : base(sprite, showParts, hideParts)
+	public FootballHelmet(Sprite2D sprite,List <Sprite2D> showParts, List<Sprite2D> hideParts) 
+		: base(sprite, showParts, hideParts)
 	{
 		HP = 1400;
 		MaxHP = 1400;
 		Type = ArmorTypeEnum.Primary;
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_football_helmet.png");
-		WearLevelTextures.Add(933, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_football_helmet2.png"));
-		WearLevelTextures.Add(466, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_football_helmet3.png"));
+		sprite.Texture =           ImageZombieArmor_FootballHelmet1;
+		WearLevelTextures.Add(933, ImageZombieArmor_FootballHelmet2);
+		WearLevelTextures.Add(466, ImageZombieArmor_FootballHelmet3);
 		
-	}
-
-	public override int Hurt(int damage)
-	{
-		return base.Hurt(damage);
 	}
 
 	public override void PlaySound()
@@ -29,10 +23,10 @@ public partial class Footballhelmet : Armor
 		switch (random)
 		{
 			case 0:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit.ogg");
+				Sound.Stream = Sound_PlasticHit;
 				break;
 			case 1:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit2.ogg");
+				Sound.Stream = Sound_PlasticHit2;
 				break;
 		}
 		Sound.Play();

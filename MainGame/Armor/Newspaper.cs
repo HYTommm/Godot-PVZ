@@ -1,9 +1,6 @@
 using Godot;
-using System;
+using static ResourceManager.Images.Zombies.Armors;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public partial class Newspaper : Armor
 {
@@ -12,27 +9,22 @@ public partial class Newspaper : Armor
 		HP = 150;
 		MaxHP = 150;
 		Type = ArmorTypeEnum.Secondary;
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_paper_paper1.png");
-		WearLevelTextures.Add(100, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_paper_paper2.png"));
-		WearLevelTextures.Add(50, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_paper_paper3.png"));
+		sprite.Texture =           ImageZombieArmor_Paper1;
+		WearLevelTextures.Add(100, ImageZombieArmor_Paper2);
+		WearLevelTextures.Add(50,  ImageZombieArmor_Paper3);
 		
 	}
 
-	public override int Hurt(int damage)
-	{
-		return base.Hurt(damage);
-	}
-	
 	public override void PlaySound()
 	{
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
-		switch (random)
-		{
-			case 0:
-				break;
-			case 1:
-				break;
-		}
-		Sound.Play();
+		//uint random = GD.Randi() % 2; // 随机播放啃食音效
+		//switch (random)
+		//{
+		//	case 0:
+		//		break;
+		//	case 1:
+		//		break;
+		//}
+		//Sound.Play();
 	}
 }

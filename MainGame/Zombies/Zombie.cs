@@ -136,7 +136,7 @@ public partial class Zombie : HealthEntity
 		ZombieHeadParticles = GetNode<GpuParticles2D>("./Zombie/Particle_ZombieHead");
 		
 		// 设置僵尸外臂上部的纹理
-		Zombie_outerarm_upper.Texture = GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_outerarm_upper.png");
+		Zombie_outerarm_upper.Texture = ResourceManager.Images.Zombies.ImageZombie_OuterarmUpper;
 		
 		// 设置僵尸外臂下部可见
 		Zombie_outerarm_lower.Visible = true;
@@ -154,7 +154,6 @@ public partial class Zombie : HealthEntity
 		AttackArea = GetNode<Area2D>("./Zombie/AttackArea");
 
 		// 设置啃食音效
-		EatSound.VolumeDb -= 5;
 		EatSound.Finished += () => IsPlayingEatSound = false;
 	
 		// 将啃食的声音节点添加为子节点
@@ -321,13 +320,13 @@ public partial class Zombie : HealthEntity
 		switch (random)
 		{
 			case 0:
-				EatSound.Stream = (AudioStream)GD.Load("res://sounds/chomp.ogg");
+				EatSound.Stream = ResourceManager.Sounds.Sound_Chomp;
 				break;
 			case 1:
-				EatSound.Stream = (AudioStream)GD.Load("res://sounds/chomp2.ogg");
+				EatSound.Stream = ResourceManager.Sounds.Sound_Chomp2;
 				break;
 			case 2:
-				EatSound.Stream = (AudioStream)GD.Load("res://sounds/chompsoft.ogg");
+				EatSound.Stream = ResourceManager.Sounds.Sound_ChompSoft;
 				break;
 		}
 		
@@ -397,7 +396,7 @@ public partial class Zombie : HealthEntity
 	public void DropArm()
 	{
 		//Zombie_outerarm_upper
-		Zombie_outerarm_upper.Texture = GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_outerarm_upper2.png");
+		Zombie_outerarm_upper.Texture = ResourceManager.Images.Zombies.ImageZombie_OuterarmUpper2;
 		//Zombie_outerarm_lower
 		Zombie_outerarm_lower.Visible = false;
 		//Zombie_outerarm_hand
@@ -435,13 +434,13 @@ public partial class Zombie : HealthEntity
 	async public void Die()
 	{
 		// 删除Area2D节点
-		GetNode<Node2D>("./Zombie").RemoveChild(GetNode<Area2D>("./Zombie/DefenseArea"));
+		GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
 		// 播放死亡动画
 		isMoving = false;
 		animation.Play("Zombie_death", 1.0 / 6.0);
 		
 		//销毁节点
-		await ToSignal(animation, "animation_finished");
+		await ToSignal(animation, AnimationPlayer.SignalName.AnimationFinished);
 		// 销毁节点
 		FreeZombie();
 	}

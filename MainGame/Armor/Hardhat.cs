@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ResourceManager.Sounds;
+using static ResourceManager.Images.Zombies.Armors;
 
 public partial class Hardhat : Armor
 {
@@ -13,15 +15,10 @@ public partial class Hardhat : Armor
 		MaxHP = 100;
 		Type = ArmorTypeEnum.Primary;
 		
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_digger_hardhat.png");
-		WearLevelTextures.Add(66, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_digger_hardhat2.png"));
-		WearLevelTextures.Add(33, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_digger_hardhat3.png"));
+		sprite.Texture =          ImageZombieArmor_DiggerHardhat1;
+		WearLevelTextures.Add(66, ImageZombieArmor_DiggerHardhat2);
+		WearLevelTextures.Add(33, ImageZombieArmor_DiggerHardhat3);
 		
-	}
-
-	public override int Hurt(int damage)
-	{
-		return base.Hurt(damage);
 	}
 
 	public override void PlaySound()
@@ -30,10 +27,10 @@ public partial class Hardhat : Armor
 		switch (random)
 		{
 			case 0:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit.ogg");
+				Sound.Stream = Sound_PlasticHit;
 				break;
 			case 1:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit2.ogg");
+				Sound.Stream = Sound_PlasticHit2;
 				break;
 		}
 		Sound.Play();

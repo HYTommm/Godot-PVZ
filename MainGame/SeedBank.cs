@@ -12,7 +12,6 @@ public partial class SeedBank : Sprite2D
 		//UpdateSunCount();
 		MainGame = this.GetMainGame();
 		FlashWarningSound.Stream = GD.Load<AudioStream>("res://sounds/buzzer.ogg");
-		FlashWarningSound.VolumeDb -= 5;
 		AddChild(FlashWarningSound);
 	}
 	public void UpdateSunCount()

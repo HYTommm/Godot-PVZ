@@ -1,9 +1,7 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static ResourceManager.Sounds;
+using static ResourceManager.Images.Zombies.Armors;
 
 public partial class Ladder : Armor
 {
@@ -12,27 +10,22 @@ public partial class Ladder : Armor
 		HP = 500;
 		MaxHP = 500;
 		Type = ArmorTypeEnum.Secondary;
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_ladder_1.png");
-		WearLevelTextures.Add(333, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_ladder_1_damage1.png"));
-		WearLevelTextures.Add(166, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_ladder_1_damage2.png"));
+		sprite.Texture =           ImageZombieArmor_Ladder1_Damage0;
+		WearLevelTextures.Add(333, ImageZombieArmor_Ladder1_Damage1);
+		WearLevelTextures.Add(166, ImageZombieArmor_Ladder1_Damage2);
 		
-	}
-
-	public override int Hurt(int damage)
-	{
-		return base.Hurt(damage);
 	}
 
 	public override void PlaySound()
 	{
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
+		uint random = GD.Randi() % 2; // 随机播放音效
 		switch (random)
 		{
 			case 0:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/shieldhit.ogg");
+				Sound.Stream = Sound_ShieldHit;
 				break;
 			case 1:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/shieldhit2.ogg");
+				Sound.Stream = Sound_ShieldHit2;
 				break;
 		}
 		Sound.Play();

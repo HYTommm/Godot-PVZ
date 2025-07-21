@@ -1,4 +1,6 @@
 using Godot;
+using static ResourceManager;
+using static ResourceManager.Images.Zombies.Armors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +15,9 @@ public partial class Cone : Armor
 		MaxHP = 370;
 		Type = ArmorTypeEnum.Primary;
 		
-		sprite.Texture =           GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone1.png");
-		WearLevelTextures.Add(226, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone2.png"));
-		WearLevelTextures.Add(113, GD.Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone3.png"));
+		sprite.Texture =           ImageZombieArmor_Cone1;
+		WearLevelTextures.Add(226, ImageZombieArmor_Cone2);
+		WearLevelTextures.Add(113, ImageZombieArmor_Cone3);
 		
 	}
 
@@ -30,10 +32,10 @@ public partial class Cone : Armor
 		switch (random)
 		{
 			case 0:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit.ogg");
+				Sound.Stream = Sounds.Sound_PlasticHit;
 				break;
 			case 1:
-				Sound.Stream = (AudioStream)GD.Load("res://sounds/plastichit2.ogg");
+				Sound.Stream = Sounds.Sound_PlasticHit2;
 				break;
 		}
 		Sound.Play();

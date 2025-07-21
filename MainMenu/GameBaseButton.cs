@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static ResourceManager.Sounds;
 
 public partial class GameBaseButton : Sprite2D
 {
@@ -16,10 +17,8 @@ public partial class GameBaseButton : Sprite2D
 		pos = Position;
 		
 
-		BleepSound.Stream = (AudioStream)GD.Load("res://sounds/bleep.ogg");
-		TapSound.Stream = (AudioStream)GD.Load("res://sounds/tap.ogg");
-		BleepSound.VolumeDb = -5;
-		TapSound.VolumeDb = -6;
+		BleepSound.Stream = Sound_Bleep;
+		TapSound.Stream = Sound_Tap;
 
 		AddChild(BleepSound);
 		AddChild(TapSound);

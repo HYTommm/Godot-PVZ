@@ -53,7 +53,6 @@ public partial class SeedPacketLarger : Node2D
 			GetNode<Label>("./Label").Text = ""; // 隐藏花费
 
 		SeedLiftSound.Stream = GD.Load<AudioStream>("res://sounds/seedlift.ogg"); // 加载种子包拾取音效
-		SeedLiftSound.VolumeDb = -5; // 设置音量
 		AddChild(SeedLiftSound); // 添加种子包拾取音效节点
 	}
 
