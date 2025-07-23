@@ -3,8 +3,8 @@ using System;
 
 public partial class SeedBank : Sprite2D
 {
-    MainGame MainGame; // 主游戏节点
-    public AudioStreamPlayer FlashWarningSound = new AudioStreamPlayer();
+	MainGame MainGame; // 主游戏节点
+	public AudioStreamPlayer FlashWarningSound = new AudioStreamPlayer();
 	// 布尔值：是否禁止选卡
 	public bool isForbiddenSelect = false;
 	public override void _Ready()

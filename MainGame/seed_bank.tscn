@@ -48,6 +48,7 @@ _data = {
 }
 
 [node name="SeedBank" type="Sprite2D"]
+position = Vector2(0, 1)
 texture = ExtResource("1_3tv4h")
 centered = false
 script = ExtResource("2_ua34a")
@@ -55,11 +56,12 @@ script = ExtResource("2_ua34a")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(223, 43.5)
+position = Vector2(224, 42)
 shape = SubResource("RectangleShape2D_jv5um")
 
-[node name="SeedPacketLarger" parent="." instance=ExtResource("2_ns80v")]
-position = Vector2(78, 8)
+[node name="SeedPacketLarger6" parent="." instance=ExtResource("2_ns80v")]
+position = Vector2(78, 7)
+rotation = 0.00114794
 SeedScene = ExtResource("7_8wcx6")
 
 [node name="SeedPacketLarger2" parent="." instance=ExtResource("2_ns80v")]
@@ -68,6 +70,7 @@ SeedScene = ExtResource("5_6x7yi")
 
 [node name="SeedPacketLarger3" parent="." instance=ExtResource("2_ns80v")]
 position = Vector2(180, 8)
+rotation = 0.00209095
 SeedScene = ExtResource("5_6x7yi")
 
 [node name="SunCountLabel" type="Label" parent="."]
