@@ -371,7 +371,7 @@ public partial class MainGame : MainNode2D
 			zombieMaxGrade = (int)(zombieMaxGrade * 2.5);
 		}
 
-		zombieMaxGrade *= 10; // 10倍数
+		zombieMaxGrade *= 20; // 10倍数
 		// Print("zombieCount: " + zombieCount);
 
 		// 预备僵尸

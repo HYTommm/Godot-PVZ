@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c4pak2uihe0s"]
+[gd_scene load_steps=36 format=3 uid="uid://c4pak2uihe0s"]
 
 [ext_resource type="Script" uid="uid://4e7mlloo1s3a" path="res://MainMenu/MainMenu_SelectorScreen.cs" id="1_repe6"]
 [ext_resource type="Texture2D" uid="uid://cx652qpnwb63s" path="res://art/MainMenu/BG/SelectorScreen_BG.jpg" id="2_pk63s"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://bm3ji7rlnp0nx" path="res://MainMenu/WoodSign2.cs" id="20_qgg5r"]
 [ext_resource type="Texture2D" uid="uid://bx564vabbegli" path="res://art/MainMenu/WoodSign/SelectorScreen_WoodSign3.png" id="21_gxyee"]
 [ext_resource type="PackedScene" uid="uid://cjbeu45vm0dkk" path="res://MainMenu/ZombieHand.tscn" id="28_swxlp"]
+[ext_resource type="AudioStream" uid="uid://cm4i13gsxy0t5" path="res://sounds/MainGame/main_menu.mp3" id="29_2atgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bloc8"]
 size = Vector2(316.67, 91.3377)
@@ -230,6 +231,11 @@ texture = ExtResource("19_qwa5s")
 [node name="Leaf5" type="Sprite2D" parent="Leaf"]
 position = Vector2(260, 587)
 texture = ExtResource("20_82h1e")
+
+[node name="MainMenu" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 3)
+stream = ExtResource("29_2atgq")
+autoplay = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
