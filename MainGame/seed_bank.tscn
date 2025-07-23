@@ -59,17 +59,17 @@ script = ExtResource("2_ua34a")
 position = Vector2(224, 42)
 shape = SubResource("RectangleShape2D_jv5um")
 
-[node name="SeedPacketLarger6" parent="." instance=ExtResource("2_ns80v")]
+[node name="SeedPacketLarger1" parent="." instance=ExtResource("2_ns80v")]
 position = Vector2(78, 7)
 rotation = 0.00114794
 SeedScene = ExtResource("7_8wcx6")
 
 [node name="SeedPacketLarger2" parent="." instance=ExtResource("2_ns80v")]
-position = Vector2(129, 8)
+position = Vector2(130, 8)
 SeedScene = ExtResource("5_6x7yi")
 
 [node name="SeedPacketLarger3" parent="." instance=ExtResource("2_ns80v")]
-position = Vector2(180, 8)
+position = Vector2(181, 7)
 rotation = 0.00209095
 SeedScene = ExtResource("5_6x7yi")
 
