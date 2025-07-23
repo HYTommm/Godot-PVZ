@@ -1,11 +1,7 @@
 using Godot;
 using static ResourceManager.Images.Zombies.Armors;
 using static ResourceManager.Sounds;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public partial class Screendoor : Armor
 {
@@ -22,16 +18,13 @@ public partial class Screendoor : Armor
 
 	public override void PlaySound()
 	{
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
-		switch (random)
-		{
-			case 0:
-				Sound.Stream = Sound_ShieldHit;
-				break;
-			case 1:
-				Sound.Stream = Sound_ShieldHit2;
-				break;
-		}
-		Sound.Play();
+		uint random = GD.Randi() % 2; // 随机播放音效
+        Sound.Stream = random switch
+        {
+            0 => Sound_ShieldHit,
+            1 => Sound_ShieldHit2,
+            _ => Sound.Stream
+        };
+        Sound.Play();
 	}
 }

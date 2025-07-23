@@ -7,9 +7,9 @@ public partial class MainNode2D : Node2D
 	public delegate void MouseLeftUpEventHandler();
 	[Signal]
 	public delegate void MouseLeftDownEventHandler();
-	public bool mouse_left_down = false;
-	public bool mouse_right_down = false;
-	public bool mouse_picked = false;
+	public bool BMouse_left_down = false;
+	public bool BMouseRightDown = false;
+	public bool BMousePicked = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -24,20 +24,13 @@ public partial class MainNode2D : Node2D
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsAction("mouse_left"))
-		{
-			mouse_left_down = !mouse_left_down;
-			if (mouse_left_down)
-			{
-				EmitSignal(SignalName.MouseLeftDown);
-			}
-			else
-			{
-				EmitSignal(SignalName.MouseLeftUp);
-			}
-		}
+        {
+            BMouse_left_down = !BMouse_left_down;
+            EmitSignal(BMouse_left_down ? SignalName.MouseLeftDown : SignalName.MouseLeftUp);
+        }
 		if (@event.IsAction("mouse_right"))
 		{
-			mouse_right_down = !mouse_right_down;
+			BMouseRightDown = !BMouseRightDown;
 		}
 	}
 }

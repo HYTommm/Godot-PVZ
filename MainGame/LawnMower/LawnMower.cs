@@ -4,19 +4,19 @@ using static ResourceManager;
 
 public partial class LawnMower : Node2D
 {
-	private bool _is_moving = false;
-	private Vector2 _start_position;
-	private Vector2 _end_position;
+	private bool _isMoving = false;
+	private Vector2 _startPosition;
+	private Vector2 _endPosition;
 	private float _speed = 500.0f; // 移动速度，500是开局时移动至草坪前的速度
-	private float _normal_speed = 350.0f; // 正常速度
-	private float _slow_down_speed = 250.0f; // 僵尸撞击后减速速度
-	private float _slow_down_time = 0f; // 僵尸撞击后减速时间
-	private AudioStreamPlayer EngineSound = new AudioStreamPlayer(); // 发动机声音播放器
+	private const float NormalSpeed = 350.0f; // 正常速度
+	private const float SlowDownSpeed = 250.0f; // 僵尸撞击后减速速度
+	private float _slowDownTime = 0f; // 僵尸撞击后减速时间
+	private readonly AudioStreamPlayer _engineSound = new(); // 发动机声音播放器
 
 	/// <summary>NormalWove动画播放器</summary>
-	public AnimationPlayer AnimMoveNormal;
+	[Export] public AnimationPlayer AnimMoveNormal;
 	/// <summary>TrickedWove动画播放器</summary>
-	public AnimationPlayer AnimMoveTricked;
+	[Export] public AnimationPlayer AnimMoveTricked;
 	
 	public int Row = 0; // 所在行
 
@@ -27,43 +27,39 @@ public partial class LawnMower : Node2D
 
 	public override void _Ready()
 	{
-		AnimMoveNormal = GetNode<AnimationPlayer>("Anim_LawnMower_normal");
-		AnimMoveTricked = GetNode<AnimationPlayer>("Anim_LawnMower_tricked");
-		//EngineSound = GetNode<AudioStreamPlayer>();
-		EngineSound.Stream = Sounds.Sound_LawnMower;
-		AddChild(EngineSound);
-		_start_position = Position;
+		AddChild(_engineSound);
+		_startPosition = Position;
 	}
 
-	public void MoveTo(Vector2 end_position)
+	public void MoveTo(Vector2 endPosition)
 	{
-		_end_position = end_position;
-		_is_moving = true;
+		_endPosition = endPosition;
+		_isMoving = true;
 		AnimMoveNormal.Play(name: "LawnMower_normal", customSpeed: 1.5f);
 	}
 
 	public void Stop()
 	{
-		_is_moving = false;
+		_isMoving = false;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (_is_moving)
+		if (_isMoving)
 		{
-			Vector2 direction = _end_position - _start_position;
+			Vector2 direction = _endPosition - _startPosition;
 			direction = direction.Normalized();
 			Position += direction * _speed * (float)delta;
 		}
-		if (_slow_down_time > 0f)
+		if (_slowDownTime > 0f)
 		{
-			_slow_down_time -= (float)delta;
-			if (_slow_down_time <= 0f)
-				_speed = _normal_speed;
+			_slowDownTime -= (float)delta;
+			if (_slowDownTime <= 0f)
+				_speed = NormalSpeed;
 		}
-		if (Position.DistanceTo(_end_position) < 3f)
+		if (Position.DistanceTo(_endPosition) < 3f)
 		{
-			_is_moving = false;
+			_isMoving = false;
 			AnimMoveNormal.Stop();
 		}
 	}
@@ -76,16 +72,16 @@ public partial class LawnMower : Node2D
 		{
 			zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
 			GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
-			if (!_is_moving)
+			if (!_isMoving)
 			{
-				_speed = _normal_speed;
-				EngineSound.Play();
+				_speed = NormalSpeed;
+				_engineSound.Play();
 				MoveTo(new Vector2(1200, Position.Y));
 			}
 			else
 			{
-				_speed = _slow_down_speed;
-				_slow_down_time = 0.5f; 
+				_speed = SlowDownSpeed;
+				_slowDownTime = 0.5f; 
 			}
 		}
 	}

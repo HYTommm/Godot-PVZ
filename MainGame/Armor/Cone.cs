@@ -21,23 +21,15 @@ public partial class Cone : Armor
 		
 	}
 
-	public override int Hurt(int damage)
-	{
-		return base.Hurt(damage);
-	}
-
 	public override void PlaySound()
 	{
 		uint random = GD.Randi() % 2; // 随机播放音效
-		switch (random)
+		Sound.Stream = random switch
 		{
-			case 0:
-				Sound.Stream = Sounds.Sound_PlasticHit;
-				break;
-			case 1:
-				Sound.Stream = Sounds.Sound_PlasticHit2;
-				break;
-		}
+			0 => Sounds.Sound_PlasticHit,
+			1 => Sounds.Sound_PlasticHit2,
+			_ => Sound.Stream
+		};
 		Sound.Play();
 	}
 

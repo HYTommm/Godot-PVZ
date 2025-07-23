@@ -6,18 +6,18 @@ public partial class ZombieHand : Node2D
 	[Signal]
 	public delegate void AnimEndEventHandler();
 
-	AudioStreamPlayer LoseMusicSound = new AudioStreamPlayer();
-	AudioStreamPlayer EvilLaughSound = new AudioStreamPlayer();
+    private readonly AudioStreamPlayer _loseMusicSound = new();
+    private readonly AudioStreamPlayer _evilLaughSound = new();
 
-	public int isEnd = 0;
+	public int BIsEnd = 0;
 
 	public override void _Ready()
 	{
 
-		LoseMusicSound.Stream = Sound_LoseMusic;
-		EvilLaughSound.Stream = Sound_EvilLaugh;
-		AddChild(LoseMusicSound);
-		AddChild(EvilLaughSound);
+		_loseMusicSound.Stream = Sound_LoseMusic;
+		_evilLaughSound.Stream = Sound_EvilLaugh;
+		AddChild(_loseMusicSound);
+		AddChild(_evilLaughSound);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +29,7 @@ public partial class ZombieHand : Node2D
 	{
 		AnimationPlayer animation = GetNode<AnimationPlayer>("./AnimationPlayer");
 		animation.AnimationFinished += End;
-		music();
+		Music();
 		animation.Play("Zombie_hand");
 		
 	}
@@ -40,18 +40,18 @@ public partial class ZombieHand : Node2D
 
 	public void End()
 	{
-		isEnd++;
-		if (isEnd == 2)
+		BIsEnd++;
+		if (BIsEnd == 2)
 		{
 			EmitSignal(SignalName.AnimEnd);
 		}
 	}
 
-	async private void music()
+	private async void Music()
 	{
-		LoseMusicSound.Play();
+		_loseMusicSound.Play();
 		await ToSignal(GetTree().CreateTimer(1.46), SceneTreeTimer.SignalName.Timeout);
-		EvilLaughSound.Play();
-		EvilLaughSound.Finished += End;
+		_evilLaughSound.Play();
+		_evilLaughSound.Finished += End;
 	}
 }

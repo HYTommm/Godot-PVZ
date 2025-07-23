@@ -1635,9 +1635,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f7r1"]
 size = Vector2(35, 57)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("AnimMoveNormal", "AnimMoveTricked")]
 z_index = 10
 script = ExtResource("1_0f7r1")
+AnimMoveNormal = NodePath("Anim_LawnMower_normal")
+AnimMoveTricked = NodePath("Anim_LawnMower_tricked")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(7, 38)

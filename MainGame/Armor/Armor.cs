@@ -2,6 +2,7 @@ using Godot;
 //using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot.Collections;
 
 public enum ArmorTypeEnum
 {
@@ -13,17 +14,17 @@ public enum ArmorTypeEnum
 
 public abstract partial class Armor : HealthEntity
 {
-	protected Dictionary<int, Texture2D> WearLevelTextures = new Dictionary<int, Texture2D>();
+	protected System.Collections.Generic.Dictionary<int, Texture2D> WearLevelTextures = new();
 	protected int WearLevel = 0;
 	public Sprite2D ArmorSprite;
 
-	public List<Sprite2D> ShowParts = new List<Sprite2D>();
-	public List<Sprite2D> HideParts = new List<Sprite2D>();
+	public List<Sprite2D> ShowParts;
+	public List<Sprite2D> HideParts;
 	public ArmorTypeEnum Type { get; set; }
 
-	protected AudioStreamPlayer2D Sound = new AudioStreamPlayer2D();
+	protected AudioStreamPlayer2D Sound = new();
 
-	public Armor(Sprite2D sprite, List<Sprite2D> showParts, List<Sprite2D> hideParts)
+	protected Armor(Sprite2D sprite, List<Sprite2D> showParts, List<Sprite2D> hideParts)
 	{
 		ArmorSprite = sprite;	
 		ShowParts = showParts;
@@ -66,7 +67,7 @@ public abstract partial class Armor : HealthEntity
 
 	public virtual void PlayParticles()
 	{
-		var particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
+		Array<Node> particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
 		GD.Print("particles count: " + particles.Count);
 		if (particles.Count > 0)
 		{

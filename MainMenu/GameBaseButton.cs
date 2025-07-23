@@ -4,17 +4,16 @@ using static ResourceManager.Sounds;
 
 public partial class GameBaseButton : Sprite2D
 {
-	public Vector2 pos = new Vector2();
-	public bool can_move = true;
-	public bool picked = false;
-	public bool has_frame = true;
-	public AudioStreamPlayer BleepSound = new AudioStreamPlayer();
-	public AudioStreamPlayer TapSound = new AudioStreamPlayer();
-	[Export]
-	MainNode2D main;
+	public Vector2 Pos = new();
+	public bool BCan_move = true;
+	public bool BPicked = false;
+	public bool BHas_frame = true;
+	public AudioStreamPlayer BleepSound = new();
+	public AudioStreamPlayer TapSound = new();
+	[Export] MainNode2D _main;
 	public override void _Ready()
 	{
-		pos = Position;
+		Pos = Position;
 		
 
 		BleepSound.Stream = Sound_Bleep;
@@ -27,16 +26,16 @@ public partial class GameBaseButton : Sprite2D
 	private void OnMouseEntered()
 	{
 		//GD.Print(picked);
-		if (main.mouse_left_down)
+		if (_main.BMouse_left_down)
 		{
-			if (main.mouse_picked && picked && can_move)
+			if (_main.BMousePicked && BPicked && BCan_move)
 			{
 				Position += new Vector2(1, 1);
 			}
 		}
 		else
 		{
-			if (has_frame)
+			if (BHas_frame)
 				Frame = 1;
 			Bleep();
 		}
@@ -44,8 +43,8 @@ public partial class GameBaseButton : Sprite2D
 	}
 	private void OnMouseExited()
 	{
-		Position = pos;
-		if (!main.mouse_left_down && has_frame)
+		Position = Pos;
+		if (!_main.BMouse_left_down && BHas_frame)
 		{
 			Frame = 0;
 		}
@@ -53,21 +52,21 @@ public partial class GameBaseButton : Sprite2D
 
 	private void NotPicked()
 	{
-		picked = false;
+		BPicked = false;
 	}
-	private void OnInputEvent(Node viewport, InputEvent inputevent, int shape_idx)
+	private void OnInputEvent(Node viewport, InputEvent inputEvent, int shapeIdx)
 	{
 		
-		if (inputevent.IsAction("mouse_left"))
+		if (inputEvent.IsAction("mouse_left"))
 		{
 			//GD.Print("input"+picked);
-			if (main.mouse_left_down)
+			if (_main.BMouse_left_down)
 			{
-				GD.Print("mouse_left_down");
-				picked = true;
-				main.mouse_picked = true;
+				GD.Print("BMouse_left_down");
+				BPicked = true;
+				_main.BMousePicked = true;
 				Tap();
-				if (can_move)
+				if (BCan_move)
 				{
 					Position += new Vector2(1, 1);
 				}
@@ -75,10 +74,10 @@ public partial class GameBaseButton : Sprite2D
 			else
 			{
 
-				if (!picked)
+				if (!BPicked)
 				{
 					GD.Print("bleep");
-					if (has_frame)
+					if (BHas_frame)
 						Frame = 1;
 					Bleep();
 				}
@@ -86,7 +85,7 @@ public partial class GameBaseButton : Sprite2D
 				{
 					GD.Print("GetClicked");
 					GetClicked();
-					Position = pos;
+					Position = Pos;
 				}
 			}
 		}

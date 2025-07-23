@@ -5,7 +5,7 @@ using System;
 
 public abstract partial class MoneyCropsPlants : Plants
 {
-    public Timer TimerProduce = new Timer(); // 计时器
+    public Timer TimerProduce = new(); // 计时器
     public float ProduceTime = 0.1f;
     // 抽象函数：_Produce()
     public abstract void _Produce();

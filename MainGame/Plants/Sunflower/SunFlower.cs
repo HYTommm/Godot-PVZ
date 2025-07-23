@@ -1,12 +1,10 @@
 using Godot;
-using System;
-using System.Drawing;
 
 public partial class SunFlower : MoneyCropsPlants
 {
-	public AnimationPlayer Anim_Idle;
-	public AnimationPlayer Anim_Blink;
-	public AnimationPlayer Anim_SunLight;
+	[Export] public AnimationPlayer Anim_idle;
+	[Export] public AnimationPlayer Anim_blink;
+	[Export] public AnimationPlayer Anim_sunLight;
 
 	public SunFlower()
 	{
@@ -16,25 +14,12 @@ public partial class SunFlower : MoneyCropsPlants
 		
 	}
 
-	
-
-	/*
-		var tween = create tween()
-		var rng_x= Broad._rng.randf_range(-25,25)
-		var rng_y = Broad._rng.randf_range(50,70)
-		tween.tween_property(self,"position",Vector2(position.x + rng_x,position.y - rng_y),0.1)
-		tween.tween_property(self,"position",Vector2(position.x + rng_x* 2,position.y + 25),0.2)
-		tween.connect("finished",_popupover.emit)
-		item_sport =0
-		return
-	*/
-
 	// 实现接口函数，发光
 	public override void _Light()
 	{
 		if (!isPlanted)
 			return;
-		Anim_SunLight.Play("SunLight");
+		Anim_sunLight.Play("SunLight");
 		
 	}
 
@@ -43,14 +28,16 @@ public partial class SunFlower : MoneyCropsPlants
 	{
 		if (!isPlanted)
 			return;
-		Sun sun = GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() as Sun; // 实例化太阳
-		sun.Position = new Vector2(Position.X + 40, Position.Y + 20);// 设置太阳的位置
-		sun.Scale = new Vector2(0.3f, 0.3f); // 设置太阳的大小
-		GetParent().AddChild(sun);// 添加太阳到场景中
+        if (GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() is Sun sun)
+        {
+            sun.Position = new Vector2(Position.X + 40, Position.Y + 20); // 设置太阳的位置
+            sun.Scale = new Vector2(0.3f, 0.3f); // 设置太阳的大小
+            GetParent().AddChild(sun); // 添加太阳到场景中
 
-		sun._Drop(); // 太阳掉落
-		
-		TimerProduce.WaitTime = mainGame.RNG.RandfRange(23.5f, 35.0f); // 设置生产时间
+            sun._Drop(); // 太阳掉落
+        }
+
+        TimerProduce.WaitTime = mainGame.RNG.RandfRange(23.5f, 35.0f); // 设置生产时间
 		TimerProduce.Start(); // 启动生产计时器
 		GD.Print("TimerProduce : Time = " + TimerProduce.WaitTime);
 	}
@@ -66,9 +53,9 @@ public partial class SunFlower : MoneyCropsPlants
 		base._Ready();
 
 		ProduceTime = mainGame.RNG.RandfRange(3.0f, 12.5f); // 设置产出时间
-		Anim_Idle = GetNode<AnimationPlayer>("./Idle");
-		Anim_Blink = GetNode<AnimationPlayer>("./Blink");
-		Anim_SunLight = GetNode<AnimationPlayer>("./SunLight");
+		Anim_idle = GetNode<AnimationPlayer>("./Idle");
+		Anim_blink = GetNode<AnimationPlayer>("./Blink");
+		Anim_sunLight = GetNode<AnimationPlayer>("./SunLight");
 
 		
 
@@ -80,13 +67,13 @@ public partial class SunFlower : MoneyCropsPlants
 	
 	public override void _Process(double delta)
 	{
-		;
+		
 	}
 
 	// 实现接口函数，用于播放动画 Idle
 	public override void _Idle()
 	{
-		Anim_Idle.Play("Idle");
+		Anim_idle.Play("Idle");
 	}
 
 	// 实现接口函数，设置透明度

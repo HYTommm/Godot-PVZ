@@ -5,19 +5,18 @@ using System.Threading.Tasks;
 
 public partial class PeaShooterSingle : Plants
 {
-	Vector2 headPos; // 头部位置
-	Vector2 const_StemPos = new((float)37.6, (float)48.7); //常数：茎位置
-	AnimationPlayer anim_Idle, anim_Head; // Idle动画和Head动画
-	float SpeedScaleOfIdle = 1.56f; // Idle动画速度
+	private Vector2 _headPos; // 头部位置
+	private readonly Vector2 _constStemPos = new((float)37.6, (float)48.7); //常数：茎位置
+	private AnimationPlayer _animIdle, _animHead; // Idle动画和Head动画
+	private float _speedScaleOfIdle = 1.56f; // Idle动画速度
 
-	public AudioStreamPlayer shootSound = new AudioStreamPlayer(); // 射击音效
-	Node2D Stem, Head;// 茎和头节点
-	double TimeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
+	public AudioStreamPlayer ShootSound = new(); // 射击音效
+	private Node2D _stem, _head;// 茎和头节点
+	private double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
 
-	
 
-	public bool canShoot = false; // 是否可以射击
-	Timer canShootTimer = new Timer(); // 射击计时器
+	private bool _canShoot = false; // 是否可以射击
+	private readonly Timer _canShootTimer = new(); // 射击计时器
 
 	public short ShootCount = 0; //射击次数
 
@@ -37,61 +36,56 @@ public partial class PeaShooterSingle : Plants
 
 	public override void _Idle()
 	{
-		anim_Idle.CallDeferred("play", "Idle", -1, SpeedScaleOfIdle);
-		anim_Head.CallDeferred("play", "Head_Idle", -1, SpeedScaleOfIdle);
+		_animIdle.CallDeferred("play", "Idle", -1, _speedScaleOfIdle);
+		_animHead.CallDeferred("play", "Head_Idle", -1, _speedScaleOfIdle);
 	}
 
 	public override void _Ready()
 	{
 		base._Ready();
-		anim_Idle = GetNode<AnimationPlayer>("./Idle");
-		anim_Head = GetNode<AnimationPlayer>("./Head/Head");
-		SpeedScaleOfIdle = mainGame.RNG.RandfRange(1.2f, 1.6f);
+		_animIdle = GetNode<AnimationPlayer>("./Idle");
+		_animHead = GetNode<AnimationPlayer>("./Head/Head");
+		_speedScaleOfIdle = mainGame.RNG.RandfRange(1.2f, 1.6f);
 
-		Stem = GetNode<Node2D>("./Anim_stem");
-		Head = GetNode<Node2D>("./Head");
+		_stem = GetNode<Node2D>("./Anim_stem");
+		_head = GetNode<Node2D>("./Head");
 
-		shootSound.Stream = (AudioStream)GD.Load("res://sounds/throw.ogg");
-		AddChild(shootSound);
+		ShootSound.Stream = (AudioStream)GD.Load("res://sounds/throw.ogg");
+		AddChild(ShootSound);
 
-		canShootTimer.WaitTime = mainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
+		_canShootTimer.WaitTime = mainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
-		canShootTimer.OneShot = true;
-		canShootTimer.Timeout += CanShoot;
-		AddChild(canShootTimer);
+		_canShootTimer.OneShot = true;
+		_canShootTimer.Timeout += CanShoot;
+		AddChild(_canShootTimer);
 		
-		headPos = Head.Position;
+		_headPos = _head.Position;
 		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		Head.Position = headPos + (Stem.Position - const_StemPos); // 头部跟随茎移动
+		_head.Position = _headPos + (_stem.Position - _constStemPos); // 头部跟随茎移动
 
-		if (canShoot && mainGame != null && HP > 0) //如果可以射击且主游戏不为空
+		if (_canShoot && mainGame != null && HP > 0) //如果可以射击且主游戏不为空
 		{
 
-			foreach (Zombie zombie in mainGame.zombies) // 遍历所有僵尸
+			foreach (Zombie zombie in mainGame.Zombies) // 遍历所有僵尸
 			{
 				//Zombie zombie = mainGame.zombies[i]; // 取出僵尸
-				if (zombie != null) // 如果僵尸不为空
+				if (zombie == null) // 如果僵尸不为空
 				{
-					//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
-					if (zombie.isDead == false && zombie.Row == Row && // 如果僵尸不死亡且在同一行
-						zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + const_StemPos.X && // 僵尸防守区域在植物的右侧
-						zombie.DefenseArea.GlobalPosition.X < mainGame.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
-					{
-						Shoot(); // 射击
-						break;
-					}
-					else
-					{
-						continue;
-					}
+					break;
 				}
-				else
+
+				//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
+				if (zombie.BIsDead == false && zombie.Row == Row && // 如果僵尸不死亡且在同一行
+					zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
+					zombie.DefenseArea.GlobalPosition.X <
+					mainGame.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
 				{
+					Shoot(); // 射击
 					break;
 				}
 			}
@@ -100,7 +94,7 @@ public partial class PeaShooterSingle : Plants
 
 		
 
-		else if (canShoot == false)
+		else if (_canShoot == false)
 		{
 			//GD.Print("cannot shoot");
 		}
@@ -116,28 +110,28 @@ public partial class PeaShooterSingle : Plants
 	public void CanShoot()
 	{
 		//Print("CanShoot()");
-		canShoot = true;
+		_canShoot = true;
 	}
 
 	/// <summary>
 	/// 射击
 	/// </summary>
-	async public void Shoot()
+	public async void Shoot()
 	{
-		if (anim_Head.CurrentAnimation == "Head_Idle")
-			TimeOfIdleWhenShooting = anim_Head.CurrentAnimationPosition; // 记录Idle动画的时间
+		if (_animHead.CurrentAnimation == "Head_Idle")
+			_timeOfIdleWhenShooting = _animHead.CurrentAnimationPosition; // 记录Idle动画的时间
 
-		canShoot = false; // 禁止射击
+		_canShoot = false; // 禁止射击
 		RandomShootTime(); // 随机射击时间
 
-		anim_Head.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0/12.0, 2.85f);  // 头部射击动画
+		_animHead.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0/12.0, 2.85f);  // 头部射击动画
 		await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
 		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
 		//GD.Print(bullet);
 		bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
 		bullet.ShadowPositionY = GetNode<Node2D>("Shadow").GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
 		AddChild(bullet); // 添加子弹到场景中
-		shootSound.Play(); // 播放射击音效
+		ShootSound.Play(); // 播放射击音效
 		ShootCount++; // 射击次数+1
 		
 		//Anim_Shoot.Play("RESET");
@@ -146,8 +140,8 @@ public partial class PeaShooterSingle : Plants
 	/// <summary> 随机射击时间 </summary>
 	public void RandomShootTime()
 	{
-		canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
-		canShootTimer.Start(); // 计时器开启
+		_canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+		_canShootTimer.Start(); // 计时器开启
 	}
 
 
@@ -171,10 +165,10 @@ public partial class PeaShooterSingle : Plants
 				temp = 11/12.0f;
 			}
 			
-			anim_Head.Play("Head_Idle", 2.0/12.0, 0.0f);
+			_animHead.Play("Head_Idle", 2.0/12.0, 0.0f);
 			
-			anim_Head.Seek(TimeOfIdleWhenShooting + temp/2.85f * SpeedScaleOfIdle);
-			anim_Head.Play("Head_Idle", 2.0/12.0, SpeedScaleOfIdle);
+			_animHead.Seek(_timeOfIdleWhenShooting + temp/2.85f * _speedScaleOfIdle);
+			_animHead.Play("Head_Idle", 2.0/12.0, _speedScaleOfIdle);
 			GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
 		}
 	}
@@ -182,8 +176,9 @@ public partial class PeaShooterSingle : Plants
 	/// <summary>
 	/// 种植植物
 	/// </summary>
-	/// <param name="row"></param>
-	/// <param name="index"></param>
+	/// <param name="col"> 列 </param>
+	/// <param name="row"> 行 </param>
+	/// <param name="index"> 索引 </param>
 	public override void _Plant(int col,int row, int index)
 	{
 		base._Plant(col, row, index);

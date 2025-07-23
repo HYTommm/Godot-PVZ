@@ -20,14 +20,6 @@ public partial class Tallnuthead : Armor
 	}
 	public override void PlaySound()
 	{
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
-		switch (random)
-		{
-			case 0:
-				break;
-			case 1:
-				break;
-		}
-		Sound.Play();
+		
 	}
 }

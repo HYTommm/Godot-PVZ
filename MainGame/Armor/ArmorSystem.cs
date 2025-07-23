@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-public partial class ArmorSystem
+public class ArmorSystem
 {
-    private Dictionary<ArmorTypeEnum, List<Armor>> _armors = new();
+    private readonly Dictionary<ArmorTypeEnum, List<Armor>> _armors = new();
 
     public ArmorSystem()
     {

@@ -21,7 +21,7 @@ public partial class SeedPacketLarger : Node2D
 
 	public bool isCDCooling; // 是否正在冷却CD
 
-	public AudioStreamPlayer SeedLiftSound = new AudioStreamPlayer();
+	public AudioStreamPlayer SeedLiftSound = new();
 
 	public override void _Ready()
 	{
@@ -104,7 +104,7 @@ public partial class SeedPacketLarger : Node2D
 		{
 			GD.Print("接收到输入事件");
 			//GD.Print("SeedPacketLarger: OnInputEvent");
-			if (MainGame.mouse_left_down && MainGame.isSeedCardSelected == false)
+			if (MainGame.BMouse_left_down && MainGame.BIsSeedCardSelected == false)
 			{
 				// 如果阳光大于植物 costs 并且 CD 冷却完毕
 				if (MainGame.SunCount >= seedShow.SunCost && LeftCDTime <= 0.0f)

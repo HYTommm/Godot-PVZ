@@ -1,36 +1,30 @@
-using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
-
-//using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class ZombieWeightsAndGrades
 {
-	Godot.Collections.Dictionary<ZombieTypeEnum, int> ZombieWeightsDict = new (); // 僵尸权重
-	Godot.Collections.Dictionary<ZombieTypeEnum, int> ZombieGradesDict = new (); // 僵尸等级
-	Godot.Collections.Dictionary<ZombieTypeEnum, bool> ZombieAllowedDict = new (); // 僵尸是否允许
-	int ZombieTotalWeight = 0;
+    private readonly Dictionary<ZombieTypeEnum, int> _zombieWeightsDict = new (); // 僵尸权重
+    private readonly Dictionary<ZombieTypeEnum, int> _zombieGradesDict = new (); // 僵尸等级
+    private readonly Dictionary<ZombieTypeEnum, bool> _zombieAllowedDict = new (); // 僵尸是否允许
+    private int _zombieTotalWeight = 0;
 
-	int ZombieCurrentRound = 0;
-	int ZombieCurrentWave = 0;
+    private int _zombieCurrentRound = 0;
+    private int _zombieCurrentWave = 0;
 
 	public ZombieWeightsAndGrades()
 	{
-		ZombieWeightsDict.Add(ZombieTypeEnum.Normal, 4000);
-		ZombieWeightsDict.Add(ZombieTypeEnum.Conehead, 2000);
-		ZombieWeightsDict.Add(ZombieTypeEnum.Buckethead, 1000);
-		ZombieWeightsDict.Add(ZombieTypeEnum.Screendoor, 1500);
+		_zombieWeightsDict.Add(ZombieTypeEnum.Normal, 4000);
+		_zombieWeightsDict.Add(ZombieTypeEnum.Conehead, 2000);
+		_zombieWeightsDict.Add(ZombieTypeEnum.Buckethead, 1000);
+		_zombieWeightsDict.Add(ZombieTypeEnum.Screendoor, 1500);
 
-		ZombieTotalWeight = ZombieWeightsDict.Sum(x => x.Value);
+		_zombieTotalWeight = _zombieWeightsDict.Sum(x => x.Value);
 
-		ZombieGradesDict.Add(ZombieTypeEnum.Normal, 5);
-		ZombieGradesDict.Add(ZombieTypeEnum.Conehead, 1); // 2
-		ZombieGradesDict.Add(ZombieTypeEnum.Buckethead, 1); // 4
-		ZombieGradesDict.Add(ZombieTypeEnum.Screendoor, 1); // 3
+		_zombieGradesDict.Add(ZombieTypeEnum.Normal, 5);
+		_zombieGradesDict.Add(ZombieTypeEnum.Conehead, 1); // 2
+		_zombieGradesDict.Add(ZombieTypeEnum.Buckethead, 1); // 4
+		_zombieGradesDict.Add(ZombieTypeEnum.Screendoor, 1); // 3
 	}
 
 	/// <summary>
@@ -38,11 +32,11 @@ public class ZombieWeightsAndGrades
 	/// </summary>
 	public void UpdateZombieRound()
 	{
-		ZombieCurrentRound++;
-		if (ZombieCurrentRound >= 5 && ZombieCurrentRound < 25)
+		_zombieCurrentRound++;
+		if (_zombieCurrentRound is >= 5 and < 25)
 		{
-			ZombieWeightsDict[ZombieTypeEnum.Normal] -= 180;
-			ZombieWeightsDict[ZombieTypeEnum.Conehead] -= 150;
+			_zombieWeightsDict[ZombieTypeEnum.Normal] -= 180;
+			_zombieWeightsDict[ZombieTypeEnum.Conehead] -= 150;
 		}
 	}
 
@@ -51,7 +45,7 @@ public class ZombieWeightsAndGrades
 	/// </summary>
 	public void UpdateZombieWave()
 	{
-		ZombieCurrentWave++;
+		_zombieCurrentWave++;
 	}
 
 	/// <summary>
@@ -61,18 +55,18 @@ public class ZombieWeightsAndGrades
 	public void SetZombieAllowed(List<ZombieTypeEnum> allowedZombies)
 	{
 		// ZombieAllowedDict.Clear()
-		foreach (var key in ZombieAllowedDict.Keys.ToList())
+		foreach (ZombieTypeEnum key in _zombieAllowedDict.Keys.ToList())
 		{
-			ZombieAllowedDict[key] = false;
+			_zombieAllowedDict[key] = false;
 		}
 		foreach (ZombieTypeEnum zombie in allowedZombies)
 		{
-			ZombieAllowedDict[zombie] = true;
+			_zombieAllowedDict[zombie] = true;
 		}
-		ZombieTotalWeight = ZombieWeightsDict
+		_zombieTotalWeight = _zombieWeightsDict
 							.Where(pair =>
-								ZombieAllowedDict.ContainsKey(pair.Key) && // 确保键存在
-								ZombieAllowedDict[pair.Key])
+								_zombieAllowedDict.ContainsKey(pair.Key) && // 确保键存在
+								_zombieAllowedDict[pair.Key])
 							.Sum(x => x.Value);
 	}
 
@@ -81,19 +75,15 @@ public class ZombieWeightsAndGrades
 	/// </summary>
 	public ZombieTypeEnum GetRandomZombieType()
 	{
-		int randomWeight = new Random().Next(0, ZombieTotalWeight);
-		foreach (ZombieTypeEnum zombie in ZombieWeightsDict.Keys)
-		{
-			if (!ZombieAllowedDict[zombie])
-			{
-				continue;
-			}
-			randomWeight -= ZombieWeightsDict[zombie];
-			if (randomWeight < 0)
-			{
-				return zombie;
-			}
-		}
+		int randomWeight = new Random().Next(0, _zombieTotalWeight);
+		foreach (ZombieTypeEnum zombie in _zombieWeightsDict.Keys.Where(zombie => _zombieAllowedDict[zombie]))
+        {
+            randomWeight -= _zombieWeightsDict[zombie];
+            if (randomWeight < 0)
+            {
+                return zombie;
+            }
+        }
 		return ZombieTypeEnum.Normal;
 	}
 
@@ -103,6 +93,6 @@ public class ZombieWeightsAndGrades
 	/// <param name="zombieType"></param>
 	public int GetZombieGrade(ZombieTypeEnum zombieType)
 	{
-		return ZombieGradesDict[zombieType];
+		return _zombieGradesDict[zombieType];
 	}
 }

@@ -15,18 +15,18 @@ public enum ZombieTypeEnum
 
 public class ZombieType
 {
-	Dictionary<ZombieTypeEnum, PackedScene> zombieScenes = new Dictionary<ZombieTypeEnum, PackedScene>();
+	readonly Dictionary<ZombieTypeEnum, PackedScene> _zombieScenes = new();
 
 	public ZombieType()
 	{
-		zombieScenes.Add(ZombieTypeEnum.Normal, GD.Load<PackedScene>("res://MainGame/Zombies/NormalZombie.tscn"));
-		zombieScenes.Add(ZombieTypeEnum.Conehead, GD.Load<PackedScene>("res://MainGame/Zombies/ConeheadZombie.tscn"));
-		zombieScenes.Add(ZombieTypeEnum.Buckethead, GD.Load<PackedScene>("res://MainGame/Zombies/BucketheadZombie.tscn"));
-		zombieScenes.Add(ZombieTypeEnum.Screendoor, GD.Load<PackedScene>("res://MainGame/Zombies/ScreendoorZombie.tscn"));
+		_zombieScenes.Add(ZombieTypeEnum.Normal, GD.Load<PackedScene>("res://MainGame/Zombies/NormalZombie.tscn"));
+		_zombieScenes.Add(ZombieTypeEnum.Conehead, GD.Load<PackedScene>("res://MainGame/Zombies/ConeheadZombie.tscn"));
+		_zombieScenes.Add(ZombieTypeEnum.Buckethead, GD.Load<PackedScene>("res://MainGame/Zombies/BucketheadZombie.tscn"));
+		_zombieScenes.Add(ZombieTypeEnum.Screendoor, GD.Load<PackedScene>("res://MainGame/Zombies/ScreendoorZombie.tscn"));
 	}
 
 	public PackedScene GetZombieScene(ZombieTypeEnum zombieType)
 	{
-		return zombieScenes[zombieType];
+		return _zombieScenes[zombieType];
 	}
 }

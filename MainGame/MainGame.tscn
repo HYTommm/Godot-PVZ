@@ -97,8 +97,11 @@ _data = {
 &"SeedBank": SubResource("Animation_lx0le")
 }
 
-[node name="MainGame" type="Node2D"]
+[node name="MainGame" type="Node2D" node_paths=PackedStringArray("Camera", "Animation", "SeedBank")]
 script = ExtResource("1_wqycq")
+Camera = NodePath("Camera")
+Animation = NodePath("CanvasLayer/AnimationPlayer")
+SeedBank = NodePath("CanvasLayer/SeedBank")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -127,9 +130,9 @@ horizontal_alignment = 1
 [node name="SeedBank" parent="CanvasLayer" instance=ExtResource("2_76kvo")]
 position = Vector2(10, -87)
 
-[node name="GameButton" parent="CanvasLayer" node_paths=PackedStringArray("main") instance=ExtResource("6_5y8m1")]
+[node name="GameButton" parent="CanvasLayer" node_paths=PackedStringArray("_main") instance=ExtResource("6_5y8m1")]
 position = Vector2(675, -43)
-main = NodePath("../..")
+_main = NodePath("../..")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 texture = ExtResource("1_ic8i7")

@@ -6,7 +6,7 @@ public partial class GameButton : GameBaseButton
 	public override void _Ready()
 	{
 		base._Ready();
-		has_frame = false;
+		BHas_frame = false;
 		TapSound.Stream = Sound_GraveButton;
 	}
 

@@ -11,7 +11,7 @@ using System;
 public abstract partial class Plants : HealthEntity
 {
 	/// <summary>种植音效播放器</summary>
-	AudioStreamPlayer PlantSound = new AudioStreamPlayer();
+	AudioStreamPlayer PlantSound = new();
 
 
 	/// <summary>植物所在行</summary>

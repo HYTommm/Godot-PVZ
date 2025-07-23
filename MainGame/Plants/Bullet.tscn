@@ -39,9 +39,13 @@ alpha_curve = SubResource("CurveTexture_8v4ep")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc70l"]
 size = Vector2(56, 27)
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" node_paths=PackedStringArray("_bulletSprite2D", "_shadow", "_area2D", "_gpuParticles")]
 z_index = 2
 script = ExtResource("1_toxup")
+_bulletSprite2D = NodePath("Sprite2D")
+_shadow = NodePath("Shadow")
+_area2D = NodePath("Area2D")
+_gpuParticles = NodePath("Splats")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_47fwu")
@@ -74,4 +78,3 @@ shape = SubResource("RectangleShape2D_wc70l")
 debug_color = Color(0.8, 0.1, 0.1, 0.42)
 
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
-[connection signal="area_shape_entered" from="Area2D" to="." method="OnAreaShapeEntered"]

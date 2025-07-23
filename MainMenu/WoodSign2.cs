@@ -6,7 +6,7 @@ public partial class WoodSign2 : GameBaseButton
 	public override void _Ready()
 	{
 		base._Ready();
-		can_move = false;
+		BCan_move = false;
 
 	}
 }

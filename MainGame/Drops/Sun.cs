@@ -9,7 +9,7 @@ public partial class Sun : Drops
 	public int GroundPosY = 0;
 
 	public bool isFalling = true;
-	public AudioStreamPlayer SunSelectSound = new AudioStreamPlayer();
+	public AudioStreamPlayer SunSelectSound = new();
 
 	public MainGame MainGame;
 

@@ -196,9 +196,25 @@ collision_use_scale = true
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="BaseZombie" type="Node2D"]
+[node name="BaseZombie" type="Node2D" node_paths=PackedStringArray("_animation", "Ground", "DefenseArea", "AttackArea", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
 z_index = 1
 script = ExtResource("1_wnjia")
+_animation = NodePath("Zombie/AnimationPlayer")
+Ground = NodePath("Zombie/_ground")
+DefenseArea = NodePath("Zombie/DefenseArea")
+AttackArea = NodePath("Zombie/AttackArea")
+Anim_innerArm1 = NodePath("Zombie/Anim_innerarm1")
+Anim_innerArm2 = NodePath("Zombie/Anim_innerarm2")
+Anim_innerArm3 = NodePath("Zombie/Anim_innerarm3")
+Zombie_outerarm_upper = NodePath("Zombie/Zombie_outerarm_upper")
+Zombie_outerarm_lower = NodePath("Zombie/Zombie_outerarm_lower")
+Zombie_outerarm_hand = NodePath("Zombie/Zombie_outerarm_hand")
+Zombie_head = NodePath("Zombie/Anim_head1")
+Zombie_jaw = NodePath("Zombie/Anim_head2")
+Zombie_hair = NodePath("Zombie/Anim_hair")
+Zombie_tongue = NodePath("Zombie/Anim_tongue")
+ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
+ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
 
 [node name="Zombie" type="Node2D" parent="."]
 scale = Vector2(1.001, 1)

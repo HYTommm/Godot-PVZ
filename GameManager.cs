@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public static partial class GameManager
+public static class GameManager
 {
 	public static MainGame GetMainGame(this Node node)
 	{

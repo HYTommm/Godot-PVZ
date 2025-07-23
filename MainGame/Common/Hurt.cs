@@ -1,9 +1,4 @@
 ﻿using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // 伤害类型，使用二进制位来表示是否可被对应类型防具防御
 public enum HurtType
@@ -22,19 +17,13 @@ public enum HurtType
     Other
 }
 
-public partial class Hurt : Node2D
+public partial class Hurt(int damage, HurtType hurtType) : Node2D
 {
-    public int Damage { get; set; }
-    public HurtType HurtType { get; set; }
+    public int Damage { get; set; } = damage;
+    public HurtType HurtType { get; set; } = hurtType;
 
     // 受击方是否被允许发出音效
-    public bool enableTargetHitSFX = true;
-
-    public Hurt(int damage, HurtType hurtType)
-    {
-        Damage = damage;
-        HurtType = hurtType;
-    }
+    public bool EnableTargetHitSFX = true;
 
     public Hurt HurtHealthEntity(HealthEntity entity)
     {

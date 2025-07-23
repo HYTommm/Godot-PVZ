@@ -3,8 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_djaoq"]
 [ext_resource type="Script" uid="uid://dmh5hlc8k22au" path="res://MainGame/Zombies/ScreendoorZombie.cs" id="2_djaoq"]
 
-[node name="ScreendoorZombie" instance=ExtResource("1_djaoq")]
+[node name="ScreendoorZombie" node_paths=PackedStringArray("Zombie_innerarm_screendoor", "Zombie_innerarm_screendoor_hand", "Zombie_outerarm_screendoor") instance=ExtResource("1_djaoq")]
 script = ExtResource("2_djaoq")
+Zombie_innerarm_screendoor = NodePath("Zombie/Zombie_innerarm_screendoor_hand")
+Zombie_innerarm_screendoor_hand = NodePath("Zombie/Zombie_innerarm_screendoor_hand")
+Zombie_outerarm_screendoor = NodePath("Zombie/Zombie_outerarm_screendoor")
 
 [node name="Anim_innerarm1" parent="Zombie" index="5"]
 position = Vector2(23.9, 47.1)
