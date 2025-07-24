@@ -32,20 +32,21 @@ public partial class SeedPacketLarger : Node2D
 		SeedPacketFlash = GetNode<AnimationPlayer>("./SeedPacketFlash/SeedPacketFlash"); // 获取种子卡片闪烁节点
 		
 		seedShow = SeedScene.Instantiate<Plants>(); // 实例化种子节点
-
+		
 		seedShow.Position = new Vector2(7, 18); // 种子展示位置
 
 		LeftCDTime = 0.0f; // 剩余CD时间
-		MaxCDTime = seedShow.CDtime; // 最大CD时间
+		MaxCDTime = seedShow.CDtime; // 最大CD时间 
 
 		
 		CDColorRectMaterial = CDColorRect.Material as ShaderMaterial; // 获取CD遮挡阴影材质
 
-		CDColorRectMaterial.SetShaderParameter("max_cd_time", MaxCDTime); // 设置最大CD时间
+		CDColorRectMaterial?.SetShaderParameter("max_cd_time", MaxCDTime); // 设置最大CD时间
 		//GD.Print("ShaderParameter MaxCDTime: " + CDColorRectMaterial.GetShaderParameter("max_cd_time"));
 		//GD.Print("MaxCDTime: " + MaxCDTime);
 
-		GetNode<Sprite2D>("./SeedPacketLarger").AddChild(seedShow, false, InternalMode.Front); // 将种子展示节点添加到SeedPacketLarger节点下
+		GetNode<Sprite2D>("SeedPacketLarger").AddChild(seedShow, false, InternalMode.Front); // 将种子展示节点添加到SeedPacketLarger节点下
+		seedShow.ZIndex = 0;
 
 		if (seedShow.SunCost >= 0) // 种子花费大于0
 			GetNode<Label>("./Label").Text = seedShow.SunCost.ToString(); // 显示花费

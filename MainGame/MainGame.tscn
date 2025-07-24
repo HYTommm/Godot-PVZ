@@ -97,11 +97,14 @@ _data = {
 &"SeedBank": SubResource("Animation_lx0le")
 }
 
-[node name="MainGame" type="Node2D" node_paths=PackedStringArray("Camera", "Animation", "SeedBank")]
+[node name="MainGame" type="Node2D" node_paths=PackedStringArray("Camera", "Animation", "SeedBank", "PlantsContainer", "ZombiesContainer", "SunContainer")]
 script = ExtResource("1_wqycq")
 Camera = NodePath("Camera")
 Animation = NodePath("CanvasLayer/AnimationPlayer")
 SeedBank = NodePath("CanvasLayer/SeedBank")
+PlantsContainer = NodePath("Plants")
+ZombiesContainer = NodePath("Zombies")
+SunContainer = NodePath("Suns")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -151,5 +154,11 @@ offset_right = 929.0
 offset_bottom = 133.0
 text = "调试"
 script = ExtResource("7_8e541")
+
+[node name="Plants" type="Node2D" parent="."]
+
+[node name="Zombies" type="Node2D" parent="."]
+
+[node name="Suns" type="Node2D" parent="."]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -8,21 +8,24 @@ public partial class Sun : Drops
 	[Export]
 	public int GroundPosY = 0;
 
-	public bool isFalling = true;
+	public bool BIsFalling = true;
 	public AudioStreamPlayer SunSelectSound = new();
 
 	public MainGame MainGame;
 
 	public override void _Process(double delta)
 	{
-		if (isFalling && GroundPosY > Position.Y)
+		if (BIsFalling && GroundPosY > Position.Y)
 		{
 			Position += new Vector2(0, 60 * (float)delta);
 		}
 	}
 
+	
+
 	public override void _Ready()
 	{
+		base._Ready();
 		SunSelectSound.Stream = Sounds.Sound_Points;
 		AddChild(SunSelectSound);
 		MainGame = this.GetMainGame();
@@ -41,7 +44,7 @@ public partial class Sun : Drops
 
 	}
 
-	async public void SelectSun()
+	public async void SelectSun()
 	{
 
 		//GD.Print("Sun Selected");
@@ -50,19 +53,18 @@ public partial class Sun : Drops
 		MainGame.SunCount += 25;
 
 		// 停止下落
-		isFalling = false;
+		BIsFalling = false;
 		// 隐藏 碰撞体
 		GetNode<Area2D>("Area2D").Visible = false;
 
 		SunSelectSound.PitchScale = MainGame.RNG.RandfRange(1.0f, 1.5f);
 		SunSelectSound.Play();
 		
-		Vector2 SeedBankSunPos = GetNode<Sprite2D>("../SeedBank").Position + new Vector2(40, 35);
-
+		Vector2 seedBankSunPos = MainGame.SeedBank.Position + new Vector2(40, 35);
 		// 移动 Sun 到 SeedBank 位置
 		Tween tweenPos = CreateTween();
 		tweenPos
-			.TweenProperty(this, "position", SeedBankSunPos, 0.7f)
+			.TweenProperty(this, "position", seedBankSunPos, 0.7f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Cubic)
 			.Finished += FinishSelectSun;
@@ -88,7 +90,7 @@ public partial class Sun : Drops
 	public void FinishSelectSun()
 	{
 		// 通知 SeedBank 更新 Sun 数量
-		GetNode<SeedBank>("../SeedBank").UpdateSunCount();
+		GetNode<SeedBank>("../../SeedBank").UpdateSunCount();
 	}
 
 	public void FreeSun()
@@ -101,13 +103,13 @@ public partial class Sun : Drops
 	public override void _Drop()
 	{
 		Tween tweenPos = CreateTween();
-        Tween tweenScale = CreateTween();
+		Tween tweenScale = CreateTween();
 
-        float rng_x = MainGame.RNG.RandfRange(-20, 20);
-		float rng_y = MainGame.RNG.RandfRange( 40, 70);
+		float rngX = MainGame.RNG.RandfRange(-20, 20);
+		float rngY = MainGame.RNG.RandfRange( 40, 70);
 
-		if (rng_x < 0) rng_x -= 5;
-		else           rng_x += 5;
+		if (rngX < 0) rngX -= 5;
+		else          rngX += 5;
 
 		
 		tweenScale
@@ -116,13 +118,19 @@ public partial class Sun : Drops
 			.SetTrans(Tween.TransitionType.Linear);
 
 		tweenPos
-			.TweenProperty(this, "position", new Vector2(Position.X + rng_x, Position.Y - rng_y), 0.2f)
+			.TweenProperty(this, "position", new Vector2(Position.X + rngX, Position.Y - rngY), 0.2f)
 			.SetEase(Tween.EaseType.OutIn)
 			.SetTrans(Tween.TransitionType.Linear);
 
 		tweenPos
-			.TweenProperty(this, "position", new Vector2(Position.X + rng_x * 1.5f, Position.Y + 45), 0.3f)
+			.TweenProperty(this, "position", new Vector2(Position.X + rngX * 1.5f, Position.Y + 45), 0.3f)
 			.SetEase(Tween.EaseType.In)
 			.SetTrans(Tween.TransitionType.Linear);
+	}
+
+	public override void SetZIndex()
+	{
+		//GetParent().MoveChild(this, Index);
+		ZIndex = 100 + (int)ZIndexEnum.Sun;
 	}
 }

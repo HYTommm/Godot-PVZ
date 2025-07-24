@@ -94,4 +94,9 @@ public abstract partial class Armor : HealthEntity
 			}
 		}
 	}
+
+	public override void SetZIndex()
+	{
+		return;
+	}
 }

@@ -20,6 +20,9 @@ public partial class MainGame : MainNode2D
 	[Export] public Camera Camera;
 	[Export] public AnimationPlayer Animation;
 	[Export] public SeedBank SeedBank;
+	[Export] public Node2D PlantsContainer;
+	[Export] public Node2D ZombiesContainer;
+	[Export] public Node2D SunContainer;
 	private Plants _seed, _seedClone;
 	private SeedPacketLarger _seedPacketNode;
 
@@ -98,12 +101,12 @@ public partial class MainGame : MainNode2D
 	}
 
 	public void SetLawnMowersPosX(int posX)
-    {
-        foreach (LawnMower lawnMower in LawnMowersList)
-        {
-            lawnMower.Position = new Vector2(posX, lawnMower.Position.Y);
-        }
-    }
+	{
+		foreach (LawnMower lawnMower in LawnMowersList)
+		{
+			lawnMower.Position = new Vector2(posX, lawnMower.Position.Y);
+		}
+	}
 
 	public override void _Ready()
 	{
@@ -280,13 +283,13 @@ public partial class MainGame : MainNode2D
 		//seedClone.SelfModulate = new Color(1, 1, 1, 0.6f);
 		_seedClone._SetAlpha(0.6f);
 		// 添加克隆植物
-		AddChild(_seedClone);
+		PlantsContainer.AddChild(_seedClone);
 
 		// 初始化种子
 		seed.Position = _seedPacketNode.GetViewport().GetMousePosition() - new Vector2(35, 60);
 		// 添加植物
 		//seedNode.GetCanvasLayerNode().AddChild(seed);
-		AddChild(seed);
+		PlantsContainer.AddChild(seed);
 
 		BIsSeedCardSelected = true;
 		//GD.Print(seedNode);
@@ -371,7 +374,7 @@ public partial class MainGame : MainNode2D
 			zombieMaxGrade = (int)(zombieMaxGrade * 2.5);
 		}
 
-		zombieMaxGrade *= 20; // 10倍数
+		zombieMaxGrade *= 20; // 20倍数
 		// Print("zombieCount: " + zombieCount);
 
 		// 预备僵尸
@@ -469,7 +472,7 @@ public partial class MainGame : MainNode2D
 		zombie.Refresh(zombie.Index, GameScene, ZombieCurrentWave, row); // 刷新僵尸
 		ZombiesNumOfRow[row]++; // 该行僵尸数加1
 								//zombiesOfRow[Row, ] = zombie; // 该行僵尸数组加1
-		CallDeferred("add_child", zombie); // 添加到场景树
+		ZombiesContainer.CallDeferred("add_child", zombie); // 添加到场景树
 
 		ZombieNum += 1; // 总僵尸数加1
 		UpdateZombieNum(); // 更新僵尸数
@@ -650,7 +653,7 @@ public partial class MainGame : MainNode2D
 		{
 			sun.Position = new Vector2(RNG.RandfRange(100, 700) + GameScene.CameraCenterPos.X, 90); // 设置阳光的位置
 			sun.GroundPosY = RNG.RandiRange(200, 500); // 设置阳光的地面高度
-			AddChild(sun); // 添加阳光到场景中
+			SunContainer.AddChild(sun); // 添加阳光到场景中
 		}
 		else
 		{

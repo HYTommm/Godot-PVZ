@@ -31,7 +31,7 @@ public partial class PeaShooterSingle : Plants
 	{
 		SunCost = 100; // 阳光消耗
 		CDtime = 1f; // 冷却时间
-		//CDtime = CDTime.FAST; // 冷却时间
+		//CDTime = CDTime.FAST; // 冷却时间
 	}
 
 	public override void _Idle()
@@ -45,7 +45,7 @@ public partial class PeaShooterSingle : Plants
 		base._Ready();
 		_animIdle = GetNode<AnimationPlayer>("./Idle");
 		_animHead = GetNode<AnimationPlayer>("./Head/Head");
-		_speedScaleOfIdle = mainGame.RNG.RandfRange(1.2f, 1.6f);
+		_speedScaleOfIdle = MainGame.RNG.RandfRange(1.2f, 1.6f);
 
 		_stem = GetNode<Node2D>("./Anim_stem");
 		_head = GetNode<Node2D>("./Head");
@@ -53,7 +53,7 @@ public partial class PeaShooterSingle : Plants
 		ShootSound.Stream = (AudioStream)GD.Load("res://sounds/throw.ogg");
 		AddChild(ShootSound);
 
-		_canShootTimer.WaitTime = mainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
+		_canShootTimer.WaitTime = MainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
 		_canShootTimer.OneShot = true;
 		_canShootTimer.Timeout += CanShoot;
@@ -68,10 +68,10 @@ public partial class PeaShooterSingle : Plants
 	{
 		_head.Position = _headPos + (_stem.Position - _constStemPos); // 头部跟随茎移动
 
-		if (_canShoot && mainGame != null && HP > 0) //如果可以射击且主游戏不为空
+		if (_canShoot && MainGame != null && HP > 0) //如果可以射击且主游戏不为空
 		{
 
-			foreach (Zombie zombie in mainGame.Zombies) // 遍历所有僵尸
+			foreach (Zombie zombie in MainGame.Zombies) // 遍历所有僵尸
 			{
 				//Zombie zombie = mainGame.zombies[i]; // 取出僵尸
 				if (zombie == null) // 如果僵尸不为空
@@ -83,7 +83,7 @@ public partial class PeaShooterSingle : Plants
 				if (zombie.BIsDead == false && zombie.Row == Row && // 如果僵尸不死亡且在同一行
 					zombie.DefenseArea.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
 					zombie.DefenseArea.GlobalPosition.X <
-					mainGame.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
+					MainGame.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
 				{
 					Shoot(); // 射击
 					break;
@@ -140,7 +140,7 @@ public partial class PeaShooterSingle : Plants
 	/// <summary> 随机射击时间 </summary>
 	public void RandomShootTime()
 	{
-		_canShootTimer.WaitTime = mainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+		_canShootTimer.WaitTime = MainGame.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
 		_canShootTimer.Start(); // 计时器开启
 	}
 

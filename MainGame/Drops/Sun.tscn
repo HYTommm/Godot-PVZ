@@ -234,7 +234,6 @@ _data = {
 size = Vector2(80, 80)
 
 [node name="Sun" type="Node2D"]
-z_index = 4
 script = ExtResource("1_brjgu")
 
 [node name="Sun3" type="Sprite2D" parent="."]

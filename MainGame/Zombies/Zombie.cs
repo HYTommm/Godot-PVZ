@@ -105,6 +105,7 @@ public partial class Zombie : HealthEntity
 
 	public override void _Ready()
 	{
+		base._Ready();
 		LastGroundPos = Ground.Position;
 		// 设置僵尸外臂上部的纹理
 		Zombie_outerarm_upper.Texture = ResourceManager.Images.Zombies.ImageZombie_OuterarmUpper;
@@ -171,7 +172,7 @@ public partial class Zombie : HealthEntity
 				// 在这里处理每个重叠的区域
 				if (area?.GetParent<Plants>() is { } plant
 					&& plant.Row == Row
-					&& plant.isPlanted
+					&& plant.BIsPlanted
 					&& plant.HP > 0)
 				{
 					// 处理植物
@@ -189,7 +190,7 @@ public partial class Zombie : HealthEntity
 				(attackPlant = attackPlantArea.GetParent<Plants>()) != null &&
 
 				attackPlant.HP > 0 &&
-				attackPlant.isPlanted)
+				attackPlant.BIsPlanted)
 			{
 				//Print("Eat Plant");
 				AttackTemp += Attack * delta; // 攻击暂存
@@ -230,7 +231,7 @@ public partial class Zombie : HealthEntity
 	public void OnAreaEntered(Area2D area)
 	{
 		// 如果检测到植物进入攻击区域，则播放攻击动画
-		if (area.GetNode("..") is Plants plant && plant.Row == Row && plant.isPlanted && !BIsDying && !BIsDead)
+		if (area.GetNode("..") is Plants plant && plant.Row == Row && plant.BIsPlanted && !BIsDying && !BIsDead)
 		{
 			Eat();
 		}
@@ -286,19 +287,13 @@ public partial class Zombie : HealthEntity
 	{
 		IsPlayingEatSound = true;
 		uint random = GD.Randi() % 3; // 随机播放啃食音效
-		switch (random)
+		EatSound.Stream = random switch
 		{
-			case 0:
-				EatSound.Stream = ResourceManager.Sounds.Sound_Chomp;
-				break;
-			case 1:
-				EatSound.Stream = ResourceManager.Sounds.Sound_Chomp2;
-				break;
-			case 2:
-				EatSound.Stream = ResourceManager.Sounds.Sound_ChompSoft;
-				break;
-		}
-		
+			0 => ResourceManager.Sounds.Sound_Chomp,
+			1 => ResourceManager.Sounds.Sound_Chomp2,
+			2 => ResourceManager.Sounds.Sound_ChompSoft,
+			_ => EatSound.Stream
+		};
 
 		EatSound.Play();
 	}
@@ -445,4 +440,9 @@ public partial class Zombie : HealthEntity
 
 	}
 
+	public override void SetZIndex()
+	{
+		GetParent().MoveChild(this, Index);
+		ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.Zombies;
+}
 }
