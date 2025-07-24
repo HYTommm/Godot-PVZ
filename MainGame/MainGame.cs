@@ -378,65 +378,63 @@ public partial class MainGame : MainNode2D
 		// Print("zombieCount: " + zombieCount);
 
 		// 预备僵尸
-		Zombie[] preZombie = new Zombie[100];// 预备僵尸数组
-		int zombieCount = 0; // 预备僵尸数量
-		for (int zombieCurrentGrade = 0; zombieCurrentGrade < zombieMaxGrade; zombieCount++)
+		//Zombie[] preZombie = new Zombie[100];// 预备僵尸数组
+		//int zombieCount = 0; // 预备僵尸数量
+		for (int zombieCurrentGrade = 0; zombieCurrentGrade < zombieMaxGrade; )
 		{
 			ZombieTypeEnum zombieType = _zombieWeightsAndGrades.GetRandomZombieType();
 			int tempGrade = _zombieWeightsAndGrades.GetZombieGrade(zombieType);
 			if (tempGrade + zombieCurrentGrade > zombieMaxGrade)
 			{
-				zombieCount--; // 减1，重新尝试
+				//zombieCount--; // 减1，重新尝试
 				continue;
 			}
 			GD.Print("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
 			zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
-			preZombie[zombieCount] = _zombieType.GetZombieScene(zombieType).Instantiate() as Zombie;
-			preZombie[zombieCount].Init(zombieType);
-			// 预备僵尸
-			//PreZombie[i] = Load<PackedScene>("res://MainGame/Zombies/Zombie.tscn").Instantiate() as Zombie;
-
-			// 预备僵尸初始化
-			int tempIndex = -1;
-
-			if (Zombies[ZombieStack] != null)
+			if (_zombieType.GetZombieScene(zombieType).Instantiate() is Zombie preZombie)
 			{
-				tempIndex = Zombies[ZombieStack].Index;
-				Zombies[ZombieStack].QueueFree();
-			}
-			
+				preZombie.Init(zombieType);
+				//preZombie[zombieCount] = _zombieType.GetZombieScene(zombieType).Instantiate() as Zombie;
+				//preZombie[zombieCount].Init(zombieType);
 
-			Zombies[ZombieStack] = preZombie[zombieCount];// 预备僵尸加入栈数组
-			
-			preZombie[zombieCount].Index = ZombieStack; // 预备僵尸索引
-			if (tempIndex != -1)
-			{
-				ZombieStack = tempIndex; // 预备僵尸索引更新
-			}
-			else
-			{
-				ZombieStack++; // 僵尸栈加1
-			}
-			ZombieCurrentWaveMaxHP += preZombie[zombieCount].MaxHP; // 计算当前波最大生命值
+				// 预备僵尸初始化
+				int tempIndex = -1;
 
-			//if (zombieCurrentGrade + PreZombie[i].Grade > zombieMaxGrade)
-			//{
-			//	i--; // 减1，重新尝试
-			//	break;
-			//}
-			
+				if (Zombies[ZombieStack] != null)
+				{
+					tempIndex = Zombies[ZombieStack].Index;
+					Zombies[ZombieStack].QueueFree();
+				}
+
+
+				Zombies[ZombieStack] = preZombie; // 预备僵尸加入栈数组
+
+				preZombie.Index = ZombieStack; // 预备僵尸索引
+				if (tempIndex != -1)
+				{
+					ZombieStack = tempIndex; // 预备僵尸索引更新
+				}
+				else
+				{
+					ZombieStack++; // 僵尸栈加1
+				}
+
+				ZombieCurrentWaveMaxHP += preZombie.MaxHP; // 计算当前波最大生命值
+				AddZombie(preZombie); // 加入场景树
+			}
+
 
 		}
-		// 刷新僵尸
-		for (int i = 0; i < zombieCount; i++)
-		{
-			zombie = preZombie[i]; // 取出预备僵尸
-			AddZombie(zombie);
+		//// 刷新僵尸
+		//for (int i = 0; i < zombieCount; i++)
+		//{
+		//	zombie = preZombie[i]; // 取出预备僵尸
+		//	AddZombie(zombie);
 
-			//AddChild(zombie);
+		//	//AddChild(zombie);
 
-			await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout); //等待0.5秒再刷新下一个僵尸
-		}
+		//	//await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout); //等待0.5秒再刷新下一个僵尸
+		//}
 		// 如果当前波数大于最大波数，则连接僵尸死亡信号到游戏结束函数
 		if (ZombieCurrentWave >= ZombieMaxWave)
 		{

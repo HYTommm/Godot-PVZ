@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpy4ha2doqxgb"]
+[gd_scene load_steps=12 format=3 uid="uid://cpy4ha2doqxgb"]
 
 [ext_resource type="Texture2D" uid="uid://xaxbi7ixlgwp" path="res://art/MainGame/SeedBank.png" id="1_3tv4h"]
 [ext_resource type="PackedScene" uid="uid://igh26sahnl2e" path="res://MainGame/SeedPacketLarger.tscn" id="2_ns80v"]
 [ext_resource type="Script" uid="uid://cmmppi1m37giv" path="res://MainGame/SeedBank.cs" id="2_ua34a"]
 [ext_resource type="PackedScene" uid="uid://bh5ipjbx6k7py" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.tscn" id="5_6x7yi"]
+[ext_resource type="PackedScene" uid="uid://d2u04t2i51frh" path="res://MainGame/Plants/CherryBomb/CherryBomb.tscn" id="6_8cs2s"]
 [ext_resource type="AudioStream" uid="uid://7en1bjf4sg5i" path="res://sounds/points.ogg" id="6_jv5um"]
 [ext_resource type="PackedScene" uid="uid://cor7g84qx52w7" path="res://MainGame/Plants/Sunflower/SunFlower.tscn" id="7_8wcx6"]
 
@@ -69,7 +70,7 @@ SeedScene = ExtResource("5_6x7yi")
 [node name="SeedPacketLarger3" parent="." instance=ExtResource("2_ns80v")]
 position = Vector2(182, 8)
 rotation = 0.00209095
-SeedScene = ExtResource("5_6x7yi")
+SeedScene = ExtResource("6_8cs2s")
 
 [node name="SunCountLabel" type="Label" parent="."]
 offset_left = 12.0

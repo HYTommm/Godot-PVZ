@@ -27,6 +27,7 @@ public partial class LawnMower : Node2D
 
 	public override void _Ready()
 	{
+		_engineSound.Stream = Sounds.Sound_LawnMower;
 		AddChild(_engineSound);
 		_startPosition = Position;
 	}

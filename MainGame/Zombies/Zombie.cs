@@ -132,6 +132,7 @@ public partial class Zombie : HealthEntity
 		AddChild(EatSound);
 		// 随机设置僵尸的行走速度，并打印出速度
 		WalkSpeed = MainGame.RNG.RandfRange(640.0f / 99 / 735 * 100, 640.0f / 99 / 459 * 100);
+		_animation.Play("Zombie_walk", customBlend: 1 / 6.0f, customSpeed: WalkSpeed);
 		Print("Zombie speed: " + WalkSpeed);
 	}
 
@@ -247,7 +248,7 @@ public partial class Zombie : HealthEntity
 		if (_animation.CurrentAnimation != "Zombie_walk")
 		{
 			// 播放速度为WalkSpeed
-			_animation.Play("Zombie_walk", customBlend, WalkSpeed);
+			_animation.Play("Zombie_walk", customBlend: customBlend, customSpeed: WalkSpeed);
 
 			// 继续移动
 			BIsMoving = true;
@@ -434,8 +435,8 @@ public partial class Zombie : HealthEntity
 		// 随机行
 		
 		Row = row;
-		// 设置调试信息——波数
-		GetNode<TextEdit>("./TextEdit").Text = Wave.ToString();
+		// 设置调试信息
+		GetNode<TextEdit>("./TextEdit").Text = Index.ToString();
 		Position = new Vector2(1050, scene.LawnLeftTopPos.Y + Row * scene.LawnUnitWidth - 35);
 
 	}

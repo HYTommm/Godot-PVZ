@@ -11,7 +11,7 @@ using System;
 public abstract partial class Plants : HealthEntity
 {
 	/// <summary>种植音效播放器</summary>
-    private readonly AudioStreamPlayer _plantSound = new();
+	private readonly AudioStreamPlayer _plantSound = new();
 
 
 	/// <summary>植物所在行</summary>
@@ -31,8 +31,8 @@ public abstract partial class Plants : HealthEntity
 	public class CDTime
 	{
 		/// <summary>快，约7.5秒</summary>
-        
-        public const float FAST = 7.5f;
+		
+		public const float FAST = 7.5f;
 		/// <summary>慢，约15秒</summary>
 		public const float SLOW = 15f;
 		/// <summary>非常慢，约30秒</summary>
@@ -45,7 +45,7 @@ public abstract partial class Plants : HealthEntity
 	/// <summary>主游戏节点</summary>
 	public MainGame MainGame;
 
-    protected Plants()
+	protected Plants()
 	{
 		HP = 300; // 设置生命值
 		MaxHP = 300; // 设置最大生命值
@@ -56,8 +56,8 @@ public abstract partial class Plants : HealthEntity
 	{
 		base._Ready();
 		MainGame = this.GetMainGame();
-        AddChild(_plantSound); // 添加种植音效播放器
-        GD.Print(MainGame);
+		AddChild(_plantSound); // 添加种植音效播放器
+		GD.Print(MainGame);
 	}
 
 	/// <summary>
@@ -65,33 +65,33 @@ public abstract partial class Plants : HealthEntity
 	/// </summary>
 	public abstract void _Idle();
 
-    /// <summary>
-    /// 虚函数，用于种植植物
-    /// </summary>
-    /// <param name="col"></param>
-    /// <param name="row">设置植物所在行</param>
-    /// <param name="index">设置植物的索引/栈数</param>
-    public virtual void _Plant(int col,int row, int index)
+	/// <summary>
+	/// 虚函数，用于种植植物
+	/// </summary>
+	/// <param name="col"></param>
+	/// <param name="row">设置植物所在行</param>
+	/// <param name="index">设置植物的索引/栈数</param>
+	public virtual void _Plant(int col,int row, int index)
 	{
 		Row = row; // 设置植物所在行
 		Col = col; // 设置植物所在列
-        Index = index; // 设置植物的索引/栈数
-        GetNode<TextEdit>("./TextEdit").Text = Index.ToString(); // 设置TextEdit显示栈数
-        Visible = true; // 显示
+		Index = index; // 设置植物的索引/栈数
+		GetNode<TextEdit>("./TextEdit").Text = Index.ToString(); // 设置TextEdit显示栈数
+		Visible = true; // 显示
 		BIsPlanted = true; // 设置状态为 已种植
 		//SelfModulate = new Color(1, 1, 1, 1);
 		_SetColor(new Color(1, 1, 1, 1)); // 设置颜色
 		GetNode<Sprite2D>("./Shadow").Visible = true; // 显示阴影
 
 		uint random = GD.Randi() % 2; // 随机播放种植音效
-        _plantSound.Stream = random switch
-        {
-            0 => (AudioStream)GD.Load("res://sounds/plant.ogg"),
-            1 => (AudioStream)GD.Load("res://sounds/plant2.ogg"),
-            _ => _plantSound.Stream
-        };
+		_plantSound.Stream = random switch
+		{
+			0 => (AudioStream)GD.Load("res://sounds/plant.ogg"),
+			1 => (AudioStream)GD.Load("res://sounds/plant2.ogg"),
+			_ => _plantSound.Stream
+		};
 
-        _Idle(); // 开始待机状态
+		_Idle(); // 开始待机状态
 		
 		_plantSound.Play(); // 播放种植音效
 		
@@ -140,14 +140,14 @@ public abstract partial class Plants : HealthEntity
 	public virtual void FreePlant()
 	{
 		if (Index >= 0)
-            this.GetMainGame().RemovePlant(this);
+			this.GetMainGame().RemovePlant(this);
 		BIsPlanted = false; // 设置状态为 未种植
 		Visible = false;
 	}
 
-    public override void SetZIndex()
-    {
+	public override void SetZIndex()
+	{
 
-        ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.NormalPlants;
-    }
+		ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.NormalPlants;
+	}
 }
