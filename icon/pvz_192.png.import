@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbk41tdx5nl40"
-path="res://.godot/imported/pvz_192.png-f5e8ff52b802190637f92ec092bdc949.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://icon/pvz_192.png"
-dest_files=["res://.godot/imported/pvz_192.png-f5e8ff52b802190637f92ec092bdc949.ctex"]
 
 [params]
 

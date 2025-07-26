@@ -10,7 +10,7 @@ public partial class GameBaseButton : Sprite2D
 	public bool BHas_frame = true;
 	public AudioStreamPlayer BleepSound = new();
 	public AudioStreamPlayer TapSound = new();
-	[Export] MainNode2D _main;
+	[Export] protected MainNode2D _main;
 	public override void _Ready()
 	{
 		Pos = Position;

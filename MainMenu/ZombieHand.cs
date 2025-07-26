@@ -6,8 +6,8 @@ public partial class ZombieHand : Node2D
 	[Signal]
 	public delegate void AnimEndEventHandler();
 
-    private readonly AudioStreamPlayer _loseMusicSound = new();
-    private readonly AudioStreamPlayer _evilLaughSound = new();
+	private readonly AudioStreamPlayer _loseMusicSound = new();
+	private readonly AudioStreamPlayer _evilLaughSound = new();
 
 	public int BIsEnd = 0;
 

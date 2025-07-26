@@ -231,10 +231,6 @@ texture = ExtResource("19_qwa5s")
 position = Vector2(260, 587)
 texture = ExtResource("20_82h1e")
 
-[node name="MainMenu" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, 3)
-autoplay = true
-
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 800.0
