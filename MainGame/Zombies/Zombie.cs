@@ -19,6 +19,7 @@ public partial class Zombie : HealthEntity
 	public Vector2 LastGroundPos;
 	/// <summary>动画播放器</summary>
 	[Export] private AnimationPlayer _animation;
+	[Export] private AnimationPlayer _anim_Charred;
 	/// <summary>地面节点</summary>
 	[Export] public Sprite2D Ground;
 
@@ -332,6 +333,10 @@ public partial class Zombie : HealthEntity
 
 	public async void Hurt(Hurt hurt)
 	{
+		if (BIsDead)
+		{
+			return;
+		}
 		ArmorSystem.ProcessDamage(hurt);
 		Print("Damage: " + hurt.Damage);
 		if (hurt.HurtType == HurtType.LawnMower)
@@ -351,6 +356,17 @@ public partial class Zombie : HealthEntity
 				}
 			}
 			Print("LawnMoweredZombie finished");
+		}
+		else if (hurt.HurtType == HurtType.Explosion)
+		{
+			BIsDead = true;
+			BIsMoving = false;
+			GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
+			GetNode<Node2D>("./Zombie").Visible = false;
+			GetNode<Node2D>("./Node2D").Visible = true;
+			_anim_Charred.Play("ALL_ANIMS", 1.0 / 6.0);
+			await ToSignal(_anim_Charred, AnimationMixer.SignalName.AnimationFinished);
+			GetNode<Node2D>("./Node2D").Visible = false;
 		}
 		hurt.HurtHealthEntity(this);
 	}

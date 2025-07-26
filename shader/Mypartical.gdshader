@@ -3,6 +3,8 @@ shader_type particles;
 #include "public.gdshaderinc"
 #include "particals.gdshaderinc"
 
+uniform vec3 random_direction_from_spread;
+
 void start()
 {
 	uint base_number = NUMBER;
@@ -84,6 +86,8 @@ void process() {
 	    );
 	}
 	// ===== 4. 物理模拟 =====
+	VELOCITY = normalize(VELOCITY) * dynamic_params.initial_velocity_multiplier;
+	VELOCITY *= texture(initial_linear_velocity_curve, vec2(lifetime_percent)).r;
     // 4.1 力计算（组合所有作用力）
 	vec3 force;
     {
@@ -137,7 +141,7 @@ void process() {
     }
 	// ===== 5. 碰撞响应 =====
 	{
-		if (COLLIDED) {  // 引擎检测到碰撞时触发
+		if (COLLIDED && collision_enabled) {  // 引擎检测到碰撞时触发
 			// 1. 计算碰撞法线方向的速度分量
 			float collision_response = dot(COLLISION_NORMAL, VELOCITY);
 		    
@@ -185,14 +189,15 @@ void process() {
 	TRANSFORM[3].z = 0.0;
 	
 	// 缩放应用（防止零缩放）
+	float scale_delta = texture(scale_curve, vec2(lifetime_percent)).r;
 	// 检测每个轴的缩放值是否为负
 	float scale_sign_x = display_params.scale.x < 0.0 ? -1.0 : 1.0;
 	float scale_sign_y = display_params.scale.y < 0.0 ? -1.0 : 1.0;
 	float scale_sign_z = display_params.scale.z < 0.0 ? -1.0 : 1.0;
 	float scale_minimum = 0.001;
-	TRANSFORM[0].xyz *= scale_sign_x * max(abs(display_params.scale.x), scale_minimum);
-	TRANSFORM[1].xyz *= scale_sign_y * max(abs(display_params.scale.y), scale_minimum);
-	TRANSFORM[2].xyz *= scale_sign_z * max(abs(display_params.scale.z), scale_minimum);
+	TRANSFORM[0].xyz *= scale_sign_x * max(abs(display_params.scale.x), scale_minimum) * scale_delta;
+	TRANSFORM[1].xyz *= scale_sign_y * max(abs(display_params.scale.y), scale_minimum) * scale_delta;
+	TRANSFORM[2].xyz *= scale_sign_z * max(abs(display_params.scale.z), scale_minimum) * scale_delta;
 
 	CUSTOM.z = display_params.animation_offset + lifetime_percent * display_params.animation_speed;
 

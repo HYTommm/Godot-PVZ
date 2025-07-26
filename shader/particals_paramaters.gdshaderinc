@@ -8,10 +8,11 @@ uniform vec3 velocity_pivot = vec3(0.0); // 径向速度的参考中心点（枢
 uniform vec3 gravity; // 重力
 uniform float collision_friction; // 摩擦系数
 uniform float collision_bounce; // 弹性系数
+uniform bool collision_enabled = true;
 
 // DisplayParameters 显示参数
-uniform float scale_min;                 
-uniform float scale_max;                  // 粒子缩放
+uniform float scale_min = 1.0;                 
+uniform float scale_max = 1.0;                  // 粒子缩放
 uniform float hue_variation_min;         
 uniform float hue_variation_max;          // 色调旋转角度
 uniform float anim_speed_min;
@@ -19,7 +20,7 @@ uniform float anim_speed_max;             // 动画速度
 uniform float anim_offset_min;
 uniform float anim_offset_max;            // 动画偏移
 uniform float lifetime_randomness;        // 粒子生命周期
-uniform vec4 color_value : source_color;  // 颜色值
+uniform vec4 color_value : source_color = vec4(1.0, 1.0, 1.0, 1.0);  // 颜色值
 
 // DynamicsParameters 动力学参数
 uniform float initial_angle_min; 
@@ -47,9 +48,13 @@ uniform float damping_min;
 uniform float damping_max;                // 阻尼系数
 
 uniform sampler2D alpha_curve : repeat_disable; // 透明度曲线
+uniform sampler2D color_curve : repeat_disable; // 颜色曲线
+uniform sampler2D scale_curve : repeat_disable; // 缩放曲线
+uniform sampler2D initial_linear_velocity_curve : repeat_disable; // 轨道速度曲线
 uniform sampler2D orbit_velocity_curve : repeat_disable; // 轨道速度曲线
 uniform sampler2D angular_velocity_texture : repeat_disable; // 角度速度曲线
 uniform vec3 emission_shape_offset = vec3(0.0); 
-uniform vec3 emission_shape_scale = vec3(1.0);  // 发射形状的偏移和缩放
+uniform float emission_shape_scale = 0.0;
+uniform float emission_sphere_radius = 0.0;
 
 #endif

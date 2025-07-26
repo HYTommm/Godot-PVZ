@@ -1,26 +1,29 @@
-[gd_scene load_steps=27 format=3 uid="uid://d2u04t2i51frh"]
+[gd_scene load_steps=53 format=3 uid="uid://d2u04t2i51frh"]
 
-[ext_resource type="Texture2D" uid="uid://b3rsgsk2ypqag" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leftstem.png" id="0_fuck"]
+[ext_resource type="Texture2D" uid="uid://b3rsgsk2ypqag" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leftstem.png" id="0_fuck"]
 [ext_resource type="Animation" uid="uid://c1xa88h80gera" path="res://MainGame/Plants/CherryBomb/CherryBomb_explode.tres" id="1_anim"]
-[ext_resource type="Texture2D" uid="uid://ci8ub64hjy7do" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_left1.png" id="1_fuck"]
+[ext_resource type="Texture2D" uid="uid://ci8ub64hjy7do" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_left1.png" id="1_fuck"]
 [ext_resource type="Script" uid="uid://dpvsnbwsjpuxf" path="res://MainGame/Plants/CherryBomb/CherryBomb.cs" id="1_s276h"]
 [ext_resource type="Animation" uid="uid://xng1w4f58rt4" path="res://MainGame/Plants/CherryBomb/CherryBomb_idle.tres" id="2_anim"]
-[ext_resource type="Texture2D" uid="uid://c5ba6y2y8b35o" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_left3.png" id="2_fuck"]
+[ext_resource type="Texture2D" uid="uid://c5ba6y2y8b35o" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_left3.png" id="2_fuck"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_vs4r4"]
-[ext_resource type="Texture2D" uid="uid://cw7xj8korvtjp" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_lefteye11.png" id="3_fuck"]
-[ext_resource type="Texture2D" uid="uid://tyay1dgjfut7" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_lefteye21.png" id="4_fuck"]
-[ext_resource type="Texture2D" uid="uid://cktnlseg4vlcg" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leftmouth1.png" id="5_fuck"]
-[ext_resource type="Texture2D" uid="uid://nqpl6ovd40pg" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_rightstem.png" id="6_fuck"]
-[ext_resource type="Texture2D" uid="uid://bvd36vw0x31x4" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_right1.png" id="7_fuck"]
-[ext_resource type="Texture2D" uid="uid://cq3ptjvje56ld" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_right3.png" id="8_fuck"]
-[ext_resource type="Texture2D" uid="uid://2l4f6ggvdby4" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_righteye11.png" id="9_fuck"]
-[ext_resource type="Texture2D" uid="uid://cl5yd5tba1o5v" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_righteye21.png" id="10_fuck"]
-[ext_resource type="Texture2D" uid="uid://dr5pn23n0a75p" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_rightmouth1.png" id="11_fuck"]
-[ext_resource type="Texture2D" uid="uid://ccrahmlvbfeai" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leaf3.png" id="12_fuck"]
-[ext_resource type="Texture2D" uid="uid://dgiophxp0x3ss" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leaf2tip.png" id="13_fuck"]
-[ext_resource type="Texture2D" uid="uid://bky56leby5lp6" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leaf2.png" id="14_fuck"]
-[ext_resource type="Texture2D" uid="uid://dkltaa2p8dpgg" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leaf1.png" id="15_fuck"]
-[ext_resource type="Texture2D" uid="uid://jamhg3jim3l" path="res://art/MainGame/Plants/CherryBomb/Cherrybomb_leaf1tip.png" id="16_fuck"]
+[ext_resource type="Texture2D" uid="uid://cw7xj8korvtjp" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_lefteye11.png" id="3_fuck"]
+[ext_resource type="Texture2D" uid="uid://tyay1dgjfut7" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_lefteye21.png" id="4_fuck"]
+[ext_resource type="Texture2D" uid="uid://cktnlseg4vlcg" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leftmouth1.png" id="5_fuck"]
+[ext_resource type="Texture2D" uid="uid://nqpl6ovd40pg" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_rightstem.png" id="6_fuck"]
+[ext_resource type="Texture2D" uid="uid://bvd36vw0x31x4" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_right1.png" id="7_fuck"]
+[ext_resource type="Texture2D" uid="uid://cq3ptjvje56ld" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_right3.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://2l4f6ggvdby4" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_righteye11.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://cl5yd5tba1o5v" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_righteye21.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://dr5pn23n0a75p" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_rightmouth1.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://ccrahmlvbfeai" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leaf3.png" id="12_fuck"]
+[ext_resource type="Texture2D" uid="uid://dgiophxp0x3ss" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leaf2tip.png" id="13_fuck"]
+[ext_resource type="Texture2D" uid="uid://bky56leby5lp6" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leaf2.png" id="14_fuck"]
+[ext_resource type="Texture2D" uid="uid://dkltaa2p8dpgg" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leaf1.png" id="15_fuck"]
+[ext_resource type="Texture2D" uid="uid://jamhg3jim3l" path="res://art/MainGame/Plants/CherryBomb/CherryBomb_leaf1tip.png" id="16_fuck"]
+[ext_resource type="Texture2D" uid="uid://bggvspvwqsb55" path="res://particles/ExplosionPowie.png" id="22_0kbfa"]
+[ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="23_ft73v"]
+[ext_resource type="Texture2D" uid="uid://bl04vm26ifs8g" path="res://particles/ExplosionCloud.png" id="24_ft73v"]
 
 [sub_resource type="Animation" id="Animation_fuck"]
 length = 0.866667
@@ -28,7 +31,7 @@ step = 0.033333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Anim_explode:visible")
+tracks/0/path = NodePath("Node2D/Anim_explode:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Anim_explode:position")
+tracks/1/path = NodePath("Node2D/Anim_explode:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -52,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Anim_explode:rotation")
+tracks/2/path = NodePath("Node2D/Anim_explode:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -64,7 +67,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Anim_explode:scale")
+tracks/3/path = NodePath("Node2D/Anim_explode:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -76,7 +79,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Anim_explode:skew")
+tracks/4/path = NodePath("Node2D/Anim_explode:skew")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -88,7 +91,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Anim_explode:texture")
+tracks/5/path = NodePath("Node2D/Anim_explode:texture")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -100,7 +103,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Anim_explode:self_modulate")
+tracks/6/path = NodePath("Node2D/Anim_explode:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -112,7 +115,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Anim_idle:visible")
+tracks/7/path = NodePath("Node2D/Anim_idle:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -124,7 +127,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Anim_idle:position")
+tracks/8/path = NodePath("Node2D/Anim_idle:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -136,7 +139,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Anim_idle:rotation")
+tracks/9/path = NodePath("Node2D/Anim_idle:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -148,7 +151,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Anim_idle:scale")
+tracks/10/path = NodePath("Node2D/Anim_idle:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -160,7 +163,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Anim_idle:skew")
+tracks/11/path = NodePath("Node2D/Anim_idle:skew")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -172,7 +175,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Anim_idle:texture")
+tracks/12/path = NodePath("Node2D/Anim_idle:texture")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -184,7 +187,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Anim_idle:self_modulate")
+tracks/13/path = NodePath("Node2D/Anim_idle:self_modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -196,7 +199,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("CherryBomb_leftstem:visible")
+tracks/14/path = NodePath("Node2D/CherryBomb_leftstem:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -208,7 +211,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("CherryBomb_leftstem:position")
+tracks/15/path = NodePath("Node2D/CherryBomb_leftstem:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -220,7 +223,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("CherryBomb_leftstem:rotation")
+tracks/16/path = NodePath("Node2D/CherryBomb_leftstem:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -232,7 +235,7 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("CherryBomb_leftstem:scale")
+tracks/17/path = NodePath("Node2D/CherryBomb_leftstem:scale")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -244,7 +247,7 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("CherryBomb_leftstem:skew")
+tracks/18/path = NodePath("Node2D/CherryBomb_leftstem:skew")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -256,7 +259,7 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("CherryBomb_leftstem:texture")
+tracks/19/path = NodePath("Node2D/CherryBomb_leftstem:texture")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -268,7 +271,7 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("CherryBomb_leftstem:self_modulate")
+tracks/20/path = NodePath("Node2D/CherryBomb_leftstem:self_modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -280,7 +283,7 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("CherryBomb_left1:visible")
+tracks/21/path = NodePath("Node2D/CherryBomb_left1:visible")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -292,7 +295,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("CherryBomb_left1:position")
+tracks/22/path = NodePath("Node2D/CherryBomb_left1:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -304,7 +307,7 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("CherryBomb_left1:rotation")
+tracks/23/path = NodePath("Node2D/CherryBomb_left1:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -316,7 +319,7 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("CherryBomb_left1:scale")
+tracks/24/path = NodePath("Node2D/CherryBomb_left1:scale")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
@@ -328,7 +331,7 @@ tracks/24/keys = {
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("CherryBomb_left1:skew")
+tracks/25/path = NodePath("Node2D/CherryBomb_left1:skew")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
@@ -340,7 +343,7 @@ tracks/25/keys = {
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("CherryBomb_left1:texture")
+tracks/26/path = NodePath("Node2D/CherryBomb_left1:texture")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
@@ -352,7 +355,7 @@ tracks/26/keys = {
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("CherryBomb_left1:self_modulate")
+tracks/27/path = NodePath("Node2D/CherryBomb_left1:self_modulate")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
@@ -364,7 +367,7 @@ tracks/27/keys = {
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("CherryBomb_left3:visible")
+tracks/28/path = NodePath("Node2D/CherryBomb_left3:visible")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
@@ -376,7 +379,7 @@ tracks/28/keys = {
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("CherryBomb_left3:position")
+tracks/29/path = NodePath("Node2D/CherryBomb_left3:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
@@ -388,7 +391,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("CherryBomb_left3:rotation")
+tracks/30/path = NodePath("Node2D/CherryBomb_left3:rotation")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -400,7 +403,7 @@ tracks/30/keys = {
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("CherryBomb_left3:scale")
+tracks/31/path = NodePath("Node2D/CherryBomb_left3:scale")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
@@ -412,7 +415,7 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("CherryBomb_left3:skew")
+tracks/32/path = NodePath("Node2D/CherryBomb_left3:skew")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
@@ -424,7 +427,7 @@ tracks/32/keys = {
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("CherryBomb_left3:texture")
+tracks/33/path = NodePath("Node2D/CherryBomb_left3:texture")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
@@ -436,7 +439,7 @@ tracks/33/keys = {
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("CherryBomb_left3:self_modulate")
+tracks/34/path = NodePath("Node2D/CherryBomb_left3:self_modulate")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
@@ -448,7 +451,7 @@ tracks/34/keys = {
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("CherryBomb_lefteye11:visible")
+tracks/35/path = NodePath("Node2D/CherryBomb_lefteye11:visible")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
@@ -460,7 +463,7 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("CherryBomb_lefteye11:position")
+tracks/36/path = NodePath("Node2D/CherryBomb_lefteye11:position")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
@@ -472,7 +475,7 @@ tracks/36/keys = {
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("CherryBomb_lefteye11:rotation")
+tracks/37/path = NodePath("Node2D/CherryBomb_lefteye11:rotation")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
@@ -484,7 +487,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("CherryBomb_lefteye11:scale")
+tracks/38/path = NodePath("Node2D/CherryBomb_lefteye11:scale")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -496,7 +499,7 @@ tracks/38/keys = {
 tracks/39/type = "value"
 tracks/39/imported = false
 tracks/39/enabled = true
-tracks/39/path = NodePath("CherryBomb_lefteye11:skew")
+tracks/39/path = NodePath("Node2D/CherryBomb_lefteye11:skew")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/keys = {
@@ -508,7 +511,7 @@ tracks/39/keys = {
 tracks/40/type = "value"
 tracks/40/imported = false
 tracks/40/enabled = true
-tracks/40/path = NodePath("CherryBomb_lefteye11:texture")
+tracks/40/path = NodePath("Node2D/CherryBomb_lefteye11:texture")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/keys = {
@@ -520,7 +523,7 @@ tracks/40/keys = {
 tracks/41/type = "value"
 tracks/41/imported = false
 tracks/41/enabled = true
-tracks/41/path = NodePath("CherryBomb_lefteye11:self_modulate")
+tracks/41/path = NodePath("Node2D/CherryBomb_lefteye11:self_modulate")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
@@ -532,7 +535,7 @@ tracks/41/keys = {
 tracks/42/type = "value"
 tracks/42/imported = false
 tracks/42/enabled = true
-tracks/42/path = NodePath("CherryBomb_lefteye21:visible")
+tracks/42/path = NodePath("Node2D/CherryBomb_lefteye21:visible")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/keys = {
@@ -544,7 +547,7 @@ tracks/42/keys = {
 tracks/43/type = "value"
 tracks/43/imported = false
 tracks/43/enabled = true
-tracks/43/path = NodePath("CherryBomb_lefteye21:position")
+tracks/43/path = NodePath("Node2D/CherryBomb_lefteye21:position")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = {
@@ -556,7 +559,7 @@ tracks/43/keys = {
 tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("CherryBomb_lefteye21:rotation")
+tracks/44/path = NodePath("Node2D/CherryBomb_lefteye21:rotation")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
@@ -568,7 +571,7 @@ tracks/44/keys = {
 tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("CherryBomb_lefteye21:scale")
+tracks/45/path = NodePath("Node2D/CherryBomb_lefteye21:scale")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = {
@@ -580,7 +583,7 @@ tracks/45/keys = {
 tracks/46/type = "value"
 tracks/46/imported = false
 tracks/46/enabled = true
-tracks/46/path = NodePath("CherryBomb_lefteye21:skew")
+tracks/46/path = NodePath("Node2D/CherryBomb_lefteye21:skew")
 tracks/46/interp = 1
 tracks/46/loop_wrap = true
 tracks/46/keys = {
@@ -592,7 +595,7 @@ tracks/46/keys = {
 tracks/47/type = "value"
 tracks/47/imported = false
 tracks/47/enabled = true
-tracks/47/path = NodePath("CherryBomb_lefteye21:texture")
+tracks/47/path = NodePath("Node2D/CherryBomb_lefteye21:texture")
 tracks/47/interp = 1
 tracks/47/loop_wrap = true
 tracks/47/keys = {
@@ -604,7 +607,7 @@ tracks/47/keys = {
 tracks/48/type = "value"
 tracks/48/imported = false
 tracks/48/enabled = true
-tracks/48/path = NodePath("CherryBomb_lefteye21:self_modulate")
+tracks/48/path = NodePath("Node2D/CherryBomb_lefteye21:self_modulate")
 tracks/48/interp = 1
 tracks/48/loop_wrap = true
 tracks/48/keys = {
@@ -616,7 +619,7 @@ tracks/48/keys = {
 tracks/49/type = "value"
 tracks/49/imported = false
 tracks/49/enabled = true
-tracks/49/path = NodePath("CherryBomb_leftmouth1:visible")
+tracks/49/path = NodePath("Node2D/CherryBomb_leftmouth1:visible")
 tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = {
@@ -628,7 +631,7 @@ tracks/49/keys = {
 tracks/50/type = "value"
 tracks/50/imported = false
 tracks/50/enabled = true
-tracks/50/path = NodePath("CherryBomb_leftmouth1:position")
+tracks/50/path = NodePath("Node2D/CherryBomb_leftmouth1:position")
 tracks/50/interp = 1
 tracks/50/loop_wrap = true
 tracks/50/keys = {
@@ -640,7 +643,7 @@ tracks/50/keys = {
 tracks/51/type = "value"
 tracks/51/imported = false
 tracks/51/enabled = true
-tracks/51/path = NodePath("CherryBomb_leftmouth1:rotation")
+tracks/51/path = NodePath("Node2D/CherryBomb_leftmouth1:rotation")
 tracks/51/interp = 1
 tracks/51/loop_wrap = true
 tracks/51/keys = {
@@ -652,7 +655,7 @@ tracks/51/keys = {
 tracks/52/type = "value"
 tracks/52/imported = false
 tracks/52/enabled = true
-tracks/52/path = NodePath("CherryBomb_leftmouth1:scale")
+tracks/52/path = NodePath("Node2D/CherryBomb_leftmouth1:scale")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/keys = {
@@ -664,7 +667,7 @@ tracks/52/keys = {
 tracks/53/type = "value"
 tracks/53/imported = false
 tracks/53/enabled = true
-tracks/53/path = NodePath("CherryBomb_leftmouth1:skew")
+tracks/53/path = NodePath("Node2D/CherryBomb_leftmouth1:skew")
 tracks/53/interp = 1
 tracks/53/loop_wrap = true
 tracks/53/keys = {
@@ -676,7 +679,7 @@ tracks/53/keys = {
 tracks/54/type = "value"
 tracks/54/imported = false
 tracks/54/enabled = true
-tracks/54/path = NodePath("CherryBomb_leftmouth1:texture")
+tracks/54/path = NodePath("Node2D/CherryBomb_leftmouth1:texture")
 tracks/54/interp = 1
 tracks/54/loop_wrap = true
 tracks/54/keys = {
@@ -688,7 +691,7 @@ tracks/54/keys = {
 tracks/55/type = "value"
 tracks/55/imported = false
 tracks/55/enabled = true
-tracks/55/path = NodePath("CherryBomb_leftmouth1:self_modulate")
+tracks/55/path = NodePath("Node2D/CherryBomb_leftmouth1:self_modulate")
 tracks/55/interp = 1
 tracks/55/loop_wrap = true
 tracks/55/keys = {
@@ -700,7 +703,7 @@ tracks/55/keys = {
 tracks/56/type = "value"
 tracks/56/imported = false
 tracks/56/enabled = true
-tracks/56/path = NodePath("CherryBomb_rightstem:visible")
+tracks/56/path = NodePath("Node2D/CherryBomb_rightstem:visible")
 tracks/56/interp = 1
 tracks/56/loop_wrap = true
 tracks/56/keys = {
@@ -712,7 +715,7 @@ tracks/56/keys = {
 tracks/57/type = "value"
 tracks/57/imported = false
 tracks/57/enabled = true
-tracks/57/path = NodePath("CherryBomb_rightstem:position")
+tracks/57/path = NodePath("Node2D/CherryBomb_rightstem:position")
 tracks/57/interp = 1
 tracks/57/loop_wrap = true
 tracks/57/keys = {
@@ -724,7 +727,7 @@ tracks/57/keys = {
 tracks/58/type = "value"
 tracks/58/imported = false
 tracks/58/enabled = true
-tracks/58/path = NodePath("CherryBomb_rightstem:rotation")
+tracks/58/path = NodePath("Node2D/CherryBomb_rightstem:rotation")
 tracks/58/interp = 1
 tracks/58/loop_wrap = true
 tracks/58/keys = {
@@ -736,7 +739,7 @@ tracks/58/keys = {
 tracks/59/type = "value"
 tracks/59/imported = false
 tracks/59/enabled = true
-tracks/59/path = NodePath("CherryBomb_rightstem:scale")
+tracks/59/path = NodePath("Node2D/CherryBomb_rightstem:scale")
 tracks/59/interp = 1
 tracks/59/loop_wrap = true
 tracks/59/keys = {
@@ -748,7 +751,7 @@ tracks/59/keys = {
 tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
-tracks/60/path = NodePath("CherryBomb_rightstem:skew")
+tracks/60/path = NodePath("Node2D/CherryBomb_rightstem:skew")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
@@ -760,7 +763,7 @@ tracks/60/keys = {
 tracks/61/type = "value"
 tracks/61/imported = false
 tracks/61/enabled = true
-tracks/61/path = NodePath("CherryBomb_rightstem:texture")
+tracks/61/path = NodePath("Node2D/CherryBomb_rightstem:texture")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
 tracks/61/keys = {
@@ -772,7 +775,7 @@ tracks/61/keys = {
 tracks/62/type = "value"
 tracks/62/imported = false
 tracks/62/enabled = true
-tracks/62/path = NodePath("CherryBomb_rightstem:self_modulate")
+tracks/62/path = NodePath("Node2D/CherryBomb_rightstem:self_modulate")
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/keys = {
@@ -784,7 +787,7 @@ tracks/62/keys = {
 tracks/63/type = "value"
 tracks/63/imported = false
 tracks/63/enabled = true
-tracks/63/path = NodePath("CherryBomb_right1:visible")
+tracks/63/path = NodePath("Node2D/CherryBomb_right1:visible")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
 tracks/63/keys = {
@@ -796,7 +799,7 @@ tracks/63/keys = {
 tracks/64/type = "value"
 tracks/64/imported = false
 tracks/64/enabled = true
-tracks/64/path = NodePath("CherryBomb_right1:position")
+tracks/64/path = NodePath("Node2D/CherryBomb_right1:position")
 tracks/64/interp = 1
 tracks/64/loop_wrap = true
 tracks/64/keys = {
@@ -808,7 +811,7 @@ tracks/64/keys = {
 tracks/65/type = "value"
 tracks/65/imported = false
 tracks/65/enabled = true
-tracks/65/path = NodePath("CherryBomb_right1:rotation")
+tracks/65/path = NodePath("Node2D/CherryBomb_right1:rotation")
 tracks/65/interp = 1
 tracks/65/loop_wrap = true
 tracks/65/keys = {
@@ -820,7 +823,7 @@ tracks/65/keys = {
 tracks/66/type = "value"
 tracks/66/imported = false
 tracks/66/enabled = true
-tracks/66/path = NodePath("CherryBomb_right1:scale")
+tracks/66/path = NodePath("Node2D/CherryBomb_right1:scale")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
 tracks/66/keys = {
@@ -832,7 +835,7 @@ tracks/66/keys = {
 tracks/67/type = "value"
 tracks/67/imported = false
 tracks/67/enabled = true
-tracks/67/path = NodePath("CherryBomb_right1:skew")
+tracks/67/path = NodePath("Node2D/CherryBomb_right1:skew")
 tracks/67/interp = 1
 tracks/67/loop_wrap = true
 tracks/67/keys = {
@@ -844,7 +847,7 @@ tracks/67/keys = {
 tracks/68/type = "value"
 tracks/68/imported = false
 tracks/68/enabled = true
-tracks/68/path = NodePath("CherryBomb_right1:texture")
+tracks/68/path = NodePath("Node2D/CherryBomb_right1:texture")
 tracks/68/interp = 1
 tracks/68/loop_wrap = true
 tracks/68/keys = {
@@ -856,7 +859,7 @@ tracks/68/keys = {
 tracks/69/type = "value"
 tracks/69/imported = false
 tracks/69/enabled = true
-tracks/69/path = NodePath("CherryBomb_right1:self_modulate")
+tracks/69/path = NodePath("Node2D/CherryBomb_right1:self_modulate")
 tracks/69/interp = 1
 tracks/69/loop_wrap = true
 tracks/69/keys = {
@@ -868,7 +871,7 @@ tracks/69/keys = {
 tracks/70/type = "value"
 tracks/70/imported = false
 tracks/70/enabled = true
-tracks/70/path = NodePath("CherryBomb_right3:visible")
+tracks/70/path = NodePath("Node2D/CherryBomb_right3:visible")
 tracks/70/interp = 1
 tracks/70/loop_wrap = true
 tracks/70/keys = {
@@ -880,7 +883,7 @@ tracks/70/keys = {
 tracks/71/type = "value"
 tracks/71/imported = false
 tracks/71/enabled = true
-tracks/71/path = NodePath("CherryBomb_right3:position")
+tracks/71/path = NodePath("Node2D/CherryBomb_right3:position")
 tracks/71/interp = 1
 tracks/71/loop_wrap = true
 tracks/71/keys = {
@@ -892,7 +895,7 @@ tracks/71/keys = {
 tracks/72/type = "value"
 tracks/72/imported = false
 tracks/72/enabled = true
-tracks/72/path = NodePath("CherryBomb_right3:rotation")
+tracks/72/path = NodePath("Node2D/CherryBomb_right3:rotation")
 tracks/72/interp = 1
 tracks/72/loop_wrap = true
 tracks/72/keys = {
@@ -904,7 +907,7 @@ tracks/72/keys = {
 tracks/73/type = "value"
 tracks/73/imported = false
 tracks/73/enabled = true
-tracks/73/path = NodePath("CherryBomb_right3:scale")
+tracks/73/path = NodePath("Node2D/CherryBomb_right3:scale")
 tracks/73/interp = 1
 tracks/73/loop_wrap = true
 tracks/73/keys = {
@@ -916,7 +919,7 @@ tracks/73/keys = {
 tracks/74/type = "value"
 tracks/74/imported = false
 tracks/74/enabled = true
-tracks/74/path = NodePath("CherryBomb_right3:skew")
+tracks/74/path = NodePath("Node2D/CherryBomb_right3:skew")
 tracks/74/interp = 1
 tracks/74/loop_wrap = true
 tracks/74/keys = {
@@ -928,7 +931,7 @@ tracks/74/keys = {
 tracks/75/type = "value"
 tracks/75/imported = false
 tracks/75/enabled = true
-tracks/75/path = NodePath("CherryBomb_right3:texture")
+tracks/75/path = NodePath("Node2D/CherryBomb_right3:texture")
 tracks/75/interp = 1
 tracks/75/loop_wrap = true
 tracks/75/keys = {
@@ -940,7 +943,7 @@ tracks/75/keys = {
 tracks/76/type = "value"
 tracks/76/imported = false
 tracks/76/enabled = true
-tracks/76/path = NodePath("CherryBomb_right3:self_modulate")
+tracks/76/path = NodePath("Node2D/CherryBomb_right3:self_modulate")
 tracks/76/interp = 1
 tracks/76/loop_wrap = true
 tracks/76/keys = {
@@ -952,7 +955,7 @@ tracks/76/keys = {
 tracks/77/type = "value"
 tracks/77/imported = false
 tracks/77/enabled = true
-tracks/77/path = NodePath("CherryBomb_righteye11:visible")
+tracks/77/path = NodePath("Node2D/CherryBomb_righteye11:visible")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = {
@@ -964,7 +967,7 @@ tracks/77/keys = {
 tracks/78/type = "value"
 tracks/78/imported = false
 tracks/78/enabled = true
-tracks/78/path = NodePath("CherryBomb_righteye11:position")
+tracks/78/path = NodePath("Node2D/CherryBomb_righteye11:position")
 tracks/78/interp = 1
 tracks/78/loop_wrap = true
 tracks/78/keys = {
@@ -976,7 +979,7 @@ tracks/78/keys = {
 tracks/79/type = "value"
 tracks/79/imported = false
 tracks/79/enabled = true
-tracks/79/path = NodePath("CherryBomb_righteye11:rotation")
+tracks/79/path = NodePath("Node2D/CherryBomb_righteye11:rotation")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
@@ -988,7 +991,7 @@ tracks/79/keys = {
 tracks/80/type = "value"
 tracks/80/imported = false
 tracks/80/enabled = true
-tracks/80/path = NodePath("CherryBomb_righteye11:scale")
+tracks/80/path = NodePath("Node2D/CherryBomb_righteye11:scale")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
 tracks/80/keys = {
@@ -1000,7 +1003,7 @@ tracks/80/keys = {
 tracks/81/type = "value"
 tracks/81/imported = false
 tracks/81/enabled = true
-tracks/81/path = NodePath("CherryBomb_righteye11:skew")
+tracks/81/path = NodePath("Node2D/CherryBomb_righteye11:skew")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
 tracks/81/keys = {
@@ -1012,7 +1015,7 @@ tracks/81/keys = {
 tracks/82/type = "value"
 tracks/82/imported = false
 tracks/82/enabled = true
-tracks/82/path = NodePath("CherryBomb_righteye11:texture")
+tracks/82/path = NodePath("Node2D/CherryBomb_righteye11:texture")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
 tracks/82/keys = {
@@ -1024,7 +1027,7 @@ tracks/82/keys = {
 tracks/83/type = "value"
 tracks/83/imported = false
 tracks/83/enabled = true
-tracks/83/path = NodePath("CherryBomb_righteye11:self_modulate")
+tracks/83/path = NodePath("Node2D/CherryBomb_righteye11:self_modulate")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
 tracks/83/keys = {
@@ -1036,7 +1039,7 @@ tracks/83/keys = {
 tracks/84/type = "value"
 tracks/84/imported = false
 tracks/84/enabled = true
-tracks/84/path = NodePath("CherryBomb_righteye21:visible")
+tracks/84/path = NodePath("Node2D/CherryBomb_righteye21:visible")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
 tracks/84/keys = {
@@ -1048,7 +1051,7 @@ tracks/84/keys = {
 tracks/85/type = "value"
 tracks/85/imported = false
 tracks/85/enabled = true
-tracks/85/path = NodePath("CherryBomb_righteye21:position")
+tracks/85/path = NodePath("Node2D/CherryBomb_righteye21:position")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
 tracks/85/keys = {
@@ -1060,7 +1063,7 @@ tracks/85/keys = {
 tracks/86/type = "value"
 tracks/86/imported = false
 tracks/86/enabled = true
-tracks/86/path = NodePath("CherryBomb_righteye21:rotation")
+tracks/86/path = NodePath("Node2D/CherryBomb_righteye21:rotation")
 tracks/86/interp = 1
 tracks/86/loop_wrap = true
 tracks/86/keys = {
@@ -1072,7 +1075,7 @@ tracks/86/keys = {
 tracks/87/type = "value"
 tracks/87/imported = false
 tracks/87/enabled = true
-tracks/87/path = NodePath("CherryBomb_righteye21:scale")
+tracks/87/path = NodePath("Node2D/CherryBomb_righteye21:scale")
 tracks/87/interp = 1
 tracks/87/loop_wrap = true
 tracks/87/keys = {
@@ -1084,7 +1087,7 @@ tracks/87/keys = {
 tracks/88/type = "value"
 tracks/88/imported = false
 tracks/88/enabled = true
-tracks/88/path = NodePath("CherryBomb_righteye21:skew")
+tracks/88/path = NodePath("Node2D/CherryBomb_righteye21:skew")
 tracks/88/interp = 1
 tracks/88/loop_wrap = true
 tracks/88/keys = {
@@ -1096,7 +1099,7 @@ tracks/88/keys = {
 tracks/89/type = "value"
 tracks/89/imported = false
 tracks/89/enabled = true
-tracks/89/path = NodePath("CherryBomb_righteye21:texture")
+tracks/89/path = NodePath("Node2D/CherryBomb_righteye21:texture")
 tracks/89/interp = 1
 tracks/89/loop_wrap = true
 tracks/89/keys = {
@@ -1108,7 +1111,7 @@ tracks/89/keys = {
 tracks/90/type = "value"
 tracks/90/imported = false
 tracks/90/enabled = true
-tracks/90/path = NodePath("CherryBomb_righteye21:self_modulate")
+tracks/90/path = NodePath("Node2D/CherryBomb_righteye21:self_modulate")
 tracks/90/interp = 1
 tracks/90/loop_wrap = true
 tracks/90/keys = {
@@ -1120,7 +1123,7 @@ tracks/90/keys = {
 tracks/91/type = "value"
 tracks/91/imported = false
 tracks/91/enabled = true
-tracks/91/path = NodePath("CherryBomb_rightmouth1:visible")
+tracks/91/path = NodePath("Node2D/CherryBomb_rightmouth1:visible")
 tracks/91/interp = 1
 tracks/91/loop_wrap = true
 tracks/91/keys = {
@@ -1132,7 +1135,7 @@ tracks/91/keys = {
 tracks/92/type = "value"
 tracks/92/imported = false
 tracks/92/enabled = true
-tracks/92/path = NodePath("CherryBomb_rightmouth1:position")
+tracks/92/path = NodePath("Node2D/CherryBomb_rightmouth1:position")
 tracks/92/interp = 1
 tracks/92/loop_wrap = true
 tracks/92/keys = {
@@ -1144,7 +1147,7 @@ tracks/92/keys = {
 tracks/93/type = "value"
 tracks/93/imported = false
 tracks/93/enabled = true
-tracks/93/path = NodePath("CherryBomb_rightmouth1:rotation")
+tracks/93/path = NodePath("Node2D/CherryBomb_rightmouth1:rotation")
 tracks/93/interp = 1
 tracks/93/loop_wrap = true
 tracks/93/keys = {
@@ -1156,7 +1159,7 @@ tracks/93/keys = {
 tracks/94/type = "value"
 tracks/94/imported = false
 tracks/94/enabled = true
-tracks/94/path = NodePath("CherryBomb_rightmouth1:scale")
+tracks/94/path = NodePath("Node2D/CherryBomb_rightmouth1:scale")
 tracks/94/interp = 1
 tracks/94/loop_wrap = true
 tracks/94/keys = {
@@ -1168,7 +1171,7 @@ tracks/94/keys = {
 tracks/95/type = "value"
 tracks/95/imported = false
 tracks/95/enabled = true
-tracks/95/path = NodePath("CherryBomb_rightmouth1:skew")
+tracks/95/path = NodePath("Node2D/CherryBomb_rightmouth1:skew")
 tracks/95/interp = 1
 tracks/95/loop_wrap = true
 tracks/95/keys = {
@@ -1180,7 +1183,7 @@ tracks/95/keys = {
 tracks/96/type = "value"
 tracks/96/imported = false
 tracks/96/enabled = true
-tracks/96/path = NodePath("CherryBomb_rightmouth1:texture")
+tracks/96/path = NodePath("Node2D/CherryBomb_rightmouth1:texture")
 tracks/96/interp = 1
 tracks/96/loop_wrap = true
 tracks/96/keys = {
@@ -1192,7 +1195,7 @@ tracks/96/keys = {
 tracks/97/type = "value"
 tracks/97/imported = false
 tracks/97/enabled = true
-tracks/97/path = NodePath("CherryBomb_rightmouth1:self_modulate")
+tracks/97/path = NodePath("Node2D/CherryBomb_rightmouth1:self_modulate")
 tracks/97/interp = 1
 tracks/97/loop_wrap = true
 tracks/97/keys = {
@@ -1204,7 +1207,7 @@ tracks/97/keys = {
 tracks/98/type = "value"
 tracks/98/imported = false
 tracks/98/enabled = true
-tracks/98/path = NodePath("CherryBomb_leaf3:visible")
+tracks/98/path = NodePath("Node2D/CherryBomb_leaf3:visible")
 tracks/98/interp = 1
 tracks/98/loop_wrap = true
 tracks/98/keys = {
@@ -1216,7 +1219,7 @@ tracks/98/keys = {
 tracks/99/type = "value"
 tracks/99/imported = false
 tracks/99/enabled = true
-tracks/99/path = NodePath("CherryBomb_leaf3:position")
+tracks/99/path = NodePath("Node2D/CherryBomb_leaf3:position")
 tracks/99/interp = 1
 tracks/99/loop_wrap = true
 tracks/99/keys = {
@@ -1228,7 +1231,7 @@ tracks/99/keys = {
 tracks/100/type = "value"
 tracks/100/imported = false
 tracks/100/enabled = true
-tracks/100/path = NodePath("CherryBomb_leaf3:rotation")
+tracks/100/path = NodePath("Node2D/CherryBomb_leaf3:rotation")
 tracks/100/interp = 1
 tracks/100/loop_wrap = true
 tracks/100/keys = {
@@ -1240,7 +1243,7 @@ tracks/100/keys = {
 tracks/101/type = "value"
 tracks/101/imported = false
 tracks/101/enabled = true
-tracks/101/path = NodePath("CherryBomb_leaf3:scale")
+tracks/101/path = NodePath("Node2D/CherryBomb_leaf3:scale")
 tracks/101/interp = 1
 tracks/101/loop_wrap = true
 tracks/101/keys = {
@@ -1252,7 +1255,7 @@ tracks/101/keys = {
 tracks/102/type = "value"
 tracks/102/imported = false
 tracks/102/enabled = true
-tracks/102/path = NodePath("CherryBomb_leaf3:skew")
+tracks/102/path = NodePath("Node2D/CherryBomb_leaf3:skew")
 tracks/102/interp = 1
 tracks/102/loop_wrap = true
 tracks/102/keys = {
@@ -1264,7 +1267,7 @@ tracks/102/keys = {
 tracks/103/type = "value"
 tracks/103/imported = false
 tracks/103/enabled = true
-tracks/103/path = NodePath("CherryBomb_leaf3:texture")
+tracks/103/path = NodePath("Node2D/CherryBomb_leaf3:texture")
 tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = {
@@ -1276,7 +1279,7 @@ tracks/103/keys = {
 tracks/104/type = "value"
 tracks/104/imported = false
 tracks/104/enabled = true
-tracks/104/path = NodePath("CherryBomb_leaf3:self_modulate")
+tracks/104/path = NodePath("Node2D/CherryBomb_leaf3:self_modulate")
 tracks/104/interp = 1
 tracks/104/loop_wrap = true
 tracks/104/keys = {
@@ -1288,7 +1291,7 @@ tracks/104/keys = {
 tracks/105/type = "value"
 tracks/105/imported = false
 tracks/105/enabled = true
-tracks/105/path = NodePath("CherryBomb_leaf2tip:visible")
+tracks/105/path = NodePath("Node2D/CherryBomb_leaf2tip:visible")
 tracks/105/interp = 1
 tracks/105/loop_wrap = true
 tracks/105/keys = {
@@ -1300,7 +1303,7 @@ tracks/105/keys = {
 tracks/106/type = "value"
 tracks/106/imported = false
 tracks/106/enabled = true
-tracks/106/path = NodePath("CherryBomb_leaf2tip:position")
+tracks/106/path = NodePath("Node2D/CherryBomb_leaf2tip:position")
 tracks/106/interp = 1
 tracks/106/loop_wrap = true
 tracks/106/keys = {
@@ -1312,7 +1315,7 @@ tracks/106/keys = {
 tracks/107/type = "value"
 tracks/107/imported = false
 tracks/107/enabled = true
-tracks/107/path = NodePath("CherryBomb_leaf2tip:rotation")
+tracks/107/path = NodePath("Node2D/CherryBomb_leaf2tip:rotation")
 tracks/107/interp = 1
 tracks/107/loop_wrap = true
 tracks/107/keys = {
@@ -1324,7 +1327,7 @@ tracks/107/keys = {
 tracks/108/type = "value"
 tracks/108/imported = false
 tracks/108/enabled = true
-tracks/108/path = NodePath("CherryBomb_leaf2tip:scale")
+tracks/108/path = NodePath("Node2D/CherryBomb_leaf2tip:scale")
 tracks/108/interp = 1
 tracks/108/loop_wrap = true
 tracks/108/keys = {
@@ -1336,7 +1339,7 @@ tracks/108/keys = {
 tracks/109/type = "value"
 tracks/109/imported = false
 tracks/109/enabled = true
-tracks/109/path = NodePath("CherryBomb_leaf2tip:skew")
+tracks/109/path = NodePath("Node2D/CherryBomb_leaf2tip:skew")
 tracks/109/interp = 1
 tracks/109/loop_wrap = true
 tracks/109/keys = {
@@ -1348,7 +1351,7 @@ tracks/109/keys = {
 tracks/110/type = "value"
 tracks/110/imported = false
 tracks/110/enabled = true
-tracks/110/path = NodePath("CherryBomb_leaf2tip:texture")
+tracks/110/path = NodePath("Node2D/CherryBomb_leaf2tip:texture")
 tracks/110/interp = 1
 tracks/110/loop_wrap = true
 tracks/110/keys = {
@@ -1360,7 +1363,7 @@ tracks/110/keys = {
 tracks/111/type = "value"
 tracks/111/imported = false
 tracks/111/enabled = true
-tracks/111/path = NodePath("CherryBomb_leaf2tip:self_modulate")
+tracks/111/path = NodePath("Node2D/CherryBomb_leaf2tip:self_modulate")
 tracks/111/interp = 1
 tracks/111/loop_wrap = true
 tracks/111/keys = {
@@ -1372,7 +1375,7 @@ tracks/111/keys = {
 tracks/112/type = "value"
 tracks/112/imported = false
 tracks/112/enabled = true
-tracks/112/path = NodePath("CherryBomb_leaf2:visible")
+tracks/112/path = NodePath("Node2D/CherryBomb_leaf2:visible")
 tracks/112/interp = 1
 tracks/112/loop_wrap = true
 tracks/112/keys = {
@@ -1384,7 +1387,7 @@ tracks/112/keys = {
 tracks/113/type = "value"
 tracks/113/imported = false
 tracks/113/enabled = true
-tracks/113/path = NodePath("CherryBomb_leaf2:position")
+tracks/113/path = NodePath("Node2D/CherryBomb_leaf2:position")
 tracks/113/interp = 1
 tracks/113/loop_wrap = true
 tracks/113/keys = {
@@ -1396,7 +1399,7 @@ tracks/113/keys = {
 tracks/114/type = "value"
 tracks/114/imported = false
 tracks/114/enabled = true
-tracks/114/path = NodePath("CherryBomb_leaf2:rotation")
+tracks/114/path = NodePath("Node2D/CherryBomb_leaf2:rotation")
 tracks/114/interp = 1
 tracks/114/loop_wrap = true
 tracks/114/keys = {
@@ -1408,7 +1411,7 @@ tracks/114/keys = {
 tracks/115/type = "value"
 tracks/115/imported = false
 tracks/115/enabled = true
-tracks/115/path = NodePath("CherryBomb_leaf2:scale")
+tracks/115/path = NodePath("Node2D/CherryBomb_leaf2:scale")
 tracks/115/interp = 1
 tracks/115/loop_wrap = true
 tracks/115/keys = {
@@ -1420,7 +1423,7 @@ tracks/115/keys = {
 tracks/116/type = "value"
 tracks/116/imported = false
 tracks/116/enabled = true
-tracks/116/path = NodePath("CherryBomb_leaf2:skew")
+tracks/116/path = NodePath("Node2D/CherryBomb_leaf2:skew")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
 tracks/116/keys = {
@@ -1432,7 +1435,7 @@ tracks/116/keys = {
 tracks/117/type = "value"
 tracks/117/imported = false
 tracks/117/enabled = true
-tracks/117/path = NodePath("CherryBomb_leaf2:texture")
+tracks/117/path = NodePath("Node2D/CherryBomb_leaf2:texture")
 tracks/117/interp = 1
 tracks/117/loop_wrap = true
 tracks/117/keys = {
@@ -1444,7 +1447,7 @@ tracks/117/keys = {
 tracks/118/type = "value"
 tracks/118/imported = false
 tracks/118/enabled = true
-tracks/118/path = NodePath("CherryBomb_leaf2:self_modulate")
+tracks/118/path = NodePath("Node2D/CherryBomb_leaf2:self_modulate")
 tracks/118/interp = 1
 tracks/118/loop_wrap = true
 tracks/118/keys = {
@@ -1456,7 +1459,7 @@ tracks/118/keys = {
 tracks/119/type = "value"
 tracks/119/imported = false
 tracks/119/enabled = true
-tracks/119/path = NodePath("CherryBomb_leaf1:visible")
+tracks/119/path = NodePath("Node2D/CherryBomb_leaf1:visible")
 tracks/119/interp = 1
 tracks/119/loop_wrap = true
 tracks/119/keys = {
@@ -1468,7 +1471,7 @@ tracks/119/keys = {
 tracks/120/type = "value"
 tracks/120/imported = false
 tracks/120/enabled = true
-tracks/120/path = NodePath("CherryBomb_leaf1:position")
+tracks/120/path = NodePath("Node2D/CherryBomb_leaf1:position")
 tracks/120/interp = 1
 tracks/120/loop_wrap = true
 tracks/120/keys = {
@@ -1480,7 +1483,7 @@ tracks/120/keys = {
 tracks/121/type = "value"
 tracks/121/imported = false
 tracks/121/enabled = true
-tracks/121/path = NodePath("CherryBomb_leaf1:rotation")
+tracks/121/path = NodePath("Node2D/CherryBomb_leaf1:rotation")
 tracks/121/interp = 1
 tracks/121/loop_wrap = true
 tracks/121/keys = {
@@ -1492,7 +1495,7 @@ tracks/121/keys = {
 tracks/122/type = "value"
 tracks/122/imported = false
 tracks/122/enabled = true
-tracks/122/path = NodePath("CherryBomb_leaf1:scale")
+tracks/122/path = NodePath("Node2D/CherryBomb_leaf1:scale")
 tracks/122/interp = 1
 tracks/122/loop_wrap = true
 tracks/122/keys = {
@@ -1504,7 +1507,7 @@ tracks/122/keys = {
 tracks/123/type = "value"
 tracks/123/imported = false
 tracks/123/enabled = true
-tracks/123/path = NodePath("CherryBomb_leaf1:skew")
+tracks/123/path = NodePath("Node2D/CherryBomb_leaf1:skew")
 tracks/123/interp = 1
 tracks/123/loop_wrap = true
 tracks/123/keys = {
@@ -1516,7 +1519,7 @@ tracks/123/keys = {
 tracks/124/type = "value"
 tracks/124/imported = false
 tracks/124/enabled = true
-tracks/124/path = NodePath("CherryBomb_leaf1:texture")
+tracks/124/path = NodePath("Node2D/CherryBomb_leaf1:texture")
 tracks/124/interp = 1
 tracks/124/loop_wrap = true
 tracks/124/keys = {
@@ -1528,7 +1531,7 @@ tracks/124/keys = {
 tracks/125/type = "value"
 tracks/125/imported = false
 tracks/125/enabled = true
-tracks/125/path = NodePath("CherryBomb_leaf1:self_modulate")
+tracks/125/path = NodePath("Node2D/CherryBomb_leaf1:self_modulate")
 tracks/125/interp = 1
 tracks/125/loop_wrap = true
 tracks/125/keys = {
@@ -1540,7 +1543,7 @@ tracks/125/keys = {
 tracks/126/type = "value"
 tracks/126/imported = false
 tracks/126/enabled = true
-tracks/126/path = NodePath("CherryBomb_leaf1tip:visible")
+tracks/126/path = NodePath("Node2D/CherryBomb_leaf1tip:visible")
 tracks/126/interp = 1
 tracks/126/loop_wrap = true
 tracks/126/keys = {
@@ -1552,7 +1555,7 @@ tracks/126/keys = {
 tracks/127/type = "value"
 tracks/127/imported = false
 tracks/127/enabled = true
-tracks/127/path = NodePath("CherryBomb_leaf1tip:position")
+tracks/127/path = NodePath("Node2D/CherryBomb_leaf1tip:position")
 tracks/127/interp = 1
 tracks/127/loop_wrap = true
 tracks/127/keys = {
@@ -1564,7 +1567,7 @@ tracks/127/keys = {
 tracks/128/type = "value"
 tracks/128/imported = false
 tracks/128/enabled = true
-tracks/128/path = NodePath("CherryBomb_leaf1tip:rotation")
+tracks/128/path = NodePath("Node2D/CherryBomb_leaf1tip:rotation")
 tracks/128/interp = 1
 tracks/128/loop_wrap = true
 tracks/128/keys = {
@@ -1576,7 +1579,7 @@ tracks/128/keys = {
 tracks/129/type = "value"
 tracks/129/imported = false
 tracks/129/enabled = true
-tracks/129/path = NodePath("CherryBomb_leaf1tip:scale")
+tracks/129/path = NodePath("Node2D/CherryBomb_leaf1tip:scale")
 tracks/129/interp = 1
 tracks/129/loop_wrap = true
 tracks/129/keys = {
@@ -1588,7 +1591,7 @@ tracks/129/keys = {
 tracks/130/type = "value"
 tracks/130/imported = false
 tracks/130/enabled = true
-tracks/130/path = NodePath("CherryBomb_leaf1tip:skew")
+tracks/130/path = NodePath("Node2D/CherryBomb_leaf1tip:skew")
 tracks/130/interp = 1
 tracks/130/loop_wrap = true
 tracks/130/keys = {
@@ -1600,7 +1603,7 @@ tracks/130/keys = {
 tracks/131/type = "value"
 tracks/131/imported = false
 tracks/131/enabled = true
-tracks/131/path = NodePath("CherryBomb_leaf1tip:texture")
+tracks/131/path = NodePath("Node2D/CherryBomb_leaf1tip:texture")
 tracks/131/interp = 1
 tracks/131/loop_wrap = true
 tracks/131/keys = {
@@ -1612,7 +1615,7 @@ tracks/131/keys = {
 tracks/132/type = "value"
 tracks/132/imported = false
 tracks/132/enabled = true
-tracks/132/path = NodePath("CherryBomb_leaf1tip:self_modulate")
+tracks/132/path = NodePath("Node2D/CherryBomb_leaf1tip:self_modulate")
 tracks/132/interp = 1
 tracks/132/loop_wrap = true
 tracks/132/keys = {
@@ -1640,133 +1643,361 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_vs4r4"]
 radius = 115.0
 
-[node name="CherryBomb" type="CanvasGroup" node_paths=PackedStringArray("_animExplode")]
+[sub_resource type="Curve" id="Curve_ft73v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.54792, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8all"]
+curve = SubResource("Curve_ft73v")
+
+[sub_resource type="Curve" id="Curve_otuth"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bby7p"]
+_data = [Vector2(0, 0.9), 0.0, -0.9, 0, 1, Vector2(1, 0), -0.9, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7qpia"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_y18oq"]
+curve_x = SubResource("Curve_otuth")
+curve_y = SubResource("Curve_bby7p")
+curve_z = SubResource("Curve_7qpia")
+
+[sub_resource type="Curve" id="Curve_vk2pq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.303371, 1), 0.0, 0.0, 0, 0, Vector2(0.64794, 0.177344), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_odj2e"]
+curve = SubResource("Curve_vk2pq")
+
+[sub_resource type="Curve" id="Curve_u4hgh"]
+_data = [Vector2(0, 0.505372), 0.0, 0.0, 0, 0, Vector2(0.524345, 0.5125), 0.0135949, -2.71172, 1, 1, Vector2(0.696629, 0.0453124), -2.71172, -0.274964, 1, 1, Vector2(0.861423, 0), -0.274964, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wqi0e"]
+curve = SubResource("Curve_u4hgh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aci8o"]
+shader = ExtResource("23_ft73v")
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 180.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 3.14
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 100.0
+shader_parameter/initial_linear_velocity_max = 100.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_t8all")
+shader_parameter/color_curve = SubResource("CurveXYZTexture_y18oq")
+shader_parameter/scale_curve = SubResource("CurveTexture_wqi0e")
+shader_parameter/initial_linear_velocity_curve = SubResource("CurveTexture_odj2e")
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 1.0
+shader_parameter/emission_sphere_radius = 40.0
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_kuyps"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.54792, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a8nug"]
+curve = SubResource("Curve_kuyps")
+
+[sub_resource type="Curve" id="Curve_f2xal"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xmnug"]
+_data = [Vector2(0, 0.9), 0.0, -0.641406, 0, 1, Vector2(1, 0.258594), -0.641406, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5e0i5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_tq2bu"]
+curve_x = SubResource("Curve_f2xal")
+curve_y = SubResource("Curve_xmnug")
+curve_z = SubResource("Curve_5e0i5")
+
+[sub_resource type="Curve" id="Curve_8gmfy"]
+_data = [Vector2(0, 1), 0.0, -0.481111, 0, 1, Vector2(0.23221, 0.888281), -0.481111, -2.00431, 1, 1, Vector2(0.404494, 0.542969), -2.00431, -0.513028, 1, 1, Vector2(0.681648, 0.400781), -0.513028, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ft73v"]
+curve = SubResource("Curve_8gmfy")
+
+[sub_resource type="Curve" id="Curve_sk12x"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.26328), 0.0, 0.0, 0, 0, Vector2(0.337079, 1.26328), 0.0, -2.46195, 1, 1, Vector2(0.621723, 0.5625), -2.46195, -1.487, 1, 1, Vector2(1, 0), -1.487, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_crll4"]
+curve = SubResource("Curve_sk12x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygyak"]
+shader = ExtResource("23_ft73v")
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 180.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 3.14
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 50.0
+shader_parameter/initial_linear_velocity_max = 50.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_a8nug")
+shader_parameter/color_curve = SubResource("CurveXYZTexture_tq2bu")
+shader_parameter/scale_curve = SubResource("CurveTexture_crll4")
+shader_parameter/initial_linear_velocity_curve = SubResource("CurveTexture_ft73v")
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 1.0
+shader_parameter/emission_sphere_radius = 60.0
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bby7p"]
+shader = ExtResource("23_ft73v")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 0.12
+shader_parameter/initial_linear_velocity_max = 0.135
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 0.0
+shader_parameter/emission_sphere_radius = 0.0
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[node name="CherryBomb" type="CanvasGroup" node_paths=PackedStringArray("_animExplode", "_particleExplode1", "_particleExplode2", "_particleExplode3")]
 script = ExtResource("1_s276h")
-_animExplode = NodePath("Anim_CherryBomb_explode")
+_animExplode = NodePath("Node2D/Anim_CherryBomb_explode")
+_particleExplode1 = NodePath("GPUParticles2D1")
+_particleExplode2 = NodePath("GPUParticles2D2")
+_particleExplode3 = NodePath("GPUParticles2D3")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(40, 69)
 texture = ExtResource("2_vs4r4")
 
-[node name="Anim_explode" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Anim_explode" type="Sprite2D" parent="Node2D"]
 centered = false
 
-[node name="Anim_idle" type="Sprite2D" parent="."]
+[node name="Anim_idle" type="Sprite2D" parent="Node2D"]
 visible = false
 centered = false
 
-[node name="CherryBomb_leftstem" type="Sprite2D" parent="."]
+[node name="CherryBomb_leftstem" type="Sprite2D" parent="Node2D"]
 position = Vector2(31, 17.1)
 rotation = 0.493928
 scale = Vector2(0.599, 0.599)
 texture = ExtResource("0_fuck")
 centered = false
 
-[node name="CherryBomb_left1" type="Sprite2D" parent="."]
+[node name="CherryBomb_left1" type="Sprite2D" parent="Node2D"]
 position = Vector2(4, 30.9)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_fuck")
 centered = false
 
-[node name="CherryBomb_left3" type="Sprite2D" parent="."]
+[node name="CherryBomb_left3" type="Sprite2D" parent="Node2D"]
 visible = false
 centered = false
 
-[node name="CherryBomb_lefteye11" type="Sprite2D" parent="."]
+[node name="CherryBomb_lefteye11" type="Sprite2D" parent="Node2D"]
 position = Vector2(8.7, 41.6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_fuck")
 centered = false
 
-[node name="CherryBomb_lefteye21" type="Sprite2D" parent="."]
+[node name="CherryBomb_lefteye21" type="Sprite2D" parent="Node2D"]
 position = Vector2(21.2, 44.3)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_fuck")
 centered = false
 
-[node name="CherryBomb_leftmouth1" type="Sprite2D" parent="."]
+[node name="CherryBomb_leftmouth1" type="Sprite2D" parent="Node2D"]
 position = Vector2(9.2, 52.9)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_fuck")
 centered = false
 
-[node name="CherryBomb_rightstem" type="Sprite2D" parent="."]
+[node name="CherryBomb_rightstem" type="Sprite2D" parent="Node2D"]
 position = Vector2(34, 21.9)
 rotation = 6.23432
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_fuck")
 centered = false
 
-[node name="CherryBomb_right1" type="Sprite2D" parent="."]
+[node name="CherryBomb_right1" type="Sprite2D" parent="Node2D"]
 position = Vector2(44.5, 31.3)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_fuck")
 centered = false
 
-[node name="CherryBomb_right3" type="Sprite2D" parent="."]
+[node name="CherryBomb_right3" type="Sprite2D" parent="Node2D"]
 visible = false
 centered = false
 
-[node name="CherryBomb_righteye11" type="Sprite2D" parent="."]
+[node name="CherryBomb_righteye11" type="Sprite2D" parent="Node2D"]
 position = Vector2(66.7, 42)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_fuck")
 centered = false
 
-[node name="CherryBomb_righteye21" type="Sprite2D" parent="."]
+[node name="CherryBomb_righteye21" type="Sprite2D" parent="Node2D"]
 position = Vector2(51.4, 45.5)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_fuck")
 centered = false
 
-[node name="CherryBomb_rightmouth1" type="Sprite2D" parent="."]
+[node name="CherryBomb_rightmouth1" type="Sprite2D" parent="Node2D"]
 position = Vector2(63.1, 50.5)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("11_fuck")
 centered = false
 
-[node name="CherryBomb_leaf3" type="Sprite2D" parent="."]
+[node name="CherryBomb_leaf3" type="Sprite2D" parent="Node2D"]
 position = Vector2(36.1, 11.7)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_fuck")
 centered = false
 
-[node name="CherryBomb_leaf2tip" type="Sprite2D" parent="."]
+[node name="CherryBomb_leaf2tip" type="Sprite2D" parent="Node2D"]
 position = Vector2(25.5, 7.6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_fuck")
 centered = false
 
-[node name="CherryBomb_leaf2" type="Sprite2D" parent="."]
+[node name="CherryBomb_leaf2" type="Sprite2D" parent="Node2D"]
 position = Vector2(27.2, 5.5)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("14_fuck")
 centered = false
 
-[node name="CherryBomb_leaf1" type="Sprite2D" parent="."]
+[node name="CherryBomb_leaf1" type="Sprite2D" parent="Node2D"]
 position = Vector2(23.3, 14.1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("15_fuck")
 centered = false
 
-[node name="CherryBomb_leaf1tip" type="Sprite2D" parent="."]
+[node name="CherryBomb_leaf1tip" type="Sprite2D" parent="Node2D"]
 position = Vector2(18, 14.9)
 scale = Vector2(0.8, 0.871)
 texture = ExtResource("16_fuck")
 centered = false
 
-[node name="AnimLib" type="AnimationPlayer" parent="."]
+[node name="AnimLib" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_fuck")
 }
 
-[node name="Anim_CherryBomb_explode" type="AnimationPlayer" parent="."]
+[node name="Anim_CherryBomb_explode" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_CherryBomb_explode")
 }
 
-[node name="Anim_CherryBomb_idle" type="AnimationPlayer" parent="."]
+[node name="Anim_CherryBomb_idle" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_CherryBomb_idle")
 }
@@ -1784,3 +2015,35 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(40, 40)
 shape = SubResource("CircleShape2D_vs4r4")
+
+[node name="GPUParticles2D1" type="GPUParticles2D" parent="."]
+position = Vector2(42, 41)
+emitting = false
+amount = 13
+texture = ExtResource("24_ft73v")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+draw_order = 0
+process_material = SubResource("ShaderMaterial_aci8o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(42, 41)
+emitting = false
+amount = 10
+texture = ExtResource("24_ft73v")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-150, -150, 300, 300)
+draw_order = 0
+process_material = SubResource("ShaderMaterial_ygyak")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(42, 41)
+emitting = false
+amount = 1
+texture = ExtResource("22_0kbfa")
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ShaderMaterial_bby7p")

@@ -30,6 +30,12 @@ public static class ResourceManager
 
 		public static readonly AudioStream Sound_LawnMower   = Load<AudioStream>("res://sounds/lawnmower.ogg");
 
+
+		public static readonly AudioStream Sound_ReverseExplosion = Load<AudioStream>("res://sounds/reverse_explosion.ogg");
+		public static readonly AudioStream Sound_Explosion        = Load<AudioStream>("res://sounds/explosion.ogg");
+		public static readonly AudioStream Sound_CherryBomb       = Load<AudioStream>("res://sounds/cherrybomb.ogg");
+		public static readonly AudioStream Sound_Jalapeno         = Load<AudioStream>("res://sounds/jalapeno.ogg");
+
 		public static class Bgm
 		{
 			public static readonly AudioStream Bgm_SelectSeedCard = Load<AudioStream>("res://sounds/MainGame/select_seedcard.ogg");

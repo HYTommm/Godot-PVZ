@@ -19,8 +19,14 @@ vec3 get_random_direction_from_spread(inout uint alt_seed, float spread_angle){
 }
 
 // 计算粒子初始位置
-vec3 calculate_initial_position(inout DisplayParameters params, inout uint _alt_seed) {
+vec3 calculate_initial_position(inout DisplayParameters params, inout uint alt_seed) {
 	vec3 pos = vec3(0.0);
+	{ // Emission shape.
+		float s = rand_from_seed(alt_seed) * 2.0 - 1.0;
+		float t = rand_from_seed(alt_seed) * 2.0 * PI;
+		float radius = emission_sphere_radius * sqrt(1.0 - s * s);
+		pos = vec3(radius * cos(t), radius * sin(t), emission_sphere_radius * s);
+	}
 	return pos * emission_shape_scale + emission_shape_offset;
 }
 
@@ -80,6 +86,8 @@ vec4 rotate_hue(vec4 current_color, float hue_rot_angle) {
 void process_display_param(inout DisplayParameters parameters, float lifetime) {
 	// Compile-time add textures.
 	parameters.color.a *= texture(alpha_curve, vec2(lifetime)).r;
+	
+	parameters.color.rgb *= texture(color_curve, vec2(lifetime)).xyz;
 	parameters.color = rotate_hue(parameters.color, parameters.hue_rotation);
 }
 

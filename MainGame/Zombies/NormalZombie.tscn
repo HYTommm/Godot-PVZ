@@ -5,3 +5,5 @@
 
 [node name="NormalZombie" instance=ExtResource("1_3v7er")]
 script = ExtResource("2_loqst")
+
+[editable path="Node2D"]

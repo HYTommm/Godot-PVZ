@@ -81,7 +81,7 @@ public abstract partial class Plants : HealthEntity
 		BIsPlanted = true; // 设置状态为 已种植
 		//SelfModulate = new Color(1, 1, 1, 1);
 		_SetColor(new Color(1, 1, 1, 1)); // 设置颜色
-		GetNode<Sprite2D>("./Shadow").Visible = true; // 显示阴影
+		GetNode<Sprite2D>("Shadow").Visible = true; // 显示阴影
 
 		uint random = GD.Randi() % 2; // 随机播放种植音效
 		_plantSound.Stream = random switch
