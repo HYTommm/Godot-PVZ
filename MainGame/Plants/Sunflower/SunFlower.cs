@@ -42,9 +42,9 @@ public partial class SunFlower : MoneyCropsPlants
 		GD.Print("TimerProduce : Time = " + TimerProduce.WaitTime);
 	}
 
-    public override int Hurt(int damage)
+    public override void Hurt(Hurt hurt)
     {
-		return damage;
+		return;
     }
 	
 	public override void _Ready()

@@ -38,6 +38,8 @@ public static class ResourceManager
 
 		public static class Bgm
 		{
+			public static readonly AudioStream Bgm_MainMenu = Load<AudioStream>("res://sounds/MainGame/main_menu.ogg");
+
 			public static readonly AudioStream Bgm_SelectSeedCard = Load<AudioStream>("res://sounds/MainGame/select_seedcard.ogg");
 
 			public static readonly AudioStream Bgm_DayLawnPart1_NoDrum = Load<AudioStream>("res://sounds/MainGame/daylawn_part1_nodrum.ogg");

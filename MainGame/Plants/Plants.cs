@@ -97,22 +97,20 @@ public abstract partial class Plants : HealthEntity
 		
 	}
 
-	/// <summary>
-	/// 虚函数，用于对植物扣血
-	/// </summary>
-	/// <param name="damage">扣血量</param>
-	public override int Hurt(int damage)
+    /// <summary>
+    /// 虚函数，用于对植物扣血
+    /// </summary>
+    /// <param name="hurt"></param>
+    public override void Hurt(Hurt hurt)
 	{
-		int returnDamage = 0;
-		if (HP <= damage)
-			returnDamage = damage - HP;
-		HP -= damage; // 扣血
-		if (HP <= 0) // 生命值小于等于0
+        int damage = Math.Min(hurt.Damage, HP);
+        HP -= damage;// 扣血
+        hurt.Damage -= damage;
+        if (HP <= 0) // 生命值小于等于0
 		{
 			FreePlant(); // 释放植物
 		}
-		return returnDamage;
-	}
+}
 
 	/// <summary>
 	/// 设置植物的颜色

@@ -46,7 +46,7 @@ public class ArmorSystem
         // 遍历该类型的防具
         foreach (Armor armor in _armors[type])
         {
-            hurt.HurtHealthEntity(armor);
+            armor.Hurt(hurt);
             if (hurt.Damage <= 0)
             {
                 break;

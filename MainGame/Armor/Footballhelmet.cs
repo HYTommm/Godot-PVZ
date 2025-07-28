@@ -17,8 +17,9 @@ public partial class FootballHelmet : Armor
 		
 	}
 
-	public override void PlaySound()
+	public override void PlaySound(Hurt hurt)
 	{
+		base.PlaySound(hurt);
 		uint random = GD.Randi() % 2; // 随机播放啃食音效
         Sound.Stream = random switch
         {

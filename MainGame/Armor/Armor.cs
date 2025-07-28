@@ -1,3 +1,4 @@
+using System;
 using Godot;
 //using Godot.Collections;
 using System.Collections.Generic;
@@ -35,37 +36,38 @@ public abstract partial class Armor : HealthEntity
 		ArmorSprite.AddChild(Sound);
 	}
 
-	public override int Hurt(int damage)
+	public override void Hurt(Hurt hurt)
 	{
-		int returnDamage = damage;
-		if (damage >= HP)
+        if (HP <= 0)    {    return;    }
+        int damage = Math.Min(hurt.Damage, HP);
+        HP -= damage;
+        hurt.Damage -= damage;
+
+		if (HP <= 0)
 		{
-			if (HP > 0)
-			{
-				returnDamage = HP;
-				ArmorSprite.SelfModulate = new Color(0, 0, 0, 0);
-				ShowParts.ForEach(x => x.Visible = false);
-				HideParts.ForEach(x => x.Visible = true);
-				PlayParticles();
-			}
-			else
-			{
-				returnDamage = 0;
-			}
-			
-		}
-		if (returnDamage > 0)
-		{
-			PlaySound();
-		}
-		HP -= damage;
+            ArmorSprite.SelfModulate = new Color(0, 0, 0, 0);
+            ShowParts.ForEach(x => x.Visible = false);
+            HideParts.ForEach(x => x.Visible = true);
+            PlayParticles();
+        }
+		if (hurt.BEnableTargetHitSFX)
+			PlaySound(hurt);
 		SetWearLevel();
-		return returnDamage;
 	}
 
-	public abstract void PlaySound();
+	public virtual void PlaySound(Hurt hurt)
+	{
+		switch (hurt.HurtType)
+		{
+			case HurtType.Direct:
+			case HurtType.Thrown:
+				break;
+			case HurtType.Explosion:
+				return;
+		}
+	}
 
-	public virtual void PlayParticles()
+    public virtual void PlayParticles()
 	{
 		Array<Node> particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
 		GD.Print("particles count: " + particles.Count);
@@ -93,10 +95,5 @@ public abstract partial class Armor : HealthEntity
 				}
 			}
 		}
-	}
-
-	public override void SetZIndex()
-	{
-		return;
 	}
 }

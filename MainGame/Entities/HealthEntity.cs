@@ -6,5 +6,5 @@ public abstract partial class HealthEntity : Entity
 	/// <summary>最大生命值</summary>
 	public int MaxHP;
 
-	public abstract int Hurt(int damage);
+	public abstract void Hurt(Hurt hurt);
 }

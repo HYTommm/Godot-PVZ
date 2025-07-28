@@ -15,7 +15,7 @@ public partial class StartAdventureButton : GameBaseButton
 	}
 	public override void GetClicked()
 	{
-		((MainMenu_SelectorScreen)_main).StopBGM();
+		((MainMenu_SelectorScreen)_main).StopBgm();
 		// 停止背景音乐
 		ZombieHand zombieHand = GetNode<ZombieHand>("../../ZombieHand");
 		ColorRect colorRect = GetNode<ColorRect>("../../ColorRect");

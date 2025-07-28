@@ -29,11 +29,13 @@ public partial class CherryBomb : Plants
 		_audioExplode.Play();
 		_animExplode.Play("CherryBomb_explode", -1, 0.5f);
 		_animExplode.AnimationFinished += DamageZombies;
+		
 }
 
 	private async void DamageZombies(StringName animName)
 	{
 		GD.Print("CherryBomb exploded!");
+        
 		Area2D area = GetNode<Area2D>("Area2D");
 		Array<Area2D> overlappingAreas = area.GetOverlappingAreas();
 		foreach (Area2D overlappingArea in overlappingAreas)
@@ -55,6 +57,7 @@ public partial class CherryBomb : Plants
 		_particleExplode1.Emitting = true;
 		_particleExplode2.Emitting = true;
 		_particleExplode3.Emitting = true;
+        MainGame.Camera.Shake(0.4f);
 		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
 		FreePlant();
 	}

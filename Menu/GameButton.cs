@@ -11,4 +11,10 @@ public partial class GameButton : GameBaseButton
 	}
 
 	public override void Bleep() { }
+
+	public override void GetClicked()
+	{
+		base.GetClicked();
+		//_main.GetNode<Camera>("Camera").Shake(1.0f);
+	}
 }

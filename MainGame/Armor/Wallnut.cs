@@ -18,7 +18,7 @@ public partial class Wallnuthead : Armor
 		
 
 	}
-	public override void PlaySound()
+	public override void PlaySound(Hurt hurt)
 	{
 		
 	}

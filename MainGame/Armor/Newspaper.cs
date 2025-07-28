@@ -15,7 +15,7 @@ public partial class Newspaper : Armor
 		
 	}
 
-	public override void PlaySound()
+	public override void PlaySound(Hurt hurt)
 	{
 		
 	}

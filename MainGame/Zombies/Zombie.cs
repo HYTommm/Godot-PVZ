@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using static Godot.GD;
 //using PlantsVsZombies;
@@ -19,7 +20,7 @@ public partial class Zombie : HealthEntity
 	public Vector2 LastGroundPos;
 	/// <summary>动画播放器</summary>
 	[Export] private AnimationPlayer _animation;
-	[Export] private AnimationPlayer _anim_Charred;
+	[Export] private AnimationPlayer _animCharred;
 	/// <summary>地面节点</summary>
 	[Export] public Sprite2D Ground;
 
@@ -85,24 +86,24 @@ public partial class Zombie : HealthEntity
 	}
 
 
-	public void Init(ZombieTypeEnum zombieTypeEnum)
-	{
-		switch (zombieTypeEnum)
-		{
-			case ZombieTypeEnum.Normal:
-				((NormalZombie)this).Init();
-				break;
-			case ZombieTypeEnum.Conehead:
-				((ConeheadZombie)this).Init();
-				break;
-			case ZombieTypeEnum.Buckethead:
-				((BucketheadZombie)this).Init();
-				break;
-			case ZombieTypeEnum.Screendoor:
-				((ScreendoorZombie)this).Init();
-				break;
-		}
-	}
+	//public void Init(ZombieTypeEnum zombieTypeEnum)
+	//{
+	//	switch (zombieTypeEnum)
+	//	{
+	//		case ZombieTypeEnum.Normal:
+	//			((NormalZombie)this).Init();
+	//			break;
+	//		case ZombieTypeEnum.Conehead:
+	//			((ConeheadZombie)this).Init();
+	//			break;
+	//		case ZombieTypeEnum.Buckethead:
+	//			((BucketheadZombie)this).Init();
+	//			break;
+	//		case ZombieTypeEnum.Screendoor:
+	//			((ScreendoorZombie)this).Init();
+	//			break;
+	//	}
+	//}
 
 	public override void _Ready()
 	{
@@ -199,7 +200,7 @@ public partial class Zombie : HealthEntity
 				int attackInt = (int)AttackTemp; // 攻击整数
 				AttackTemp -= attackInt; // 攻击余数
 				Eat();
-				attackPlant.Hurt(attackInt);
+				attackPlant.Hurt(new Hurt(damage: attackInt, hurtType: HurtType.Eating));
 			}
 			else
 			{
@@ -303,35 +304,8 @@ public partial class Zombie : HealthEntity
 	/// <summary>
 	/// 受伤
 	/// </summary>
-	/// <param name="damage"></param>
-	public override int Hurt(int damage)
-	{
-		int returnDamage = damage;
-		if (HP <= damage)
-		{
-			returnDamage = HP > 0 ? HP : 0;
-		}
-		// 减血
-		HP -= damage;
-		// 如果血量 <= 0 则死亡
-		if (HP <= CriticalHP1 && HP + damage > CriticalHP1)
-		{
-			DropArm(); // 断臂
-		}
-		if (HP < CriticalHPLast && HP + damage >= CriticalHPLast)
-		{
-			Dying(); // 开始濒死
-		}
-		//if (HP <= 0)
-		//{
-		//	Die();
-		//}
-		MainGame.UpdateZombieHP();
-		return returnDamage;
-	}
-
-
-	public async void Hurt(Hurt hurt)
+	/// <param name="hurt"></param>
+	public override async void Hurt(Hurt hurt)
 	{
 		if (BIsDead)
 		{
@@ -357,18 +331,33 @@ public partial class Zombie : HealthEntity
 			}
 			Print("LawnMoweredZombie finished");
 		}
-		else if (hurt.HurtType == HurtType.Explosion)
+		
+
+		int damage = Math.Min(hurt.Damage, HP);
+		HP -= damage;
+		hurt.Damage -= damage;
+		if (HP <= CriticalHP1 && HP + damage > CriticalHP1)
+		{
+			DropArm(); // 断臂
+		}
+		if (HP < CriticalHPLast && HP + damage >= CriticalHPLast)
+		{
+			Dying(); // 开始濒死
+		}
+		if (hurt.HurtType == HurtType.Explosion && HP <= 0)
 		{
 			BIsDead = true;
 			BIsMoving = false;
 			GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
 			GetNode<Node2D>("./Zombie").Visible = false;
 			GetNode<Node2D>("./Node2D").Visible = true;
-			_anim_Charred.Play("ALL_ANIMS", 1.0 / 6.0);
-			await ToSignal(_anim_Charred, AnimationMixer.SignalName.AnimationFinished);
+			_animCharred.Play("ALL_ANIMS", 1.0 / 6.0);
+			await ToSignal(_animCharred, AnimationMixer.SignalName.AnimationFinished);
 			GetNode<Node2D>("./Node2D").Visible = false;
 		}
-		hurt.HurtHealthEntity(this);
+		MainGame.UpdateZombieHP();
+
+		
 	}
 
 	/// <summary>
@@ -461,5 +450,5 @@ public partial class Zombie : HealthEntity
 	{
 		GetParent().MoveChild(this, Index);
 		ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.Zombies;
-}
+	}
 }

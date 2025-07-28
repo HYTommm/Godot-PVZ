@@ -5,7 +5,10 @@ public abstract partial class Entity : Node2D
 	/// <summary>实体的索引/栈数</summary>
 	public int Index;
 
-	public abstract void SetZIndex();
+	public virtual void SetZIndex()
+    {
+        ;
+    }
 
     public override void _Ready()
     {

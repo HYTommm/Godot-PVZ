@@ -15,7 +15,7 @@ public partial class Balloon : Armor
 	}
 
 	
-	public override void PlaySound()
+	public override void PlaySound(Hurt hurt)
 	{
 	}
 }

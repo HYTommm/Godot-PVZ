@@ -20,16 +20,17 @@ public partial class Bucket : Armor
 		
 	}
 
-	
-	public override void PlaySound()
+
+	public override void PlaySound(Hurt hurt)
 	{
+		base.PlaySound(hurt);
 		uint random = GD.Randi() % 2; // 随机播放音效
-        Sound.Stream = random switch
-        {
-            0 => Sound_ShieldHit,
-            1 => Sound_ShieldHit2,
-            _ => Sound.Stream
-        };
-        Sound.Play();
+		Sound.Stream = random switch
+		{
+			0 => Sound_ShieldHit,
+			1 => Sound_ShieldHit2,
+			_ => Sound.Stream
+		};
+		Sound.Play();
 	}
 }

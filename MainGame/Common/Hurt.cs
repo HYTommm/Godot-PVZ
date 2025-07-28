@@ -13,6 +13,8 @@ public enum HurtType
     Bomber = 0b0011_0001, // 可以被一类防具防御
     // 小推车类伤害
     LawnMower = 0b0100_0011, // 可以被一类和二类防具防御
+    // 啃食伤害
+    Eating = 0b0101_0011, // 可以被一类和二类防具防御
     // 其他伤害
     Other
 }
@@ -23,12 +25,11 @@ public partial class Hurt(int damage, HurtType hurtType) : Node2D
     public HurtType HurtType { get; set; } = hurtType;
 
     // 受击方是否被允许发出音效
-    public bool EnableTargetHitSFX = true;
+    public bool BEnableTargetHitSFX = true;
 
-    public Hurt HurtHealthEntity(HealthEntity entity)
-    {
-        Damage -= entity.Hurt(Damage);
-        return this;
-    }
+    //public Hurt HurtHealthEntity(HealthEntity entity)
+    //{
+    //    return this;
+    //}
 
 }

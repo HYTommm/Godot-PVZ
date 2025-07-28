@@ -393,7 +393,7 @@ public partial class MainGame : MainNode2D
 			zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
 			if (_zombieType.GetZombieScene(zombieType).Instantiate() is Zombie preZombie)
 			{
-				preZombie.Init(zombieType);
+				preZombie.Init();
 				//preZombie[zombieCount] = _zombieType.GetZombieScene(zombieType).Instantiate() as Zombie;
 				//preZombie[zombieCount].Init(zombieType);
 

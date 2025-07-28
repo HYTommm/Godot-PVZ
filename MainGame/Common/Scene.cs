@@ -259,6 +259,46 @@ public abstract partial class Scene : Node
 	}
 }
 
+public partial class MainMenuScene : Scene
+{
+	public MainMenuScene(Node global) : base(global)
+	{
+		LawnLeftTopPos = new Vector2(260, 80);
+		LawnUnitLength = 80;
+		LawnUnitWidth = 100;
+		LawnUnitSize = new Vector2(LawnUnitLength, LawnUnitWidth);
+
+		LawnUnitColCount = 9;
+		LawnUnitRowCount = 5;
+		LawnUnitCount = new Vector2I(LawnUnitColCount, LawnUnitRowCount);
+
+		CameraCenterPos = new Vector2(220, 0);
+		CameraRightPos = new Vector2(600, 0);
+
+		LawnMoverPos = new Vector2(194.5f, 121f);
+
+		BackGroundTexture = null;
+
+		BgmSelectSeedCard = Bgm_SelectSeedCard;
+
+		BgmNormalPre = Bgm_MainMenu;
+		BgmNormalLoop = Bgm_MainMenu;
+
+		BgmHighPre = null;
+		BgmHighLoop = null;
+
+		Init();
+	}
+
+	//public override void PlayMainGameBgm()
+	//{
+	//    BgmNormalPlayer.Stream = BgmNormalPre;
+	//    BgmNormalPlayer.VolumeDb = 0;
+	//    BgmHighPlayer.Stream = BgmHighPre;
+	//    PlayAllBgm();
+	//}
+}
+
 public partial class LawnDayScene : Scene
 {
 	public LawnDayScene(Node global) : base(global)
@@ -307,7 +347,7 @@ public partial class LawnDayScene : Scene
 		GD.Print("LawnDayScene::TurnToHighBGM");
 		Tween tween = BgmHighPlayer.CreateTween();
 		tween
-			.TweenProperty(BgmHighPlayer, "volume_db", -10, 5f)
+			.TweenProperty(BgmHighPlayer, "volume_db", 0, 5f)
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 		// 在 Tween 完成后打印实际音量
