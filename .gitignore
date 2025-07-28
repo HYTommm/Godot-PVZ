@@ -2,7 +2,10 @@
 .godot/
 .vs/
 bin/
-/android/
+android/
 art/
+fonts/
+icon/
 particles/
 sounds/
+
