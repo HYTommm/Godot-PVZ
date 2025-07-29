@@ -8,6 +8,8 @@ using static ResourceManager.Sounds;
 
 public partial class MainGame : MainNode2D
 {
+	public static MainGame Instance => _instance;
+	private static MainGame _instance;
 	private readonly ZombieWeightsAndGrades _zombieWeightsAndGrades = new();
 	private readonly ZombieType _zombieType = new();
 	// 当前波数
@@ -131,7 +133,7 @@ public partial class MainGame : MainNode2D
 		
 		SelectSeedCard();// 进入选卡环节
 
-		
+		_instance = this;		
 	}
 
 

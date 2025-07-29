@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://c0tdd4yfti6rd"]
+[gd_scene load_steps=2 format=3 uid="uid://c0tdd4yfti6rd"]
+
+[ext_resource type="Script" uid="uid://ba2a63cvwtk4a" path="res://Global.cs" id="1_4mbhf"]
 
 [node name="Global" type="Node"]
+script = ExtResource("1_4mbhf")
 
 [node name="BGM1" type="AudioStreamPlayer" parent="."]
 
