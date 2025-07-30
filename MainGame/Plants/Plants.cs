@@ -25,9 +25,10 @@ public abstract partial class Plants : HealthEntity
 
 	/// <summary>阳光消耗量</summary>
 	public int SunCost = -1;
-	
 
-	/// <summary>类：冷却时间</summary>
+	public virtual Vector2 Offset { get; set; } = new Vector2(35, 60);
+
+/// <summary>类：冷却时间</summary>
 	public class CDTime
 	{
 		/// <summary>快，约7.5秒</summary>
@@ -97,16 +98,16 @@ public abstract partial class Plants : HealthEntity
 		
 	}
 
-    /// <summary>
-    /// 虚函数，用于对植物扣血
-    /// </summary>
-    /// <param name="hurt"></param>
-    public override void Hurt(Hurt hurt)
+	/// <summary>
+	/// 虚函数，用于对植物扣血
+	/// </summary>
+	/// <param name="hurt"></param>
+	public override void Hurt(Hurt hurt)
 	{
-        int damage = Math.Min(hurt.Damage, HP);
-        HP -= damage;// 扣血
-        hurt.Damage -= damage;
-        if (HP <= 0) // 生命值小于等于0
+		int damage = Math.Min(hurt.Damage, HP);
+		HP -= damage;// 扣血
+		hurt.Damage -= damage;
+		if (HP <= 0) // 生命值小于等于0
 		{
 			FreePlant(); // 释放植物
 		}

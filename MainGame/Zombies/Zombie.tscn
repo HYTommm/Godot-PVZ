@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dmcf3b83fe3ii"]
+[gd_scene load_steps=56 format=3 uid="uid://dmcf3b83fe3ii"]
 
 [ext_resource type="Script" uid="uid://dt8fo0g1xv20p" path="res://MainGame/Zombies/Zombie.cs" id="1_wnjia"]
 [ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="2_6pykm"]
@@ -40,6 +40,10 @@
 [ext_resource type="Texture2D" uid="uid://duy6qu0e54kto" path="res://particles/ZombieArm.png" id="32_rbuq3"]
 [ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="39_gvoti"]
 [ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="40_7rhiy"]
+[ext_resource type="Texture2D" uid="uid://w3c4db7qo78p" path="res://art/MainGame/Zombie/Charred/Zombie_charred10.png" id="41_oaw43"]
+[ext_resource type="Texture2D" uid="uid://1egpt6suo5gi" path="res://art/MainGame/Zombie/Charred/Zombie_charred_tail.png" id="42_fa32l"]
+[ext_resource type="Texture2D" uid="uid://dq1vpg6fc1dev" path="res://art/MainGame/Zombie/Charred/Zombie_charred_pile2.png" id="43_rsqvs"]
+[ext_resource type="Texture2D" uid="uid://dahwtffsy45jd" path="res://art/MainGame/Zombie/Charred/Zombie_charred_pile1.png" id="44_2gsue"]
 
 [sub_resource type="Animation" id="Animation_spf5w"]
 length = 0.001
@@ -475,16 +479,58 @@ process_material = ExtResource("39_gvoti")
 visible = false
 position = Vector2(7, -3)
 
-[node name="Anim_blink" parent="Node2D" index="0"]
-visible = true
-
-[node name="Anim_crumble" parent="Node2D" index="1"]
+[node name="Zombie_charred_body" parent="Node2D" index="2"]
 visible = false
+position = Vector2(21.4, 41.6)
+texture = ExtResource("41_oaw43")
 
-[node name="Zombie_charred_blink" parent="Node2D" index="11"]
-position = Vector2(0, 0)
-scale = Vector2(1, 1)
-texture = null
+[node name="Zombie_charred_tail" parent="Node2D" index="3"]
+position = Vector2(33.4, 92.3)
+scale = Vector2(0.18, 0.379)
+texture = ExtResource("42_fa32l")
+
+[node name="Layer 10" parent="Node2D" index="4"]
+visible = true
+position = Vector2(4.2, 91.4)
+scale = Vector2(0.903, 0.716)
+skew = -0.038397
+texture = ExtResource("43_rsqvs")
+
+[node name="Zombie_charred_pile2" parent="Node2D" index="5"]
+visible = true
+position = Vector2(17, 105.7)
+scale = Vector2(0.372, 0.294)
+texture = ExtResource("43_rsqvs")
+
+[node name="Zombie_charred_pile21" parent="Node2D" index="6"]
+visible = true
+position = Vector2(36.9, 108.1)
+scale = Vector2(0.497, 0.326)
+texture = ExtResource("43_rsqvs")
+
+[node name="Zombie_charred_pile1" parent="Node2D" index="7"]
+visible = true
+position = Vector2(1.9, 112.6)
+rotation = 0.005236
+scale = Vector2(0.563, 0.554)
+texture = ExtResource("44_2gsue")
+
+[node name="Zombie_charred_pile1_2" parent="Node2D" index="8"]
+visible = true
+position = Vector2(27.8, 114.5)
+scale = Vector2(0.563, 0.593)
+texture = ExtResource("44_2gsue")
+
+[node name="Zombie_charred_head" parent="Node2D" index="9"]
+position = Vector2(8.5, 73.8)
+rotation = 0.354302
+scale = Vector2(0.799, 0.799)
+
+[node name="Zombie_hair" parent="Node2D" index="10"]
+position = Vector2(8.1, 77.4)
+rotation = 0.258309
+scale = Vector2(0.75, 0.731)
+skew = 0.027925
 
 [node name="GroundConstraint" type="LightOccluder2D" parent="."]
 position = Vector2(-20, 125)

@@ -1885,102 +1885,127 @@ visible = false
 centered = false
 
 [node name="CherryBomb_leftstem" type="Sprite2D" parent="Node2D"]
-position = Vector2(31, 17.1)
-rotation = 0.493928
+position = Vector2(29.7, 5.9)
+rotation = 0.774926
 scale = Vector2(0.599, 0.599)
 texture = ExtResource("0_fuck")
 centered = false
 
 [node name="CherryBomb_left1" type="Sprite2D" parent="Node2D"]
-position = Vector2(4, 30.9)
-scale = Vector2(0.8, 0.8)
+visible = false
+position = Vector2(-8.3, 17.2)
+rotation = 0.057596
+scale = Vector2(1.152, 1.246)
 texture = ExtResource("1_fuck")
 centered = false
 
 [node name="CherryBomb_left3" type="Sprite2D" parent="Node2D"]
-visible = false
+position = Vector2(-12.4, 5.3)
+rotation = 0.171042
+scale = Vector2(1.037, 1.003)
+texture = ExtResource("2_fuck")
 centered = false
 
 [node name="CherryBomb_lefteye11" type="Sprite2D" parent="Node2D"]
-position = Vector2(8.7, 41.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-9.7, 22.1)
+rotation = 0.174533
+scale = Vector2(1.184, 1.214)
 texture = ExtResource("3_fuck")
 centered = false
 
 [node name="CherryBomb_lefteye21" type="Sprite2D" parent="Node2D"]
-position = Vector2(21.2, 44.3)
-scale = Vector2(0.8, 0.8)
+position = Vector2(15.4, 31.8)
+rotation = 0.174533
+scale = Vector2(1.184, 1.214)
 texture = ExtResource("4_fuck")
 centered = false
 
 [node name="CherryBomb_leftmouth1" type="Sprite2D" parent="Node2D"]
-position = Vector2(9.2, 52.9)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-15.9, 43.3)
+rotation = 0.174533
+scale = Vector2(1.698, 1.214)
 texture = ExtResource("5_fuck")
 centered = false
 
 [node name="CherryBomb_rightstem" type="Sprite2D" parent="Node2D"]
-position = Vector2(34, 21.9)
-rotation = 6.23432
-scale = Vector2(0.5, 0.5)
+position = Vector2(34.5, 7.6)
+rotation = 0.338594
+scale = Vector2(0.57, 0.554)
+skew = 0.012217
 texture = ExtResource("6_fuck")
 centered = false
 
 [node name="CherryBomb_right1" type="Sprite2D" parent="Node2D"]
-position = Vector2(44.5, 31.3)
-scale = Vector2(0.8, 0.8)
+visible = false
+position = Vector2(31.8, 22.7)
+rotation = -0.143117
+scale = Vector2(1.308, 1.327)
+skew = 0.02618
 texture = ExtResource("7_fuck")
 centered = false
 
 [node name="CherryBomb_right3" type="Sprite2D" parent="Node2D"]
-visible = false
+position = Vector2(26.2, 23.3)
+rotation = -0.270526
+scale = Vector2(1.116, 1.116)
+texture = ExtResource("8_fuck")
 centered = false
 
 [node name="CherryBomb_righteye11" type="Sprite2D" parent="Node2D"]
-position = Vector2(66.7, 42)
-scale = Vector2(0.8, 0.8)
+position = Vector2(76.2, 30.2)
+scale = Vector2(1.218, 1.218)
 texture = ExtResource("9_fuck")
 centered = false
 
 [node name="CherryBomb_righteye21" type="Sprite2D" parent="Node2D"]
-position = Vector2(51.4, 45.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(38.6, 38.7)
+scale = Vector2(1.493, 1.493)
 texture = ExtResource("10_fuck")
 centered = false
 
 [node name="CherryBomb_rightmouth1" type="Sprite2D" parent="Node2D"]
-position = Vector2(63.1, 50.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(56.4, 52.7)
+rotation = -0.118682
+scale = Vector2(3.386, 1.077)
+skew = 0.036652
 texture = ExtResource("11_fuck")
 centered = false
 
 [node name="CherryBomb_leaf3" type="Sprite2D" parent="Node2D"]
-position = Vector2(36.1, 11.7)
-scale = Vector2(0.8, 0.8)
+position = Vector2(39.5, 0.5)
+rotation = 0.328122
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("12_fuck")
 centered = false
 
 [node name="CherryBomb_leaf2tip" type="Sprite2D" parent="Node2D"]
-position = Vector2(25.5, 7.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(42.8, -6.3)
+rotation = 1.58825
+scale = Vector2(0.796, 0.859)
+skew = 0.383972
 texture = ExtResource("13_fuck")
 centered = false
 
 [node name="CherryBomb_leaf2" type="Sprite2D" parent="Node2D"]
-position = Vector2(27.2, 5.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(42, -8.7)
+rotation = 0.818559
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("14_fuck")
 centered = false
 
 [node name="CherryBomb_leaf1" type="Sprite2D" parent="Node2D"]
-position = Vector2(23.3, 14.1)
-scale = Vector2(0.8, 0.8)
+position = Vector2(33.5, -5.2)
+rotation = 0.809833
+scale = Vector2(0.798, 0.805)
+skew = 0.130899
 texture = ExtResource("15_fuck")
 centered = false
 
 [node name="CherryBomb_leaf1tip" type="Sprite2D" parent="Node2D"]
-position = Vector2(18, 14.9)
-scale = Vector2(0.8, 0.871)
+position = Vector2(29.2, -10.1)
+rotation = 0.963422
+scale = Vector2(0.796, 0.802)
+skew = -0.125664
 texture = ExtResource("16_fuck")
 centered = false
 

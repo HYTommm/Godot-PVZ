@@ -10,8 +10,8 @@ public partial class MainMenu_SelectorScreen : MainNode2D
 	public override void _Ready()
 	{
 		_mainMenuScene = new MainMenuScene(this.GetGlobalNode());// 设置场景
-		_mainMenuScene.PlayMainGameBgm(); // 播放BGM
-		_mainMenuScene.TurnToNormalBgm();
+		//_mainMenuScene.PlayMainGameBgm(); // 播放BGM
+		//_mainMenuScene.TurnToNormalBgm();
 
 	}
 

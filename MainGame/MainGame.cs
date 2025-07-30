@@ -143,7 +143,7 @@ public partial class MainGame : MainNode2D
 		// 如果SeedCard被选中
 		if (BIsSeedCardSelected)
 		{
-			_seed.Position = _seedPacketNode.GetGlobalMousePosition() - new Vector2(35, 60);
+			_seed.Position = _seedPacketNode.GetGlobalMousePosition() - _seed.Offset;
 			
 			Vector2 mouseGlobalPos = GetGlobalMousePosition();
 			if (   mouseGlobalPos.X >= GameScene.LawnLeftTopPos.X && mouseGlobalPos.X < GameScene.LawnLeftTopPos.X + GameScene.LawnUnitLength * GameScene.LawnUnitCount.X
@@ -286,7 +286,7 @@ public partial class MainGame : MainNode2D
 		PlantsContainer.AddChild(_seedClone);
 
 		// 初始化种子
-		seed.Position = _seedPacketNode.GetViewport().GetMousePosition() - new Vector2(35, 60);
+		seed.Position = _seedPacketNode.GetViewport().GetMousePosition() - seed.Offset;
 		// 添加植物
 		//seedNode.GetCanvasLayerNode().AddChild(seed);
 		PlantsContainer.AddChild(seed);
