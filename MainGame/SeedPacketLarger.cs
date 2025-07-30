@@ -26,7 +26,7 @@ public partial class SeedPacketLarger : Node2D
 	public override void _Ready()
 	{
 
-		MainGame = this.GetMainGame(); // 获取主游戏节点
+		MainGame = MainGame.Instance; // 获取主游戏节点
 		CostColorRect = GetNode<ColorRect>("./CostColorRect"); // 获取花费遮挡阴影节点
 		CDColorRect = GetNode<ColorRect>("./CDColorRect"); // 获取CD遮挡阴影节点
 		SeedPacketFlash = GetNode<AnimationPlayer>("./SeedPacketFlash/SeedPacketFlash"); // 获取种子卡片闪烁节点

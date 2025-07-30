@@ -120,7 +120,7 @@ public partial class MainGame : MainNode2D
 			ZombieTypeEnum.Screendoor
 		]);
 		GetNode<Node>("/root").PrintTreePretty();
-		GameScene = new LawnDayScene(this.GetGlobalNode());// 设置场景
+		GameScene = new LawnDayScene(Global.Instance);// 设置场景
 		//GameScene = new PoolDayScene();
 		GetNode<Sprite2D>("./BackGround").Texture = GameScene.BackGroundTexture;// 设置背景
 		InitLawnMowers(GameScene);// 初始化草坪机

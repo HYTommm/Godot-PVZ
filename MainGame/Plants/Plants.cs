@@ -56,7 +56,7 @@ public abstract partial class Plants : HealthEntity
 	public override void _Ready()
 	{
 		base._Ready();
-		MainGame = this.GetMainGame();
+		MainGame = MainGame.Instance;
 		AddChild(_plantSound); // 添加种植音效播放器
 		GD.Print(MainGame);
 	}
@@ -139,7 +139,7 @@ public abstract partial class Plants : HealthEntity
 	public virtual void FreePlant()
 	{
 		if (Index >= 0)
-			this.GetMainGame().RemovePlant(this);
+			MainGame.Instance.RemovePlant(this);
 		BIsPlanted = false; // 设置状态为 未种植
 		Visible = false;
 	}

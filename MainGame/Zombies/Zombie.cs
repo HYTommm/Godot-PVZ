@@ -119,7 +119,7 @@ public partial class Zombie : HealthEntity
 		Zombie_outerarm_hand.Visible = true;
 	
 		// 获取主游戏节点
-		MainGame = this.GetMainGame();
+		MainGame = MainGame.Instance;
 	
 		// 获取防御区域节点
 		//DefenseArea = GetNode<Area2D>("./Zombie/DefenseArea");

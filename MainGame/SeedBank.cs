@@ -10,13 +10,13 @@ public partial class SeedBank : Sprite2D
 	public override void _Ready()
 	{
 		//UpdateSunCount();
-		MainGame = this.GetMainGame();
+		MainGame = MainGame.Instance;
 		FlashWarningSound.Stream = GD.Load<AudioStream>("res://sounds/buzzer.ogg");
 		AddChild(FlashWarningSound);
 	}
 	public void UpdateSunCount()
 	{
-		int count = this.GetMainGame().SunCount;
+		int count = MainGame.SunCount;
 		GetNode<Label>("SunCountLabel").Text = count.ToString();
 	}
 

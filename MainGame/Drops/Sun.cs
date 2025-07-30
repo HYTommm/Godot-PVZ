@@ -28,7 +28,7 @@ public partial class Sun : Drops
 		base._Ready();
 		SunSelectSound.Stream = Sounds.Sound_Points;
 		AddChild(SunSelectSound);
-		MainGame = this.GetMainGame();
+		MainGame = MainGame.Instance;
 	}
 	public void SetGroundPosY(int y)
 	{
