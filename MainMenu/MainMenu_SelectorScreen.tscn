@@ -74,13 +74,13 @@ position = Vector2(70, 40)
 texture = ExtResource("5_rsg4t")
 centered = false
 
-[node name="StartAdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("_main")]
+[node name="StartAdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("Main")]
 position = Vector2(328, 25)
 texture = ExtResource("6_dw6ha")
 centered = false
 hframes = 2
 script = ExtResource("7_nk3so")
-_main = NodePath("../..")
+Main = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="BG_Right/StartAdventureButton"]
@@ -95,14 +95,14 @@ position = Vector2(-7.82831, -51.6336)
 rotation = 0.10472
 shape = SubResource("RectangleShape2D_5sfpo")
 
-[node name="AdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("_main")]
+[node name="AdventureButton" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("Main")]
 visible = false
 position = Vector2(335, 39.7)
 texture = ExtResource("8_ccvj7")
 centered = false
 hframes = 2
 script = ExtResource("7_nk3so")
-_main = NodePath("../..")
+Main = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="BG_Right/AdventureButton"]
@@ -113,13 +113,13 @@ position = Vector2(-3, -5)
 rotation = 0.10472
 shape = SubResource("RectangleShape2D_bloc8")
 
-[node name="Help" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("_main")]
+[node name="Help" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("Main")]
 position = Vector2(578, 487)
 texture = ExtResource("9_in0xe")
 centered = false
 hframes = 2
 script = ExtResource("10_cvj23")
-_main = NodePath("../..")
+Main = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="BG_Right/Help"]
@@ -129,13 +129,13 @@ position = Vector2(24, 11)
 position = Vector2(0, -9.75)
 shape = SubResource("RectangleShape2D_xmqqh")
 
-[node name="Options" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("_main")]
+[node name="Options" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("Main")]
 position = Vector2(494, 449)
 texture = ExtResource("11_07l5e")
 centered = false
 hframes = 2
 script = ExtResource("12_e5mpn")
-_main = NodePath("../..")
+Main = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="BG_Right/Options"]
@@ -144,13 +144,13 @@ position = Vector2(40, 15)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BG_Right/Options/Area2D"]
 shape = SubResource("RectangleShape2D_dctkk")
 
-[node name="Quit" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("_main")]
+[node name="Quit" type="Sprite2D" parent="BG_Right" node_paths=PackedStringArray("Main")]
 position = Vector2(650, 473)
 texture = ExtResource("13_7yo4n")
 centered = false
 hframes = 2
 script = ExtResource("14_w66ex")
-_main = NodePath("../..")
+Main = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="BG_Right/Quit"]
@@ -180,14 +180,14 @@ texture_filter = 1
 position = Vector2(168.5, 64)
 texture = ExtResource("14_y24e0")
 
-[node name="WoodSign2" type="Sprite2D" parent="." node_paths=PackedStringArray("_main")]
+[node name="WoodSign2" type="Sprite2D" parent="." node_paths=PackedStringArray("Main")]
 texture_filter = 1
 position = Vector2(24, 125)
 texture = ExtResource("19_fenbu")
 centered = false
 hframes = 2
 script = ExtResource("20_qgg5r")
-_main = NodePath("..")
+Main = NodePath("..")
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="WoodSign2"]
