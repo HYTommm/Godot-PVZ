@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static ResourceManager;
+using static ResourceDB;
 
 public partial class LawnMower : Node2D
 {
@@ -34,6 +34,7 @@ public partial class LawnMower : Node2D
 
 	public void MoveTo(Vector2 endPosition)
 	{
+		GD.Print("LawnMower: Moving to " + endPosition);
 		_endPosition = endPosition;
 		_isMoving = true;
 		AnimMoveNormal.Play(name: "LawnMower_normal", customSpeed: 1.5f);
@@ -46,44 +47,51 @@ public partial class LawnMower : Node2D
 
 	public override void _Process(double delta)
 	{
+        
 		if (_isMoving)
 		{
-			Vector2 direction = _endPosition - _startPosition;
-			direction = direction.Normalized();
-			Position += direction * _speed * (float)delta;
-		}
+            Vector2 direction = _endPosition - _startPosition;
+            direction = direction.Normalized();
+			Vector2 stepDelta = direction * _speed * (float)delta;
+			Position += stepDelta;
+            Vector2 remainingDirection = (_endPosition - Position + stepDelta).Normalized();
+            if (Position.DistanceTo(_endPosition) < 3f ||
+                remainingDirection.X * direction.X < 0 ||
+                remainingDirection.Y * direction.Y < 0)
+            {
+                GD.Print("LawnMower: Reached destination " + _endPosition);
+                _isMoving = false;
+                Position = _endPosition;
+                AnimMoveNormal.Stop();
+            }
+        }
 		if (_slowDownTime > 0f)
 		{
 			_slowDownTime -= (float)delta;
 			if (_slowDownTime <= 0f)
 				_speed = NormalSpeed;
 		}
-		if (Position.DistanceTo(_endPosition) < 3f)
-		{
-			_isMoving = false;
-			AnimMoveNormal.Stop();
-		}
 	}
 
 	// 当与僵尸碰撞时，触发此函数
-	public void OnAreaEntered(Area2D area)
-	{
-		GD.Print("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
-		if (area.GetNode("../..") is Zombie zombie && zombie.Row == Row)
-		{
-			zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
-			GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
-			if (!_isMoving)
-			{
-				_speed = NormalSpeed;
-				_engineSound.Play();
-				MoveTo(new Vector2(1200, Position.Y));
-			}
-			else
-			{
-				_speed = SlowDownSpeed;
-				_slowDownTime = 0.5f; 
-			}
-		}
-	}
+    public void OnAreaEntered(Area2D area)
+    {
+        GD.Print("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
+        if (area.GetNode("../..") is Zombie zombie && zombie.Row == Row)
+        {
+            zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
+            GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
+            if (!_isMoving)
+            {
+                _speed = NormalSpeed;
+                _engineSound.Play();
+                MoveTo(new Vector2(1200, Position.Y));
+            }
+            else
+            {
+                _speed = SlowDownSpeed;
+                _slowDownTime = 0.5f; 
+            }
+        }
+    }
 }

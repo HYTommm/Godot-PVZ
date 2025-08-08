@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ResourceManager.Sounds;
-using static ResourceManager.Images.Zombies.Armors;
+using static ResourceDB.Sounds;
+using static ResourceDB.Images.Zombies.Armors;
 
 public partial class Hardhat : Armor
 {
@@ -24,6 +24,9 @@ public partial class Hardhat : Armor
 	public override void PlaySound(Hurt hurt)
 	{
 		base.PlaySound(hurt);
+        if (!hurt.BEnableTargetHitSFX)
+            return;
+
 		uint random = GD.Randi() % 2; // 随机播放音效
         Sound.Stream = random switch
         {

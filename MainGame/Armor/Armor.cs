@@ -38,18 +38,18 @@ public abstract partial class Armor : HealthEntity
 
 	public override void Hurt(Hurt hurt)
 	{
-        if (HP <= 0)    {    return;    }
-        int damage = Math.Min(hurt.Damage, HP);
-        HP -= damage;
-        hurt.Damage -= damage;
+		if (HP <= 0)    {    return;    }
+		int damage = Math.Min(hurt.Damage, HP);
+		HP -= damage;
+		hurt.Damage -= damage;
 
 		if (HP <= 0)
 		{
-            ArmorSprite.SelfModulate = new Color(0, 0, 0, 0);
-            ShowParts.ForEach(x => x.Visible = false);
-            HideParts.ForEach(x => x.Visible = true);
-            PlayParticles();
-        }
+			ArmorSprite.SelfModulate = new Color(0, 0, 0, 0);
+			ShowParts.ForEach(x => x.Visible = false);
+			HideParts.ForEach(x => x.Visible = true);
+			PlayParticles();
+		}
 		if (hurt.BEnableTargetHitSFX)
 			PlaySound(hurt);
 		SetWearLevel();
@@ -61,13 +61,17 @@ public abstract partial class Armor : HealthEntity
 		{
 			case HurtType.Direct:
 			case HurtType.Thrown:
+				GD.Print("Play sound");
 				break;
+			case HurtType.AshExplosion:
 			case HurtType.Explosion:
-				return;
+				GD.Print("AshExplosion, no sound");
+				hurt.BEnableTargetHitSFX = false;
+				break;
 		}
 	}
 
-    public virtual void PlayParticles()
+	public virtual void PlayParticles()
 	{
 		Array<Node> particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
 		GD.Print("particles count: " + particles.Count);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public partial class BucketheadZombie : Zombie
 {
+	[Export] public Sprite2D Zombie_bucket;
 	public BucketheadZombie()
 	{
 		HP = 270;
@@ -20,9 +21,9 @@ public partial class BucketheadZombie : Zombie
 	{
 		base._Ready();
 		Bucket bucket = new(
-			GetNode<Sprite2D>("Zombie/Anim_bucket"),
-            [],
-            [Zombie_hair]);
+			Zombie_bucket,
+			[],
+			[Zombie_hair]);
 		ArmorSystem.AddArmor(bucket);
 	}
 }

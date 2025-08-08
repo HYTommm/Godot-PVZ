@@ -2,16 +2,20 @@ using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;
+using static ResourceDB.Sounds;
 
 public partial class PeaShooterSingle : Plants
 {
 	private Vector2 _headPos; // 头部位置
 	private readonly Vector2 _constStemPos = new((float)37.6, (float)48.7); //常数：茎位置
-	private AnimationPlayer _animIdle, _animHead; // Idle动画和Head动画
+	[Export]private AnimationPlayer _animIdle; // Idle动画和Head动画
+	[Export]private AnimationPlayer _animHead; // Idle动画和Head动画
 	private float _speedScaleOfIdle = 1.56f; // Idle动画速度
 
 	public AudioStreamPlayer ShootSound = new(); // 射击音效
-	private Node2D _stem, _head;// 茎和头节点
+	[Export]private Node2D _nodeStem;// 茎节点
+	[Export]private Node2D _nodeHead;// 头节点
+	[Export] private Node2D _nodeMouth;// 嘴
 	private double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
 
 
@@ -43,14 +47,9 @@ public partial class PeaShooterSingle : Plants
 	public override void _Ready()
 	{
 		base._Ready();
-		_animIdle = GetNode<AnimationPlayer>("./Idle");
-		_animHead = GetNode<AnimationPlayer>("./Head/Head");
 		_speedScaleOfIdle = MainGame.RNG.RandfRange(1.2f, 1.6f);
 
-		_stem = GetNode<Node2D>("./Anim_stem");
-		_head = GetNode<Node2D>("./Head");
-
-		ShootSound.Stream = (AudioStream)GD.Load("res://sounds/throw.ogg");
+		ShootSound.Stream = Sound_Throw;
 		AddChild(ShootSound);
 
 		_canShootTimer.WaitTime = MainGame.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
@@ -59,14 +58,14 @@ public partial class PeaShooterSingle : Plants
 		_canShootTimer.Timeout += CanShoot;
 		AddChild(_canShootTimer);
 		
-		_headPos = _head.Position;
+		_headPos = _nodeHead.Position;
 		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		_head.Position = _headPos + (_stem.Position - _constStemPos); // 头部跟随茎移动
+		_nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
 
 		if (_canShoot && MainGame != null && HP > 0) //如果可以射击且主游戏不为空
 		{
@@ -116,7 +115,7 @@ public partial class PeaShooterSingle : Plants
 	/// <summary>
 	/// 射击
 	/// </summary>
-	public async void Shoot()
+	public void Shoot()
 	{
 		if (_animHead.CurrentAnimation == "Head_Idle")
 			_timeOfIdleWhenShooting = _animHead.CurrentAnimationPosition; // 记录Idle动画的时间
@@ -125,16 +124,23 @@ public partial class PeaShooterSingle : Plants
 		RandomShootTime(); // 随机射击时间
 
 		_animHead.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0/12.0, 2.85f);  // 头部射击动画
-		await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
+		GetTree().CreateTimer(0.35f).Timeout += ShootBullet; // 等待0.35秒后射击子弹
+		//await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
+
+		ShootCount++; // 射击次数+1
+		
+		//Anim_Shoot.Play("RESET");
+	}
+
+	public void ShootBullet()
+	{
+		GD.Print("ShootBullet()");
 		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
 		//GD.Print(bullet);
 		bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
 		bullet.ShadowPositionY = GetNode<Node2D>("Shadow").GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
 		AddChild(bullet); // 添加子弹到场景中
 		ShootSound.Play(); // 播放射击音效
-		ShootCount++; // 射击次数+1
-		
-		//Anim_Shoot.Play("RESET");
 	}
 
 	/// <summary> 随机射击时间 </summary>

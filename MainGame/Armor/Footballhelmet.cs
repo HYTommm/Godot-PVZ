@@ -1,6 +1,6 @@
 using Godot;
-using static ResourceManager.Sounds;
-using static ResourceManager.Images.Zombies.Armors;
+using static ResourceDB.Sounds;
+using static ResourceDB.Images.Zombies.Armors;
 using System.Collections.Generic;
 
 public partial class FootballHelmet : Armor
@@ -20,6 +20,9 @@ public partial class FootballHelmet : Armor
 	public override void PlaySound(Hurt hurt)
 	{
 		base.PlaySound(hurt);
+        if (!hurt.BEnableTargetHitSFX)
+            return;
+
 		uint random = GD.Randi() % 2; // 随机播放啃食音效
         Sound.Stream = random switch
         {

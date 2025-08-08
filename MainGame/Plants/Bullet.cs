@@ -1,5 +1,5 @@
 using Godot;
-using static ResourceManager.Sounds;
+using static ResourceDB.Sounds;
 using System;
 
 public partial class Bullet : Node2D
@@ -37,9 +37,15 @@ public partial class Bullet : Node2D
 		
 	}
 
-	public async void OnAreaEntered(Area2D area)
+	public void OnAreaEntered(Area2D area)
 	{
-		//GD.Print("Bullet collided with " + area.Name);
+		if (_BisDisappear)
+        {
+			GD.Print("Bullet has already disappeared!");
+            return;
+        }
+
+        //GD.Print("Bullet collided with " + area.Name);
 		_BisDisappear = true; // 子弹消失
 
 		_bulletSprite2D.Visible = false; // 子弹不可见
@@ -50,38 +56,43 @@ public partial class Bullet : Node2D
 		if (area.GetNode("../..") is Zombie zombie) 
 		{
 			
-			//GD.Print("Bullet hit zombie"); 
-			//僵尸扣血
-			zombie.Hurt(new Hurt(Damage, HurtType.Direct));
-			//zombie.Die();
-			//是sprite节点不可见
-			
-			
-			_gpuParticles.SetDeferred("emitting", true);
-			
-
-			// 随机数
-			uint random = GD.Randi() % 3;
-			//GD.Print("Random number: " + random);
-			// 根据随机数播放不同的爆炸声音
-            _bulletSplatsSound.Stream = random switch
-            {
-                0 => Sound_Splat,
-                1 => Sound_Splat2,
-                2 => Sound_Splat3,
-                _ => _bulletSplatsSound.Stream
-            };
-
-            // 播放爆炸声音
-			_bulletSplatsSound.Play();
-
-			// 延迟0.4秒后销毁子弹
-			await ToSignal(GetTree().CreateTimer(0.4), SceneTreeTimer.SignalName.Timeout);
-			QueueFree();
+			AttackZombie(zombie);
 		}
 		else
 		{
 			GD.Print("子弹没有击中僵尸！它可能击中了其他东西：" + area.Name);
 		}
 	}
+
+	public async void AttackZombie(Zombie zombie)
+	{
+        GD.Print("Bullet hit zombie");
+        //僵尸扣血
+        zombie.Hurt(new Hurt(Damage, HurtType.Direct));
+        //zombie.Die();
+        //是sprite节点不可见
+
+
+        _gpuParticles.SetDeferred("emitting", true);
+
+
+        // 随机数
+        uint random = GD.Randi() % 3;
+        //GD.Print("Random number: " + random);
+        // 根据随机数播放不同的爆炸声音
+        _bulletSplatsSound.Stream = random switch
+        {
+            0 => Sound_Splat,
+            1 => Sound_Splat2,
+            2 => Sound_Splat3,
+            _ => _bulletSplatsSound.Stream
+        };
+
+        // 播放爆炸声音
+        _bulletSplatsSound.Play();
+
+        // 延迟0.4秒后销毁子弹
+        await ToSignal(GetTree().CreateTimer(0.4), SceneTreeTimer.SignalName.Timeout);
+        QueueFree();
+    }
 }

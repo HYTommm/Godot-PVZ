@@ -1,7 +1,7 @@
 using Godot;
 using static Godot.GD;
 
-public static class ResourceManager
+public static class ResourceDB
 {
 	public static class Sounds
 	{
@@ -9,7 +9,8 @@ public static class ResourceManager
 		public static readonly AudioStream Sound_Tap         = Load<AudioStream>("res://sounds/tap.ogg");
 		public static readonly AudioStream Sound_Tap2        = Load<AudioStream>("res://sounds/tap2.ogg");
 		public static readonly AudioStream Sound_GraveButton = Load<AudioStream>("res://sounds/gravebutton.ogg");
-		public static readonly AudioStream Sound_Points      = Load<AudioStream>("res://sounds/points.ogg"); 
+		public static readonly AudioStream Sound_Points      = Load<AudioStream>("res://sounds/points.ogg");
+		public static readonly AudioStream Sound_Throw       = Load<AudioStream>("res://sounds/throw.ogg");
 
 		public static readonly AudioStream Sound_LoseMusic   = Load<AudioStream>("res://sounds/losemusic.ogg");
 		public static readonly AudioStream Sound_EvilLaugh   = Load<AudioStream>("res://sounds/evillaugh.ogg");
@@ -17,6 +18,8 @@ public static class ResourceManager
 		public static readonly AudioStream Sound_Splat       = Load<AudioStream>("res://sounds/splat.ogg");
 		public static readonly AudioStream Sound_Splat2      = Load<AudioStream>("res://sounds/splat2.ogg");
 		public static readonly AudioStream Sound_Splat3      = Load<AudioStream>("res://sounds/splat3.ogg");
+
+		public static readonly AudioStream Sound_Buzzer      = Load<AudioStream>("res://sounds/buzzer.ogg");
 
 		public static readonly AudioStream Sound_Chomp       = Load<AudioStream>("res://sounds/chomp.ogg");
 		public static readonly AudioStream Sound_Chomp2      = Load<AudioStream>("res://sounds/chomp2.ogg");
@@ -35,6 +38,7 @@ public static class ResourceManager
 		public static readonly AudioStream Sound_Explosion        = Load<AudioStream>("res://sounds/explosion.ogg");
 		public static readonly AudioStream Sound_CherryBomb       = Load<AudioStream>("res://sounds/cherrybomb.ogg");
 		public static readonly AudioStream Sound_Jalapeno         = Load<AudioStream>("res://sounds/jalapeno.ogg");
+		public static readonly AudioStream Sound_PotatoMine       = Load<AudioStream>("res://sounds/potato_mine.ogg");
 
 		public static class Bgm
 		{

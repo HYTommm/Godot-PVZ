@@ -28,30 +28,30 @@ public partial class SunFlower : MoneyCropsPlants
 	{
 		if (!BIsPlanted)
 			return;
-        if (GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() is Sun sun)
-        {
-            sun.Position = new Vector2(Position.X + 40, Position.Y + 20); // 设置太阳的位置
-            sun.Scale = new Vector2(0.3f, 0.3f); // 设置太阳的大小
-            MainGame.SunContainer.AddChild(sun); // 添加太阳到场景中
+		if (GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() is Sun sun)
+		{
+			sun.Position = new Vector2(Position.X + 40, Position.Y + 20); // 设置太阳的位置
+			sun.Scale = new Vector2(0.3f, 0.3f); // 设置太阳的大小
+			MainGame.SunContainer.AddChild(sun); // 添加太阳到场景中
 
-            sun._Drop(); // 太阳掉落
-        }
+			sun._Drop(); // 太阳掉落
+		}
 
-        TimerProduce.WaitTime = MainGame.RNG.RandfRange(23.5f, 35.0f); // 设置生产时间
+		TimerProduce.WaitTime = MainGame.RNG.RandfRange(23.5f, 35.0f); // 设置生产时间
 		TimerProduce.Start(); // 启动生产计时器
 		GD.Print("TimerProduce : Time = " + TimerProduce.WaitTime);
 	}
 
-    public override void Hurt(Hurt hurt)
-    {
+	public override void Hurt(Hurt hurt)
+	{
 		return;
-    }
+	}
 	
 	public override void _Ready()
 	{
 		
 		base._Ready();
-
+		GD.Print("SunFlower _Ready", MainGame.Instance);
 		ProduceTime = MainGame.RNG.RandfRange(3.0f, 12.5f); // 设置产出时间
 		Anim_idle = GetNode<AnimationPlayer>("./Idle");
 		Anim_blink = GetNode<AnimationPlayer>("./Blink");

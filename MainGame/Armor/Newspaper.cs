@@ -1,5 +1,5 @@
 using Godot;
-using static ResourceManager.Images.Zombies.Armors;
+using static ResourceDB.Images.Zombies.Armors;
 using System.Collections.Generic;
 
 public partial class Newspaper : Armor

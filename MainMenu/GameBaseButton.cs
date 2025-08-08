@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static ResourceManager.Sounds;
+using static ResourceDB.Sounds;
 
 public partial class GameBaseButton : Sprite2D
 {
@@ -8,6 +8,8 @@ public partial class GameBaseButton : Sprite2D
 	public bool BCan_move = true;
 	public bool BPicked = false;
 	public bool BMouseEntered = false;
+	public bool BMouse_left_down = false;
+	public bool BMouse_left_up = false;
 	public bool BHas_frame = true;
 	public AudioStreamPlayer BleepSound = new();
 	public AudioStreamPlayer TapSound = new();
@@ -16,14 +18,32 @@ public partial class GameBaseButton : Sprite2D
 	{
 		Pos = Position;
 		
-		Main.MouseLeftUp += MouseLeftUp;
-		Main.MouseLeftDown += MouseLeftDown;
+		//Main.MouseLeftUp += MouseLeftUp;
+		//Main.MouseLeftDown += MouseLeftDown;
 
 		BleepSound.Stream = Sound_Bleep;
 		TapSound.Stream = Sound_Tap;
 
 		AddChild(BleepSound);
 		AddChild(TapSound);
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouseEvent)
+		{
+			if (mouseEvent.ButtonIndex == MouseButton.Left)
+			{
+				if (mouseEvent.Pressed)
+				{
+					MouseLeftDown();
+				}
+				else
+				{
+					MouseLeftUp();
+				}
+			}
+		}
 	}
 
 	public void MouseLeftUp()
@@ -73,7 +93,7 @@ public partial class GameBaseButton : Sprite2D
 		//GD.Print(picked);
 		GD.Print("MouseEntered");
 		BMouseEntered = true;
-		if (Main.BMouse_left_down)
+		if (BMouse_left_down)
 		{
 			if (Main.BMousePicked && BPicked && BCan_move)
 			{
@@ -90,9 +110,10 @@ public partial class GameBaseButton : Sprite2D
 	}
 	private void OnMouseExited()
 	{
+		GD.Print("MouseExited");
 		BMouseEntered = false;
 		Position = Pos;
-		if (!Main.BMouse_left_down && BHas_frame)
+		if (!BMouse_left_down && BHas_frame)
 		{
 			Frame = 0;
 		}

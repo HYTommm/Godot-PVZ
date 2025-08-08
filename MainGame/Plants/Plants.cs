@@ -28,6 +28,10 @@ public abstract partial class Plants : HealthEntity
 
 	public virtual Vector2 Offset { get; set; } = new Vector2(35, 60);
 
+
+	[Export] public TextEdit TextEdit;
+	[Export] public Sprite2D Shadow;
+
 /// <summary>类：冷却时间</summary>
 	public class CDTime
 	{
@@ -77,12 +81,12 @@ public abstract partial class Plants : HealthEntity
 		Row = row; // 设置植物所在行
 		Col = col; // 设置植物所在列
 		Index = index; // 设置植物的索引/栈数
-		GetNode<TextEdit>("./TextEdit").Text = Index.ToString(); // 设置TextEdit显示栈数
+		TextEdit.Text = Index.ToString(); // 设置TextEdit显示栈数
 		Visible = true; // 显示
 		BIsPlanted = true; // 设置状态为 已种植
 		//SelfModulate = new Color(1, 1, 1, 1);
 		_SetColor(new Color(1, 1, 1, 1)); // 设置颜色
-		GetNode<Sprite2D>("Shadow").Visible = true; // 显示阴影
+		Shadow.Visible = true; // 显示阴影
 
 		uint random = GD.Randi() % 2; // 随机播放种植音效
 		_plantSound.Stream = random switch
@@ -130,7 +134,7 @@ public abstract partial class Plants : HealthEntity
 	public virtual void _SetAlpha(float alpha)
 	{
 		// 读取当前颜色rgb的值，并设置透明度
-		SelfModulate = new Color(SelfModulate.R, SelfModulate.G, SelfModulate.B, alpha); 
+		SelfModulate = SelfModulate with { A = alpha };
 	}
 
 	/// <summary>

@@ -4,6 +4,7 @@ using System;
 
 public partial class ConeheadZombie : Zombie
 {
+	[Export] public Sprite2D Zombie_cone;
 	public ConeheadZombie()
 	{
 		HP = 270;
@@ -20,7 +21,7 @@ public partial class ConeheadZombie : Zombie
 	{
 		base._Ready();
 		Cone cone = new(
-			GetNode<Sprite2D>("Zombie/Anim_cone"),
+			Zombie_cone,
 			[],
 			[Zombie_hair]);
 		ArmorSystem.AddArmor(cone);

@@ -1,6 +1,6 @@
 using Godot;
 using Godot.Collections;
-using static ResourceManager.Sounds;
+using static ResourceDB.Sounds;
 
 public partial class CherryBomb : Plants
 {
@@ -8,6 +8,8 @@ public partial class CherryBomb : Plants
 	[Export]private GpuParticles2D _particleExplode1;
 	[Export]private GpuParticles2D _particleExplode2;
 	[Export]private GpuParticles2D _particleExplode3;
+	[Export]private Node2D _bodyNodeTree;
+	[Export]private Area2D _attackArea;
 	[Export]private int _damage = 1800;
 
 	private AudioStreamPlayer _audioExplode = new();
@@ -35,9 +37,7 @@ public partial class CherryBomb : Plants
 	private async void DamageZombies(StringName animName)
 	{
 		GD.Print("CherryBomb exploded!");
-        
-		Area2D area = GetNode<Area2D>("Area2D");
-		Array<Area2D> overlappingAreas = area.GetOverlappingAreas();
+		Array<Area2D> overlappingAreas = _attackArea.GetOverlappingAreas();
 		foreach (Area2D overlappingArea in overlappingAreas)
 		{
 			GD.Print("CherryBomb overlapping area: " + overlappingArea.Name);
@@ -45,11 +45,11 @@ public partial class CherryBomb : Plants
 			{
 				GD.Print("CherryBomb damaging zombie!");
 				//僵尸扣血
-				zombie.Hurt(new Hurt(_damage, HurtType.Explosion));
+				zombie.Hurt(new Hurt(_damage, HurtType.AshExplosion));
 			}
 		}
-		GetNode<Node2D>("Node2D").Visible = false;
-		GetNode<Sprite2D>("Shadow").Visible = false;
+		_bodyNodeTree.Visible = false;
+		Shadow.Visible = false;
 
 		_audioExplode.Stop();
 		_audioExplode.Stream = Sound_CherryBomb;

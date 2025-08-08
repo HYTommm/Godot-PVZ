@@ -66,9 +66,10 @@ public partial class Camera : Camera2D
 	}
 
     // 触发相机震动
-    public void Shake(float intensity = 0.5f)
+    public void Shake(float intensity = 0.5f, int shackSteps = -1)
     {
         if (_isShaking) return;
+        if (shackSteps == -1) shackSteps = ShakeSteps;
         _originalPosition = Position;
         _isShaking = true;
         intensity = Mathf.Clamp(intensity, 0.1f, 1.0f);
@@ -76,10 +77,10 @@ public partial class Camera : Camera2D
         // 创建主Tween序列
         var sequence = CreateTween();
 
-        for (int i = 0; i < ShakeSteps; i++)
+        for (int i = 0; i < shackSteps; i++)
         {
             // 计算当前震动强度（随次数衰减）
-            float stepIntensity = intensity * (1.0f - (float)i / ShakeSteps);
+            float stepIntensity = intensity * (1.0f - (float)i / shackSteps);
 
             // 生成随机偏移方向
             Vector2 shakeDirection = new Vector2(
@@ -91,12 +92,12 @@ public partial class Camera : Camera2D
             Vector2 targetOffset = shakeDirection * MaxShakeIntensity * stepIntensity;
 
             // 添加震动步骤
-            sequence.TweenProperty(this, "position", _originalPosition + targetOffset, ShakeDuration / ShakeSteps)
+            sequence.TweenProperty(this, "position", _originalPosition + targetOffset, ShakeDuration / shackSteps)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.Out);
 
             // 添加返回步骤
-            sequence.TweenProperty(this, "position", _originalPosition, ShakeDuration / ShakeSteps)
+            sequence.TweenProperty(this, "position", _originalPosition, ShakeDuration / shackSteps)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
         }

@@ -233,8 +233,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brjgu"]
 size = Vector2(80, 80)
 
-[node name="Sun" type="Node2D"]
+[node name="Sun" type="Node2D" node_paths=PackedStringArray("Area")]
 script = ExtResource("1_brjgu")
+Area = NodePath("Area2D")
 
 [node name="Sun3" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.7)

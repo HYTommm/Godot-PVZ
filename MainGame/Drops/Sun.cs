@@ -1,12 +1,12 @@
 using Godot;
-using static ResourceManager;
+using static ResourceDB;
 using static Godot.GD;
 using System;
 
 public partial class Sun : Drops
 {
-	[Export]
-	public int GroundPosY = 0;
+	[Export] public int GroundPosY = 0;
+	[Export] public Area2D Area;
 
 	public bool BIsFalling = true;
 	public AudioStreamPlayer SunSelectSound = new();
@@ -55,7 +55,7 @@ public partial class Sun : Drops
 		// 停止下落
 		BIsFalling = false;
 		// 隐藏 碰撞体
-		GetNode<Area2D>("Area2D").Visible = false;
+		Area.Visible = false;
 
 		SunSelectSound.PitchScale = MainGame.RNG.RandfRange(1.0f, 1.5f);
 		SunSelectSound.Play();
@@ -90,7 +90,7 @@ public partial class Sun : Drops
 	public void FinishSelectSun()
 	{
 		// 通知 SeedBank 更新 Sun 数量
-		GetNode<SeedBank>("../../SeedBank").UpdateSunCount();
+		SeedBank.Instance.UpdateSunCount();
 	}
 
 	public void FreeSun()

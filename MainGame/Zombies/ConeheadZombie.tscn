@@ -30,6 +30,13 @@ shader_parameter/gravity = Vector3(0, 170, 0)
 shader_parameter/collision_friction = 0.6
 shader_parameter/collision_bounce = 0.3
 shader_parameter/collision_enabled = true
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 0.0
+shader_parameter/emission_sphere_radius = 0.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(0, 0, 0)
 shader_parameter/scale_min = 0.8
 shader_parameter/scale_max = 0.8
 shader_parameter/hue_variation_min = 0.0
@@ -62,13 +69,11 @@ shader_parameter/damping_min = 0.0
 shader_parameter/damping_max = 0.0
 shader_parameter/alpha_curve = SubResource("CurveTexture_23mob")
 shader_parameter/angular_velocity_texture = SubResource("CurveTexture_r0k4n")
-shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
-shader_parameter/emission_shape_scale = 0.0
-shader_parameter/emission_sphere_radius = 0.0
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
-[node name="ConeheadZombie" instance=ExtResource("1_ank4t")]
+[node name="ConeheadZombie" node_paths=PackedStringArray("Zombie_cone") instance=ExtResource("1_ank4t")]
 script = ExtResource("2_0dedt")
+Zombie_cone = NodePath("Zombie/Anim_cone")
 
 [node name="Anim_cone" parent="Zombie" index="29"]
 visible = true
@@ -82,8 +87,5 @@ lifetime = 1.66
 one_shot = true
 speed_scale = 2.0
 process_material = SubResource("ShaderMaterial_nisvg")
-
-[node name="TextEdit" parent="." index="3"]
-visible = false
 
 [editable path="Node2D"]

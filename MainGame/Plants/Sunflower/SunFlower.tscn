@@ -1550,13 +1550,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wihil"]
 size = Vector2(20, 80)
 
-[node name="SunFlower" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Anim_blink", "Anim_sunLight")]
+[node name="SunFlower" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Anim_blink", "Anim_sunLight", "TextEdit", "Shadow")]
 clip_children = 2
 material = SubResource("ShaderMaterial_kdids")
 script = ExtResource("1_oxdg1")
 Anim_idle = NodePath("Idle")
 Anim_blink = NodePath("Blink")
 Anim_sunLight = NodePath("SunLight")
+TextEdit = NodePath("TextEdit")
+Shadow = NodePath("Shadow")
 
 [node name="Blink" type="AnimationPlayer" parent="."]
 libraries = {

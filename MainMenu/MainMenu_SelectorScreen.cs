@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static ResourceManager.Sounds.Bgm;
+using static ResourceDB.Sounds.Bgm;
 
 public partial class MainMenu_SelectorScreen : MainNode2D
 {

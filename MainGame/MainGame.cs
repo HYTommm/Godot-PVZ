@@ -4,7 +4,7 @@ using System;
 using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
 using System.Collections.Generic;
-using static ResourceManager.Sounds;
+using static ResourceDB.Sounds;
 
 public partial class MainGame : MainNode2D
 {
@@ -25,6 +25,7 @@ public partial class MainGame : MainNode2D
 	[Export] public Node2D PlantsContainer;
 	[Export] public Node2D ZombiesContainer;
 	[Export] public Node2D SunContainer;
+	[Export] public Sprite2D BackGround;
 	private Plants _seed, _seedClone;
 	private SeedPacketLarger _seedPacketNode;
 
@@ -77,6 +78,10 @@ public partial class MainGame : MainNode2D
 
 	public bool BIsClimaxing = false; // 游戏是否处于高潮状态
 
+	protected MainGame()
+	{
+		_instance = this;
+	}
 
 	public void InitLawnMowers(Scene scene)
 	{
@@ -112,17 +117,18 @@ public partial class MainGame : MainNode2D
 
 	public override void _Ready()
 	{
-		RNG.Randomize();// 随机种子
+		//this.GetGlobalNode()
+		//RNG.Randomize();// 随机种子
 		_zombieWeightsAndGrades.SetZombieAllowed([
 			ZombieTypeEnum.Normal,
 			ZombieTypeEnum.Conehead,
 			ZombieTypeEnum.Buckethead,
 			ZombieTypeEnum.Screendoor
 		]);
-		GetNode<Node>("/root").PrintTreePretty();
+		//GetNode<Node>("/root").PrintTreePretty();
 		GameScene = new LawnDayScene(Global.Instance);// 设置场景
 		//GameScene = new PoolDayScene();
-		GetNode<Sprite2D>("./BackGround").Texture = GameScene.BackGroundTexture;// 设置背景
+		BackGround.Texture = GameScene.BackGroundTexture;// 设置背景
 		InitLawnMowers(GameScene);// 初始化草坪机
 
 		PutBackPlantSound.Stream = Sound_Tap2;
@@ -133,7 +139,7 @@ public partial class MainGame : MainNode2D
 		
 		SelectSeedCard();// 进入选卡环节
 
-		_instance = this;		
+			
 	}
 
 
@@ -353,7 +359,7 @@ public partial class MainGame : MainNode2D
 
 
 	// 刷新僵尸
-	public async void RefreshZombie()
+	public void RefreshZombie()
 	{
 		if (BIsRefreshingZombies)
 		{
@@ -376,7 +382,7 @@ public partial class MainGame : MainNode2D
 			zombieMaxGrade = (int)(zombieMaxGrade * 2.5);
 		}
 
-		zombieMaxGrade *= 20; // 20倍数
+		//zombieMaxGrade *= 20; // 20倍数
 		// Print("zombieCount: " + zombieCount);
 
 		// 预备僵尸
@@ -395,7 +401,7 @@ public partial class MainGame : MainNode2D
 			zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
 			if (_zombieType.GetZombieScene(zombieType).Instantiate() is Zombie preZombie)
 			{
-				preZombie.Init();
+				//preZombie.Init();
 				//preZombie[zombieCount] = _zombieType.GetZombieScene(zombieType).Instantiate() as Zombie;
 				//preZombie[zombieCount].Init(zombieType);
 

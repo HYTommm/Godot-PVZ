@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dmcf3b83fe3ii"]
+[gd_scene load_steps=52 format=3 uid="uid://dmcf3b83fe3ii"]
 
 [ext_resource type="Script" uid="uid://dt8fo0g1xv20p" path="res://MainGame/Zombies/Zombie.cs" id="1_wnjia"]
 [ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="2_6pykm"]
@@ -40,17 +40,13 @@
 [ext_resource type="Texture2D" uid="uid://duy6qu0e54kto" path="res://particles/ZombieArm.png" id="32_rbuq3"]
 [ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="39_gvoti"]
 [ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="40_7rhiy"]
-[ext_resource type="Texture2D" uid="uid://w3c4db7qo78p" path="res://art/MainGame/Zombie/Charred/Zombie_charred10.png" id="41_oaw43"]
-[ext_resource type="Texture2D" uid="uid://1egpt6suo5gi" path="res://art/MainGame/Zombie/Charred/Zombie_charred_tail.png" id="42_fa32l"]
-[ext_resource type="Texture2D" uid="uid://dq1vpg6fc1dev" path="res://art/MainGame/Zombie/Charred/Zombie_charred_pile2.png" id="43_rsqvs"]
-[ext_resource type="Texture2D" uid="uid://dahwtffsy45jd" path="res://art/MainGame/Zombie/Charred/Zombie_charred_pile1.png" id="44_2gsue"]
 
 [sub_resource type="Animation" id="Animation_spf5w"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:isMoving")
+tracks/0/path = NodePath("Zombie/Anim_head1:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +58,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Zombie/Anim_head1:visible")
+tracks/1/path = NodePath("Zombie/Anim_innerarm3:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -74,7 +70,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Zombie/Anim_innerarm3:visible")
+tracks/2/path = NodePath("Zombie/Anim_innerarm2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -86,7 +82,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Zombie/Anim_innerarm2:visible")
+tracks/3/path = NodePath("Zombie/Anim_innerarm1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -98,7 +94,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Zombie/Anim_innerarm1:visible")
+tracks/4/path = NodePath("Zombie/Anim_head2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -110,34 +106,22 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Zombie/Anim_head2:visible")
+tracks/5/path = NodePath("Zombie/Zombie_outerarm_hand:texture")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [ExtResource("29_o7o7o")]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Zombie/Zombie_outerarm_hand:texture")
+tracks/6/path = NodePath("Zombie/Anim_hair:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("29_o7o7o")]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Zombie/Anim_hair:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -436,6 +420,7 @@ centered = false
 position = Vector2(36, 0)
 collision_layer = 4
 collision_mask = 0
+monitoring = false
 
 [node name="Body" type="CollisionShape2D" parent="Zombie/DefenseArea"]
 position = Vector2(21, 57.5)
@@ -446,6 +431,7 @@ debug_color = Color(0.7, 0.55, 0.25, 0.42)
 position = Vector2(20, 0)
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="Body" type="CollisionShape2D" parent="Zombie/AttackArea"]
 position = Vector2(25, 57.5)
@@ -459,7 +445,6 @@ amount = 1
 texture = ExtResource("32_rbuq3")
 lifetime = 0.6
 one_shot = true
-fixed_fps = 90
 collision_base_size = 0.8
 process_material = SubResource("ParticleProcessMaterial_6h37t")
 
@@ -471,7 +456,6 @@ texture = ExtResource("14_eopsw")
 lifetime = 3.6
 one_shot = true
 speed_scale = 2.0
-fixed_fps = 60
 collision_base_size = 0.8
 process_material = ExtResource("39_gvoti")
 
@@ -479,58 +463,16 @@ process_material = ExtResource("39_gvoti")
 visible = false
 position = Vector2(7, -3)
 
-[node name="Zombie_charred_body" parent="Node2D" index="2"]
+[node name="Anim_blink" parent="Node2D" index="0"]
+visible = true
+
+[node name="Anim_crumble" parent="Node2D" index="1"]
 visible = false
-position = Vector2(21.4, 41.6)
-texture = ExtResource("41_oaw43")
 
-[node name="Zombie_charred_tail" parent="Node2D" index="3"]
-position = Vector2(33.4, 92.3)
-scale = Vector2(0.18, 0.379)
-texture = ExtResource("42_fa32l")
-
-[node name="Layer 10" parent="Node2D" index="4"]
-visible = true
-position = Vector2(4.2, 91.4)
-scale = Vector2(0.903, 0.716)
-skew = -0.038397
-texture = ExtResource("43_rsqvs")
-
-[node name="Zombie_charred_pile2" parent="Node2D" index="5"]
-visible = true
-position = Vector2(17, 105.7)
-scale = Vector2(0.372, 0.294)
-texture = ExtResource("43_rsqvs")
-
-[node name="Zombie_charred_pile21" parent="Node2D" index="6"]
-visible = true
-position = Vector2(36.9, 108.1)
-scale = Vector2(0.497, 0.326)
-texture = ExtResource("43_rsqvs")
-
-[node name="Zombie_charred_pile1" parent="Node2D" index="7"]
-visible = true
-position = Vector2(1.9, 112.6)
-rotation = 0.005236
-scale = Vector2(0.563, 0.554)
-texture = ExtResource("44_2gsue")
-
-[node name="Zombie_charred_pile1_2" parent="Node2D" index="8"]
-visible = true
-position = Vector2(27.8, 114.5)
-scale = Vector2(0.563, 0.593)
-texture = ExtResource("44_2gsue")
-
-[node name="Zombie_charred_head" parent="Node2D" index="9"]
-position = Vector2(8.5, 73.8)
-rotation = 0.354302
-scale = Vector2(0.799, 0.799)
-
-[node name="Zombie_hair" parent="Node2D" index="10"]
-position = Vector2(8.1, 77.4)
-rotation = 0.258309
-scale = Vector2(0.75, 0.731)
-skew = 0.027925
+[node name="Zombie_charred_blink" parent="Node2D" index="11"]
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = null
 
 [node name="GroundConstraint" type="LightOccluder2D" parent="."]
 position = Vector2(-20, 125)

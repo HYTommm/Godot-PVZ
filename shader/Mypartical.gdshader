@@ -141,16 +141,18 @@ void process() {
     }
 	// ===== 5. 碰撞响应 =====
 	{
-		if (COLLIDED && collision_enabled) {  // 引擎检测到碰撞时触发
+		if (COLLIDED && collision_enabled)
+		{  
+			// 引擎检测到碰撞时触发
 			// 1. 计算碰撞法线方向的速度分量
 			float collision_response = dot(COLLISION_NORMAL, VELOCITY);
-		    
+			
 			// 2. 反弹触发阈值计算
 			float slide_to_bounce_trigger = step(
 				2.0 / clamp(collision_bounce + 1.0, 1.0, 2.0), 
 				abs(collision_response)
 			);
-		    
+			
 		    // 3. 位置修正：解决穿透问题
 		    TRANSFORM[3].xyz += COLLISION_NORMAL * COLLISION_DEPTH;
 		    
@@ -171,7 +173,6 @@ void process() {
     final_velocity.z = 0.0;
     // 更新粒子位置：s = s0 + v*t
     TRANSFORM[3].xyz += final_velocity * DELTA;
-	
 	// 采样当前角速度系数
 	float ang_vel_factor = texture(angular_velocity_texture, vec2(lifetime_percent)).r;
 
@@ -200,6 +201,9 @@ void process() {
 	TRANSFORM[2].xyz *= scale_sign_z * max(abs(display_params.scale.z), scale_minimum) * scale_delta;
 
 	CUSTOM.z = display_params.animation_offset + lifetime_percent * display_params.animation_speed;
+	
+	float shake_delta = texture(shake_curve, vec2(lifetime_percent)).r;
+	TRANSFORM[3].xyz += shake_direction * shake_delta * DELTA;
 
 	if (CUSTOM.y > CUSTOM.w) {
 		ACTIVE = false;

@@ -1,6 +1,6 @@
 using Godot;
-using static ResourceManager.Images.BackGrounds;
-using static ResourceManager.Sounds.Bgm;
+using static ResourceDB.Images.BackGrounds;
+using static ResourceDB.Sounds.Bgm;
 using static Godot.GD;
 
 public abstract partial class Scene : Node

@@ -2,6 +2,7 @@ using Godot;
 
 public partial class ScreendoorZombie : Zombie
 {
+	[Export] public Sprite2D Zombie_screendoor;
 	[Export] public Sprite2D Zombie_innerarm_screendoor;
 	[Export] public Sprite2D Zombie_innerarm_screendoor_hand;
 	[Export] public Sprite2D Zombie_outerarm_screendoor;
@@ -22,7 +23,7 @@ public partial class ScreendoorZombie : Zombie
 	{
 		base._Ready();
 		Screendoor screendoor = new(
-			GetNode<Sprite2D>("Zombie/Anim_screendoor"),
+			Zombie_screendoor,
 			[
 				Zombie_innerarm_screendoor,
 				Zombie_innerarm_screendoor_hand,

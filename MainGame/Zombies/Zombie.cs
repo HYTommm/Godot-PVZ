@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Godot.Collections;
 using static Godot.GD;
 //using PlantsVsZombies;
 
@@ -9,12 +10,11 @@ public partial class Zombie : HealthEntity
 	[Signal]
 	public delegate void ZombieDieEventHandler();
 	/// <summary>是否正在移动</summary>
-	[Export]
-	public bool BIsMoving = true;
+	[Export] public bool BIsMoving = true;
 	/// <summary>是否濒死</summary>
-	public bool BIsDying = false;
+	[Export] public bool BIsDying = false;
 	/// <summary>是否死亡</summary>
-	public bool BIsDead = false;
+	[Export] public bool BIsDead = false;
 	/// <summary>地面位置</summary>
 	public Vector2 ConstGroundPos = new((float)-9.8, 40);
 	public Vector2 LastGroundPos;
@@ -23,8 +23,8 @@ public partial class Zombie : HealthEntity
 	[Export] private AnimationPlayer _animCharred;
 	/// <summary>地面节点</summary>
 	[Export] public Sprite2D Ground;
-
-	/// <summary>所处波数</summary>
+	TextEdit textEdit;
+/// <summary>所处波数</summary>
 	public int Wave;
 	/// <summary>所处行</summary>
 	public int Row = -1;
@@ -55,7 +55,7 @@ public partial class Zombie : HealthEntity
 	public int CriticalHP1;
 	public int CriticalHPLast;
 
-
+	[ExportGroup("Zombie Body Parts")]
 	[Export] protected Sprite2D Anim_innerArm1; // 内臂上部
 	[Export] protected Sprite2D Anim_innerArm2; // 内臂下部
 	[Export] protected Sprite2D Anim_innerArm3; // 内臂手
@@ -67,6 +67,7 @@ public partial class Zombie : HealthEntity
 	[Export] protected Sprite2D Zombie_hair;           // 头发
 	[Export] protected Sprite2D Zombie_tongue;         // 舌头
 
+	[ExportGroup("Zombie Particles")]
 	[Export] protected GpuParticles2D ZombieArmParticles; // 外臂粒子动画
 	[Export] protected GpuParticles2D ZombieHeadParticles; // 头部粒子动画
 
@@ -110,7 +111,7 @@ public partial class Zombie : HealthEntity
 		base._Ready();
 		LastGroundPos = Ground.Position;
 		// 设置僵尸外臂上部的纹理
-		Zombie_outerarm_upper.Texture = ResourceManager.Images.Zombies.ImageZombie_OuterarmUpper;
+		Zombie_outerarm_upper.Texture = ResourceDB.Images.Zombies.ImageZombie_OuterarmUpper;
 		
 		// 设置僵尸外臂下部可见
 		Zombie_outerarm_lower.Visible = true;
@@ -120,10 +121,10 @@ public partial class Zombie : HealthEntity
 	
 		// 获取主游戏节点
 		MainGame = MainGame.Instance;
-	
+		textEdit = GetNode<TextEdit>("./TextEdit");
 		// 获取防御区域节点
 		//DefenseArea = GetNode<Area2D>("./Zombie/DefenseArea");
-		
+
 		// 获取攻击区域节点
 		//AttackArea = GetNode<Area2D>("./Zombie/AttackArea");
 
@@ -159,11 +160,13 @@ public partial class Zombie : HealthEntity
 			BIsDead = true;
 			Die();
 		}
-		//GetNode<TextEdit>("./TextEdit").Text = "波数：" + Wave.ToString() + "，血量：" + HP.ToString() + "栈：" + Index.ToString();
+
+		
+		//textEdit.Text = "波数：" + Wave.ToString() + "，血量：" + HP.ToString() + "栈：" + Index.ToString();
 		//GD.Print(Position);
 		// 处理攻击区域
 		// 如果植物在攻击区域内，则攻击
-		var overlappingAreas = AttackArea.GetOverlappingAreas();
+		Array<Area2D> overlappingAreas = AttackArea.GetOverlappingAreas();
 		//Print(overlappingAreas.Count);
 		if (AttackArea != null && overlappingAreas.Count > 0 && !BIsDying && !BIsDead)
 		{
@@ -206,13 +209,18 @@ public partial class Zombie : HealthEntity
 			{
 
 				AttackTemp = 0;
-				
+
 				if (_animation.CurrentAnimation == "Zombie_eat")
 				{
 					Print(_animation.CurrentAnimation);
 					ContinueMove(customBlend: 1 / 6.0f);
 				}
 			}
+		}
+
+		else if (BIsDead)
+		{
+			;
 		}
 		else
 		{
@@ -226,18 +234,13 @@ public partial class Zombie : HealthEntity
 		}
 	}
 
-	public override void _Process(double delta)
-	{
-		
-	}
-
 	public void OnAreaEntered(Area2D area)
 	{
 		// 如果检测到植物进入攻击区域，则播放攻击动画
-		if (area.GetNode("..") is Plants plant && plant.Row == Row && plant.BIsPlanted && !BIsDying && !BIsDead)
-		{
-			Eat();
-		}
+		//if (area.GetNode("..") is Plants plant && plant.Row == Row && plant.BIsPlanted && !BIsDying && !BIsDead)
+		//{
+		//	Eat();
+		//}
 	}
 	
 	public void ContinueMove(float customBlend = 0) => Move(customBlend);
@@ -260,7 +263,7 @@ public partial class Zombie : HealthEntity
 	/// <summary>
 	/// 啃食植物
 	/// </summary>
-	public async void Eat()
+	public void Eat()
 	{
 		
 		if (!IsPlayingEatSound)
@@ -273,14 +276,14 @@ public partial class Zombie : HealthEntity
 			// 停止移动
 			BIsMoving = false;
 			// 等待下一帧的处理
-			await ToSignal(GetTree(), "process_frame");
+			//await ToSignal(GetTree(), "process_frame");
 			// 记录当前位置
 			//Pos = Position;
 			//播放吃植物动画
 			_animation.Play("Zombie_eat", 1.0 / 6.0, 3.0f);
 
 			// 等待下一帧的处理
-			await ToSignal(GetTree(), "process_frame");
+			//await ToSignal(GetTree(), "process_frame");
 
 			Ground.Position = ConstGroundPos;
 		}
@@ -292,9 +295,9 @@ public partial class Zombie : HealthEntity
 		uint random = GD.Randi() % 3; // 随机播放啃食音效
 		EatSound.Stream = random switch
 		{
-			0 => ResourceManager.Sounds.Sound_Chomp,
-			1 => ResourceManager.Sounds.Sound_Chomp2,
-			2 => ResourceManager.Sounds.Sound_ChompSoft,
+			0 => ResourceDB.Sounds.Sound_Chomp,
+			1 => ResourceDB.Sounds.Sound_Chomp2,
+			2 => ResourceDB.Sounds.Sound_ChompSoft,
 			_ => EatSound.Stream
 		};
 
@@ -344,16 +347,20 @@ public partial class Zombie : HealthEntity
 		{
 			Dying(); // 开始濒死
 		}
-		if (hurt.HurtType == HurtType.Explosion && HP <= 0)
+		if ((hurt.HurtType == HurtType.AshExplosion || hurt.HurtType == HurtType.Explosion ) && HP <= 0)
 		{
 			BIsDead = true;
 			BIsMoving = false;
 			GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
 			GetNode<Node2D>("./Zombie").Visible = false;
-			GetNode<Node2D>("./Node2D").Visible = true;
-			_animCharred.Play("ALL_ANIMS", 1.0 / 6.0);
-			await ToSignal(_animCharred, AnimationMixer.SignalName.AnimationFinished);
-			GetNode<Node2D>("./Node2D").Visible = false;
+
+			if (hurt.HurtType == HurtType.AshExplosion)
+			{
+				GetNode<Node2D>("./Node2D").Visible = true;
+				_animCharred.Play("ALL_ANIMS", 1.0 / 6.0);
+				await ToSignal(_animCharred, AnimationMixer.SignalName.AnimationFinished);
+				GetNode<Node2D>("./Node2D").Visible = false;
+			}
 		}
 		MainGame.UpdateZombieHP();
 
@@ -366,7 +373,7 @@ public partial class Zombie : HealthEntity
 	public void DropArm()
 	{
 		//Zombie_outerarm_upper
-		Zombie_outerarm_upper.Texture = ResourceManager.Images.Zombies.ImageZombie_OuterarmUpper2;
+		Zombie_outerarm_upper.Texture = ResourceDB.Images.Zombies.ImageZombie_OuterarmUpper2;
 		//Zombie_outerarm_lower
 		Zombie_outerarm_lower.Visible = false;
 		//Zombie_outerarm_hand
@@ -403,6 +410,7 @@ public partial class Zombie : HealthEntity
 
 	public async void Die()
 	{
+		GD.Print("Zombie Die");
 		// 删除Area2D节点
 		GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
 		// 播放死亡动画

@@ -1,5 +1,5 @@
 using Godot;
-using static ResourceManager.Sounds;
+using static ResourceDB.Sounds;
 using System;
 
 public partial class StartAdventureButton : GameBaseButton

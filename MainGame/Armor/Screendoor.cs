@@ -1,6 +1,6 @@
 using Godot;
-using static ResourceManager.Images.Zombies.Armors;
-using static ResourceManager.Sounds;
+using static ResourceDB.Images.Zombies.Armors;
+using static ResourceDB.Sounds;
 using System.Collections.Generic;
 
 public partial class Screendoor : Armor
@@ -19,6 +19,8 @@ public partial class Screendoor : Armor
 	public override void PlaySound(Hurt hurt)
 	{
 		base.PlaySound(hurt);
+        if (!hurt.BEnableTargetHitSFX)
+            return;
 		uint random = GD.Randi() % 2; // 随机播放音效
         Sound.Stream = random switch
         {

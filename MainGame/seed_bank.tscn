@@ -49,10 +49,12 @@ _data = {
 &"SunCountFlashWarning": SubResource("Animation_jv5um")
 }
 
-[node name="SeedBank" type="Sprite2D"]
+[node name="SeedBank" type="Sprite2D" node_paths=PackedStringArray("_sunCountLabel", "_animSunCountFlashWarning")]
 texture = ExtResource("1_3tv4h")
 centered = false
 script = ExtResource("2_ua34a")
+_sunCountLabel = NodePath("SunCountLabel")
+_animSunCountFlashWarning = NodePath("SunCountFlashWarning")
 
 [node name="Area2D" type="Area2D" parent="."]
 

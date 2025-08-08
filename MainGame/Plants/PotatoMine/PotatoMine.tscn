@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://vop8ac2s8mvu"]
+[gd_scene load_steps=74 format=3 uid="uid://vop8ac2s8mvu"]
 
 [ext_resource type="Texture2D" uid="uid://q6jwkrpohyey" path="res://art/MainGame/Plants/PotatoMine/PotatoMine_mashed.png" id="0_fuck"]
 [ext_resource type="Animation" uid="uid://cgrvbboc7fngn" path="res://MainGame/Plants/PotatoMine/PotatoMine_armed.tres" id="1_anim"]
@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://b2s8m81p5vehm" path="res://art/MainGame/Plants/PotatoMine/PotatoMine_light1.png" id="12_fuck"]
 [ext_resource type="Texture2D" uid="uid://wv5cfbx8jwu4" path="res://art/MainGame/Plants/PotatoMine/PotatoMine_light2.png" id="13_fuck"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="25_b36p7"]
+[ext_resource type="Texture2D" uid="uid://pkjs0adafil8" path="res://particles/PotatoMine_particles.png" id="26_1xyjw"]
+[ext_resource type="Texture2D" uid="uid://bhua8frt4py5" path="res://particles/ExplosionSpudow.png" id="26_x2ttu"]
+[ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="27_1xyjw"]
+[ext_resource type="Texture2D" uid="uid://tys6ym2x2gep" path="res://particles/PotatoMineFlash.png" id="29_53ds2"]
 
 [sub_resource type="Animation" id="Animation_fuck"]
 length = 3.0
@@ -1963,11 +1967,373 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b36p7"]
 size = Vector2(20, 80)
 
-[node name="PotatoMine" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Anim_blink", "Anim_rise")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eo0bp"]
+size = Vector2(66, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b36p7"]
+radius = 60.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xyjw"]
+shader = ExtResource("27_1xyjw")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 0.0
+shader_parameter/emission_sphere_radius = 0.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(0, 0, 0)
+shader_parameter/scale_min = 0.9
+shader_parameter/scale_max = 0.9
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.01
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_53ds2"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_53ds2"]
+_data = [Vector2(0.745, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_be8nu"]
+curve = SubResource("Curve_53ds2")
+
+[sub_resource type="Curve" id="Curve_o8lx2"]
+_limits = [0.0, 720.0, 0.0, 1.0]
+_data = [Vector2(0.2, 100), 94.2439, 500.0, 1, 1]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_3errc"]
+curve = SubResource("Curve_o8lx2")
+
+[sub_resource type="Curve" id="Curve_fpk06"]
+_data = [Vector2(0, 0.213115), 0.0, 0.0, 0, 0, Vector2(0.5975, 0.0991338), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qihvs"]
+curve = SubResource("Curve_fpk06")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjaga"]
+shader = ExtResource("27_1xyjw")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 60.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 98, 0)
+shader_parameter/collision_friction = 0.2
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 1.0
+shader_parameter/emission_sphere_radius = 20.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(0, 0, 0)
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.3
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 1.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 1.0
+shader_parameter/angular_velocity_max = -1.0
+shader_parameter/initial_linear_velocity_min = 200.0
+shader_parameter/initial_linear_velocity_max = 300.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_be8nu")
+shader_parameter/initial_linear_velocity_curve = SubResource("CurveTexture_qihvs")
+shader_parameter/angular_velocity_texture = SubResource("CurveTexture_3errc")
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_d3aqt"]
+_data = [Vector2(0.745, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a4d5f"]
+curve = SubResource("Curve_d3aqt")
+
+[sub_resource type="Curve" id="Curve_1ebja"]
+_limits = [0.0, 720.0, 0.0, 1.0]
+_data = [Vector2(0, 720), 0.0, -519.344, 0, 1, Vector2(1, 200.656), -519.344, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kfi8g"]
+curve = SubResource("Curve_1ebja")
+
+[sub_resource type="Curve" id="Curve_eogw4"]
+_data = [Vector2(0, 0.47541), 0.0, -1.56393, 0, 0, Vector2(0.610063, 0.0819671), -0.0668357, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_55qkn"]
+curve = SubResource("Curve_eogw4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssjwo"]
+shader = ExtResource("27_1xyjw")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 60.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 198, 0)
+shader_parameter/collision_friction = 0.2
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 1.0
+shader_parameter/emission_sphere_radius = 20.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(0, 0, 0)
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.3
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 1.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 1.0
+shader_parameter/angular_velocity_max = -1.0
+shader_parameter/initial_linear_velocity_min = 330.0
+shader_parameter/initial_linear_velocity_max = 360.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_a4d5f")
+shader_parameter/initial_linear_velocity_curve = SubResource("CurveTexture_55qkn")
+shader_parameter/angular_velocity_texture = SubResource("CurveTexture_kfi8g")
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_x2ttu"]
+_data = [Vector2(0.899743, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1xyjw"]
+curve = SubResource("Curve_x2ttu")
+
+[sub_resource type="Curve" id="Curve_bi3cr"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -57.6297, 0, 1, Vector2(0.0694087, -2), -57.6297, 67.6522, 1, 1, Vector2(0.128535, 2), 67.6522, -67.6522, 1, 1, Vector2(0.187661, -2), -67.6522, 62.5867, 1, 1, Vector2(0.251572, 2), 62.5867, -64.141, 1, 1, Vector2(0.313625, -1.98012), -64.141, 59.4897, 1, 1, Vector2(0.383033, 2), 53.4509, -66.1767, 1, 1, Vector2(0.439589, -2), -73.4981, 0.0, 1, 1, Vector2(0.503856, 2), 62.24, -59.8462, 1, 1, Vector2(0.570694, -2), 0.0, 0.0, 0, 0, Vector2(0.62982, 2), 0.0, 0.0, 0, 0, Vector2(0.683805, -2), 0.0, 0.0, 0, 0, Vector2(0.737789, 2), 0.0, 0.0, 0, 0, Vector2(0.825193, -2), 0.0, 0.0, 0, 0, Vector2(0.871465, 2), 0.0, 0.0, 0, 0, Vector2(0.940874, -2), 0.0, 0.0, 0, 0, Vector2(1, 2), 67.6522, 0.0, 1, 0]
+point_count = 17
+
+[sub_resource type="CurveTexture" id="CurveTexture_o8lx2"]
+curve = SubResource("Curve_bi3cr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53ds2"]
+shader = ExtResource("27_1xyjw")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 0.0
+shader_parameter/emission_sphere_radius = 0.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(15, 15, 0)
+shader_parameter/shake_curve = SubResource("CurveTexture_o8lx2")
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 0.01
+shader_parameter/initial_linear_velocity_max = 0.01
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_1xyjw")
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_be8nu"]
+_data = [Vector2(0, 0.499519), 0.0, 0.0, 0, 0, Vector2(0.4975, 0.499519), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bi3cr"]
+curve = SubResource("Curve_be8nu")
+
+[sub_resource type="Curve" id="Curve_3errc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_qihvs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_mjaga"]
+_data = [Vector2(0, 0.505775), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_d3aqt"]
+curve_x = SubResource("Curve_3errc")
+curve_y = SubResource("Curve_qihvs")
+curve_z = SubResource("Curve_mjaga")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4d5f"]
+shader = ExtResource("27_1xyjw")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+shader_parameter/collision_enabled = false
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = 0.0
+shader_parameter/emission_sphere_radius = 0.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/decay_rate = 1.0
+shader_parameter/shake_direction = Vector3(0, 0, 0)
+shader_parameter/scale_min = 10.0
+shader_parameter/scale_max = 10.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.01
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/alpha_curve = SubResource("CurveTexture_bi3cr")
+shader_parameter/color_curve = SubResource("CurveXYZTexture_d3aqt")
+shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
+
+[node name="PotatoMine" type="CanvasGroup" node_paths=PackedStringArray("Anim_armed", "Anim_idle", "Anim_blink", "Anim_rise", "Anim_mash", "_particleExplode1", "_particleExplode2", "_particleExplode3", "_particleExplode4", "_particleExplode5", "_attackArea", "_detectionArea", "_bodyNodeTree", "TextEdit", "Shadow")]
 script = ExtResource("1_ibjwd")
+Anim_armed = NodePath("Anim_PotatoMine_armed")
 Anim_idle = NodePath("Anim_PotatoMine_idle")
 Anim_blink = NodePath("Anim_PotatoMine_blink")
 Anim_rise = NodePath("Anim_PotatoMine_rise")
+Anim_mash = NodePath("Anim_PotatoMine_mashed")
+_particleExplode1 = NodePath("Mashed")
+_particleExplode2 = NodePath("LowParts")
+_particleExplode3 = NodePath("HighParts")
+_particleExplode4 = NodePath("Word")
+_particleExplode5 = NodePath("Flash")
+_attackArea = NodePath("AttackArea")
+_detectionArea = NodePath("DetectionArea")
+_bodyNodeTree = NodePath("Body")
+TextEdit = NodePath("TextEdit")
+Shadow = NodePath("Shadow")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visible = false
@@ -1986,6 +2352,7 @@ visible = false
 centered = false
 
 [node name="Anim_idle" type="Sprite2D" parent="Body"]
+visible = false
 centered = false
 
 [node name="Anim_blink" type="Sprite2D" parent="Body"]
@@ -1994,91 +2361,121 @@ centered = false
 
 [node name="Anim_mashed" type="Sprite2D" parent="Body"]
 visible = false
+position = Vector2(-2.4, 22.3)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("0_fuck")
 centered = false
 
 [node name="PotatoMine_rock4" type="Sprite2D" parent="Body"]
-position = Vector2(38.6, 62.6)
+position = Vector2(61.2, 60.8)
 scale = Vector2(0.59, 0.59)
 texture = ExtResource("1_fuck")
 centered = false
 
 [node name="PotatoMine_rock2" type="Sprite2D" parent="Body"]
-position = Vector2(23.9, 61.8)
+position = Vector2(-7, 60.4)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_fuck")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(-1.9, 27.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_fuck")
 centered = false
 
 [node name="PotatoMine_stem" type="Sprite2D" parent="Body"]
-position = Vector2(20.3, 57)
-scale = Vector2(0.8, 0.8)
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(19.1, 37)
+scale = Vector2(0.836, 0.8)
 texture = ExtResource("4_fuck")
 centered = false
 
 [node name="Anim_eye" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(30.7, 50)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_fuck")
 centered = false
 
 [node name="PotatoMine_blink" type="Sprite2D" parent="Body/Anim_eye"]
 visible = false
 position = Vector2(0.375, 0)
 scale = Vector2(0.98125, 1.05)
+texture = ExtResource("6_fuck")
 centered = false
 
 [node name="PotatoMine_rock41" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(18.9, 65.8)
+rotation = 0.139626
+scale = Vector2(0.507, 0.503)
+texture = ExtResource("1_fuck")
 centered = false
 
 [node name="PotatoMine_rock3b" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(26.4, 69.5)
+rotation = -0.287979
+scale = Vector2(0.756, 0.769)
+texture = ExtResource("8_fuck")
 centered = false
 
 [node name="PotatoMine_rock1b" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(56.6, 81.3)
+rotation = -2.25148
+scale = Vector2(0.794, 0.794)
+texture = ExtResource("9_fuck")
 centered = false
 
 [node name="PotatoMine_rock6b" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(57.8, 68.2)
+rotation = -0.031416
+scale = Vector2(0.88, 0.823)
+texture = ExtResource("10_fuck")
 centered = false
 
 [node name="PotatoMine_rock5b" type="Sprite2D" parent="Body"]
-visible = false
+position = Vector2(0.8, 67.6)
+rotation = -0.094248
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("11_fuck")
 centered = false
 
 [node name="Anim_light" type="Sprite2D" parent="Body"]
-position = Vector2(28.2, 40.5)
+position = Vector2(28.2, 12.5)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_fuck")
 centered = false
 
 [node name="Anim_glow" type="Sprite2D" parent="Body/Anim_light"]
 position = Vector2(-8.875, -9)
+texture = ExtResource("13_fuck")
 centered = false
 
 [node name="PotatoMine_rock6" type="Sprite2D" parent="Body"]
-position = Vector2(14.7, 66.1)
-scale = Vector2(0.8, 0.8)
+position = Vector2(7.6, 72.4)
+rotation = -3.50986
+scale = Vector2(0.793, 0.793)
 texture = ExtResource("10_fuck")
 centered = false
 
 [node name="PotatoMine_rock1" type="Sprite2D" parent="Body"]
-position = Vector2(26.8, 68.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(23.8, 75.2)
+rotation = -3.39816
+scale = Vector2(0.793, 0.793)
 texture = ExtResource("9_fuck")
 centered = false
 
 [node name="PotatoMine_rock3" type="Sprite2D" parent="Body"]
-position = Vector2(42.5, 64.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(85.3, 74.3)
+rotation = 2.87805
+scale = Vector2(0.794, 0.794)
 texture = ExtResource("8_fuck")
 centered = false
 
 [node name="PotatoMine_rock5" type="Sprite2D" parent="Body"]
-position = Vector2(31.1, 69.1)
-scale = Vector2(0.8, 0.8)
+position = Vector2(38.5, 70.4)
+rotation = 0.022689
+scale = Vector2(0.797, 0.797)
 texture = ExtResource("11_fuck")
 centered = false
 
@@ -2146,3 +2543,77 @@ collision_mask = 0
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_b36p7")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(33, 40)
+shape = SubResource("RectangleShape2D_eo0bp")
+debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(20, 40)
+shape = SubResource("CircleShape2D_b36p7")
+
+[node name="Mashed" type="GPUParticles2D" parent="."]
+position = Vector2(43, 54)
+emitting = false
+amount = 1
+texture = ExtResource("0_fuck")
+one_shot = true
+process_material = SubResource("ShaderMaterial_1xyjw")
+
+[node name="LowParts" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_53ds2")
+position = Vector2(40, 20)
+emitting = false
+amount = 10
+texture = ExtResource("26_1xyjw")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-250, -100, 500, 200)
+draw_order = 0
+process_material = SubResource("ShaderMaterial_mjaga")
+
+[node name="HighParts" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_53ds2")
+position = Vector2(40, 20)
+emitting = false
+amount = 30
+texture = ExtResource("26_1xyjw")
+lifetime = 1.3
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-250, -150, 500, 300)
+draw_order = 0
+process_material = SubResource("ShaderMaterial_ssjwo")
+
+[node name="Word" type="GPUParticles2D" parent="."]
+position = Vector2(41, 11)
+emitting = false
+amount = 1
+texture = ExtResource("26_x2ttu")
+lifetime = 0.7
+one_shot = true
+process_material = SubResource("ShaderMaterial_53ds2")
+
+[node name="Flash" type="GPUParticles2D" parent="."]
+position = Vector2(32, 20)
+emitting = false
+amount = 1
+texture = ExtResource("29_53ds2")
+lifetime = 0.4
+one_shot = true
+visibility_rect = Rect2(-150, -150, 300, 300)
+process_material = SubResource("ShaderMaterial_a4d5f")
+
+[connection signal="area_entered" from="DetectionArea" to="." method="DamageZombies"]

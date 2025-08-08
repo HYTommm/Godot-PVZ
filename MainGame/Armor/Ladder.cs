@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
-using static ResourceManager.Sounds;
-using static ResourceManager.Images.Zombies.Armors;
+using static ResourceDB.Sounds;
+using static ResourceDB.Images.Zombies.Armors;
 
 public partial class Ladder : Armor
 {
