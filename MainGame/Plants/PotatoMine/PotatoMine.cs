@@ -88,7 +88,7 @@ public partial class PotatoMine : Plants
 	private async void Explode()
 	{
 		GD.Print("PotatoMine exploded!");
-		
+        _detectionArea.Monitoring = false;
 		_bodyNodeTree.Visible = false;
 		Shadow.Visible = false;
 
