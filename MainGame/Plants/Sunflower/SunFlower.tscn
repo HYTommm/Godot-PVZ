@@ -2,37 +2,37 @@
 
 [ext_resource type="Texture2D" uid="uid://dhdgwk51ra0yr" path="res://art/MainGame/Plants/SunFlower/SunFlower_blink2.png" id="1_dknli"]
 [ext_resource type="Script" uid="uid://cifyblddd5bf5" path="res://MainGame/Plants/Sunflower/SunFlower.cs" id="1_oxdg1"]
-[ext_resource type="Animation" uid="uid://dmn0v338r6efh" path="res://MainGame/Plants/Sunflower/SunFlower_blink.tres" id="2_kdids"]
-[ext_resource type="Texture2D" uid="uid://b812857bs3yok" path="res://art/MainGame/Plants/SunFlower/SunFlower_bottompetals.png" id="2_nf3an"]
-[ext_resource type="Texture2D" uid="uid://d3o7ih5cyines" path="res://art/MainGame/Plants/SunFlower/SunFlower_head.png" id="3_mncpq"]
+[ext_resource type="Animation" uid="uid://b3dn5kb4gktsm" path="res://MainGame/Plants/Sunflower/SunFlower_blink.tres" id="2_kdids"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="3_xgvnu"]
-[ext_resource type="Texture2D" uid="uid://di0ny4ehce6bb" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal1.png" id="4_3q6i4"]
-[ext_resource type="Animation" uid="uid://b1134bclwpi6s" path="res://MainGame/Plants/Sunflower/SunFlower_Idle.tres" id="4_41nh4"]
-[ext_resource type="Texture2D" uid="uid://c3cr5bahf2lre" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal2.png" id="5_fqt0j"]
-[ext_resource type="Texture2D" uid="uid://dgvkwh4j707oj" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal3.png" id="6_4adoi"]
-[ext_resource type="Texture2D" uid="uid://djrjuuidgcnry" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal4.png" id="7_167bo"]
-[ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_top.png" id="7_ejkyq"]
-[ext_resource type="Texture2D" uid="uid://bjfcoyof1bhxh" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal5.png" id="8_i2x3f"]
-[ext_resource type="Texture2D" uid="uid://dpgu4v4uhjaeb" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal6.png" id="9_ufxii"]
-[ext_resource type="Texture2D" uid="uid://dar64exslsr36" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal7.png" id="10_krwxw"]
-[ext_resource type="Texture2D" uid="uid://ba05pdsbrrx25" path="res://art/MainGame/Plants/SunFlower/SunFlower_leftpetal8.png" id="11_bp7bc"]
-[ext_resource type="Texture2D" uid="uid://c5g5faimv0yks" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal1.png" id="12_qu3cp"]
-[ext_resource type="Texture2D" uid="uid://divymsdfituhj" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal2.png" id="13_0yho3"]
-[ext_resource type="Texture2D" uid="uid://4xv28q0tyr3f" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal3.png" id="14_tsopb"]
-[ext_resource type="Texture2D" uid="uid://ctwht7gkxpce8" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal4.png" id="15_teg4a"]
-[ext_resource type="Texture2D" uid="uid://dl1j8ypr562eh" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal5.png" id="16_y3ncl"]
-[ext_resource type="Texture2D" uid="uid://cgi27w6e0ao5d" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal6.png" id="17_wh3b8"]
-[ext_resource type="Texture2D" uid="uid://0x4pstmh4te4" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal7.png" id="18_bfrub"]
-[ext_resource type="Texture2D" uid="uid://dl5hitoolnet2" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal8.png" id="19_pawoa"]
-[ext_resource type="Texture2D" uid="uid://cseuekgdyi2jr" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal9.png" id="20_fq0uc"]
-[ext_resource type="Texture2D" uid="uid://ciwmeli0136ce" path="res://art/MainGame/Plants/SunFlower/SunFlower_toppetals.png" id="21_rsn5o"]
-[ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="22_0jffi"]
-[ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_lefttip.png" id="23_dc7qx"]
-[ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_righttip.png" id="24_jykgt"]
-[ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf.png" id="25_hormm"]
-[ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_lefttip.png" id="26_vbqlt"]
-[ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_righttip.png" id="27_nqbvg"]
-[ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_bottom.png" id="28_e0as0"]
+[ext_resource type="Animation" uid="uid://b6n0vwavfu01y" path="res://MainGame/Plants/Sunflower/SunFlower_Idle.tres" id="4_41nh4"]
+[ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/Peashooter/Peashooter_backleaf.png" id="6_kdids"]
+[ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/Peashooter/Peashooter_backleaf_lefttip.png" id="7_41nh4"]
+[ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/Peashooter/Peashooter_backleaf_righttip.png" id="8_g2ulc"]
+[ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/Peashooter/Peashooter_stalk_bottom.png" id="9_3mbi3"]
+[ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/Peashooter/Peashooter_stalk_top.png" id="10_hikup"]
+[ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/Peashooter/Peashooter_frontleaf.png" id="11_emwm0"]
+[ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/Peashooter/Peashooter_frontleaf_righttip.png" id="12_4xj77"]
+[ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/Peashooter/Peashooter_frontleaf_lefttip.png" id="13_g0da5"]
+[ext_resource type="Texture2D" uid="uid://ba05pdsbrrx25" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal8.png" id="14_qqgwb"]
+[ext_resource type="Texture2D" uid="uid://dar64exslsr36" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal7.png" id="15_bmfcr"]
+[ext_resource type="Texture2D" uid="uid://dpgu4v4uhjaeb" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal6.png" id="16_45rt2"]
+[ext_resource type="Texture2D" uid="uid://bjfcoyof1bhxh" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal5.png" id="17_o313s"]
+[ext_resource type="Texture2D" uid="uid://djrjuuidgcnry" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal4.png" id="18_qp1t3"]
+[ext_resource type="Texture2D" uid="uid://dgvkwh4j707oj" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal3.png" id="19_17m6q"]
+[ext_resource type="Texture2D" uid="uid://c3cr5bahf2lre" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal2.png" id="20_5768j"]
+[ext_resource type="Texture2D" uid="uid://di0ny4ehce6bb" path="res://art/MainGame/Plants/SunFlower/Sunflower_leftpetal1.png" id="21_bgkg3"]
+[ext_resource type="Texture2D" uid="uid://b812857bs3yok" path="res://art/MainGame/Plants/SunFlower/Sunflower_bottompetals.png" id="22_rr68b"]
+[ext_resource type="Texture2D" uid="uid://cseuekgdyi2jr" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal9.png" id="23_7ksu7"]
+[ext_resource type="Texture2D" uid="uid://dl5hitoolnet2" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal8.png" id="24_bhxss"]
+[ext_resource type="Texture2D" uid="uid://0x4pstmh4te4" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal7.png" id="25_7po0u"]
+[ext_resource type="Texture2D" uid="uid://cgi27w6e0ao5d" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal6.png" id="26_qu3vk"]
+[ext_resource type="Texture2D" uid="uid://dl1j8ypr562eh" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal5.png" id="27_rjxym"]
+[ext_resource type="Texture2D" uid="uid://ctwht7gkxpce8" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal4.png" id="28_4pm14"]
+[ext_resource type="Texture2D" uid="uid://4xv28q0tyr3f" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal3.png" id="29_gbm75"]
+[ext_resource type="Texture2D" uid="uid://divymsdfituhj" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal2.png" id="30_achbi"]
+[ext_resource type="Texture2D" uid="uid://c5g5faimv0yks" path="res://art/MainGame/Plants/SunFlower/Sunflower_rightpetal1.png" id="31_q3po2"]
+[ext_resource type="Texture2D" uid="uid://ciwmeli0136ce" path="res://art/MainGame/Plants/SunFlower/Sunflower_toppetals.png" id="32_53xc1"]
+[ext_resource type="Texture2D" uid="uid://d3o7ih5cyines" path="res://art/MainGame/Plants/SunFlower/Sunflower_head.png" id="33_alsjj"]
 
 [sub_resource type="Shader" id="Shader_wihil"]
 code = "shader_type canvas_item;
@@ -111,6 +111,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1.1236)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anim_idle/Anim_blink:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4texv"]
 _data = {
@@ -124,427 +136,427 @@ step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Anim_idle/Anim_blink:position")
+tracks/0/path = NodePath("Anim_idle:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(16, 6.60112)]
+"values": [Vector2(17.6, 13)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Anim_idle/Anim_blink:scale")
+tracks/1/path = NodePath("Anim_idle:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1.1236)]
+"values": [Vector2(0.8, 0.8)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Anim_idle:position")
+tracks/2/path = NodePath("SunFlower_toppetals:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(17.6, 13)]
+"values": [Vector2(34.5, 6.7)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Anim_idle:scale")
+tracks/3/path = NodePath("SunFlower_toppetals:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.8, 0.8)]
+"values": [0.015708]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SunFlower_toppetals:position")
+tracks/4/path = NodePath("SunFlower_toppetals:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(34.5, 6.7)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SunFlower_toppetals:rotation")
+tracks/5/path = NodePath("SunFlower_rightpetal1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [Vector2(45.3, 7.3)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SunFlower_toppetals:scale")
+tracks/6/path = NodePath("SunFlower_rightpetal1:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [0.015708]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SunFlower_rightpetal1:position")
+tracks/7/path = NodePath("SunFlower_rightpetal1:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(45.3, 7.3)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("SunFlower_rightpetal1:rotation")
+tracks/8/path = NodePath("SunFlower_rightpetal2:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [Vector2(50.6, 10.2)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("SunFlower_rightpetal1:scale")
+tracks/9/path = NodePath("SunFlower_rightpetal2:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [0.015708]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("SunFlower_rightpetal2:position")
+tracks/10/path = NodePath("SunFlower_rightpetal2:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(50.6, 10.2)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("SunFlower_rightpetal2:rotation")
+tracks/11/path = NodePath("SunFlower_rightpetal3:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [Vector2(55.2, 14.6)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("SunFlower_rightpetal2:scale")
+tracks/12/path = NodePath("SunFlower_rightpetal3:rotation")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [0.041888]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("SunFlower_rightpetal3:position")
+tracks/13/path = NodePath("SunFlower_rightpetal3:scale")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(55.2, 14.6)]
+"values": [Vector2(1.017, 1)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("SunFlower_rightpetal3:rotation")
+tracks/14/path = NodePath("SunFlower_rightpetal4:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.041888]
+"values": [Vector2(59.5, 18.1)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("SunFlower_rightpetal3:scale")
+tracks/15/path = NodePath("SunFlower_rightpetal4:rotation")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.017, 1)]
+"values": [0.120428]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("SunFlower_rightpetal4:position")
+tracks/16/path = NodePath("SunFlower_rightpetal4:scale")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(59.5, 18.1)]
+"values": [Vector2(1.02, 1)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("SunFlower_rightpetal4:rotation")
+tracks/17/path = NodePath("SunFlower_rightpetal5:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.120428]
+"values": [Vector2(61.3, 26)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("SunFlower_rightpetal4:scale")
+tracks/18/path = NodePath("SunFlower_rightpetal5:rotation")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.02, 1)]
+"values": [0.308923]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("SunFlower_rightpetal5:position")
+tracks/19/path = NodePath("SunFlower_rightpetal5:scale")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(61.3, 26)]
+"values": [Vector2(0.853, 0.8)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("SunFlower_rightpetal5:rotation")
+tracks/20/path = NodePath("SunFlower_rightpetal6:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.308923]
+"values": [Vector2(59.7, 32.5)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("SunFlower_rightpetal5:scale")
+tracks/21/path = NodePath("SunFlower_rightpetal6:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.853, 0.8)]
+"values": [0.235619]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("SunFlower_rightpetal6:position")
+tracks/22/path = NodePath("SunFlower_rightpetal6:scale")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(59.7, 32.5)]
+"values": [Vector2(0.836, 0.8)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("SunFlower_rightpetal6:rotation")
+tracks/23/path = NodePath("SunFlower_rightpetal7:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.235619]
+"values": [Vector2(54.6, 37.4)]
 }
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("SunFlower_rightpetal6:scale")
+tracks/24/path = NodePath("SunFlower_rightpetal7:rotation")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.836, 0.8)]
+"values": [0.148353]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("SunFlower_rightpetal7:position")
+tracks/25/path = NodePath("SunFlower_rightpetal7:scale")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(54.6, 37.4)]
+"values": [Vector2(0.822, 0.8)]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("SunFlower_rightpetal7:rotation")
+tracks/26/path = NodePath("SunFlower_rightpetal8:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.148353]
+"values": [Vector2(50.9, 41.3)]
 }
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("SunFlower_rightpetal7:scale")
+tracks/27/path = NodePath("SunFlower_rightpetal8:rotation")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.822, 0.8)]
+"values": [0.041888]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("SunFlower_rightpetal8:position")
+tracks/28/path = NodePath("SunFlower_rightpetal8:scale")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(50.9, 41.3)]
+"values": [Vector2(0.814, 0.8)]
 }
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("SunFlower_rightpetal8:rotation")
+tracks/29/path = NodePath("SunFlower_rightpetal9:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.041888]
+"values": [Vector2(46.2, 43.9)]
 }
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("SunFlower_rightpetal8:scale")
+tracks/30/path = NodePath("SunFlower_rightpetal9:rotation")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.814, 0.8)]
+"values": [0.015708]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("SunFlower_rightpetal9:position")
+tracks/31/path = NodePath("SunFlower_rightpetal9:scale")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(46.2, 43.9)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("SunFlower_rightpetal9:rotation")
+tracks/32/path = NodePath("SunFlower_bottompetals:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [Vector2(33, 44.5)]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("SunFlower_rightpetal9:scale")
+tracks/33/path = NodePath("SunFlower_bottompetals:rotation")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [0.015708]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("SunFlower_bottompetals:position")
+tracks/34/path = NodePath("SunFlower_leftpetal1:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(33, 44.5)]
+"values": [Vector2(28.2, 6.8)]
 }
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("SunFlower_bottompetals:rotation")
+tracks/35/path = NodePath("SunFlower_leftpetal1:rotation")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
@@ -556,175 +568,175 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("SunFlower_leftpetal1:position")
+tracks/36/path = NodePath("SunFlower_leftpetal1:scale")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(28.2, 6.8)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("SunFlower_leftpetal1:rotation")
+tracks/37/path = NodePath("SunFlower_leftpetal1:skew")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [0.0]
 }
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("SunFlower_leftpetal1:scale")
+tracks/38/path = NodePath("SunFlower_leftpetal2:position")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [Vector2(21.8, 8.5)]
 }
 tracks/39/type = "value"
 tracks/39/imported = false
 tracks/39/enabled = true
-tracks/39/path = NodePath("SunFlower_leftpetal1:skew")
+tracks/39/path = NodePath("SunFlower_leftpetal2:rotation")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.015708]
 }
 tracks/40/type = "value"
 tracks/40/imported = false
 tracks/40/enabled = true
-tracks/40/path = NodePath("SunFlower_leftpetal2:position")
+tracks/40/path = NodePath("SunFlower_leftpetal2:scale")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(21.8, 8.5)]
+"values": [Vector2(1.016, 1)]
 }
 tracks/41/type = "value"
 tracks/41/imported = false
 tracks/41/enabled = true
-tracks/41/path = NodePath("SunFlower_leftpetal2:rotation")
+tracks/41/path = NodePath("SunFlower_leftpetal2:skew")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [0.0]
 }
 tracks/42/type = "value"
 tracks/42/imported = false
 tracks/42/enabled = true
-tracks/42/path = NodePath("SunFlower_leftpetal2:scale")
+tracks/42/path = NodePath("SunFlower_leftpetal3:position")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.016, 1)]
+"values": [Vector2(14.6, 15.2)]
 }
 tracks/43/type = "value"
 tracks/43/imported = false
 tracks/43/enabled = true
-tracks/43/path = NodePath("SunFlower_leftpetal2:skew")
+tracks/43/path = NodePath("SunFlower_leftpetal3:scale")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0.819, 0.8)]
 }
 tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("SunFlower_leftpetal3:position")
+tracks/44/path = NodePath("SunFlower_leftpetal3:skew")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(14.6, 15.2)]
+"values": [0.0]
 }
 tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("SunFlower_leftpetal3:scale")
+tracks/45/path = NodePath("SunFlower_leftpetal4:position")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.819, 0.8)]
+"values": [Vector2(10.3, 21.9)]
 }
 tracks/46/type = "value"
 tracks/46/imported = false
 tracks/46/enabled = true
-tracks/46/path = NodePath("SunFlower_leftpetal3:skew")
+tracks/46/path = NodePath("SunFlower_leftpetal4:rotation")
 tracks/46/interp = 1
 tracks/46/loop_wrap = true
 tracks/46/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [6.02837]
 }
 tracks/47/type = "value"
 tracks/47/imported = false
 tracks/47/enabled = true
-tracks/47/path = NodePath("SunFlower_leftpetal4:position")
+tracks/47/path = NodePath("SunFlower_leftpetal4:scale")
 tracks/47/interp = 1
 tracks/47/loop_wrap = true
 tracks/47/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10.3, 21.9)]
+"values": [Vector2(0.84, 0.8)]
 }
 tracks/48/type = "value"
 tracks/48/imported = false
 tracks/48/enabled = true
-tracks/48/path = NodePath("SunFlower_leftpetal4:rotation")
+tracks/48/path = NodePath("SunFlower_leftpetal4:skew")
 tracks/48/interp = 1
 tracks/48/loop_wrap = true
 tracks/48/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.02837]
+"values": [0.0]
 }
 tracks/49/type = "value"
 tracks/49/imported = false
 tracks/49/enabled = true
-tracks/49/path = NodePath("SunFlower_leftpetal4:scale")
+tracks/49/path = NodePath("SunFlower_leftpetal5:rotation")
 tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.84, 0.8)]
+"values": [6.03535]
 }
 tracks/50/type = "value"
 tracks/50/imported = false
 tracks/50/enabled = true
-tracks/50/path = NodePath("SunFlower_leftpetal4:skew")
+tracks/50/path = NodePath("SunFlower_leftpetal5:skew")
 tracks/50/interp = 1
 tracks/50/loop_wrap = true
 tracks/50/keys = {
@@ -736,307 +748,307 @@ tracks/50/keys = {
 tracks/51/type = "value"
 tracks/51/imported = false
 tracks/51/enabled = true
-tracks/51/path = NodePath("SunFlower_leftpetal5:rotation")
+tracks/51/path = NodePath("SunFlower_leftpetal5:position")
 tracks/51/interp = 1
 tracks/51/loop_wrap = true
 tracks/51/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.03535]
+"values": [Vector2(7.8, 30)]
 }
 tracks/52/type = "value"
 tracks/52/imported = false
 tracks/52/enabled = true
-tracks/52/path = NodePath("SunFlower_leftpetal5:skew")
+tracks/52/path = NodePath("SunFlower_leftpetal5:scale")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0.838, 0.8)]
 }
 tracks/53/type = "value"
 tracks/53/imported = false
 tracks/53/enabled = true
-tracks/53/path = NodePath("SunFlower_leftpetal5:position")
+tracks/53/path = NodePath("SunFlower_leftpetal6:position")
 tracks/53/interp = 1
 tracks/53/loop_wrap = true
 tracks/53/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(7.8, 30)]
+"values": [Vector2(11.1, 34.7)]
 }
 tracks/54/type = "value"
 tracks/54/imported = false
 tracks/54/enabled = true
-tracks/54/path = NodePath("SunFlower_leftpetal5:scale")
+tracks/54/path = NodePath("SunFlower_leftpetal6:rotation")
 tracks/54/interp = 1
 tracks/54/loop_wrap = true
 tracks/54/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.838, 0.8)]
+"values": [6.24828]
 }
 tracks/55/type = "value"
 tracks/55/imported = false
 tracks/55/enabled = true
-tracks/55/path = NodePath("SunFlower_leftpetal6:position")
+tracks/55/path = NodePath("SunFlower_leftpetal6:scale")
 tracks/55/interp = 1
 tracks/55/loop_wrap = true
 tracks/55/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(11.1, 34.7)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/56/type = "value"
 tracks/56/imported = false
 tracks/56/enabled = true
-tracks/56/path = NodePath("SunFlower_leftpetal6:rotation")
+tracks/56/path = NodePath("SunFlower_leftpetal6:skew")
 tracks/56/interp = 1
 tracks/56/loop_wrap = true
 tracks/56/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.24828]
+"values": [0.0]
 }
 tracks/57/type = "value"
 tracks/57/imported = false
 tracks/57/enabled = true
-tracks/57/path = NodePath("SunFlower_leftpetal6:scale")
+tracks/57/path = NodePath("SunFlower_leftpetal7:position")
 tracks/57/interp = 1
 tracks/57/loop_wrap = true
 tracks/57/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [Vector2(16.5, 38.8)]
 }
 tracks/58/type = "value"
 tracks/58/imported = false
 tracks/58/enabled = true
-tracks/58/path = NodePath("SunFlower_leftpetal6:skew")
+tracks/58/path = NodePath("SunFlower_leftpetal7:rotation")
 tracks/58/interp = 1
 tracks/58/loop_wrap = true
 tracks/58/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [6.24828]
 }
 tracks/59/type = "value"
 tracks/59/imported = false
 tracks/59/enabled = true
-tracks/59/path = NodePath("SunFlower_leftpetal7:position")
+tracks/59/path = NodePath("SunFlower_leftpetal7:scale")
 tracks/59/interp = 1
 tracks/59/loop_wrap = true
 tracks/59/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(16.5, 38.8)]
+"values": [Vector2(1.017, 1)]
 }
 tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
-tracks/60/path = NodePath("SunFlower_leftpetal7:rotation")
+tracks/60/path = NodePath("SunFlower_leftpetal7:skew")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.24828]
+"values": [0.0]
 }
 tracks/61/type = "value"
 tracks/61/imported = false
 tracks/61/enabled = true
-tracks/61/path = NodePath("SunFlower_leftpetal7:scale")
+tracks/61/path = NodePath("SunFlower_leftpetal8:position")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
 tracks/61/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.017, 1)]
+"values": [Vector2(24.8, 43.4)]
 }
 tracks/62/type = "value"
 tracks/62/imported = false
 tracks/62/enabled = true
-tracks/62/path = NodePath("SunFlower_leftpetal7:skew")
+tracks/62/path = NodePath("SunFlower_leftpetal8:rotation")
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.015708]
 }
 tracks/63/type = "value"
 tracks/63/imported = false
 tracks/63/enabled = true
-tracks/63/path = NodePath("SunFlower_leftpetal8:position")
+tracks/63/path = NodePath("SunFlower_leftpetal8:scale")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
 tracks/63/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(24.8, 43.4)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/64/type = "value"
 tracks/64/imported = false
 tracks/64/enabled = true
-tracks/64/path = NodePath("SunFlower_leftpetal8:rotation")
+tracks/64/path = NodePath("SunFlower_leftpetal8:skew")
 tracks/64/interp = 1
 tracks/64/loop_wrap = true
 tracks/64/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.015708]
+"values": [0.0]
 }
 tracks/65/type = "value"
 tracks/65/imported = false
 tracks/65/enabled = true
-tracks/65/path = NodePath("SunFlower_leftpetal8:scale")
+tracks/65/path = NodePath("Frontleaf_left_tip:position")
 tracks/65/interp = 1
 tracks/65/loop_wrap = true
 tracks/65/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [Vector2(19.5, 60.3)]
 }
 tracks/66/type = "value"
 tracks/66/imported = false
 tracks/66/enabled = true
-tracks/66/path = NodePath("SunFlower_leftpetal8:skew")
+tracks/66/path = NodePath("Frontleaf_left_tip:rotation")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
 tracks/66/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.069813]
 }
 tracks/67/type = "value"
 tracks/67/imported = false
 tracks/67/enabled = true
-tracks/67/path = NodePath("Frontleaf_left_tip:position")
+tracks/67/path = NodePath("Frontleaf_left_tip:scale")
 tracks/67/interp = 1
 tracks/67/loop_wrap = true
 tracks/67/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(19.5, 60.3)]
+"values": [Vector2(0.609, 0.603)]
 }
 tracks/68/type = "value"
 tracks/68/imported = false
 tracks/68/enabled = true
-tracks/68/path = NodePath("Frontleaf_left_tip:rotation")
+tracks/68/path = NodePath("Frontleaf_left_tip:skew")
 tracks/68/interp = 1
 tracks/68/loop_wrap = true
 tracks/68/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.069813]
+"values": [2e-07]
 }
 tracks/69/type = "value"
 tracks/69/imported = false
 tracks/69/enabled = true
-tracks/69/path = NodePath("Frontleaf_left_tip:scale")
+tracks/69/path = NodePath("Frontleaf_right_tip:position")
 tracks/69/interp = 1
 tracks/69/loop_wrap = true
 tracks/69/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.609, 0.603)]
+"values": [Vector2(55.8, 55)]
 }
 tracks/70/type = "value"
 tracks/70/imported = false
 tracks/70/enabled = true
-tracks/70/path = NodePath("Frontleaf_left_tip:skew")
+tracks/70/path = NodePath("Frontleaf_right_tip:rotation")
 tracks/70/interp = 1
 tracks/70/loop_wrap = true
 tracks/70/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [2e-07]
+"values": [-0.076794]
 }
 tracks/71/type = "value"
 tracks/71/imported = false
 tracks/71/enabled = true
-tracks/71/path = NodePath("Frontleaf_right_tip:position")
+tracks/71/path = NodePath("Frontleaf_right_tip:scale")
 tracks/71/interp = 1
 tracks/71/loop_wrap = true
 tracks/71/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(55.8, 55)]
+"values": [Vector2(0.642, 0.603)]
 }
 tracks/72/type = "value"
 tracks/72/imported = false
 tracks/72/enabled = true
-tracks/72/path = NodePath("Frontleaf_right_tip:rotation")
+tracks/72/path = NodePath("Frontleaf_right_tip:skew")
 tracks/72/interp = 1
 tracks/72/loop_wrap = true
 tracks/72/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.076794]
+"values": [-5e-07]
 }
 tracks/73/type = "value"
 tracks/73/imported = false
 tracks/73/enabled = true
-tracks/73/path = NodePath("Frontleaf_right_tip:scale")
+tracks/73/path = NodePath("Frontleaf:position")
 tracks/73/interp = 1
 tracks/73/loop_wrap = true
 tracks/73/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.642, 0.603)]
+"values": [Vector2(22.6, 53.2)]
 }
 tracks/74/type = "value"
 tracks/74/imported = false
 tracks/74/enabled = true
-tracks/74/path = NodePath("Frontleaf_right_tip:skew")
+tracks/74/path = NodePath("Frontleaf:rotation")
 tracks/74/interp = 1
 tracks/74/loop_wrap = true
 tracks/74/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-5e-07]
+"values": [0.0]
 }
 tracks/75/type = "value"
 tracks/75/imported = false
 tracks/75/enabled = true
-tracks/75/path = NodePath("Frontleaf:position")
+tracks/75/path = NodePath("Frontleaf:scale")
 tracks/75/interp = 1
 tracks/75/loop_wrap = true
 tracks/75/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(22.6, 53.2)]
+"values": [Vector2(0.565, 0.596)]
 }
 tracks/76/type = "value"
 tracks/76/imported = false
 tracks/76/enabled = true
-tracks/76/path = NodePath("Frontleaf:rotation")
+tracks/76/path = NodePath("Frontleaf:skew")
 tracks/76/interp = 1
 tracks/76/loop_wrap = true
 tracks/76/keys = {
@@ -1048,223 +1060,223 @@ tracks/76/keys = {
 tracks/77/type = "value"
 tracks/77/imported = false
 tracks/77/enabled = true
-tracks/77/path = NodePath("Frontleaf:scale")
+tracks/77/path = NodePath("Stalk_top:position")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.565, 0.596)]
+"values": [Vector2(32.5, 38.5)]
 }
 tracks/78/type = "value"
 tracks/78/imported = false
 tracks/78/enabled = true
-tracks/78/path = NodePath("Frontleaf:skew")
+tracks/78/path = NodePath("Stalk_top:rotation")
 tracks/78/interp = 1
 tracks/78/loop_wrap = true
 tracks/78/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.099484]
 }
 tracks/79/type = "value"
 tracks/79/imported = false
 tracks/79/enabled = true
-tracks/79/path = NodePath("Stalk_top:position")
+tracks/79/path = NodePath("Stalk_top:skew")
 tracks/79/interp = 1
 tracks/79/loop_wrap = true
 tracks/79/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(32.5, 38.5)]
+"values": [-0.0383975]
 }
 tracks/80/type = "value"
 tracks/80/imported = false
 tracks/80/enabled = true
-tracks/80/path = NodePath("Stalk_top:rotation")
+tracks/80/path = NodePath("Stalk_bottom:position")
 tracks/80/interp = 1
 tracks/80/loop_wrap = true
 tracks/80/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.099484]
+"values": [Vector2(37.1, 50.8)]
 }
 tracks/81/type = "value"
 tracks/81/imported = false
 tracks/81/enabled = true
-tracks/81/path = NodePath("Stalk_top:skew")
+tracks/81/path = NodePath("Stalk_bottom:rotation")
 tracks/81/interp = 1
 tracks/81/loop_wrap = true
 tracks/81/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.0383975]
+"values": [0.109956]
 }
 tracks/82/type = "value"
 tracks/82/imported = false
 tracks/82/enabled = true
-tracks/82/path = NodePath("Stalk_bottom:position")
+tracks/82/path = NodePath("Stalk_bottom:scale")
 tracks/82/interp = 1
 tracks/82/loop_wrap = true
 tracks/82/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(37.1, 50.8)]
+"values": [Vector2(0.558, 0.655)]
 }
 tracks/83/type = "value"
 tracks/83/imported = false
 tracks/83/enabled = true
-tracks/83/path = NodePath("Stalk_bottom:rotation")
+tracks/83/path = NodePath("Stalk_bottom:skew")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
 tracks/83/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.109956]
+"values": [-0.0401428]
 }
 tracks/84/type = "value"
 tracks/84/imported = false
 tracks/84/enabled = true
-tracks/84/path = NodePath("Stalk_bottom:scale")
+tracks/84/path = NodePath("Backleaf_right_tip:position")
 tracks/84/interp = 1
 tracks/84/loop_wrap = true
 tracks/84/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.558, 0.655)]
+"values": [Vector2(47.5, 54.5)]
 }
 tracks/85/type = "value"
 tracks/85/imported = false
 tracks/85/enabled = true
-tracks/85/path = NodePath("Stalk_bottom:skew")
+tracks/85/path = NodePath("Backleaf_right_tip:scale")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
 tracks/85/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.0401428]
+"values": [Vector2(0.622, 0.488)]
 }
 tracks/86/type = "value"
 tracks/86/imported = false
 tracks/86/enabled = true
-tracks/86/path = NodePath("Backleaf_right_tip:position")
+tracks/86/path = NodePath("Backleaf_right_tip:skew")
 tracks/86/interp = 1
 tracks/86/loop_wrap = true
 tracks/86/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(47.5, 54.5)]
+"values": [0.0034903]
 }
 tracks/87/type = "value"
 tracks/87/imported = false
 tracks/87/enabled = true
-tracks/87/path = NodePath("Backleaf_right_tip:scale")
+tracks/87/path = NodePath("Backleaf_right_tip:rotation")
 tracks/87/interp = 1
 tracks/87/loop_wrap = true
 tracks/87/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.622, 0.488)]
+"values": [0.013963]
 }
 tracks/88/type = "value"
 tracks/88/imported = false
 tracks/88/enabled = true
-tracks/88/path = NodePath("Backleaf_right_tip:skew")
+tracks/88/path = NodePath("Backleaf_left_tip:position")
 tracks/88/interp = 1
 tracks/88/loop_wrap = true
 tracks/88/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0034903]
+"values": [Vector2(24.9, 55.3)]
 }
 tracks/89/type = "value"
 tracks/89/imported = false
 tracks/89/enabled = true
-tracks/89/path = NodePath("Backleaf_right_tip:rotation")
+tracks/89/path = NodePath("Backleaf_left_tip:rotation")
 tracks/89/interp = 1
 tracks/89/loop_wrap = true
 tracks/89/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.013963]
+"values": [0.022689]
 }
 tracks/90/type = "value"
 tracks/90/imported = false
 tracks/90/enabled = true
-tracks/90/path = NodePath("Backleaf_left_tip:position")
+tracks/90/path = NodePath("Backleaf_left_tip:scale")
 tracks/90/interp = 1
 tracks/90/loop_wrap = true
 tracks/90/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(24.9, 55.3)]
+"values": [Vector2(0.584, 0.488)]
 }
 tracks/91/type = "value"
 tracks/91/imported = false
 tracks/91/enabled = true
-tracks/91/path = NodePath("Backleaf_left_tip:rotation")
+tracks/91/path = NodePath("Backleaf_left_tip:skew")
 tracks/91/interp = 1
 tracks/91/loop_wrap = true
 tracks/91/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.022689]
+"values": [0.0087269]
 }
 tracks/92/type = "value"
 tracks/92/imported = false
 tracks/92/enabled = true
-tracks/92/path = NodePath("Backleaf_left_tip:scale")
+tracks/92/path = NodePath("Backleaf:position")
 tracks/92/interp = 1
 tracks/92/loop_wrap = true
 tracks/92/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.584, 0.488)]
+"values": [Vector2(27.6, 54.7)]
 }
 tracks/93/type = "value"
 tracks/93/imported = false
 tracks/93/enabled = true
-tracks/93/path = NodePath("Backleaf_left_tip:skew")
+tracks/93/path = NodePath("Backleaf:rotation")
 tracks/93/interp = 1
 tracks/93/loop_wrap = true
 tracks/93/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0087269]
+"values": [0.0]
 }
 tracks/94/type = "value"
 tracks/94/imported = false
 tracks/94/enabled = true
-tracks/94/path = NodePath("Backleaf:position")
+tracks/94/path = NodePath("Backleaf:scale")
 tracks/94/interp = 1
 tracks/94/loop_wrap = true
 tracks/94/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(27.6, 54.7)]
+"values": [Vector2(0.572, 0.476)]
 }
 tracks/95/type = "value"
 tracks/95/imported = false
 tracks/95/enabled = true
-tracks/95/path = NodePath("Backleaf:rotation")
+tracks/95/path = NodePath("Backleaf:skew")
 tracks/95/interp = 1
 tracks/95/loop_wrap = true
 tracks/95/keys = {
@@ -1276,67 +1288,67 @@ tracks/95/keys = {
 tracks/96/type = "value"
 tracks/96/imported = false
 tracks/96/enabled = true
-tracks/96/path = NodePath("Backleaf:scale")
+tracks/96/path = NodePath("Stalk_top:scale")
 tracks/96/interp = 1
 tracks/96/loop_wrap = true
 tracks/96/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.572, 0.476)]
+"values": [Vector2(0.557, 0.787)]
 }
 tracks/97/type = "value"
 tracks/97/imported = false
 tracks/97/enabled = true
-tracks/97/path = NodePath("Backleaf:skew")
+tracks/97/path = NodePath("SunFlower_leftpetal3:rotation")
 tracks/97/interp = 1
 tracks/97/loop_wrap = true
 tracks/97/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [6.15752]
 }
 tracks/98/type = "value"
 tracks/98/imported = false
 tracks/98/enabled = true
-tracks/98/path = NodePath("Stalk_top:scale")
+tracks/98/path = NodePath("SunFlower_bottompetals:scale")
 tracks/98/interp = 1
 tracks/98/loop_wrap = true
 tracks/98/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.557, 0.787)]
+"values": [Vector2(0.813, 0.8)]
 }
 tracks/99/type = "value"
 tracks/99/imported = false
 tracks/99/enabled = true
-tracks/99/path = NodePath("SunFlower_leftpetal3:rotation")
+tracks/99/path = NodePath("SunFlower_bottompetals:skew")
 tracks/99/interp = 1
 tracks/99/loop_wrap = true
 tracks/99/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.15752]
+"values": [0.0]
 }
 tracks/100/type = "value"
 tracks/100/imported = false
 tracks/100/enabled = true
-tracks/100/path = NodePath("SunFlower_bottompetals:scale")
+tracks/100/path = NodePath("SunFlower_rightpetal9:skew")
 tracks/100/interp = 1
 tracks/100/loop_wrap = true
 tracks/100/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.813, 0.8)]
+"values": [0.0]
 }
 tracks/101/type = "value"
 tracks/101/imported = false
 tracks/101/enabled = true
-tracks/101/path = NodePath("SunFlower_bottompetals:skew")
+tracks/101/path = NodePath("SunFlower_rightpetal8:skew")
 tracks/101/interp = 1
 tracks/101/loop_wrap = true
 tracks/101/keys = {
@@ -1348,7 +1360,7 @@ tracks/101/keys = {
 tracks/102/type = "value"
 tracks/102/imported = false
 tracks/102/enabled = true
-tracks/102/path = NodePath("SunFlower_rightpetal9:skew")
+tracks/102/path = NodePath("SunFlower_rightpetal7:skew")
 tracks/102/interp = 1
 tracks/102/loop_wrap = true
 tracks/102/keys = {
@@ -1360,7 +1372,7 @@ tracks/102/keys = {
 tracks/103/type = "value"
 tracks/103/imported = false
 tracks/103/enabled = true
-tracks/103/path = NodePath("SunFlower_rightpetal8:skew")
+tracks/103/path = NodePath("SunFlower_rightpetal6:skew")
 tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = {
@@ -1372,7 +1384,7 @@ tracks/103/keys = {
 tracks/104/type = "value"
 tracks/104/imported = false
 tracks/104/enabled = true
-tracks/104/path = NodePath("SunFlower_rightpetal7:skew")
+tracks/104/path = NodePath("SunFlower_rightpetal5:skew")
 tracks/104/interp = 1
 tracks/104/loop_wrap = true
 tracks/104/keys = {
@@ -1384,7 +1396,7 @@ tracks/104/keys = {
 tracks/105/type = "value"
 tracks/105/imported = false
 tracks/105/enabled = true
-tracks/105/path = NodePath("SunFlower_rightpetal6:skew")
+tracks/105/path = NodePath("SunFlower_rightpetal4:skew")
 tracks/105/interp = 1
 tracks/105/loop_wrap = true
 tracks/105/keys = {
@@ -1396,7 +1408,7 @@ tracks/105/keys = {
 tracks/106/type = "value"
 tracks/106/imported = false
 tracks/106/enabled = true
-tracks/106/path = NodePath("SunFlower_rightpetal5:skew")
+tracks/106/path = NodePath("SunFlower_rightpetal3:skew")
 tracks/106/interp = 1
 tracks/106/loop_wrap = true
 tracks/106/keys = {
@@ -1408,7 +1420,7 @@ tracks/106/keys = {
 tracks/107/type = "value"
 tracks/107/imported = false
 tracks/107/enabled = true
-tracks/107/path = NodePath("SunFlower_rightpetal4:skew")
+tracks/107/path = NodePath("SunFlower_rightpetal2:skew")
 tracks/107/interp = 1
 tracks/107/loop_wrap = true
 tracks/107/keys = {
@@ -1420,7 +1432,7 @@ tracks/107/keys = {
 tracks/108/type = "value"
 tracks/108/imported = false
 tracks/108/enabled = true
-tracks/108/path = NodePath("SunFlower_rightpetal3:skew")
+tracks/108/path = NodePath("SunFlower_rightpetal1:skew")
 tracks/108/interp = 1
 tracks/108/loop_wrap = true
 tracks/108/keys = {
@@ -1432,7 +1444,7 @@ tracks/108/keys = {
 tracks/109/type = "value"
 tracks/109/imported = false
 tracks/109/enabled = true
-tracks/109/path = NodePath("SunFlower_rightpetal2:skew")
+tracks/109/path = NodePath("SunFlower_toppetals:skew")
 tracks/109/interp = 1
 tracks/109/loop_wrap = true
 tracks/109/keys = {
@@ -1444,7 +1456,7 @@ tracks/109/keys = {
 tracks/110/type = "value"
 tracks/110/imported = false
 tracks/110/enabled = true
-tracks/110/path = NodePath("SunFlower_rightpetal1:skew")
+tracks/110/path = NodePath("Anim_idle:skew")
 tracks/110/interp = 1
 tracks/110/loop_wrap = true
 tracks/110/keys = {
@@ -1456,38 +1468,14 @@ tracks/110/keys = {
 tracks/111/type = "value"
 tracks/111/imported = false
 tracks/111/enabled = true
-tracks/111/path = NodePath("SunFlower_toppetals:skew")
+tracks/111/path = NodePath("Anim_idle/Anim_blink:visible")
 tracks/111/interp = 1
 tracks/111/loop_wrap = true
 tracks/111/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/112/type = "value"
-tracks/112/imported = false
-tracks/112/enabled = true
-tracks/112/path = NodePath("Anim_idle:skew")
-tracks/112/interp = 1
-tracks/112/loop_wrap = true
-tracks/112/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/113/type = "value"
-tracks/113/imported = false
-tracks/113/enabled = true
-tracks/113/path = NodePath("Anim_idle/Anim_blink:skew")
-tracks/113/interp = 1
-tracks/113/loop_wrap = true
-tracks/113/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f0umt"]
@@ -1578,7 +1566,7 @@ texture = ExtResource("3_xgvnu")
 [node name="Backleaf" type="Sprite2D" parent="."]
 position = Vector2(27.6, 54.7)
 scale = Vector2(0.572, 0.476)
-texture = ExtResource("22_0jffi")
+texture = ExtResource("6_kdids")
 centered = false
 
 [node name="Backleaf_left_tip" type="Sprite2D" parent="."]
@@ -1586,7 +1574,7 @@ position = Vector2(24.9, 55.3)
 rotation = 0.022689
 scale = Vector2(0.584, 0.488)
 skew = 0.0087269
-texture = ExtResource("23_dc7qx")
+texture = ExtResource("7_41nh4")
 centered = false
 
 [node name="Backleaf_right_tip" type="Sprite2D" parent="."]
@@ -1594,7 +1582,7 @@ position = Vector2(47.5, 54.5)
 rotation = 0.013963
 scale = Vector2(0.622, 0.488)
 skew = 0.0034903
-texture = ExtResource("24_jykgt")
+texture = ExtResource("8_g2ulc")
 centered = false
 
 [node name="Stalk_bottom" type="Sprite2D" parent="."]
@@ -1602,7 +1590,7 @@ position = Vector2(37.1, 50.8)
 rotation = 0.109956
 scale = Vector2(0.558, 0.655)
 skew = -0.0401428
-texture = ExtResource("28_e0as0")
+texture = ExtResource("9_3mbi3")
 centered = false
 
 [node name="Stalk_top" type="Sprite2D" parent="."]
@@ -1610,166 +1598,166 @@ position = Vector2(32.5, 38.5)
 rotation = 0.099484
 scale = Vector2(0.557, 0.787)
 skew = -0.0383975
-texture = ExtResource("7_ejkyq")
+texture = ExtResource("10_hikup")
 centered = false
 
 [node name="Frontleaf" type="Sprite2D" parent="."]
 position = Vector2(22.6, 53.2)
 scale = Vector2(0.565, 0.596)
-texture = ExtResource("25_hormm")
+texture = ExtResource("11_emwm0")
 centered = false
 
 [node name="Frontleaf_right_tip" type="Sprite2D" parent="."]
 position = Vector2(55.8, 55)
 rotation = -0.076794
 scale = Vector2(0.642, 0.603)
-texture = ExtResource("27_nqbvg")
+texture = ExtResource("12_4xj77")
 centered = false
 
 [node name="Frontleaf_left_tip" type="Sprite2D" parent="."]
 position = Vector2(19.5, 60.3)
 rotation = 0.069813
 scale = Vector2(0.609, 0.603)
-texture = ExtResource("26_vbqlt")
+texture = ExtResource("13_g0da5")
 centered = false
 
 [node name="SunFlower_leftpetal8" type="Sprite2D" parent="."]
 position = Vector2(24.8, 43.4)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("11_bp7bc")
+texture = ExtResource("14_qqgwb")
 centered = false
 
 [node name="SunFlower_leftpetal7" type="Sprite2D" parent="."]
 position = Vector2(16.5, 38.8)
 rotation = 6.24828
 scale = Vector2(1.017, 1)
-texture = ExtResource("10_krwxw")
+texture = ExtResource("15_bmfcr")
 centered = false
 
 [node name="SunFlower_leftpetal6" type="Sprite2D" parent="."]
 position = Vector2(11.1, 34.7)
 rotation = 6.24828
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("9_ufxii")
+texture = ExtResource("16_45rt2")
 centered = false
 
 [node name="SunFlower_leftpetal5" type="Sprite2D" parent="."]
 position = Vector2(7.8, 30)
 rotation = 6.03535
 scale = Vector2(0.838, 0.8)
-texture = ExtResource("8_i2x3f")
+texture = ExtResource("17_o313s")
 centered = false
 
 [node name="SunFlower_leftpetal4" type="Sprite2D" parent="."]
 position = Vector2(10.3, 21.9)
 rotation = 6.02837
 scale = Vector2(0.84, 0.8)
-texture = ExtResource("7_167bo")
+texture = ExtResource("18_qp1t3")
 centered = false
 
 [node name="SunFlower_leftpetal3" type="Sprite2D" parent="."]
 position = Vector2(14.6, 15.2)
 rotation = 6.15752
 scale = Vector2(0.819, 0.8)
-texture = ExtResource("6_4adoi")
+texture = ExtResource("19_17m6q")
 centered = false
 
 [node name="SunFlower_leftpetal2" type="Sprite2D" parent="."]
 position = Vector2(21.8, 8.5)
 rotation = 0.015708
 scale = Vector2(1.016, 1)
-texture = ExtResource("5_fqt0j")
+texture = ExtResource("20_5768j")
 centered = false
 
 [node name="SunFlower_leftpetal1" type="Sprite2D" parent="."]
 position = Vector2(28.2, 6.8)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("4_3q6i4")
+texture = ExtResource("21_bgkg3")
 centered = false
 
 [node name="SunFlower_bottompetals" type="Sprite2D" parent="."]
 position = Vector2(33, 44.5)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("2_nf3an")
+texture = ExtResource("22_rr68b")
 centered = false
 
 [node name="SunFlower_rightpetal9" type="Sprite2D" parent="."]
 position = Vector2(46.2, 43.9)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("20_fq0uc")
+texture = ExtResource("23_7ksu7")
 centered = false
 
 [node name="SunFlower_rightpetal8" type="Sprite2D" parent="."]
 position = Vector2(50.9, 41.3)
 rotation = 0.041888
 scale = Vector2(0.814, 0.8)
-texture = ExtResource("19_pawoa")
+texture = ExtResource("24_bhxss")
 centered = false
 
 [node name="SunFlower_rightpetal7" type="Sprite2D" parent="."]
 position = Vector2(54.6, 37.4)
 rotation = 0.148353
 scale = Vector2(0.822, 0.8)
-texture = ExtResource("18_bfrub")
+texture = ExtResource("25_7po0u")
 centered = false
 
 [node name="SunFlower_rightpetal6" type="Sprite2D" parent="."]
 position = Vector2(59.7, 32.5)
 rotation = 0.235619
 scale = Vector2(0.836, 0.8)
-texture = ExtResource("17_wh3b8")
+texture = ExtResource("26_qu3vk")
 centered = false
 
 [node name="SunFlower_rightpetal5" type="Sprite2D" parent="."]
 position = Vector2(61.3, 26)
 rotation = 0.308923
 scale = Vector2(0.853, 0.8)
-texture = ExtResource("16_y3ncl")
+texture = ExtResource("27_rjxym")
 centered = false
 
 [node name="SunFlower_rightpetal4" type="Sprite2D" parent="."]
 position = Vector2(59.5, 18.1)
 rotation = 0.120428
 scale = Vector2(1.02, 1)
-texture = ExtResource("15_teg4a")
+texture = ExtResource("28_4pm14")
 centered = false
 
 [node name="SunFlower_rightpetal3" type="Sprite2D" parent="."]
 position = Vector2(55.2, 14.6)
 rotation = 0.041888
 scale = Vector2(1.017, 1)
-texture = ExtResource("14_tsopb")
+texture = ExtResource("29_gbm75")
 centered = false
 
 [node name="SunFlower_rightpetal2" type="Sprite2D" parent="."]
 position = Vector2(50.6, 10.2)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("13_0yho3")
+texture = ExtResource("30_achbi")
 centered = false
 
 [node name="SunFlower_rightpetal1" type="Sprite2D" parent="."]
 position = Vector2(45.3, 7.3)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("12_qu3cp")
+texture = ExtResource("31_q3po2")
 centered = false
 
 [node name="SunFlower_toppetals" type="Sprite2D" parent="."]
 position = Vector2(34.5, 6.7)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
-texture = ExtResource("21_rsn5o")
+texture = ExtResource("32_53xc1")
 centered = false
 
 [node name="Anim_idle" type="Sprite2D" parent="."]
 position = Vector2(17.6, 13)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("3_mncpq")
+texture = ExtResource("33_alsjj")
 centered = false
 
 [node name="Anim_blink" type="Sprite2D" parent="Anim_idle"]

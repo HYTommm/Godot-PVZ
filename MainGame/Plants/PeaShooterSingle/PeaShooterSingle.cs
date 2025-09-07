@@ -40,7 +40,7 @@ public partial class PeaShooterSingle : Plants
 
 	public override void _Idle()
 	{
-		_animIdle.CallDeferred("play", "Idle", -1, _speedScaleOfIdle);
+		_animIdle.CallDeferred("play", "PeaShooterSingle_idle", -1, _speedScaleOfIdle);
 		_animHead.CallDeferred("play", "Head_Idle", -1, _speedScaleOfIdle);
 	}
 

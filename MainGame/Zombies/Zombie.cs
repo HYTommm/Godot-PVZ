@@ -347,7 +347,7 @@ public partial class Zombie : HealthEntity
 		{
 			Dying(); // 开始濒死
 		}
-		if ((hurt.HurtType == HurtType.AshExplosion || hurt.HurtType == HurtType.Explosion ) && HP <= 0)
+		if (hurt.HurtType is HurtType.AshExplosion or HurtType.Explosion && HP <= 0)
 		{
 			BIsDead = true;
 			BIsMoving = false;
