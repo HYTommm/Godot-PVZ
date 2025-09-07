@@ -1,12 +1,12 @@
-[gd_resource type="Animation" load_steps=3 format=3 uid="uid://dmn0v338r6efh"]
+[gd_resource type="Animation" load_steps=3 format=3 uid="uid://b3dn5kb4gktsm"]
 
-[ext_resource type="Texture2D" uid="uid://dhdgwk51ra0yr" path="res://art/MainGame/Plants/SunFlower/SunFlower_blink2.png" id="1_vdv2h"]
-[ext_resource type="Texture2D" uid="uid://djgflaf8agldu" path="res://art/MainGame/Plants/SunFlower/SunFlower_blink1.png" id="2_putuh"]
+[ext_resource type="Texture2D" uid="uid://dhdgwk51ra0yr" path="res://art/MainGame/Plants/SunFlower/Sunflower_blink2.png" id="0_fuck"]
+[ext_resource type="Texture2D" uid="uid://djgflaf8agldu" path="res://art/MainGame/Plants/SunFlower/Sunflower_blink1.png" id="1_fuck"]
 
 [resource]
-resource_name = "Blink"
-length = 0.333342
-step = 0.0833333
+resource_name = "SunFlower_blink"
+length = 0.250007
+step = 0.083333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -14,10 +14,10 @@ tracks/0/path = NodePath("Anim_idle/Anim_blink:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.333333),
+"times": PackedFloat32Array(0, 0.166667, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"update": 0,
+"values": [true, true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -26,32 +26,56 @@ tracks/1/path = NodePath("Anim_idle/Anim_blink:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0833333, 0.166667, 0.25),
+"times": PackedFloat32Array(0, 0.083333, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(16, 6.60112), Vector2(16, 6.88202), Vector2(16, 6.60112)]
+"values": [Vector2(15.66, 10.575), Vector2(15.66, 10.775), Vector2(15.66, 10.575)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Anim_idle/Anim_blink:scale")
+tracks/2/path = NodePath("Anim_idle/Anim_blink:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0833333, 0.166667, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1.1236), Vector2(1, 1.1236), Vector2(1, 1.1236)]
+"values": [0.0, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Anim_idle/Anim_blink:texture")
+tracks/3/path = NodePath("Anim_idle/Anim_blink:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0833333, 0.166667, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("1_vdv2h"), ExtResource("2_putuh"), ExtResource("1_vdv2h")]
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1.124), Vector2(1, 1.124)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anim_idle/Anim_blink:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Anim_idle/Anim_blink:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [ExtResource("0_fuck"), ExtResource("1_fuck"), ExtResource("0_fuck"), ExtResource("0_fuck")]
 }
