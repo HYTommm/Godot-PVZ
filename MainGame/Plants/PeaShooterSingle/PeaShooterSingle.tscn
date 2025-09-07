@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cdrujtqsasomx" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.cs" id="1_1y4xh"]
 [ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="2_8gnc4"]
+[ext_resource type="PackedScene" uid="uid://c5ltut3en7ovr" path="res://MainGame/Plants/Bullet/Pea.tscn" id="2_ajeql"]
 [ext_resource type="Texture2D" uid="uid://clomnwlnr7p0p" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_blink1.png" id="2_e7dgn"]
-[ext_resource type="PackedScene" uid="uid://epqd25ox8xq7" path="res://MainGame/Plants/Bullet.tscn" id="2_nh87p"]
 [ext_resource type="Animation" uid="uid://cg5mfclohotk6" path="res://MainGame/Plants/PeaShooterSingle/Idle.tres" id="2_x832e"]
 [ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_lefttip.png" id="3_rbrxk"]
 [ext_resource type="Animation" uid="uid://dbu2a7ulj40e2" path="res://MainGame/Plants/PeaShooterSingle/Blink.tres" id="4_d21o8"]
@@ -80,7 +80,7 @@ _animHead = NodePath("Head/Head")
 _nodeStem = NodePath("Anim_stem")
 _nodeHead = NodePath("Head")
 _nodeMouth = NodePath("Head/Idle_mouth")
-BulletScene = ExtResource("2_nh87p")
+BulletScene = ExtResource("2_ajeql")
 TextEdit = NodePath("TextEdit")
 Shadow = NodePath("Shadow")
 
@@ -167,23 +167,23 @@ libraries = {
 }
 
 [node name="Anim_sprout" type="Sprite2D" parent="Head"]
-position = Vector2(7.7, 27.7)
-rotation = -0.260055
+position = Vector2(7.4, 26.7)
+rotation = 6.02313
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("12_kn5d0")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Head"]
-position = Vector2(19.2, 17.8)
-scale = Vector2(0.555, 0.5)
+position = Vector2(19.1, 14)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("13_nd4h7")
 centered = false
 
 [node name="Idle_mouth" type="Sprite2D" parent="Head"]
-position = Vector2(52.4, 17.8)
+position = Vector2(52.4, 13.9)
 rotation = 2.07603e-05
-scale = Vector2(0.555, 0.5)
-skew = -2.08616e-05
+scale = Vector2(0.555, 0.555)
+skew = -2.07603e-05
 texture = ExtResource("14_ly4gj")
 centered = false
 

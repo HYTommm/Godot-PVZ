@@ -33,7 +33,6 @@ window/size/viewport_width=800
 window/size/viewport_height=600
 window/size/resizable=false
 window/stretch/mode="canvas_items"
-window/vsync/vsync_mode=0
 mouse_cursor/custom_image_hotspot=Vector2(5, 5)
 
 [dotnet]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5ltut3en7ovr"]
+
+[ext_resource type="PackedScene" uid="uid://epqd25ox8xq7" path="res://MainGame/Plants/Bullet/Bullet.tscn" id="1_x0xq0"]
+[ext_resource type="Script" uid="uid://llrno4ntisa" path="res://MainGame/Plants/Bullet/Pea.cs" id="2_s77pp"]
+[ext_resource type="Texture2D" uid="uid://clailt5us12nb" path="res://art/MainGame/Plants/Bullet/ProjectilePea.png" id="3_h88fc"]
+[ext_resource type="Texture2D" uid="uid://cuoy8u43pxadi" path="res://particles/pea_splats.png" id="4_owuwk"]
+[ext_resource type="Texture2D" uid="uid://dmi1rhfnv0utk" path="res://art/MainGame/Plants/Bullet/pea_shadows.png" id="5_4tdxd"]
+
+[node name="Pea" node_paths=PackedStringArray("BulletSprite2D", "Shadow", "Area2D", "GpuParticles") instance=ExtResource("1_x0xq0")]
+script = ExtResource("2_s77pp")
+BulletSprite2D = NodePath("Sprite2D")
+Shadow = NodePath("Shadow")
+Area2D = NodePath("Area2D")
+GpuParticles = NodePath("Splats")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_h88fc")
+
+[node name="Splats" parent="." index="1"]
+texture = ExtResource("4_owuwk")
+
+[node name="Shadow" parent="." index="2"]
+texture = ExtResource("5_4tdxd")
+hframes = 2

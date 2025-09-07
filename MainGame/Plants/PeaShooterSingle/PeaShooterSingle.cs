@@ -135,7 +135,7 @@ public partial class PeaShooterSingle : Plants
 	public void ShootBullet()
 	{
 		GD.Print("ShootBullet()");
-		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
+		Pea bullet = BulletScene.Instantiate<Pea>(); // 实例化子弹
 		//GD.Print(bullet);
 		bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
 		bullet.ShadowPositionY = GetNode<Node2D>("Shadow").GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
