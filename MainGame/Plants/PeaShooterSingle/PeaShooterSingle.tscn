@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bh5ipjbx6k7py"]
+[gd_scene load_steps=28 format=3 uid="uid://bh5ipjbx6k7py"]
 
 [ext_resource type="Script" uid="uid://cdrujtqsasomx" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle.cs" id="1_1y4xh"]
 [ext_resource type="PackedScene" uid="uid://c5ltut3en7ovr" path="res://MainGame/Plants/Bullet/Pea.tscn" id="2_ajeql"]
@@ -6,14 +6,14 @@
 [ext_resource type="Animation" uid="uid://cra2mnylcj5h" path="res://MainGame/Plants/PeaShooterSingle/PeaShooterSingle_idle.tres" id="3_ajeql"]
 [ext_resource type="Animation" uid="uid://dbu2a7ulj40e2" path="res://MainGame/Plants/PeaShooterSingle/Blink.tres" id="4_d21o8"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="4_v86f1"]
-[ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf.png" id="5_kq65k"]
-[ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf_lefttip.png" id="6_atlar"]
-[ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf_righttip.png" id="7_w8ooy"]
-[ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/PeaShooter/Peashooter_stalk_bottom.png" id="8_p7r5d"]
-[ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/PeaShooter/Peashooter_stalk_top.png" id="9_nmv3c"]
-[ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf.png" id="10_kefcy"]
-[ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf_righttip.png" id="11_w7bp1"]
-[ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf_lefttip.png" id="12_il4fd"]
+[ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="5_kq65k"]
+[ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_lefttip.png" id="6_atlar"]
+[ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf_righttip.png" id="7_w8ooy"]
+[ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_bottom.png" id="8_p7r5d"]
+[ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_stalk_top.png" id="9_nmv3c"]
+[ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf.png" id="10_kefcy"]
+[ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_righttip.png" id="11_w7bp1"]
+[ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_lefttip.png" id="12_il4fd"]
 [ext_resource type="Texture2D" uid="uid://bh24x4q5el042" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_sprout.png" id="12_kn5d0"]
 [ext_resource type="Texture2D" uid="uid://0artcn3mg8bc" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_Head.png" id="13_nd4h7"]
 [ext_resource type="Texture2D" uid="uid://dsse36p2cqmuh" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_mouth.png" id="14_ly4gj"]
@@ -21,9 +21,37 @@
 [ext_resource type="Animation" uid="uid://cjgfbfe76tx2" path="res://MainGame/Plants/PeaShooterSingle/Head_Shooting.tres" id="17_6n7na"]
 [ext_resource type="Animation" uid="uid://cakd1xfg7v3ug" path="res://MainGame/Plants/PeaShooterSingle/Head_Shooting2.tres" id="17_ajeql"]
 
+[sub_resource type="Animation" id="Animation_ajeql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frontleaf:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frontleaf_tip_left:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iv4oo"]
 _data = {
-&"PeaShooterSingle_idle": ExtResource("3_ajeql")
+&"PeaShooterSingle_idle": ExtResource("3_ajeql"),
+&"RESET": SubResource("Animation_ajeql")
 }
 
 [sub_resource type="Animation" id="Animation_ytrw4"]
@@ -60,6 +88,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anim_sprout:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.799, 0.799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Idle_mouth:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.07603e-05]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Idle_mouth:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.07603e-05]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5nfmd"]
@@ -159,22 +223,22 @@ libraries = {
 }
 
 [node name="Anim_sprout" type="Sprite2D" parent="Head"]
-position = Vector2(7.7, 27.7)
-rotation = 6.02313
+position = Vector2(7.85156, 23.5174)
+rotation = 6.18361
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("12_kn5d0")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Head"]
-position = Vector2(19.2, 17.8)
-scale = Vector2(0.555, 0.5)
+position = Vector2(19.2559, 12.8634)
+scale = Vector2(0.555, 0.56941)
 texture = ExtResource("13_nd4h7")
 centered = false
 
 [node name="Idle_mouth" type="Sprite2D" parent="Head"]
-position = Vector2(52.4, 17.8)
+position = Vector2(52.5559, 12.6752)
 rotation = 2.07603e-05
-scale = Vector2(0.555, 0.5)
+scale = Vector2(0.555839, 0.576615)
 skew = -2.07603e-05
 texture = ExtResource("14_ly4gj")
 centered = false
