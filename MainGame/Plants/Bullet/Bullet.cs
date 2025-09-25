@@ -54,9 +54,8 @@ public abstract partial class Bullet : Node2D
 		Area2D.SetDeferred("monitoring", false); // 停止检测子弹碰撞
 
 		// 判断子弹是否击中僵尸
-		if (area.GetNode("../..") is Zombie zombie) 
+		if (area.GetNode("..") is Zombie zombie) 
 		{
-			
 			AttackZombie(zombie);
 		}
 		else

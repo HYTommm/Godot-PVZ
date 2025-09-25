@@ -61,8 +61,10 @@ public static class ResourceDB
 	{
 		public static class Plants
 		{
-
-		}
+			public static readonly Texture2D ImagePlant_WallNut_Cracked0 = Load<Texture2D>("uid://dc2ee4afj7wka"); // Load<Texture2D>("res://art/MainGame/Plants/WallNut/Wallnut_body.png");
+			public static readonly Texture2D ImagePlant_WallNut_Cracked1 = Load<Texture2D>("uid://dfearodwms1u4"); // Load<Texture2D>("res://art/MainGame/Plants/WallNut/Wallnut_cracked1.png");
+            public static readonly Texture2D ImagePlant_WallNut_Cracked2 = Load<Texture2D>("uid://cp4irtvj4r0ik"); // Load<Texture2D>("res://art/MainGame/Plants/WallNut/Wallnut_cracked2.png");
+        }
 
 		public static class Zombies
 		{

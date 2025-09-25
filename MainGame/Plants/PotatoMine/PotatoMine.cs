@@ -71,7 +71,7 @@ public partial class PotatoMine : Plants
 		foreach (Area2D overlappingArea in overlappingAreas)
 		{
 			GD.Print("PotatoMine overlapping area: " + overlappingArea.Name);
-			if (overlappingArea.GetNode("../..") is Zombie zombie && zombie.Row == Row)
+			if (overlappingArea.GetNode("..") is Zombie zombie && zombie.Row == Row)
 			{
 
 				GD.Print("PotatoMine damaging zombie! Row: ", Row, "Zombie Row: ", zombie.Row);

@@ -115,7 +115,7 @@ public abstract partial class Plants : HealthEntity
 		{
 			FreePlant(); // 释放植物
 		}
-}
+	}
 
 	/// <summary>
 	/// 设置植物的颜色

@@ -141,12 +141,6 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_normal"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7o7o"]
-size = Vector2(42, 115)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_acqne"]
-size = Vector2(50, 115)
-
 [sub_resource type="Curve" id="Curve_gtii2"]
 _data = [Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -181,6 +175,12 @@ collision_friction = 0.0
 collision_bounce = 0.4
 collision_use_scale = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7o7o"]
+size = Vector2(42, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acqne"]
+size = Vector2(50, 115)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k1kaj"]
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
@@ -191,8 +191,8 @@ script = ExtResource("1_wnjia")
 _animation = NodePath("Zombie/AnimationPlayer")
 _animCharred = NodePath("Node2D/AnimLib")
 Ground = NodePath("Zombie/_ground")
-DefenseArea = NodePath("Zombie/DefenseArea")
-AttackArea = NodePath("Zombie/AttackArea")
+DefenseArea = NodePath("DefenseArea")
+AttackArea = NodePath("AttackArea")
 Anim_innerArm1 = NodePath("Zombie/Anim_innerarm1")
 Anim_innerArm2 = NodePath("Zombie/Anim_innerarm2")
 Anim_innerArm3 = NodePath("Zombie/Anim_innerarm3")
@@ -207,6 +207,7 @@ ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
 ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
 
 [node name="Zombie" type="Node2D" parent="."]
+position = Vector2(15, 0)
 scale = Vector2(1.001, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie"]
@@ -223,220 +224,218 @@ centered = false
 [node name="_ground" type="Sprite2D" parent="Zombie"]
 visible = false
 material = SubResource("ShaderMaterial_normal")
-position = Vector2(-9.8, 40)
+position = Vector2(23.9169, 40)
 centered = false
 
 [node name="Anim_innerarm3" type="Sprite2D" parent="Zombie"]
-position = Vector2(24.4, 81.2)
-rotation = -0.099484
-scale = Vector2(0.8, 0.8)
+position = Vector2(24.9377, 85.8346)
+rotation = -0.703401
+scale = Vector2(0.789, 0.789)
 texture = ExtResource("2_6pykm")
 centered = false
 
 [node name="Anim_innerarm2" type="Sprite2D" parent="Zombie"]
-position = Vector2(23.8, 67.1)
-rotation = -0.099484
-scale = Vector2(0.8, 0.8)
+position = Vector2(24.2981, 67.1673)
+rotation = -0.236915
+scale = Vector2(0.793, 0.793)
 texture = ExtResource("3_jlj50")
 centered = false
 
 [node name="Anim_innerarm1" type="Sprite2D" parent="Zombie"]
-position = Vector2(23.9, 47.1)
-rotation = -0.099484
+position = Vector2(22.405, 45.7742)
+rotation = -0.207607
+scale = Vector2(0.992, 0.992)
 texture = ExtResource("4_p8jt5")
 centered = false
 
 [node name="Zombie_flaghand" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(-9.2, 50.1)
-rotation = -0.55676
-scale = Vector2(0.799, 0.799)
+position = Vector2(-12.2692, 41.2831)
+rotation = -0.221636
+scale = Vector2(0.796, 0.796)
 texture = ExtResource("5_rqfs4")
 centered = false
 
 [node name="Zombie_innerarm_screendoor" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(1, 48.4)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-4.70191, 44.7227)
+rotation = -0.00960572
+scale = Vector2(0.797535, 0.797535)
 texture = ExtResource("6_iwuni")
 centered = false
 
 [node name="Zombie_neck" type="Sprite2D" parent="Zombie"]
-position = Vector2(29.4, 34)
-rotation = 0.001745
-scale = Vector2(0.838, 0.798)
+position = Vector2(28.3842, 29.9277)
+rotation = 0.180427
+scale = Vector2(0.835535, 0.795535)
 texture = ExtResource("7_4gcfp")
 centered = false
 
 [node name="Anim_head1" type="Sprite2D" parent="Zombie"]
-position = Vector2(6.7, 8.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(17.7635, -2.01885)
+rotation = 0.342172
+scale = Vector2(0.795, 0.795)
 texture = ExtResource("8_pllbt")
 centered = false
 
 [node name="Zombie_innerleg_upper" type="Sprite2D" parent="Zombie"]
-position = Vector2(44.1, 76.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(34.1981, 74.8)
+rotation = -0.183931
+scale = Vector2(0.804, 0.996661)
+skew = -0.142996
 texture = ExtResource("9_vp050")
 centered = false
 
 [node name="Zombie_innerleg_lower" type="Sprite2D" parent="Zombie"]
-position = Vector2(31.6, 90.3)
-scale = Vector2(0.8, 0.8)
+position = Vector2(32.1673, 105.188)
+rotation = -0.982808
+scale = Vector2(0.790604, 0.800862)
 texture = ExtResource("10_qomq4")
 centered = false
 
 [node name="Zombie_innerleg_foot" type="Sprite2D" parent="Zombie"]
-position = Vector2(35.3, 105.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(51.4415, 118.867)
+rotation = -1.51854
+scale = Vector2(0.795, 0.795)
 texture = ExtResource("11_gq3jv")
 centered = false
 
 [node name="Zombie_outerleg_upper" type="Sprite2D" parent="Zombie"]
-position = Vector2(54.8, 67.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(43.8138, 69.5189)
+rotation = -0.137868
+scale = Vector2(0.812535, 0.821535)
 texture = ExtResource("12_it5u5")
 centered = false
 
 [node name="Zombie_outerleg_foot" type="Sprite2D" parent="Zombie"]
-position = Vector2(44.6, 109.3)
-scale = Vector2(0.8, 0.8)
+position = Vector2(37.8566, 111.553)
+rotation = -0.129154
+scale = Vector2(0.799, 0.799)
 texture = ExtResource("13_bv8u8")
 centered = false
 
 [node name="Zombie_outerleg_lower" type="Sprite2D" parent="Zombie"]
-position = Vector2(60.4, 93.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(53.3704, 92.9931)
+rotation = 0.0303959
+scale = Vector2(0.795, 0.899)
 texture = ExtResource("14_uesd0")
 centered = false
 
 [node name="Zombie_body" type="Sprite2D" parent="Zombie"]
-position = Vector2(28.9, 33.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(28.2842, 29.1208)
+rotation = 0.212897
+scale = Vector2(0.796, 0.796)
 texture = ExtResource("15_bd8k3")
 centered = false
 
 [node name="Zombie_duckytube" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(-0.1, 45.8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-1.40191, 38.3019)
+rotation = 0.219999
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("17_vurj4")
 centered = false
 
 [node name="Zombie_tie" type="Sprite2D" parent="Zombie"]
-position = Vector2(23.8, 50.9)
-rotation = -0.146608
-scale = Vector2(0.8, 0.8)
+position = Vector2(19.0515, 47.0811)
+rotation = -0.0733371
+scale = Vector2(0.796, 0.796)
 texture = ExtResource("16_feuff")
 centered = false
 
 [node name="Anim_head2" type="Sprite2D" parent="Zombie"]
-position = Vector2(13.5, 40.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(11.6912, 33.7415)
+rotation = 0.0594282
+scale = Vector2(0.848, 0.792)
+skew = -0.00710132
 texture = ExtResource("17_jnr8q")
 centered = false
 
 [node name="Anim_tongue" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(20.4, 43)
-rotation = -0.073304
-scale = Vector2(0.799, 0.673)
+position = Vector2(19.2446, 35.2673)
+rotation = 0.147333
+scale = Vector2(0.794, 0.684)
+skew = -0.182327
 texture = ExtResource("18_sax15")
 centered = false
 
 [node name="Zombie_mustache" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(4.6, 31)
-scale = Vector2(0.8, 0.8)
+position = Vector2(8.37732, 17.9881)
+rotation = 0.342172
+scale = Vector2(0.795, 0.795)
 texture = ExtResource("21_wqqs3")
 centered = false
 
 [node name="Anim_screendoor" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(-2.2, 32.2)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-10.4881, 26.8019)
+rotation = 0.00300725
+scale = Vector2(0.797, 0.797)
 texture = ExtResource("22_xaafd")
 centered = false
 
 [node name="Zombie_innerarm_screendoor_hand" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(-2.7, 48.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-11.7346, 45.2554)
+scale = Vector2(0.799, 0.799)
 texture = ExtResource("23_7ygc8")
 centered = false
 
 [node name="Zombie_outerarm_screendoor" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(33, 44)
-scale = Vector2(0.8, 0.8)
+position = Vector2(31.3377, 36.7673)
+rotation = 0.329351
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("24_dj3m6")
 centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(32.9, 83.1)
-rotation = -0.050615
-scale = Vector2(0.8, 0.8)
+position = Vector2(28.3415, 83.8019)
+rotation = -0.358376
+scale = Vector2(0.79, 0.79)
 texture = ExtResource("29_o7o7o")
 centered = false
 
 [node name="Zombie_outerarm_upper" type="Sprite2D" parent="Zombie"]
-position = Vector2(42.7, 42.5)
-rotation = -0.050615
-scale = Vector2(0.8, 0.8)
+position = Vector2(38.1981, 38.9208)
+rotation = 0.00971406
+scale = Vector2(0.794, 0.794)
 texture = ExtResource("20_aioke")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(36.3, 66)
-rotation = -0.050615
-scale = Vector2(0.8, 0.8)
+position = Vector2(30.7931, 64.2881)
+rotation = -0.130308
+scale = Vector2(0.793, 0.793)
 texture = ExtResource("21_xwfus")
 centered = false
 
 [node name="Anim_hair" type="Sprite2D" parent="Zombie"]
-position = Vector2(2.6, 6.2)
-scale = Vector2(0.8, 0.8)
+position = Vector2(14.8566, -6.06539)
+rotation = 0.342172
+scale = Vector2(0.795, 0.795)
 texture = ExtResource("22_e6mnr")
 centered = false
 
 [node name="Anim_cone" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(13.1, -18.7)
-rotation = 0.087266
-scale = Vector2(0.8, 0.8)
+position = Vector2(28.515, -25.2723)
+rotation = 0.317825
+scale = Vector2(0.794535, 0.794535)
 texture = ExtResource("29_t0soh")
 centered = false
 
 [node name="Anim_bucket" type="Sprite2D" parent="Zombie"]
 visible = false
-position = Vector2(1.5, -8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(10.1962, -17.3654)
+rotation = 0.115279
+scale = Vector2(0.797, 0.797)
 texture = ExtResource("30_1mwa4")
 centered = false
-
-[node name="DefenseArea" type="Area2D" parent="Zombie"]
-position = Vector2(36, 0)
-collision_layer = 4
-collision_mask = 0
-monitoring = false
-
-[node name="Body" type="CollisionShape2D" parent="Zombie/DefenseArea"]
-position = Vector2(21, 57.5)
-shape = SubResource("RectangleShape2D_o7o7o")
-debug_color = Color(0.7, 0.55, 0.25, 0.42)
-
-[node name="AttackArea" type="Area2D" parent="Zombie"]
-position = Vector2(20, 0)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="Body" type="CollisionShape2D" parent="Zombie/AttackArea"]
-position = Vector2(25, 57.5)
-shape = SubResource("RectangleShape2D_acqne")
-debug_color = Color(0.65, 0.35, 0.7, 0.42)
 
 [node name="Particle_ZombieArm" type="GPUParticles2D" parent="Zombie"]
 position = Vector2(42, 83)
@@ -458,6 +457,30 @@ one_shot = true
 speed_scale = 2.0
 collision_base_size = 0.8
 process_material = ExtResource("39_gvoti")
+
+[node name="DefenseArea" type="Area2D" parent="."]
+position = Vector2(36.036, 0)
+scale = Vector2(1.001, 1)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="Body" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2(21, 57.5)
+shape = SubResource("RectangleShape2D_o7o7o")
+debug_color = Color(0.7, 0.55, 0.25, 0.42)
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(20.02, 0)
+scale = Vector2(1.001, 1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Body" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(25, 57.5)
+shape = SubResource("RectangleShape2D_acqne")
+debug_color = Color(0.65, 0.35, 0.7, 0.42)
 
 [node name="Node2D" parent="." instance=ExtResource("40_7rhiy")]
 visible = false
@@ -485,6 +508,6 @@ theme_override_font_sizes/font_size = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="area_entered" from="Zombie/AttackArea" to="." method="OnAreaEntered"]
+[connection signal="area_entered" from="AttackArea" to="." method="OnAreaEntered"]
 
 [editable path="Node2D"]

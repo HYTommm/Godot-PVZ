@@ -41,7 +41,7 @@ public partial class CherryBomb : Plants
 		foreach (Area2D overlappingArea in overlappingAreas)
 		{
 			GD.Print("CherryBomb overlapping area: " + overlappingArea.Name);
-			if (overlappingArea.GetNode("../..") is Zombie zombie)
+			if (overlappingArea.GetNode("..") is Zombie zombie)
 			{
 				GD.Print("CherryBomb damaging zombie!");
 				//僵尸扣血

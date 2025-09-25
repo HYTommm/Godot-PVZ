@@ -351,7 +351,7 @@ public partial class Zombie : HealthEntity
 		{
 			BIsDead = true;
 			BIsMoving = false;
-			GetNode<Node2D>("./Zombie").RemoveChild(DefenseArea);
+            DefenseArea.GetParent().RemoveChild(DefenseArea);
 			GetNode<Node2D>("./Zombie").Visible = false;
 
 			if (hurt.HurtType == HurtType.AshExplosion)
