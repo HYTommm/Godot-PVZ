@@ -4164,6 +4164,7 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Anim_open" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.1, -10.3)
 scale = Vector2(1.017, 1.017)
 centered = false
@@ -4209,7 +4210,6 @@ visible = false
 centered = false
 
 [node name="Anim_cloud4" type="Sprite2D" parent="."]
-visible = false
 centered = false
 
 [node name="Anim_cloud6" type="Sprite2D" parent="."]
@@ -4221,23 +4221,39 @@ visible = false
 centered = false
 
 [node name="SelectorScreen_BG" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(8, 8)
 centered = false
 
 [node name="Cloud1" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-345.1, 323)
+rotation = -0.10821
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_fuck")
 centered = false
 
 [node name="Cloud7" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-102.6, 309.4)
+rotation = -1.08734
+scale = Vector2(0.994, 0.994)
+texture = ExtResource("2_fuck")
 centered = false
 
 [node name="Cloud2" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-132.3, 340.7)
+rotation = 0.020944
+scale = Vector2(0.952, 1.177)
+texture = ExtResource("3_fuck")
 centered = false
 
 [node name="Cloud4" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(520.5, 280.3)
+rotation = -0.020944
+scale = Vector2(0.698, 0.698)
+texture = ExtResource("4_fuck")
 centered = false
 
 [node name="Cloud6" type="Sprite2D" parent="."]
@@ -4249,146 +4265,178 @@ visible = false
 centered = false
 
 [node name="SelectorScreen_BG_Center" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(80, 250)
 texture = ExtResource("1_qk0la")
 centered = false
 
 [node name="SelectorScreen_BG_Left" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -79.8)
 texture = ExtResource("2_mmo78")
 centered = false
 
 [node name="SelectorScreen_BG_Right" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(71, 41)
 texture = ExtResource("3_fingd")
 centered = false
 
 [node name="Almanac_key_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(391.9, 460.3)
 texture = ExtResource("4_utsx8")
 centered = false
 
 [node name="SelectorScreen_Survival_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(407, 177.2)
 texture = ExtResource("5_3arvn")
 centered = false
 
 [node name="SelectorScreen_Survival_button" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(406, 173.1)
 texture = ExtResource("6_4rnn0")
 centered = false
 
 [node name="SelectorScreen_Challenges_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(411, 259.9)
 texture = ExtResource("7_t43ci")
 centered = false
 
-[node name="SelectorScreen_Challenges_button" type="TextureButton" parent="."]
-offset_left = 410.0
-offset_top = 257.5
-offset_right = 418.0
-offset_bottom = 265.5
+[node name="SelectorScreen_Challenges_button" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(410, 257.5)
+texture = ExtResource("14_fuck")
+centered = false
 
 [node name="SelectorScreen_ZenGarden_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(412, 330)
 texture = ExtResource("8_yb1jh")
 centered = false
 
 [node name="SelectorScreen_ZenGarden_button" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(413, 328)
 texture = ExtResource("9_gfdqr")
 centered = false
 
 [node name="SelectorScreen_StartAdventure_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(398, 66)
 texture = ExtResource("10_s8p5j")
 centered = false
 
 [node name="SelectorScreen_StartAdventure_button" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(405, 65)
 texture = ExtResource("11_swo2l")
 centered = false
 
 [node name="SelectorScreen_Adventure_shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(398, 66)
 texture = ExtResource("10_s8p5j")
 centered = false
 
 [node name="SelectorScreen_Adventure_button" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(405, 65)
 texture = ExtResource("11_swo2l")
 centered = false
 
 [node name="Leaf3" type="Sprite2D" parent="."]
-position = Vector2(255.3, 553.5)
-scale = Vector2(0.927, 0.927)
+visible = false
+position = Vector2(255.4, 553.5)
+scale = Vector2(0.929, 0.929)
 texture = ExtResource("12_sudbs")
 centered = false
 
 [node name="Leaf2" type="Sprite2D" parent="."]
-position = Vector2(24, 558)
-scale = Vector2(1.015, 1.015)
+visible = false
+position = Vector2(23.7, 557.8)
+scale = Vector2(1.017, 1.017)
 texture = ExtResource("13_gvtmr")
 centered = false
 
 [node name="Leaf22" type="Sprite2D" parent="."]
-position = Vector2(99.1, 545.6)
-scale = Vector2(1.015, 1.015)
+visible = false
+position = Vector2(98.9, 545.5)
+scale = Vector2(1.017, 1.017)
 texture = ExtResource("13_gvtmr")
 centered = false
 
 [node name="Leaf_SelectorScreen_Leaves" type="Sprite2D" parent="."]
-position = Vector2(-2.4, 537.5)
-scale = Vector2(1.015, 1.015)
+visible = false
+position = Vector2(-2.8, 537.3)
+scale = Vector2(1.017, 1.017)
 texture = ExtResource("14_in725")
 centered = false
 
 [node name="Leaf4" type="Sprite2D" parent="."]
-position = Vector2(222.8, 558.9)
-scale = Vector2(1.015, 1.015)
+visible = false
+position = Vector2(222.9, 558.7)
+scale = Vector2(1.017, 1.017)
 texture = ExtResource("15_pww72")
 centered = false
 
 [node name="Leaf5" type="Sprite2D" parent="."]
-position = Vector2(250.1, 573.1)
-scale = Vector2(0.858, 0.858)
+visible = false
+position = Vector2(250.3, 573)
+scale = Vector2(0.86, 0.86)
 texture = ExtResource("16_wi853")
 centered = false
 
 [node name="Leaf1" type="Sprite2D" parent="."]
-position = Vector2(285.6, 565.5)
-scale = Vector2(1.015, 1.015)
+visible = false
+position = Vector2(285.8, 565.4)
+scale = Vector2(1.017, 1.017)
 texture = ExtResource("17_4dmyi")
 centered = false
 
 [node name="Flower1" type="Sprite2D" parent="."]
-position = Vector2(680, 414)
-scale = Vector2(1.001, 1.001)
+visible = false
+position = Vector2(797.1, 440.6)
+rotation = -1.29852
+scale = Vector2(1.013, 1.013)
 texture = ExtResource("18_hg4id")
 centered = false
 
 [node name="Flower2" type="Sprite2D" parent="."]
-position = Vector2(640, 437)
-scale = Vector2(1.001, 1.001)
+visible = false
+position = Vector2(665, 553)
+rotation = 0.476475
+scale = Vector2(0.951, 1)
 texture = ExtResource("19_u386o")
 centered = false
 
 [node name="Flower3" type="Sprite2D" parent="."]
-position = Vector2(740, 458)
-scale = Vector2(1.001, 1.001)
+visible = false
+position = Vector2(817.8, 474.3)
+rotation = -0.558505
+scale = Vector2(1.015, 1.015)
 texture = ExtResource("20_2dbh7")
 centered = false
 
 [node name="Woodsign1" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(22.9, -7.9)
+texture = ExtResource("28_fuck")
 centered = false
 
 [node name="Woodsign2" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(25.5, 126.8)
+texture = ExtResource("29_fuck")
 centered = false
 
 [node name="Woodsign3" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(32.4, 180.4)
+texture = ExtResource("30_fuck")
 centered = false
 
 [node name="AnimLib" type="AnimationPlayer" parent="."]

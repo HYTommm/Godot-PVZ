@@ -1,15 +1,58 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmf7okj4vqmt7"]
+[gd_scene load_steps=21 format=3 uid="uid://dmf7okj4vqmt7"]
 
 [ext_resource type="Texture2D" uid="uid://dc2ee4afj7wka" path="res://art/MainGame/Plants/WallNut/Wallnut_body.png" id="0_fuck"]
-[ext_resource type="Script" uid="uid://87bnsrjl4mxu" path="res://MainGame/Plants/WallNut/Wallnut.cs" id="1_86vom"]
-[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_idle.tres" id="1_anim"]
-[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_face.tres" id="2_anim"]
-[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_twitch.tres" id="3_anim"]
-[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_twice.tres" id="4_anim"]
-[ext_resource type="Animation" path="res://MainGame/Plants/WallNut/Wallnut_blink_thrice.tres" id="5_anim"]
+[ext_resource type="Animation" uid="uid://deqsiqs0fotvq" path="res://MainGame/Plants/WallNut/Wallnut_idle.tres" id="1_anim"]
+[ext_resource type="Script" uid="uid://87bnsrjl4mxu" path="res://MainGame/Plants/WallNut/Wallnut.cs" id="1_svv7d"]
+[ext_resource type="Texture2D" uid="uid://edhrj2g5lgvm" path="res://art/MainGame/Plants/WallNut/Wallnut_twitch.png" id="2_2ol46"]
+[ext_resource type="Texture2D" uid="uid://d2gkgegt07rf4" path="res://art/MainGame/Plants/WallNut/Wallnut_blink1.png" id="2_86vom"]
+[ext_resource type="Animation" uid="uid://bhvadym8p4qut" path="res://MainGame/Plants/WallNut/Wallnut_face.tres" id="2_anim"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_f5kxd"]
+[ext_resource type="Animation" uid="uid://m3kpivjgn82s" path="res://MainGame/Plants/WallNut/Wallnut_blink_twitch.tres" id="3_anim"]
+[ext_resource type="Animation" uid="uid://jgsqepqxjbwm" path="res://MainGame/Plants/WallNut/Wallnut_blink_twice.tres" id="4_anim"]
+[ext_resource type="Animation" uid="uid://mb5ij32yktnt" path="res://MainGame/Plants/WallNut/Wallnut_blink_thrice.tres" id="5_anim"]
+
+[sub_resource type="Animation" id="Animation_f5kxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim_blink_twitch:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anim_blink_twice:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anim_blink_thrice:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_idle"]
 _data = {
+&"RESET": SubResource("Animation_f5kxd"),
 &"Wallnut_idle": ExtResource("1_anim")
 }
 
@@ -18,29 +61,127 @@ _data = {
 &"Wallnut_face": ExtResource("2_anim")
 }
 
+[sub_resource type="Animation" id="Animation_vqt4u"]
+resource_name = "RESET"
+step = 0.083333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Anim_blink_twitch:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2ol46")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Anim_blink_twitch:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_twitch"]
 _data = {
+&"RESET": SubResource("Animation_vqt4u"),
 &"Wallnut_blink_twitch": ExtResource("3_anim")
+}
+
+[sub_resource type="Animation" id="Animation_2ol46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim_blink_twice:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_86vom")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anim_blink_twice:centered")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_twice"]
 _data = {
+&"RESET": SubResource("Animation_2ol46"),
 &"Wallnut_blink_twice": ExtResource("4_anim")
+}
+
+[sub_resource type="Animation" id="Animation_svv7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim_blink_thrice:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_86vom")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anim_blink_thrice:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_Wallnut_blink_thrice"]
 _data = {
+&"RESET": SubResource("Animation_svv7d"),
 &"Wallnut_blink_thrice": ExtResource("5_anim")
 }
 
-[node name="Wallnut" type="CanvasGroup"]
-script = ExtResource("1_86vom")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5kxd"]
+size = Vector2(20, 80)
+
+[node name="Wallnut" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Body", "TextEdit", "Shadow")]
+script = ExtResource("1_svv7d")
+Anim_idle = NodePath("Anim_Wallnut_idle")
+Body = NodePath("Anim_face")
+TextEdit = NodePath("TextEdit")
+Shadow = NodePath("Shadow")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(40, 69)
+texture = ExtResource("2_f5kxd")
 
 [node name="_ground" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(44.8, 75.5)
 centered = false
 
 [node name="Anim_idle" type="Sprite2D" parent="."]
+visible = false
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="."]
@@ -51,14 +192,23 @@ centered = false
 
 [node name="Anim_blink_twitch" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(29.2, 35.6)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_2ol46")
 centered = false
 
 [node name="Anim_blink_twice" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(28, 21.6)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_86vom")
 centered = false
 
 [node name="Anim_blink_thrice" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(28, 21.6)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_86vom")
 centered = false
 
 [node name="Anim_Wallnut_idle" type="AnimationPlayer" parent="."]
@@ -72,6 +222,7 @@ libraries = {
 }
 
 [node name="Anim_Wallnut_blink_twitch" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Anim_face")
 libraries = {
 &"": SubResource("AnimationLibrary_Wallnut_blink_twitch")
 }
@@ -85,3 +236,17 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_Wallnut_blink_thrice")
 }
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10
+
+[node name="DefenseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_f5kxd")
+debug_color = Color(0.7, 0.4, 0.7, 0.42)

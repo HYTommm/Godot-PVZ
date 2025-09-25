@@ -77,7 +77,7 @@ public partial class LawnMower : Node2D
     public void OnAreaEntered(Area2D area)
     {
         GD.Print("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
-        if (area.GetNode("../..") is Zombie zombie && zombie.Row == Row)
+        if (area.GetNode("..") is Zombie zombie && zombie.Row == Row)
         {
             zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
             GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
