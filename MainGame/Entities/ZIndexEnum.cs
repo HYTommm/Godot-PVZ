@@ -4,7 +4,8 @@
     NormalPlants = 1,
     AdditionalPlants = 2,
     Zombies = 3,
-    Bullets = 4,
-    Sun = 5,
-    Coin = 6,
+    LawnMowers = 4,
+    Bullets = 5,
+    Sun = 6,
+    Coin = 7,
 }

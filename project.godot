@@ -11,6 +11,7 @@ config_version=5
 [animation]
 
 warnings/check_invalid_track_paths=false
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
@@ -18,8 +19,8 @@ config/name="Plants vs Zombies"
 config/name_localized={
 "zh_CN": "植物大战僵尸"
 }
-run/main_scene="uid://c4pak2uihe0s"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+run/main_scene="uid://bs1ikm6rlutci"
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/windows_native_icon="res://icon/windows.ico"
 

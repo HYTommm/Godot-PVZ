@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://epqd25ox8xq7"]
+[gd_scene format=3 uid="uid://epqd25ox8xq7"]
+
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="1_hjxeb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1w30l"]
 particles_animation = true
@@ -33,13 +35,13 @@ alpha_curve = SubResource("CurveTexture_8v4ep")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc70l"]
 size = Vector2(56, 27)
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" unique_id=1815663550]
 z_index = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981039138]
 centered = false
 
-[node name="Splats" type="GPUParticles2D" parent="."]
+[node name="Splats" type="GPUParticles2D" parent="." unique_id=1262020735]
 material = SubResource("CanvasItemMaterial_1w30l")
 position = Vector2(25, 14)
 emitting = false
@@ -48,18 +50,20 @@ lifetime = 0.2
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_1kbus")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1698134725]
 centered = false
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=1420624294]
+unique_name_in_owner = true
 physics_interpolation_mode = 1
 position = Vector2(-14, 0)
 collision_layer = 8
 collision_mask = 4
+script = ExtResource("1_hjxeb")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=462021808]
 position = Vector2(28, 13.5)
 shape = SubResource("RectangleShape2D_wc70l")
 debug_color = Color(0.8, 0.1, 0.1, 0.42)
-
-[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]

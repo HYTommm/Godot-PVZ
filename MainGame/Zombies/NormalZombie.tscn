@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ee6hitnguoqq"]
+[gd_scene format=3 uid="uid://ee6hitnguoqq"]
 
 [ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_3v7er"]
 [ext_resource type="Script" uid="uid://dr3mtoscewka1" path="res://MainGame/Zombies/NormalZombie.cs" id="2_loqst"]
 
-[node name="NormalZombie" instance=ExtResource("1_3v7er")]
+[node name="NormalZombie" unique_id=460805229 instance=ExtResource("1_3v7er")]
 script = ExtResource("2_loqst")
+
+[node name="Zombie_tie" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="18" unique_id=1635309848]
+rotation = 6.13483
 
 [editable path="Node2D"]

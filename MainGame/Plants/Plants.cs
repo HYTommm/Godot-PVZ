@@ -10,147 +10,145 @@ using System;
 /// </summary>
 public abstract partial class Plants : HealthEntity
 {
-	/// <summary>种植音效播放器</summary>
-	private readonly AudioStreamPlayer _plantSound = new();
+    /// <summary>种植音效播放器</summary>
+    private readonly AudioStreamPlayer _plantSound = new();
 
+    /// <summary>植物所在行</summary>
+    public int Row;
 
-	/// <summary>植物所在行</summary>
-	public int Row;
+    /// <summary>植物所在列</summary>
+    public int Col;
 
-	/// <summary>植物所在列</summary>
-	public int Col;
+    /// <summary>是否已经种植</summary>
+    public bool BIsPlanted = false;
 
-	/// <summary>是否已经种植</summary>
-	public bool BIsPlanted = false;
+    /// <summary>阳光消耗量</summary>
+    public int SunCost = -1;
 
-	/// <summary>阳光消耗量</summary>
-	public int SunCost = -1;
+    public virtual Vector2 Offset { get; set; } = new Vector2(35, 60);
 
-	public virtual Vector2 Offset { get; set; } = new Vector2(35, 60);
+    [Export] public TextEdit TextEdit;
+    [Export] public Sprite2D Shadow;
 
+    /// <summary>类：冷却时间</summary>
+    public class CDTime
+    {
+        /// <summary>快，约7.5秒</summary>
 
-	[Export] public TextEdit TextEdit;
-	[Export] public Sprite2D Shadow;
+        public const float FAST = 7.5f;
 
-/// <summary>类：冷却时间</summary>
-	public class CDTime
-	{
-		/// <summary>快，约7.5秒</summary>
-		
-		public const float FAST = 7.5f;
-		/// <summary>慢，约15秒</summary>
-		public const float SLOW = 15f;
-		/// <summary>非常慢，约30秒</summary>
-		public const float VERY_SLOW = 30f;
-	}
+        /// <summary>慢，约15秒</summary>
+        public const float SLOW = 15f;
 
-	/// <summary>冷却时间</summary>
-	public float CDtime = 0;// 冷却时间
+        /// <summary>非常慢，约30秒</summary>
+        public const float VERY_SLOW = 30f;
+    }
 
-	/// <summary>主游戏节点</summary>
-	public MainGame MainGame;
+    /// <summary>冷却时间</summary>
+    public float CDtime = 0;// 冷却时间
 
-	protected Plants()
-	{
-		HP = 300; // 设置生命值
-		MaxHP = 300; // 设置最大生命值
-		Index = -1; // 设置索引/栈数
-	}
+    /// <summary>主游戏节点</summary>
+    //public MainGame MainGame;
 
-	public override void _Ready()
-	{
-		base._Ready();
-		MainGame = MainGame.Instance;
-		AddChild(_plantSound); // 添加种植音效播放器
-		GD.Print(MainGame);
-	}
+    protected Plants()
+    {
+        HP = 300; // 设置生命值
+        MaxHP = 300; // 设置最大生命值
+        Index = -1; // 设置索引/栈数
+    }
 
-	/// <summary>
-	/// 虚函数，用于实现植物的待机状态
-	/// </summary>
-	public abstract void _Idle();
+    public override void _Ready()
+    {
+        base._Ready();
+        //MainGame = MainGame.Instance;
+        AddChild(_plantSound); // 添加种植音效播放器
+        GD.Print(MainGame.Instance);
+    }
 
-	/// <summary>
-	/// 虚函数，用于种植植物
-	/// </summary>
-	/// <param name="col"></param>
-	/// <param name="row">设置植物所在行</param>
-	/// <param name="index">设置植物的索引/栈数</param>
-	public virtual void _Plant(int col,int row, int index)
-	{
-		Row = row; // 设置植物所在行
-		Col = col; // 设置植物所在列
-		Index = index; // 设置植物的索引/栈数
-		TextEdit.Text = Index.ToString(); // 设置TextEdit显示栈数
-		Visible = true; // 显示
-		BIsPlanted = true; // 设置状态为 已种植
-		//SelfModulate = new Color(1, 1, 1, 1);
-		_SetColor(new Color(1, 1, 1, 1)); // 设置颜色
-		Shadow.Visible = true; // 显示阴影
+    /// <summary>
+    /// 虚函数，用于实现植物的待机状态
+    /// </summary>
+    public abstract void _Idle();
 
-		uint random = GD.Randi() % 2; // 随机播放种植音效
-		_plantSound.Stream = random switch
-		{
-			0 => (AudioStream)GD.Load("res://sounds/plant.ogg"),
-			1 => (AudioStream)GD.Load("res://sounds/plant2.ogg"),
-			_ => _plantSound.Stream
-		};
+    /// <summary>
+    /// 虚函数，用于种植植物
+    /// </summary>
+    /// <param name="col"></param>
+    /// <param name="row">设置植物所在行</param>
+    /// <param name="index">设置植物的索引/栈数</param>
+    public virtual void _Plant(int col, int row, int index)
+    {
+        Row = row; // 设置植物所在行
+        Col = col; // 设置植物所在列
+        Index = index; // 设置植物的索引/栈数
+        TextEdit.Text = Index.ToString(); // 设置TextEdit显示栈数
+        Visible = true; // 显示
+        BIsPlanted = true; // 设置状态为 已种植
+                           //SelfModulate = new Color(1, 1, 1, 1);
+        _SetColor(new Color(1, 1, 1, 1)); // 设置颜色
+        Shadow.Visible = true; // 显示阴影
 
-		_Idle(); // 开始待机状态
-		
-		_plantSound.Play(); // 播放种植音效
-		
-	}
+        uint random = GD.Randi() % 2; // 随机播放种植音效
+        _plantSound.Stream = random switch
+        {
+            0 => (AudioStream)GD.Load("res://sounds/plant.ogg"),
+            1 => (AudioStream)GD.Load("res://sounds/plant2.ogg"),
+            _ => _plantSound.Stream
+        };
 
-	/// <summary>
-	/// 虚函数，用于对植物扣血
-	/// </summary>
-	/// <param name="hurt"></param>
-	public override void Hurt(Hurt hurt)
-	{
-		int damage = Math.Min(hurt.Damage, HP);
-		HP -= damage;// 扣血
-		hurt.Damage -= damage;
-		if (HP <= 0) // 生命值小于等于0
-		{
-			FreePlant(); // 释放植物
-		}
-	}
+        _Idle(); // 开始待机状态
 
-	/// <summary>
-	/// 设置植物的颜色
-	/// </summary>
-	/// <param name="color">颜色</param>
-	public virtual void _SetColor(Color color)
-	{
-		SelfModulate = color; // 设置颜色
-		_SetAlpha(color.A); // 设置透明度
-	}
+        _plantSound.Play(); // 播放种植音效
+    }
 
-	/// <summary>
-	/// 设置植物的透明度
-	/// </summary>
-	/// <param name="alpha">透明度</param>
-	public virtual void _SetAlpha(float alpha)
-	{
-		// 读取当前颜色rgb的值，并设置透明度
-		SelfModulate = SelfModulate with { A = alpha };
-	}
+    /// <summary>
+    /// 虚函数，用于对植物扣血
+    /// </summary>
+    /// <param name="hurt"></param>
+    public override void Hurt(Hurt hurt)
+    {
+        int damage = Math.Min(hurt.Damage, HP);
+        HP -= damage;// 扣血
+        hurt.Damage -= damage;
+        if (HP <= 0) // 生命值小于等于0
+        {
+            FreePlant(); // 释放植物
+        }
+    }
 
-	/// <summary>
-	/// 释放植物
-	/// </summary>
-	public virtual void FreePlant()
-	{
-		if (Index >= 0)
-			MainGame.Instance.RemovePlant(this);
-		BIsPlanted = false; // 设置状态为 未种植
-		Visible = false;
-	}
+    /// <summary>
+    /// 设置植物的颜色
+    /// </summary>
+    /// <param name="color">颜色</param>
+    public virtual void _SetColor(Color color)
+    {
+        SelfModulate = color; // 设置颜色
+        _SetAlpha(color.A); // 设置透明度
+    }
 
-	public override void SetZIndex()
-	{
+    /// <summary>
+    /// 设置植物的透明度
+    /// </summary>
+    /// <param name="alpha">透明度</param>
+    public virtual void _SetAlpha(float alpha)
+    {
+        // 读取当前颜色rgb的值，并设置透明度
+        SelfModulate = SelfModulate with { A = alpha };
+    }
 
-		ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.NormalPlants;
-	}
+    /// <summary>
+    /// 释放植物
+    /// </summary>
+    public virtual void FreePlant()
+    {
+        if (Index >= 0)
+            MainGame.Instance.RemovePlant(this);
+        BIsPlanted = false; // 设置状态为 未种植
+        Visible = false;
+    }
+
+    public override void SetZIndex()
+    {
+        ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.NormalPlants;
+    }
 }

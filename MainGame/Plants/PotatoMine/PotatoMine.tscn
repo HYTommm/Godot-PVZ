@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://vop8ac2s8mvu"]
+[gd_scene format=3 uid="uid://vop8ac2s8mvu"]
 
 [ext_resource type="Texture2D" uid="uid://q6jwkrpohyey" path="res://art/MainGame/Plants/PotatoMine/PotatoMine_mashed.png" id="0_fuck"]
 [ext_resource type="Animation" uid="uid://cgrvbboc7fngn" path="res://MainGame/Plants/PotatoMine/PotatoMine_armed.tres" id="1_anim"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://wv5cfbx8jwu4" path="res://art/MainGame/Plants/PotatoMine/PotatoMine_light2.png" id="13_fuck"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="25_b36p7"]
 [ext_resource type="Texture2D" uid="uid://pkjs0adafil8" path="res://particles/PotatoMine_particles.png" id="26_1xyjw"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="26_be8nu"]
 [ext_resource type="Texture2D" uid="uid://bhua8frt4py5" path="res://particles/ExplosionSpudow.png" id="26_x2ttu"]
 [ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="27_1xyjw"]
 [ext_resource type="Texture2D" uid="uid://tys6ym2x2gep" path="res://particles/PotatoMineFlash.png" id="29_53ds2"]
@@ -2317,7 +2318,7 @@ shader_parameter/alpha_curve = SubResource("CurveTexture_bi3cr")
 shader_parameter/color_curve = SubResource("CurveXYZTexture_d3aqt")
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
-[node name="PotatoMine" type="CanvasGroup" node_paths=PackedStringArray("Anim_armed", "Anim_idle", "Anim_blink", "Anim_rise", "Anim_mash", "_particleExplode1", "_particleExplode2", "_particleExplode3", "_particleExplode4", "_particleExplode5", "_attackArea", "_detectionArea", "_bodyNodeTree", "TextEdit", "Shadow")]
+[node name="PotatoMine" type="CanvasGroup" unique_id=68120498 node_paths=PackedStringArray("Anim_armed", "Anim_idle", "Anim_blink", "Anim_rise", "Anim_mash", "_particleExplode1", "_particleExplode2", "_particleExplode3", "_particleExplode4", "_particleExplode5", "_bodyNodeTree", "TextEdit", "Shadow")]
 script = ExtResource("1_ibjwd")
 Anim_armed = NodePath("Anim_PotatoMine_armed")
 Anim_idle = NodePath("Anim_PotatoMine_idle")
@@ -2329,62 +2330,60 @@ _particleExplode2 = NodePath("LowParts")
 _particleExplode3 = NodePath("HighParts")
 _particleExplode4 = NodePath("Word")
 _particleExplode5 = NodePath("Flash")
-_attackArea = NodePath("AttackArea")
-_detectionArea = NodePath("DetectionArea")
 _bodyNodeTree = NodePath("Body")
 TextEdit = NodePath("TextEdit")
 Shadow = NodePath("Shadow")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=166934270]
 visible = false
 position = Vector2(40, 69)
 texture = ExtResource("25_b36p7")
 
-[node name="Body" type="Node2D" parent="."]
+[node name="Body" type="Node2D" parent="." unique_id=1626327093]
 position = Vector2(15, 15)
 scale = Vector2(0.75, 0.75)
 
-[node name="Anim_armed" type="Sprite2D" parent="Body"]
+[node name="Anim_armed" type="Sprite2D" parent="Body" unique_id=1588120617]
 centered = false
 
-[node name="Anim_rise" type="Sprite2D" parent="Body"]
+[node name="Anim_rise" type="Sprite2D" parent="Body" unique_id=1168429408]
 visible = false
 centered = false
 
-[node name="Anim_idle" type="Sprite2D" parent="Body"]
+[node name="Anim_idle" type="Sprite2D" parent="Body" unique_id=1990163006]
 visible = false
 centered = false
 
-[node name="Anim_blink" type="Sprite2D" parent="Body"]
+[node name="Anim_blink" type="Sprite2D" parent="Body" unique_id=1597761151]
 visible = false
 centered = false
 
-[node name="Anim_mashed" type="Sprite2D" parent="Body"]
+[node name="Anim_mashed" type="Sprite2D" parent="Body" unique_id=328332608]
 visible = false
 position = Vector2(-2.4, 22.3)
 scale = Vector2(0.64, 0.64)
 texture = ExtResource("0_fuck")
 centered = false
 
-[node name="PotatoMine_rock4" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock4" type="Sprite2D" parent="Body" unique_id=1845627664]
 position = Vector2(61.2, 60.8)
 scale = Vector2(0.59, 0.59)
 texture = ExtResource("1_fuck")
 centered = false
 
-[node name="PotatoMine_rock2" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock2" type="Sprite2D" parent="Body" unique_id=1962835284]
 position = Vector2(-7, 60.4)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_fuck")
 centered = false
 
-[node name="Anim_face" type="Sprite2D" parent="Body"]
+[node name="Anim_face" type="Sprite2D" parent="Body" unique_id=2139761390]
 position = Vector2(-1.9, 27.7)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_fuck")
 centered = false
 
-[node name="PotatoMine_stem" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_stem" type="Sprite2D" parent="Body" unique_id=1418026978]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(19.1, 37)
@@ -2392,178 +2391,167 @@ scale = Vector2(0.836, 0.8)
 texture = ExtResource("4_fuck")
 centered = false
 
-[node name="Anim_eye" type="Sprite2D" parent="Body"]
+[node name="Anim_eye" type="Sprite2D" parent="Body" unique_id=504765641]
 position = Vector2(30.7, 50)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_fuck")
 centered = false
 
-[node name="PotatoMine_blink" type="Sprite2D" parent="Body/Anim_eye"]
+[node name="PotatoMine_blink" type="Sprite2D" parent="Body/Anim_eye" unique_id=17279722]
 visible = false
 position = Vector2(0.375, 0)
 scale = Vector2(0.98125, 1.05)
 texture = ExtResource("6_fuck")
 centered = false
 
-[node name="PotatoMine_rock41" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock41" type="Sprite2D" parent="Body" unique_id=521161245]
 position = Vector2(18.9, 65.8)
 rotation = 0.139626
 scale = Vector2(0.507, 0.503)
 texture = ExtResource("1_fuck")
 centered = false
 
-[node name="PotatoMine_rock3b" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock3b" type="Sprite2D" parent="Body" unique_id=1321953686]
 position = Vector2(26.4, 69.5)
 rotation = -0.287979
 scale = Vector2(0.756, 0.769)
 texture = ExtResource("8_fuck")
 centered = false
 
-[node name="PotatoMine_rock1b" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock1b" type="Sprite2D" parent="Body" unique_id=337601334]
 position = Vector2(56.6, 81.3)
 rotation = -2.25148
 scale = Vector2(0.794, 0.794)
 texture = ExtResource("9_fuck")
 centered = false
 
-[node name="PotatoMine_rock6b" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock6b" type="Sprite2D" parent="Body" unique_id=386902053]
 position = Vector2(57.8, 68.2)
 rotation = -0.031416
 scale = Vector2(0.88, 0.823)
 texture = ExtResource("10_fuck")
 centered = false
 
-[node name="PotatoMine_rock5b" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock5b" type="Sprite2D" parent="Body" unique_id=1583054843]
 position = Vector2(0.8, 67.6)
 rotation = -0.094248
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("11_fuck")
 centered = false
 
-[node name="Anim_light" type="Sprite2D" parent="Body"]
+[node name="Anim_light" type="Sprite2D" parent="Body" unique_id=920515822]
 position = Vector2(28.2, 12.5)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_fuck")
 centered = false
 
-[node name="Anim_glow" type="Sprite2D" parent="Body/Anim_light"]
+[node name="Anim_glow" type="Sprite2D" parent="Body/Anim_light" unique_id=118220240]
 position = Vector2(-8.875, -9)
 texture = ExtResource("13_fuck")
 centered = false
 
-[node name="PotatoMine_rock6" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock6" type="Sprite2D" parent="Body" unique_id=1520617075]
 position = Vector2(7.6, 72.4)
 rotation = -3.50986
 scale = Vector2(0.793, 0.793)
 texture = ExtResource("10_fuck")
 centered = false
 
-[node name="PotatoMine_rock1" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock1" type="Sprite2D" parent="Body" unique_id=2001406474]
 position = Vector2(23.8, 75.2)
 rotation = -3.39816
 scale = Vector2(0.793, 0.793)
 texture = ExtResource("9_fuck")
 centered = false
 
-[node name="PotatoMine_rock3" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock3" type="Sprite2D" parent="Body" unique_id=184092621]
 position = Vector2(85.3, 74.3)
 rotation = 2.87805
 scale = Vector2(0.794, 0.794)
 texture = ExtResource("8_fuck")
 centered = false
 
-[node name="PotatoMine_rock5" type="Sprite2D" parent="Body"]
+[node name="PotatoMine_rock5" type="Sprite2D" parent="Body" unique_id=558011247]
 position = Vector2(38.5, 70.4)
 rotation = 0.022689
 scale = Vector2(0.797, 0.797)
 texture = ExtResource("11_fuck")
 centered = false
 
-[node name="AnimLib" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fuck")
-}
+[node name="AnimLib" type="AnimationPlayer" parent="." unique_id=2020217327]
+libraries/ = SubResource("AnimationLibrary_fuck")
 
-[node name="Anim_PotatoMine_armed" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_armed")
-}
+[node name="Anim_PotatoMine_armed" type="AnimationPlayer" parent="." unique_id=1824596966]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_armed")
 
-[node name="Anim_PotatoMine_rise" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_rise")
-}
+[node name="Anim_PotatoMine_rise" type="AnimationPlayer" parent="." unique_id=308402677]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_rise")
 
-[node name="Anim_PotatoMine_idle" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_idle")
-}
+[node name="Anim_PotatoMine_idle" type="AnimationPlayer" parent="." unique_id=514424648]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_idle")
 
-[node name="Anim_PotatoMine_blink" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_blink")
-}
+[node name="Anim_PotatoMine_blink" type="AnimationPlayer" parent="." unique_id=935590397]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_blink")
 
-[node name="Anim_PotatoMine_mashed" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_mashed")
-}
+[node name="Anim_PotatoMine_mashed" type="AnimationPlayer" parent="." unique_id=1520965141]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_mashed")
 
-[node name="Anim_PotatoMine_face" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_face")
-}
+[node name="Anim_PotatoMine_face" type="AnimationPlayer" parent="." unique_id=177799525]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_face")
 
-[node name="Anim_PotatoMine_eye" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_eye")
-}
+[node name="Anim_PotatoMine_eye" type="AnimationPlayer" parent="." unique_id=1026420653]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_eye")
 
-[node name="Anim_PotatoMine_light" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_light")
-}
+[node name="Anim_PotatoMine_light" type="AnimationPlayer" parent="." unique_id=616456113]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_light")
 
-[node name="Anim_PotatoMine_glow" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_PotatoMine_glow")
-}
+[node name="Anim_PotatoMine_glow" type="AnimationPlayer" parent="." unique_id=453936057]
+libraries/ = SubResource("AnimationLibrary_PotatoMine_glow")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1613547694]
 visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseArea" type="Area2D" parent="."]
+[node name="DefenseArea" type="Area2D" parent="." unique_id=1209817057 node_paths=PackedStringArray("AttachedNode")]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("26_be8nu")
+AttachedNode = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=705567064]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_b36p7")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=635054517 node_paths=PackedStringArray("AttachedNode")]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
+script = ExtResource("26_be8nu")
+AttachedNode = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2002033035]
 position = Vector2(33, 40)
 shape = SubResource("RectangleShape2D_eo0bp")
 debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=865679646 node_paths=PackedStringArray("AttachedNode")]
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("26_be8nu")
+AttachedNode = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1334124736]
 position = Vector2(20, 40)
 shape = SubResource("CircleShape2D_b36p7")
 
-[node name="Mashed" type="GPUParticles2D" parent="."]
+[node name="Mashed" type="GPUParticles2D" parent="." unique_id=1761182377]
 position = Vector2(43, 54)
 emitting = false
 amount = 1
@@ -2571,7 +2559,7 @@ texture = ExtResource("0_fuck")
 one_shot = true
 process_material = SubResource("ShaderMaterial_1xyjw")
 
-[node name="LowParts" type="GPUParticles2D" parent="."]
+[node name="LowParts" type="GPUParticles2D" parent="." unique_id=1793449649]
 material = SubResource("CanvasItemMaterial_53ds2")
 position = Vector2(40, 20)
 emitting = false
@@ -2584,7 +2572,7 @@ visibility_rect = Rect2(-250, -100, 500, 200)
 draw_order = 0
 process_material = SubResource("ShaderMaterial_mjaga")
 
-[node name="HighParts" type="GPUParticles2D" parent="."]
+[node name="HighParts" type="GPUParticles2D" parent="." unique_id=1597877001]
 material = SubResource("CanvasItemMaterial_53ds2")
 position = Vector2(40, 20)
 emitting = false
@@ -2597,7 +2585,7 @@ visibility_rect = Rect2(-250, -150, 500, 300)
 draw_order = 0
 process_material = SubResource("ShaderMaterial_ssjwo")
 
-[node name="Word" type="GPUParticles2D" parent="."]
+[node name="Word" type="GPUParticles2D" parent="." unique_id=194514706]
 position = Vector2(41, 11)
 emitting = false
 amount = 1
@@ -2606,7 +2594,7 @@ lifetime = 0.7
 one_shot = true
 process_material = SubResource("ShaderMaterial_53ds2")
 
-[node name="Flash" type="GPUParticles2D" parent="."]
+[node name="Flash" type="GPUParticles2D" parent="." unique_id=1333037999]
 position = Vector2(32, 20)
 emitting = false
 amount = 1
