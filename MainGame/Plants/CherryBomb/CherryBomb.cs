@@ -38,7 +38,7 @@ public partial class CherryBomb : Plants
     private async void DamageZombies(StringName animName)
     {
         GD.Print("CherryBomb exploded!");
-        IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingAreas();
+        IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
         foreach (IHitBox overlappingArea in overlappingAreas)
         {
             GD.Print("CherryBomb overlapping area: " + overlappingArea.GetType());
@@ -58,7 +58,7 @@ public partial class CherryBomb : Plants
         _particleExplode1.Emitting = true;
         _particleExplode2.Emitting = true;
         _particleExplode3.Emitting = true;
-        MainGame.Instance.Camera.Shake(0.4f);
+        MainGame.Instance.Camera.Shake(intensity: 0.4f);
         await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
         FreePlant();
     }

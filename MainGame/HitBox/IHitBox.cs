@@ -15,5 +15,5 @@ public interface IHitBox
 
     public Node AttachedNode { get; set; }
 
-    public IReadOnlyList<IHitBox> GetOverlappingAreas();
+    public IReadOnlyList<IHitBox> GetOverlappingHitBox();
 }

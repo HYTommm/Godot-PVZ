@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpy4ha2doqxgb"]
+[gd_scene format=3 uid="uid://cpy4ha2doqxgb"]
 
 [ext_resource type="Texture2D" uid="uid://xaxbi7ixlgwp" path="res://art/MainGame/SeedBank.png" id="1_3tv4h"]
 [ext_resource type="PackedScene" uid="uid://igh26sahnl2e" path="res://MainGame/SeedPacketLarger.tscn" id="2_ns80v"]
@@ -49,37 +49,37 @@ _data = {
 &"SunCountFlashWarning": SubResource("Animation_jv5um")
 }
 
-[node name="SeedBank" type="Sprite2D" node_paths=PackedStringArray("_sunCountLabel", "_animSunCountFlashWarning")]
+[node name="SeedBank" type="Sprite2D" unique_id=803230650 node_paths=PackedStringArray("_sunCountLabel", "_animSunCountFlashWarning")]
 texture = ExtResource("1_3tv4h")
 centered = false
 script = ExtResource("2_ua34a")
 _sunCountLabel = NodePath("SunCountLabel")
 _animSunCountFlashWarning = NodePath("SunCountFlashWarning")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=12529173]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1243319468]
 position = Vector2(223, 43.5)
 shape = SubResource("RectangleShape2D_jv5um")
 
-[node name="SeedPacketLarger1" parent="." instance=ExtResource("2_ns80v")]
+[node name="SeedPacketLarger1" parent="." unique_id=1374305107 instance=ExtResource("2_ns80v")]
 position = Vector2(78, 8)
 SeedScene = ExtResource("4_r0a42")
 
-[node name="SeedPacketLarger2" parent="." instance=ExtResource("2_ns80v")]
+[node name="SeedPacketLarger2" parent="." unique_id=1919318469 instance=ExtResource("2_ns80v")]
 position = Vector2(130, 8)
 SeedScene = ExtResource("5_6x7yi")
 
-[node name="SeedPacketLarger3" parent="." instance=ExtResource("2_ns80v")]
+[node name="SeedPacketLarger3" parent="." unique_id=2057337463 instance=ExtResource("2_ns80v")]
 position = Vector2(182, 8)
 rotation = 0.00209095
 SeedScene = ExtResource("6_8cs2s")
 
-[node name="SeedPacketLarger4" parent="." instance=ExtResource("2_ns80v")]
+[node name="SeedPacketLarger4" parent="." unique_id=1001389451 instance=ExtResource("2_ns80v")]
 position = Vector2(234, 8)
 SeedScene = ExtResource("7_r0a42")
 
-[node name="SunCountLabel" type="Label" parent="."]
+[node name="SunCountLabel" type="Label" parent="." unique_id=1469795737]
 offset_left = 12.0
 offset_top = 61.0
 offset_right = 66.0
@@ -88,11 +88,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="SunCountFlashWarning" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8cs2s")
-}
+[node name="SunCountFlashWarning" type="AnimationPlayer" parent="." unique_id=1234605144]
+libraries/ = SubResource("AnimationLibrary_8cs2s")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1572285042]
 stream = ExtResource("6_jv5um")
 pitch_scale = 1.5

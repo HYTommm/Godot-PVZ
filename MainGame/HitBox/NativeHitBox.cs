@@ -31,12 +31,12 @@ public partial class NativeHitBox : Area2D, IHitBox
     [Export] public NodePath AttachedNodePath { get; set; }
     public Node AttachedNode { get; set; }
 
-    public new IReadOnlyList<IHitBox> GetOverlappingAreas()
+    public IReadOnlyList<IHitBox> GetOverlappingHitBox()
     {
         if (_isDirty)
         {
             _overlappingHitBoxes.Clear();
-            foreach (Area2D area in base.GetOverlappingAreas())
+            foreach (Area2D area in GetOverlappingAreas())
                 if (area is IHitBox hitBox) _overlappingHitBoxes.Add(hitBox);
             _isDirty = false;
         }

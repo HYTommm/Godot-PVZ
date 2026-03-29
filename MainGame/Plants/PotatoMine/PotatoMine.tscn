@@ -2514,11 +2514,11 @@ offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseArea" type="Area2D" parent="." unique_id=1209817057 node_paths=PackedStringArray("AttachedNode")]
+[node name="DefenseArea" type="Area2D" parent="." unique_id=1209817057]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("26_be8nu")
-AttachedNode = NodePath("..")
+AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=705567064]
@@ -2526,13 +2526,12 @@ position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_b36p7")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=635054517 node_paths=PackedStringArray("AttachedNode")]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=635054517]
 collision_layer = 0
 collision_mask = 4
-monitoring = false
 monitorable = false
 script = ExtResource("26_be8nu")
-AttachedNode = NodePath("..")
+AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2002033035]
@@ -2540,11 +2539,12 @@ position = Vector2(33, 40)
 shape = SubResource("RectangleShape2D_eo0bp")
 debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
 
-[node name="AttackArea" type="Area2D" parent="." unique_id=865679646 node_paths=PackedStringArray("AttachedNode")]
+[node name="AttackArea" type="Area2D" parent="." unique_id=865679646]
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 script = ExtResource("26_be8nu")
-AttachedNode = NodePath("..")
+AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1334124736]

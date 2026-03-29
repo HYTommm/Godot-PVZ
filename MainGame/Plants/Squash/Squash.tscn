@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cehq02mhnv2kr"]
+[gd_scene format=3 uid="uid://cehq02mhnv2kr"]
 
 [ext_resource type="Texture2D" uid="uid://c3p6qur6hlgtb" path="res://art/MainGame/Plants/Squash/Squash_stem.png" id="0_fuck"]
 [ext_resource type="Script" uid="uid://k6gqqwlh5kv7" path="res://MainGame/Plants/Squash/Squash.cs" id="1_67xtf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Animation" uid="uid://cnck07yrkt0t2" path="res://MainGame/Plants/Squash/Squash_lookleft.tres" id="4_anim"]
 [ext_resource type="Animation" uid="uid://jbqrc5hmk3iy" path="res://MainGame/Plants/Squash/Squash_idle.tres" id="5_anim"]
 [ext_resource type="Animation" uid="uid://d0p52o7hb4pf4" path="res://MainGame/Plants/Squash/Squash_blink.tres" id="6_anim"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="13_5wtnc"]
 
 [sub_resource type="Animation" id="Animation_fuck"]
 length = 6.0
@@ -895,109 +896,138 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wtnc"]
 size = Vector2(20, 80)
 
-[node name="Node2D" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "TextEdit", "Shadow")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk1uj"]
+size = Vector2(200, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2k5t"]
+radius = 60.0
+
+[node name="Squash" type="CanvasGroup" unique_id=1814641721 node_paths=PackedStringArray("Anim_jumpup", "Anim_jumpDown", "Anim_lookRight", "Anim_lookLeft", "Anim_idle", "TextEdit", "Shadow")]
 script = ExtResource("1_67xtf")
+Anim_jumpup = NodePath("Anim_Squash_jumpup")
+Anim_jumpDown = NodePath("Anim_Squash_jumpdown")
+Anim_lookRight = NodePath("Anim_Squash_lookright")
+Anim_lookLeft = NodePath("Anim_Squash_lookleft")
 Anim_idle = NodePath("Anim_Squash_idle")
 TextEdit = NodePath("TextEdit")
 Shadow = NodePath("Shadow")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=77400136]
 visible = false
 position = Vector2(40, 69)
 texture = ExtResource("2_glyck")
 
-[node name="Anim_jumpdown" type="Sprite2D" parent="."]
+[node name="Anim_jumpdown" type="Sprite2D" parent="." unique_id=491871307]
 visible = false
 centered = false
 
-[node name="Anim_jumpup" type="Sprite2D" parent="."]
+[node name="Anim_jumpup" type="Sprite2D" parent="." unique_id=836646724]
 visible = false
 centered = false
 
-[node name="Anim_lookright" type="Sprite2D" parent="."]
+[node name="Anim_lookright" type="Sprite2D" parent="." unique_id=1266670003]
 visible = false
 centered = false
 
-[node name="Anim_lookleft" type="Sprite2D" parent="."]
+[node name="Anim_lookleft" type="Sprite2D" parent="." unique_id=124425321]
 visible = false
 centered = false
 
-[node name="Anim_idle" type="Sprite2D" parent="."]
+[node name="Anim_idle" type="Sprite2D" parent="." unique_id=1246791788]
 visible = false
 centered = false
 
-[node name="Anim_blink" type="Sprite2D" parent="."]
+[node name="Anim_blink" type="Sprite2D" parent="." unique_id=1204905864]
 centered = false
 
-[node name="Squash_stem" type="Sprite2D" parent="."]
-position = Vector2(33.4, -1.8)
-scale = Vector2(0.8, 0.8)
+[node name="Squash_stem" type="Sprite2D" parent="." unique_id=1862344101]
+position = Vector2(36.6669, 17.514582)
+rotation = 0.30364758
+scale = Vector2(0.8885468, 0.597936)
 texture = ExtResource("0_fuck")
 centered = false
 
-[node name="Squash_body" type="Sprite2D" parent="."]
-position = Vector2(6.6, 5.2)
-scale = Vector2(0.8, 0.8)
+[node name="Squash_body" type="Sprite2D" parent="." unique_id=362830575]
+position = Vector2(0.29031312, 24.253979)
+scale = Vector2(0.9347551, 0.597936)
 texture = ExtResource("1_fuck")
 centered = false
 
-[node name="Anim_face" type="Sprite2D" parent="."]
-position = Vector2(33.2, 30)
-scale = Vector2(0.8, 0.8)
+[node name="Anim_face" type="Sprite2D" parent="." unique_id=603228019]
+position = Vector2(31.795532, 42.73202)
+scale = Vector2(0.8885468, 0.597936)
 texture = ExtResource("2_fuck")
 centered = false
 
-[node name="Anim_eye" type="Sprite2D" parent="."]
-position = Vector2(25.3, 18.9)
-scale = Vector2(0.8, 0.8)
+[node name="Anim_eye" type="Sprite2D" parent="." unique_id=1959611021]
+position = Vector2(21.791065, 34.846176)
+scale = Vector2(0.9507179, 0.63070184)
 texture = ExtResource("3_fuck")
 centered = false
 
-[node name="AnimLib" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fuck")
-}
+[node name="AnimLib" type="AnimationPlayer" parent="." unique_id=935295874]
+libraries/ = SubResource("AnimationLibrary_fuck")
 
-[node name="Anim_Squash_jumpdown" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_jumpdown")
-}
+[node name="Anim_Squash_jumpdown" type="AnimationPlayer" parent="." unique_id=1179089130]
+libraries/ = SubResource("AnimationLibrary_Squash_jumpdown")
 
-[node name="Anim_Squash_jumpup" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_jumpup")
-}
+[node name="Anim_Squash_jumpup" type="AnimationPlayer" parent="." unique_id=984786764]
+libraries/ = SubResource("AnimationLibrary_Squash_jumpup")
 
-[node name="Anim_Squash_lookright" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_lookright")
-}
+[node name="Anim_Squash_lookright" type="AnimationPlayer" parent="." unique_id=633627536]
+libraries/ = SubResource("AnimationLibrary_Squash_lookright")
 
-[node name="Anim_Squash_lookleft" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_lookleft")
-}
+[node name="Anim_Squash_lookleft" type="AnimationPlayer" parent="." unique_id=1911088546]
+libraries/ = SubResource("AnimationLibrary_Squash_lookleft")
 
-[node name="Anim_Squash_idle" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_idle")
-}
+[node name="Anim_Squash_idle" type="AnimationPlayer" parent="." unique_id=720192439]
+libraries/ = SubResource("AnimationLibrary_Squash_idle")
 
-[node name="Anim_Squash_blink" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Squash_blink")
-}
+[node name="Anim_Squash_blink" type="AnimationPlayer" parent="." unique_id=519090402]
+libraries/ = SubResource("AnimationLibrary_Squash_blink")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1183778926]
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseArea" type="Area2D" parent="."]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=2106253545]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
+monitoring = false
+script = ExtResource("13_5wtnc")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1304870260]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_5wtnc")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
+
+[node name="DetectionHitBox" type="Area2D" parent="." unique_id=630143975]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("13_5wtnc")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=592549196]
+position = Vector2(35, 40)
+shape = SubResource("RectangleShape2D_wk1uj")
+debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=187023693]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("13_5wtnc")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1054254340]
+position = Vector2(20, 40)
+shape = SubResource("CircleShape2D_a2k5t")

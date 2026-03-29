@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cor7g84qx52w7"]
+[gd_scene format=3 uid="uid://cor7g84qx52w7"]
 
 [ext_resource type="Texture2D" uid="uid://dhdgwk51ra0yr" path="res://art/MainGame/Plants/SunFlower/SunFlower_blink2.png" id="1_dknli"]
 [ext_resource type="Script" uid="uid://cifyblddd5bf5" path="res://MainGame/Plants/Sunflower/SunFlower.cs" id="1_oxdg1"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://c5g5faimv0yks" path="res://art/MainGame/Plants/SunFlower/SunFlower_rightpetal1.png" id="31_q3po2"]
 [ext_resource type="Texture2D" uid="uid://ciwmeli0136ce" path="res://art/MainGame/Plants/SunFlower/SunFlower_toppetals.png" id="32_53xc1"]
 [ext_resource type="Texture2D" uid="uid://d3o7ih5cyines" path="res://art/MainGame/Plants/SunFlower/SunFlower_head.png" id="33_alsjj"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="34_41nh4"]
 
 [sub_resource type="Shader" id="Shader_wihil"]
 code = "shader_type canvas_item;
@@ -1538,7 +1539,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wihil"]
 size = Vector2(20, 80)
 
-[node name="SunFlower" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Anim_blink", "Anim_sunLight", "TextEdit", "Shadow")]
+[node name="SunFlower" type="CanvasGroup" unique_id=1623736035 node_paths=PackedStringArray("Anim_idle", "Anim_blink", "Anim_sunLight", "TextEdit", "Shadow")]
 clip_children = 2
 material = SubResource("ShaderMaterial_kdids")
 script = ExtResource("1_oxdg1")
@@ -1548,28 +1549,24 @@ Anim_sunLight = NodePath("SunLight")
 TextEdit = NodePath("TextEdit")
 Shadow = NodePath("Shadow")
 
-[node name="Blink" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4texv")
-}
+[node name="Blink" type="AnimationPlayer" parent="." unique_id=594900528]
+libraries/ = SubResource("AnimationLibrary_4texv")
 
-[node name="Idle" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_f0umt")
-}
+[node name="Idle" type="AnimationPlayer" parent="." unique_id=351439394]
+libraries/ = SubResource("AnimationLibrary_f0umt")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1179720215]
 visible = false
 position = Vector2(40, 69)
 texture = ExtResource("3_xgvnu")
 
-[node name="Backleaf" type="Sprite2D" parent="."]
+[node name="Backleaf" type="Sprite2D" parent="." unique_id=1003851427]
 position = Vector2(27.6, 54.7)
 scale = Vector2(0.572, 0.476)
 texture = ExtResource("6_kdids")
 centered = false
 
-[node name="Backleaf_left_tip" type="Sprite2D" parent="."]
+[node name="Backleaf_left_tip" type="Sprite2D" parent="." unique_id=1040873434]
 position = Vector2(24.9, 55.3)
 rotation = 0.022689
 scale = Vector2(0.584, 0.488)
@@ -1577,7 +1574,7 @@ skew = 0.0087269
 texture = ExtResource("7_41nh4")
 centered = false
 
-[node name="Backleaf_right_tip" type="Sprite2D" parent="."]
+[node name="Backleaf_right_tip" type="Sprite2D" parent="." unique_id=104267966]
 position = Vector2(47.5, 54.5)
 rotation = 0.013963
 scale = Vector2(0.622, 0.488)
@@ -1585,7 +1582,7 @@ skew = 0.0034903
 texture = ExtResource("8_g2ulc")
 centered = false
 
-[node name="Stalk_bottom" type="Sprite2D" parent="."]
+[node name="Stalk_bottom" type="Sprite2D" parent="." unique_id=348752452]
 position = Vector2(37.1, 50.8)
 rotation = 0.109956
 scale = Vector2(0.558, 0.655)
@@ -1593,7 +1590,7 @@ skew = -0.0401428
 texture = ExtResource("9_3mbi3")
 centered = false
 
-[node name="Stalk_top" type="Sprite2D" parent="."]
+[node name="Stalk_top" type="Sprite2D" parent="." unique_id=1139060544]
 position = Vector2(32.5, 38.5)
 rotation = 0.099484
 scale = Vector2(0.557, 0.787)
@@ -1601,187 +1598,189 @@ skew = -0.0383975
 texture = ExtResource("10_hikup")
 centered = false
 
-[node name="Frontleaf" type="Sprite2D" parent="."]
+[node name="Frontleaf" type="Sprite2D" parent="." unique_id=1696460265]
 position = Vector2(22.6, 53.2)
 scale = Vector2(0.565, 0.596)
 texture = ExtResource("11_emwm0")
 centered = false
 
-[node name="Frontleaf_right_tip" type="Sprite2D" parent="."]
+[node name="Frontleaf_right_tip" type="Sprite2D" parent="." unique_id=354952855]
 position = Vector2(55.8, 55)
 rotation = -0.076794
 scale = Vector2(0.642, 0.603)
 texture = ExtResource("12_4xj77")
 centered = false
 
-[node name="Frontleaf_left_tip" type="Sprite2D" parent="."]
+[node name="Frontleaf_left_tip" type="Sprite2D" parent="." unique_id=840393380]
 position = Vector2(19.5, 60.3)
 rotation = 0.069813
 scale = Vector2(0.609, 0.603)
 texture = ExtResource("13_g0da5")
 centered = false
 
-[node name="SunFlower_leftpetal8" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal8" type="Sprite2D" parent="." unique_id=1604881651]
 position = Vector2(24.8, 43.4)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("14_qqgwb")
 centered = false
 
-[node name="SunFlower_leftpetal7" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal7" type="Sprite2D" parent="." unique_id=1741985563]
 position = Vector2(16.5, 38.8)
 rotation = 6.24828
 scale = Vector2(1.017, 1)
 texture = ExtResource("15_bmfcr")
 centered = false
 
-[node name="SunFlower_leftpetal6" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal6" type="Sprite2D" parent="." unique_id=1537142544]
 position = Vector2(11.1, 34.7)
 rotation = 6.24828
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("16_45rt2")
 centered = false
 
-[node name="SunFlower_leftpetal5" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal5" type="Sprite2D" parent="." unique_id=718447790]
 position = Vector2(7.8, 30)
 rotation = 6.03535
 scale = Vector2(0.838, 0.8)
 texture = ExtResource("17_o313s")
 centered = false
 
-[node name="SunFlower_leftpetal4" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal4" type="Sprite2D" parent="." unique_id=1745027260]
 position = Vector2(10.3, 21.9)
 rotation = 6.02837
 scale = Vector2(0.84, 0.8)
 texture = ExtResource("18_qp1t3")
 centered = false
 
-[node name="SunFlower_leftpetal3" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal3" type="Sprite2D" parent="." unique_id=1118879610]
 position = Vector2(14.6, 15.2)
 rotation = 6.15752
 scale = Vector2(0.819, 0.8)
 texture = ExtResource("19_17m6q")
 centered = false
 
-[node name="SunFlower_leftpetal2" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal2" type="Sprite2D" parent="." unique_id=1110632140]
 position = Vector2(21.8, 8.5)
 rotation = 0.015708
 scale = Vector2(1.016, 1)
 texture = ExtResource("20_5768j")
 centered = false
 
-[node name="SunFlower_leftpetal1" type="Sprite2D" parent="."]
+[node name="SunFlower_leftpetal1" type="Sprite2D" parent="." unique_id=135783707]
 position = Vector2(28.2, 6.8)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("21_bgkg3")
 centered = false
 
-[node name="SunFlower_bottompetals" type="Sprite2D" parent="."]
+[node name="SunFlower_bottompetals" type="Sprite2D" parent="." unique_id=449524813]
 position = Vector2(33, 44.5)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("22_rr68b")
 centered = false
 
-[node name="SunFlower_rightpetal9" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal9" type="Sprite2D" parent="." unique_id=462244019]
 position = Vector2(46.2, 43.9)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("23_7ksu7")
 centered = false
 
-[node name="SunFlower_rightpetal8" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal8" type="Sprite2D" parent="." unique_id=1414326139]
 position = Vector2(50.9, 41.3)
 rotation = 0.041888
 scale = Vector2(0.814, 0.8)
 texture = ExtResource("24_bhxss")
 centered = false
 
-[node name="SunFlower_rightpetal7" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal7" type="Sprite2D" parent="." unique_id=1965069948]
 position = Vector2(54.6, 37.4)
 rotation = 0.148353
 scale = Vector2(0.822, 0.8)
 texture = ExtResource("25_7po0u")
 centered = false
 
-[node name="SunFlower_rightpetal6" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal6" type="Sprite2D" parent="." unique_id=1959421231]
 position = Vector2(59.7, 32.5)
 rotation = 0.235619
 scale = Vector2(0.836, 0.8)
 texture = ExtResource("26_qu3vk")
 centered = false
 
-[node name="SunFlower_rightpetal5" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal5" type="Sprite2D" parent="." unique_id=68256773]
 position = Vector2(61.3, 26)
 rotation = 0.308923
 scale = Vector2(0.853, 0.8)
 texture = ExtResource("27_rjxym")
 centered = false
 
-[node name="SunFlower_rightpetal4" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal4" type="Sprite2D" parent="." unique_id=936223247]
 position = Vector2(59.5, 18.1)
 rotation = 0.120428
 scale = Vector2(1.02, 1)
 texture = ExtResource("28_4pm14")
 centered = false
 
-[node name="SunFlower_rightpetal3" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal3" type="Sprite2D" parent="." unique_id=887278882]
 position = Vector2(55.2, 14.6)
 rotation = 0.041888
 scale = Vector2(1.017, 1)
 texture = ExtResource("29_gbm75")
 centered = false
 
-[node name="SunFlower_rightpetal2" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal2" type="Sprite2D" parent="." unique_id=882464836]
 position = Vector2(50.6, 10.2)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("30_achbi")
 centered = false
 
-[node name="SunFlower_rightpetal1" type="Sprite2D" parent="."]
+[node name="SunFlower_rightpetal1" type="Sprite2D" parent="." unique_id=1193135125]
 position = Vector2(45.3, 7.3)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("31_q3po2")
 centered = false
 
-[node name="SunFlower_toppetals" type="Sprite2D" parent="."]
+[node name="SunFlower_toppetals" type="Sprite2D" parent="." unique_id=1863515847]
 position = Vector2(34.5, 6.7)
 rotation = 0.015708
 scale = Vector2(0.813, 0.8)
 texture = ExtResource("32_53xc1")
 centered = false
 
-[node name="Anim_idle" type="Sprite2D" parent="."]
+[node name="Anim_idle" type="Sprite2D" parent="." unique_id=1856117509]
 position = Vector2(17.6, 13)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("33_alsjj")
 centered = false
 
-[node name="Anim_blink" type="Sprite2D" parent="Anim_idle"]
+[node name="Anim_blink" type="Sprite2D" parent="Anim_idle" unique_id=1624907518]
 visible = false
 position = Vector2(16, 6.60112)
 scale = Vector2(1, 1.1236)
 texture = ExtResource("1_dknli")
 centered = false
 
-[node name="SunLight" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3mbi3")
-}
+[node name="SunLight" type="AnimationPlayer" parent="." unique_id=148058579]
+libraries/ = SubResource("AnimationLibrary_3mbi3")
 
-[node name="DefenseArea" type="Area2D" parent="."]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=71457434]
 collision_layer = 2
 collision_mask = 0
+monitoring = false
+script = ExtResource("34_41nh4")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1455058260]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_wihil")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1170353070]
 visible = false
 offset_top = -30.0
 offset_right = 180.0

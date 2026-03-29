@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
@@ -211,7 +211,7 @@ public partial class Zombie : HealthEntity
         // 如果植物在攻击区域内，则攻击
         if (BIsDead)
             return;
-        IReadOnlyList<IHitBox> overlappingAreas = AttackHitBox.GetOverlappingAreas();
+        IReadOnlyList<IHitBox> overlappingAreas = AttackHitBox.GetOverlappingHitBox();
         //Print(overlappingAreas.Count);
         if (AttackHitBox != null && overlappingAreas.Count > 0 && !BIsDying)
         {

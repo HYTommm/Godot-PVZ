@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmf7okj4vqmt7"]
+[gd_scene format=3 uid="uid://dmf7okj4vqmt7"]
 
 [ext_resource type="Texture2D" uid="uid://dc2ee4afj7wka" path="res://art/MainGame/Plants/WallNut/Wallnut_body.png" id="0_fuck"]
 [ext_resource type="Animation" uid="uid://deqsiqs0fotvq" path="res://MainGame/Plants/WallNut/Wallnut_idle.tres" id="1_anim"]
@@ -10,6 +10,7 @@
 [ext_resource type="Animation" uid="uid://m3kpivjgn82s" path="res://MainGame/Plants/WallNut/Wallnut_blink_twitch.tres" id="3_anim"]
 [ext_resource type="Animation" uid="uid://jgsqepqxjbwm" path="res://MainGame/Plants/WallNut/Wallnut_blink_twice.tres" id="4_anim"]
 [ext_resource type="Animation" uid="uid://mb5ij32yktnt" path="res://MainGame/Plants/WallNut/Wallnut_blink_thrice.tres" id="5_anim"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="11_vqt4u"]
 
 [sub_resource type="Animation" id="Animation_f5kxd"]
 length = 0.001
@@ -164,89 +165,82 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5kxd"]
 size = Vector2(20, 80)
 
-[node name="Wallnut" type="CanvasGroup" node_paths=PackedStringArray("Anim_idle", "Body", "TextEdit", "Shadow")]
+[node name="Wallnut" type="CanvasGroup" unique_id=1086852752 node_paths=PackedStringArray("Anim_idle", "Body", "TextEdit", "Shadow")]
 script = ExtResource("1_svv7d")
 Anim_idle = NodePath("Anim_Wallnut_idle")
 Body = NodePath("Anim_face")
 TextEdit = NodePath("TextEdit")
 Shadow = NodePath("Shadow")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=784935885]
 visible = false
 position = Vector2(40, 69)
 texture = ExtResource("2_f5kxd")
 
-[node name="_ground" type="Sprite2D" parent="."]
+[node name="_ground" type="Sprite2D" parent="." unique_id=1213917990]
 position = Vector2(44.8, 75.5)
 centered = false
 
-[node name="Anim_idle" type="Sprite2D" parent="."]
+[node name="Anim_idle" type="Sprite2D" parent="." unique_id=715934009]
 visible = false
 centered = false
 
-[node name="Anim_face" type="Sprite2D" parent="."]
+[node name="Anim_face" type="Sprite2D" parent="." unique_id=306728170]
 position = Vector2(6.9, 3.6)
 scale = Vector2(0.7, 0.719)
 texture = ExtResource("0_fuck")
 centered = false
 
-[node name="Anim_blink_twitch" type="Sprite2D" parent="."]
+[node name="Anim_blink_twitch" type="Sprite2D" parent="." unique_id=969670124]
 visible = false
 position = Vector2(29.2, 35.6)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_2ol46")
 centered = false
 
-[node name="Anim_blink_twice" type="Sprite2D" parent="."]
+[node name="Anim_blink_twice" type="Sprite2D" parent="." unique_id=1011508878]
 visible = false
 position = Vector2(28, 21.6)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_86vom")
 centered = false
 
-[node name="Anim_blink_thrice" type="Sprite2D" parent="."]
+[node name="Anim_blink_thrice" type="Sprite2D" parent="." unique_id=913712198]
 visible = false
 position = Vector2(28, 21.6)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_86vom")
 centered = false
 
-[node name="Anim_Wallnut_idle" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Wallnut_idle")
-}
+[node name="Anim_Wallnut_idle" type="AnimationPlayer" parent="." unique_id=1952975114]
+libraries/ = SubResource("AnimationLibrary_Wallnut_idle")
 
-[node name="Anim_Wallnut_face" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Wallnut_face")
-}
+[node name="Anim_Wallnut_face" type="AnimationPlayer" parent="." unique_id=628599505]
+libraries/ = SubResource("AnimationLibrary_Wallnut_face")
 
-[node name="Anim_Wallnut_blink_twitch" type="AnimationPlayer" parent="."]
+[node name="Anim_Wallnut_blink_twitch" type="AnimationPlayer" parent="." unique_id=1516753168]
 root_node = NodePath("../Anim_face")
-libraries = {
-&"": SubResource("AnimationLibrary_Wallnut_blink_twitch")
-}
+libraries/ = SubResource("AnimationLibrary_Wallnut_blink_twitch")
 
-[node name="Anim_Wallnut_blink_twice" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Wallnut_blink_twice")
-}
+[node name="Anim_Wallnut_blink_twice" type="AnimationPlayer" parent="." unique_id=109092334]
+libraries/ = SubResource("AnimationLibrary_Wallnut_blink_twice")
 
-[node name="Anim_Wallnut_blink_thrice" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_Wallnut_blink_thrice")
-}
+[node name="Anim_Wallnut_blink_thrice" type="AnimationPlayer" parent="." unique_id=676658802]
+libraries/ = SubResource("AnimationLibrary_Wallnut_blink_thrice")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1095349218]
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseArea" type="Area2D" parent="."]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=1513508596]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("11_vqt4u")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=264707193]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_f5kxd")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)

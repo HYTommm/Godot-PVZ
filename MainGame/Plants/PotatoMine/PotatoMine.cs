@@ -38,6 +38,9 @@ public partial class PotatoMine : Plants
     {
         base._Ready();
 
+        _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
+        _detectionHitBox = GetNode<IHitBox>("%DetectionHitBox");
+
         AddChild(TimerToRise);
         TimerToRise.WaitTime = TimeToRise;
         TimerToRise.OneShot = true;
@@ -77,7 +80,7 @@ public partial class PotatoMine : Plants
     private void DamageZombies(Area2D area)
     {
         bool bHasZombie = false;
-        IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingAreas();
+        IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
         foreach (IHitBox overlappingArea in overlappingAreas)
         {
             GD.Print("PotatoMine overlapping area: " + overlappingArea.GetType());
@@ -109,7 +112,7 @@ public partial class PotatoMine : Plants
         _particleExplode4.Emitting = true;
         _particleExplode5.Emitting = true;
         //Anim_mash.Play("PotatoMine_mashed");
-        MainGame.Instance.Camera.Shake(0.3f, 1);
+        MainGame.Instance.Camera.Shake(intensity: 0.3f, shackSteps: 1);
         await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
         FreePlant();
     }
