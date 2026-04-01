@@ -113,7 +113,7 @@ public partial class Squash : Plants
 
             case SquashState.JumpDown:
                 GD.Print("Squash jumping down!");
-                _timeCount = 0.5d;
+                _timeCount = 0.05d;
                 Anim_main.Play("Squash/Squash_jumpdown", 0, 5);
                 _stateMachine.SetNextState(SquashState.AfterJump, 0.1);
                 break;
