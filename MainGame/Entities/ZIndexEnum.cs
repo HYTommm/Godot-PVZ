@@ -5,7 +5,8 @@
     AdditionalPlants = 2,
     Zombies = 3,
     LawnMowers = 4,
-    Bullets = 5,
-    Sun = 6,
-    Coin = 7,
+    Particle = 5,
+    Bullets = 6,
+    Sun = 7,
+    Coin = 8,
 }

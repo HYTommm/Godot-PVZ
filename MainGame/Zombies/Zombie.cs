@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
@@ -302,8 +302,8 @@ public partial class Zombie : HealthEntity
         {
             //播放吃植物动画
             BIsMoving = false;
-            _animation.Play("Zombie_eat", 1.0 / 6.0, 3.0f);
-            Ground.Position = ConstGroundPos;
+            _animation.Play("Zombie_eat", 0.2, 3.0f);
+            //Ground.Position = ConstGroundPos;
         }
     }
 
@@ -407,7 +407,7 @@ public partial class Zombie : HealthEntity
             _animation.Stop();
             _animation.Play("LawnMoweredZombie", 1.0 / 6.0);
         }
-        else if (hurtType is HurtType.AshExplosion or HurtType.Explosion)
+        else if (hurtType is HurtType.AshExplosion or HurtType.Explosion or HurtType.Squash)
         {
             _zombieNode2D.Visible = false;
             if (hurtType == HurtType.AshExplosion && _zombieCharredNode2D != null)

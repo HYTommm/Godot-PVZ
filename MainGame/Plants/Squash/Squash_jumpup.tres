@@ -304,10 +304,22 @@ tracks/24/path = NodePath(".")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
-"times": PackedFloat32Array(0.63),
+"times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"JumpUp"
 }]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = false
+tracks/25/path = NodePath(".:modulate:a")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.7, 0.5]
 }

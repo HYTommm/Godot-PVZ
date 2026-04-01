@@ -1,17 +1,20 @@
-using Godot;
+﻿using Godot;
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class Squash : Plants
 {
-    [Export] public AnimationPlayer Anim_jumpup;
-    [Export] public AnimationPlayer Anim_jumpDown;
-    [Export] public AnimationPlayer Anim_lookRight;
-    [Export] public AnimationPlayer Anim_lookLeft;
-    [Export] public AnimationPlayer Anim_idle;
+    [Export] public AnimationPlayer Anim_main;
+
+    //[Export] public AnimationPlayer Anim_jumpDown;
+    //[Export] public AnimationPlayer Anim_lookRight;
+    //[Export] public AnimationPlayer Anim_lookLeft;
+    //[Export] public AnimationPlayer Anim_idle;
     [Export] private int _damage = 1800;
 
+    private IHitBox _defenseHitbox;
     private IHitBox _attackHitBox;
     private IHitBox _detectionHitBox;
 
@@ -19,104 +22,137 @@ public partial class Squash : Plants
     private Node2D _body;
 
     private double _timeCount = 0f;
+    private bool _canEat = true;
+
+    private enum SquashState
+    {
+        Idle,
+        LookRight,
+        LookLeft,
+        JumpUp,
+        JumpDown,
+        AfterJump,
+        Finished
+    }
+
+    private StateMachine<SquashState> _stateMachine;
 
     public override void _Ready()
     {
         base._Ready();
 
+        _defenseHitbox = GetNode<IHitBox>("%DefenseHitBox");
         _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
         _detectionHitBox = GetNode<IHitBox>("%DetectionHitBox");
+
+        _detectionHitBox.Monitoring = false;
         _detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
 
-        Anim_lookRight.AnimationFinished += OnLookAnimationFinished;
+        AddChild(_stateMachine = new StateMachine<SquashState>(SquashState.Idle));
+        _stateMachine.StateChanged += OnStateChanged;
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (_timeCount > 0) _timeCount -= delta;
-        if (_timeCount <= 0.04 && _timeCount + delta > 0.04)
+        if (_timeCount > 0)
         {
-            DamageZombies();
+            _timeCount -= delta;
+            if (_timeCount <= 0) DamageZombies();
         }
+    }
+
+    public override void _Plant(int col, int row, int index)
+    {
+        base._Plant(col, row, index);
+        _detectionHitBox.Monitoring = true;
     }
 
     public override void _Idle()
     {
-        Anim_idle.Play("Squash_idle");
+        Anim_main.Play("Squash/Squash_idle");
     }
 
     private void OnDetectionHitBoxEntered(IHitBox hitBox)
     {
         _detectionHitBox.Monitoring = false;
-        if (hitBox.AttachedNode is Zombie zombie && zombie.Row == Row)
-        {
-            GD.Print("Squash.cs:43 OnDetectionHitBoxEntered");
-            _targetZombie = zombie;
-            LookAtZombie(zombie);
-        }
+        if (hitBox.AttachedNode is not Zombie zombie || zombie.Row != Row) return;
+        _canEat = false;
+        _targetZombie = zombie;
+        _stateMachine?.ForceSetState(zombie.Position.X > Position.X ? SquashState.LookRight : SquashState.LookLeft);
     }
 
-    private void LookAtZombie(Zombie zombie)
+    public override void Hurt(Hurt hurt)
     {
-        Anim_idle.Stop();
-        if (zombie.Position.X > Position.X)
-        {
-            GD.Print("Squash looking right at zombie! Zombie Row: ", zombie.Row);
-            Anim_lookRight.Play("Squash_lookright", 1.0 / 6.0);
-        }
-        else
-        {
-            GD.Print("Squash looking left at zombie! Zombie Row: ", zombie.Row);
-            Anim_lookLeft.Play("Squash_lookleft", 1.0 / 6.0);
-        }
+        if (hurt.HurtType != HurtType.Eating || _canEat) base.Hurt(hurt);
     }
 
-    private void OnLookAnimationFinished(StringName animName)
+    private void OnStateChanged(SquashState newState)
     {
-        GD.Print("Squash look animation finished: " + animName);
-        if (animName == "Squash_lookright" || animName == "Squash_lookleft")
+        GD.Print($"Squash state changed: {newState}");
+        switch (newState)
         {
-            JumpToZombie(_targetZombie);
-        }
-    }
+            case SquashState.Idle:
+                Anim_main.Play("Squash/Squash_idle");
+                break;
 
-    private void JumpUp()
-    {
-        Tween tweenPos = CreateTween();
-        tweenPos
-            .TweenProperty(this, "position", new Vector2(_targetZombie.Position.X, Position.Y - 120f), 0.27f)
-            .SetEase(Tween.EaseType.InOut)
-            .SetTrans(Tween.TransitionType.Quad);
+            case SquashState.LookRight:
+                GD.Print("Squash looking right at zombie! Zombie Row: ", _targetZombie?.Row);
+                Anim_main.Play("Squash/Squash_lookright", 0.1, 2);
+                _stateMachine.SetNextState(SquashState.JumpUp, 0.8);
+                break;
+
+            case SquashState.LookLeft:
+                GD.Print("Squash looking left at zombie! Zombie Row: ", _targetZombie?.Row);
+                Anim_main.Play("Squash/Squash_lookleft", 0.1, 2);
+                _stateMachine.SetNextState(SquashState.JumpUp, 0.8);
+                break;
+
+            case SquashState.JumpUp:
+                // disable defense while jumping
+                _defenseHitbox.Monitorable = false;
+                ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.Particle;
+                Anim_main.Play("Squash/Squash_jumpup", 0.2, 2);
+                _stateMachine.SetNextState(SquashState.JumpDown, 0.95);
+                break;
+
+            case SquashState.JumpDown:
+                GD.Print("Squash jumping down!");
+                _timeCount = 0.1d;
+                Anim_main.Play("Squash/Squash_jumpdown", 0, 5);
+                _stateMachine.SetNextState(SquashState.AfterJump, 0.1);
+                break;
+
+            case SquashState.AfterJump:
+                MainGame.Instance.Camera.Shake(shakeDirection: new Vector2(0f, -1f), shakeDuration: 0.10f, intensity: 0.3f, shackSteps: 1);
+                _stateMachine.SetNextState(SquashState.Finished, 1);
+                break;
+
+            case SquashState.Finished:
+                Visible = false;
+                Shadow.Visible = false;
+                FreePlant();
+                break;
+        }
     }
 
     private void JumpDown()
     {
-        _timeCount = 0.1d;
-        Tween tweenPos = CreateTween();
-        tweenPos
+        Tween tweenPosDown = CreateTween();
+        tweenPosDown
             .TweenProperty(this, "position", new Vector2(Position.X, Position.Y + 120f), 0.1f)
             .SetEase(Tween.EaseType.InOut)
-            .SetTrans(Tween.TransitionType.Linear);
+            .SetTrans(Tween.TransitionType.Cubic);
     }
 
-    private async void JumpToZombie(Zombie zombie)
+    private void JumpUp()
     {
-        //JumpUp();
-        Anim_jumpup.Play("Squash_jumpup", 0.06, 2);
-        await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
-
-        //DamageZombies();
-
-        //JumpDown();
-        Anim_jumpDown.Play("Squash_jumpdown", 0.06, 5);
-        await ToSignal(Anim_jumpDown, "animation_finished");
-        MainGame.Instance.Camera.Shake(shakeDirection: new Vector2(0f, -1f), intensity: 0.3f, shackSteps: 1);
-        await ToSignal(GetTree().CreateTimer(1f), "timeout");
-        Visible = false;
-        Shadow.Visible = false;
-
-        FreePlant();
+        if (_targetZombie == null) return;
+        Tween tweenPos = CreateTween();
+        tweenPos
+            .TweenProperty(this, "position", new Vector2(_targetZombie.Position.X, Position.Y - 120f), 0.3f)
+            .SetEase(Tween.EaseType.InOut)
+            .SetTrans(Tween.TransitionType.Cubic);
     }
 
     private void DamageZombies()
