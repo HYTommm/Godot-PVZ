@@ -7,11 +7,6 @@ using System.Threading.Tasks;
 public partial class Squash : Plants
 {
     [Export] public AnimationPlayer Anim_main;
-
-    //[Export] public AnimationPlayer Anim_jumpDown;
-    //[Export] public AnimationPlayer Anim_lookRight;
-    //[Export] public AnimationPlayer Anim_lookLeft;
-    //[Export] public AnimationPlayer Anim_idle;
     [Export] private int _damage = 1800;
 
     private IHitBox _defenseHitbox;
@@ -79,7 +74,7 @@ public partial class Squash : Plants
         if (hitBox.AttachedNode is not Zombie zombie || zombie.Row != Row) return;
         _canEat = false;
         _targetZombie = zombie;
-        _stateMachine?.ForceSetState(zombie.Position.X > Position.X ? SquashState.LookRight : SquashState.LookLeft);
+        _stateMachine.ForceSetState(zombie.Position.X > Position.X ? SquashState.LookRight : SquashState.LookLeft);
     }
 
     public override void Hurt(Hurt hurt)
@@ -118,7 +113,7 @@ public partial class Squash : Plants
 
             case SquashState.JumpDown:
                 GD.Print("Squash jumping down!");
-                _timeCount = 0.1d;
+                _timeCount = 0.5d;
                 Anim_main.Play("Squash/Squash_jumpdown", 0, 5);
                 _stateMachine.SetNextState(SquashState.AfterJump, 0.1);
                 break;
