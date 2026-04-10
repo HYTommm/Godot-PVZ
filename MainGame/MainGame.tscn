@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs1ikm6rlutci"]
+[gd_scene format=3 uid="uid://bs1ikm6rlutci"]
 
 [ext_resource type="Texture2D" uid="uid://ckobsbgvjkrpo" path="res://art/MainGame/background1.jpg" id="1_ic8i7"]
 [ext_resource type="Script" uid="uid://b5akfnehqqfju" path="res://MainGame/MainGame.cs" id="1_wqycq"]
@@ -97,7 +97,7 @@ _data = {
 &"SeedBank": SubResource("Animation_lx0le")
 }
 
-[node name="MainGame" type="Node2D" node_paths=PackedStringArray("Camera", "Animation", "SeedBank", "PlantsContainer", "ZombiesContainer", "SunContainer", "BackGround")]
+[node name="MainGame" type="Node2D" unique_id=19578779 node_paths=PackedStringArray("Camera", "Animation", "SeedBank", "PlantsContainer", "ZombiesContainer", "SunContainer", "BackGround")]
 script = ExtResource("1_wqycq")
 Camera = NodePath("Camera")
 Animation = NodePath("CanvasLayer/AnimationPlayer")
@@ -107,14 +107,12 @@ ZombiesContainer = NodePath("Zombies")
 SunContainer = NodePath("Suns")
 BackGround = NodePath("BackGround")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1690393876]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-&"": SubResource("AnimationLibrary_tnsum")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1124658997]
+libraries/ = SubResource("AnimationLibrary_tnsum")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2042621028]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,23 +129,23 @@ theme_override_font_sizes/font_size = 35
 text = "HYTomZ's House"
 horizontal_alignment = 1
 
-[node name="SeedBank" parent="CanvasLayer" instance=ExtResource("2_76kvo")]
+[node name="SeedBank" parent="CanvasLayer" unique_id=89741417 instance=ExtResource("2_76kvo")]
 position = Vector2(10, -87)
 
-[node name="GameButton" parent="CanvasLayer" node_paths=PackedStringArray("Main") instance=ExtResource("6_5y8m1")]
+[node name="GameButton" parent="CanvasLayer" unique_id=20541230 node_paths=PackedStringArray("Main") instance=ExtResource("6_5y8m1")]
 position = Vector2(675, -43)
 Main = NodePath("../..")
 
-[node name="BackGround" type="Sprite2D" parent="."]
+[node name="BackGround" type="Sprite2D" parent="." unique_id=187092413]
 texture = ExtResource("1_ic8i7")
 centered = false
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=108592138]
 anchor_mode = 0
 position_smoothing_speed = 23.0
 script = ExtResource("2_822an")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1431891819]
 visible = false
 offset_left = 847.0
 offset_top = 76.0
@@ -156,10 +154,10 @@ offset_bottom = 133.0
 text = "调试"
 script = ExtResource("7_8e541")
 
-[node name="Plants" type="Node2D" parent="."]
+[node name="Plants" type="Node2D" parent="." unique_id=331981635]
 
-[node name="Zombies" type="Node2D" parent="."]
+[node name="Zombies" type="Node2D" parent="." unique_id=701958110]
 
-[node name="Suns" type="Node2D" parent="."]
+[node name="Suns" type="Node2D" parent="." unique_id=1137409156]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

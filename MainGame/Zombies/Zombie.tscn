@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dmcf3b83fe3ii"]
 
+[ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="1_3r6sd"]
 [ext_resource type="Script" uid="uid://dt8fo0g1xv20p" path="res://MainGame/Zombies/Zombie.cs" id="1_wnjia"]
 [ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="2_6pykm"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_hyt8k"]
@@ -41,6 +42,11 @@
 [ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="39_gvoti"]
 [ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="40_7rhiy"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="40_xoh5b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r6sd"]
+resource_local_to_scene = true
+shader = ExtResource("1_3r6sd")
+shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_spf5w"]
 length = 0.001
@@ -186,12 +192,13 @@ size = Vector2(50, 115)
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="BaseZombie" type="Node2D" unique_id=653250118 node_paths=PackedStringArray("_animation", "_animCharred", "Ground", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
+[node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("_animation", "_animCharred", "Ground", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
 z_index = 1
 script = ExtResource("1_wnjia")
 _animation = NodePath("Zombie/AnimationPlayer")
 _animCharred = NodePath("ZombieCharred/AnimLib")
 Ground = NodePath("Zombie/_ground")
+Body = NodePath("Zombie")
 Anim_innerArm1 = NodePath("Zombie/Anim_innerarm1")
 Anim_innerArm2 = NodePath("Zombie/Anim_innerarm2")
 Anim_innerArm3 = NodePath("Zombie/Anim_innerarm3")
@@ -205,18 +212,20 @@ Zombie_tongue = NodePath("Zombie/Anim_tongue")
 ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
 ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
 
-[node name="Zombie" type="Node2D" parent="." unique_id=1598413310]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1830449369]
+position = Vector2(24.009, 99)
+scale = Vector2(1.001, 1)
+texture = ExtResource("2_hyt8k")
+centered = false
+
+[node name="Zombie" type="CanvasGroup" parent="." unique_id=620863438]
+material = SubResource("ShaderMaterial_3r6sd")
 position = Vector2(15, 0)
 scale = Vector2(1.001, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie" unique_id=312666063]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_i7mnn")
-
-[node name="Shadow" type="Sprite2D" parent="Zombie" unique_id=1830449369]
-position = Vector2(9, 99)
-texture = ExtResource("2_hyt8k")
-centered = false
 
 [node name="_ground" type="Sprite2D" parent="Zombie" unique_id=2077913854]
 visible = false
@@ -322,7 +331,7 @@ centered = false
 
 [node name="Zombie_tie" type="Sprite2D" parent="Zombie" unique_id=1635309848]
 position = Vector2(23.8, 50.9)
-rotation = -0.1483553
+rotation = 6.13483
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("16_feuff")
 centered = false
@@ -435,6 +444,7 @@ collision_base_size = 0.8
 process_material = ExtResource("39_gvoti")
 
 [node name="DefenseArea" type="Area2D" parent="." unique_id=307620065]
+visible = false
 position = Vector2(36.036, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 4
@@ -450,6 +460,7 @@ shape = SubResource("RectangleShape2D_o7o7o")
 debug_color = Color(0.7, 0.55, 0.25, 0.42)
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1955070829]
+visible = false
 position = Vector2(20.02, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 0

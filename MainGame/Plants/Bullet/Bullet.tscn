@@ -31,6 +31,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.7
 scale_curve = SubResource("CurveTexture_wxqgr")
 alpha_curve = SubResource("CurveTexture_8v4ep")
+anim_offset_max = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc70l"]
 size = Vector2(56, 27)
@@ -43,7 +44,7 @@ centered = false
 
 [node name="Splats" type="GPUParticles2D" parent="." unique_id=1262020735]
 material = SubResource("CanvasItemMaterial_1w30l")
-position = Vector2(25, 14)
+position = Vector2(33, 14)
 emitting = false
 amount = 1
 lifetime = 0.2

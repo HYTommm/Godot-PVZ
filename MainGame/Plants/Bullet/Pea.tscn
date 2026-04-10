@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cuoy8u43pxadi" path="res://particles/pea_splats.png" id="4_owuwk"]
 [ext_resource type="Texture2D" uid="uid://dmi1rhfnv0utk" path="res://art/MainGame/Plants/Bullet/pea_shadows.png" id="5_4tdxd"]
 
-[node name="Pea" unique_id=1191396087 node_paths=PackedStringArray("BulletSprite2D", "Shadow", "Area2D", "GpuParticles") instance=ExtResource("1_x0xq0")]
+[node name="Pea" unique_id=1191396087 node_paths=PackedStringArray("BulletSprite2D", "Shadow", "GpuParticles") instance=ExtResource("1_x0xq0")]
 script = ExtResource("2_s77pp")
 BulletSprite2D = NodePath("Sprite2D")
 Shadow = NodePath("Shadow")
-Area2D = NodePath("Area2D")
 GpuParticles = NodePath("Splats")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1981039138]

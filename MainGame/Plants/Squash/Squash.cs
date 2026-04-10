@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 using System;
 using System.Collections.Generic;
@@ -70,7 +70,8 @@ public partial class Squash : Plants
 
     private void OnDetectionHitBoxEntered(IHitBox hitBox)
     {
-        _detectionHitBox.Monitoring = false;
+        if (_stateMachine.CurrentState != SquashState.Idle) return;
+        //_detectionHitBox.Monitoring = false;
         if (hitBox.AttachedNode is not Zombie zombie || zombie.Row != Row) return;
         _canEat = false;
         _targetZombie = zombie;
@@ -104,6 +105,16 @@ public partial class Squash : Plants
                 break;
 
             case SquashState.JumpUp:
+                IReadOnlyList<IHitBox> hitBoxes = _detectionHitBox.GetOverlappingHitBox();
+                foreach (IHitBox hitBox in hitBoxes)
+                {
+                    if (hitBox.AttachedNode is Zombie zombie && zombie.Row == Row)
+                    {
+                        _targetZombie = zombie;
+                        break;
+                    }
+                }
+
                 // disable defense while jumping
                 _defenseHitbox.Monitorable = false;
                 ZIndex = (Row + 1) * 10 + (int)ZIndexEnum.Particle;

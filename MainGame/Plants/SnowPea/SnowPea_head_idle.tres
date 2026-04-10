@@ -1,0 +1,397 @@
+[gd_resource type="Animation" format=3 uid="uid://duldc7ka8sayt"]
+
+[ext_resource type="Texture2D" uid="uid://bujre3u5i3rgi" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals1.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://cchu0mxqvyajy" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals2.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://c7nkv7fyybde2" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals3.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://dlmc8knmb38nc" path="res://art/MainGame/Plants/SnowPea/SnowPea_head.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://3g2dy5th6ofl" path="res://art/MainGame/Plants/SnowPea/SnowPea_mouth.png" id="12_fuck"]
+
+[resource]
+resource_name = "SnowPea_head_idle"
+length = 2.0
+loop_mode = 1
+step = 0.083333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/SnowPea_crystals1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/SnowPea_crystals1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10.2, 15.9), Vector2(9.5, 13.3), Vector2(8.2, 9.9), Vector2(8.2, 9.2), Vector2(7.6, 13.3), Vector2(7, 16.4), Vector2(7, 15.3), Vector2(7, 14.4), Vector2(7.6, 11.4), Vector2(8.2, 11.5), Vector2(10.2, 15.9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/SnowPea_crystals1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.050615, -0.075049, 0.064577, 0.033161, -0.08203, -0.090757, -0.139626, -0.109956, -0.085521, 0.0, -0.050615]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/SnowPea_crystals1:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.551, 0.503), Vector2(0.569, 0.55), Vector2(0.601, 0.55), Vector2(0.6, 0.573), Vector2(0.602, 0.549), Vector2(0.603, 0.513), Vector2(0.606, 0.546), Vector2(0.604, 0.547), Vector2(0.602, 0.578), Vector2(0.6, 0.55), Vector2(0.551, 0.503)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/SnowPea_crystals1:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.050615, 0.075049, -0.064577, -0.033161, 0.0523594, 0.0209438, 0.0750488, 0.0453788, 0.0575957, 0.0, 0.050615]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/SnowPea_crystals1:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("8_fuck"), ExtResource("8_fuck")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head/SnowPea_crystals2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Head/SnowPea_crystals2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(11, 18.3), Vector2(10.5, 15.9), Vector2(9.6, 13.1), Vector2(8.4, 12), Vector2(7.5, 16.9), Vector2(6.8, 20.6), Vector2(6.9, 19.8), Vector2(6.8, 18.9), Vector2(7.5, 15.2), Vector2(9.6, 14.6), Vector2(11, 18.3)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Head/SnowPea_crystals2:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.050615, -0.075049, 0.064577, 0.061087, -0.10821, -0.171042, -0.223402, -0.195477, -0.113446, 0.0, -0.050615]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Head/SnowPea_crystals2:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.551, 0.503), Vector2(0.568, 0.542), Vector2(0.597, 0.526), Vector2(0.631, 0.55), Vector2(0.647, 0.525), Vector2(0.664, 0.492), Vector2(0.671, 0.523), Vector2(0.667, 0.525), Vector2(0.648, 0.553), Vector2(0.596, 0.526), Vector2(0.551, 0.503)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Head/SnowPea_crystals2:skew")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.050615, 0.075049, -0.064577, -0.0977389, 0.0349062, 0.0506143, 0.1117009, 0.0820306, 0.0436328, 0.0, 0.050615]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/SnowPea_crystals2:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("9_fuck"), ExtResource("9_fuck")]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/SnowPea_crystals3:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Head/SnowPea_crystals3:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7.7, 26.3), Vector2(7.7, 25.1), Vector2(7.7, 22.7), Vector2(7.7, 22), Vector2(7.7, 25.7), Vector2(7.7, 28.1), Vector2(7.7, 27.7), Vector2(7.7, 26.9), Vector2(7.7, 24.5), Vector2(7.7, 24.3), Vector2(7.7, 26.3)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Head/SnowPea_crystals3:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.050615, -0.113446, -0.047124, -0.085521, -0.200713, -0.214675, -0.268781, -0.23911, -0.211185, -0.113446, -0.050615]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Head/SnowPea_crystals3:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.551, 0.503), Vector2(0.554, 0.55), Vector2(0.551, 0.55), Vector2(0.552, 0.573), Vector2(0.562, 0.55), Vector2(0.563, 0.515), Vector2(0.571, 0.55), Vector2(0.566, 0.55), Vector2(0.563, 0.579), Vector2(0.554, 0.55), Vector2(0.551, 0.503)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Head/SnowPea_crystals3:skew")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.050615, 0.113446, 0.047124, 0.085521, 0.200713, 0.214675, 0.268781, 0.23911, 0.211185, 0.113446, 0.050615]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Head/SnowPea_crystals3:texture")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("10_fuck"), ExtResource("10_fuck")]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Head/Anim_face:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Head/Anim_face:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(19.2, 17.8), Vector2(19.4, 13.1), Vector2(19.2, 12.5), Vector2(19.4, 13.8), Vector2(19.3, 17.2), Vector2(19.1, 13.9), Vector2(19.3, 12), Vector2(19.4, 13), Vector2(19.2, 17.8)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Head/Anim_face:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Head/Anim_face:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.555, 0.5), Vector2(0.555, 0.567), Vector2(0.555, 0.575), Vector2(0.555, 0.555), Vector2(0.555, 0.5), Vector2(0.555, 0.555), Vector2(0.555, 0.585), Vector2(0.555, 0.567), Vector2(0.555, 0.5)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Head/Anim_face:skew")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Head/Anim_face:texture")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("11_fuck"), ExtResource("11_fuck")]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Head/SnowPea_mouth:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Head/SnowPea_mouth:position")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(52.4, 17.8), Vector2(53, 16.3), Vector2(52.6, 13.1), Vector2(52.5, 12.2), Vector2(52.7, 13.9), Vector2(52.6, 17.2), Vector2(52.6, 15.8), Vector2(52.4, 13.9), Vector2(52.5, 12), Vector2(52.6, 12.9), Vector2(52.4, 17.8)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Head/SnowPea_mouth:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.172788, 0.0, 0.0, -0.099484, 0.0, 0.158825, 0.0, 0.0]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Head/SnowPea_mouth:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.555, 0.5), Vector2(0.564, 0.517), Vector2(0.555, 0.567), Vector2(0.555, 0.585), Vector2(0.558, 0.555), Vector2(0.547, 0.5), Vector2(0.557, 0.518), Vector2(0.555, 0.555), Vector2(0.555, 0.585), Vector2(0.555, 0.567), Vector2(0.555, 0.5)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Head/SnowPea_mouth:skew")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0, 0.083333, 0.25, 0.5, 0.75, 1, 1.083333, 1.25, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.172788, 0.0, 0.0, 0.099484, 0.0, -0.158825, 0.0, 0.0]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Head/SnowPea_mouth:texture")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("12_fuck"), ExtResource("12_fuck")]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Head/Anim_blink:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Head/Idle_shoot_blink:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}

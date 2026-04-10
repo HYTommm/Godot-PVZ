@@ -24,6 +24,6 @@ public partial class BucketheadZombie : Zombie
 			Zombie_bucket,
 			[],
 			[Zombie_hair]);
-		ArmorSystem.AddArmor(bucket);
+		ArmorManager.AddArmor(bucket);
 	}
 }

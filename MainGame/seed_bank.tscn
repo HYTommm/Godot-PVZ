@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2u04t2i51frh" path="res://MainGame/Plants/CherryBomb/CherryBomb.tscn" id="6_8cs2s"]
 [ext_resource type="AudioStream" uid="uid://7en1bjf4sg5i" path="res://sounds/points.ogg" id="6_jv5um"]
 [ext_resource type="PackedScene" uid="uid://cehq02mhnv2kr" path="res://MainGame/Plants/Squash/Squash.tscn" id="7_r0a42"]
+[ext_resource type="PackedScene" uid="uid://b6gt46x1pp2f8" path="res://MainGame/Plants/SnowPea/SnowPeaShooter.tscn" id="8_2miuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv5um"]
 size = Vector2(446, 87)
@@ -78,6 +79,10 @@ SeedScene = ExtResource("6_8cs2s")
 [node name="SeedPacketLarger4" parent="." unique_id=1001389451 instance=ExtResource("2_ns80v")]
 position = Vector2(234, 8)
 SeedScene = ExtResource("7_r0a42")
+
+[node name="SeedPacketLarger5" parent="." unique_id=482211947 instance=ExtResource("2_ns80v")]
+position = Vector2(286, 8)
+SeedScene = ExtResource("8_2miuv")
 
 [node name="SunCountLabel" type="Label" parent="." unique_id=1469795737]
 offset_left = 12.0

@@ -11,7 +11,7 @@ public partial class StateMachine<TState> : Node where TState : Enum
     /// <summary>
     /// 状态改变事件，参数为新状态。
     /// </summary>
-    public event Action<TState>? StateChanged;
+    public event Action<TState> StateChanged;
 
     private TState _currentState;
     private TState _nextState = default!;

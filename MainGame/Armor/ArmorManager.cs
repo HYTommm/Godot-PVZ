@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-public class ArmorSystem
+public class ArmorManager
 {
     private readonly Dictionary<ArmorTypeEnum, List<Armor>> _armors = new();
 
-    public ArmorSystem()
+    public ArmorManager()
     {
         // 使用 foreach 循环枚举 Armor.ArmorType 枚举值，并初始化 _armors 字典
         foreach (ArmorTypeEnum type in Enum.GetValues(typeof(ArmorTypeEnum)))

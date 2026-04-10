@@ -96,7 +96,7 @@ public abstract partial class Bullet : Node2D
         }
     }
 
-    public async void AttackZombie(Zombie zombie)
+    public virtual async void AttackZombie(Zombie zombie)
     {
         GD.Print("Bullet hit zombie");
         //僵尸扣血

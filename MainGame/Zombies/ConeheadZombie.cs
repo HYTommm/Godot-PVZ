@@ -24,6 +24,6 @@ public partial class ConeheadZombie : Zombie
 			Zombie_cone,
 			[],
 			[Zombie_hair]);
-		ArmorSystem.AddArmor(cone);
+		ArmorManager.AddArmor(cone);
 	}
 }

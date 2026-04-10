@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants vs Zombies", "Plants vs Zombies.csproj", "{04B8C299-852F-471B-B419-739CDD2BA355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants vs Zombies", "Plants vs Zombies.csproj", "{806D6105-4B4B-4DF2-8286-7883DD576ED2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04B8C299-852F-471B-B419-739CDD2BA355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04B8C299-852F-471B-B419-739CDD2BA355}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04B8C299-852F-471B-B419-739CDD2BA355}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{04B8C299-852F-471B-B419-739CDD2BA355}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{04B8C299-852F-471B-B419-739CDD2BA355}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{04B8C299-852F-471B-B419-739CDD2BA355}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

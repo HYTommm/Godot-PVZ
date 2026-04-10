@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ph3ip6bg1vj8"]
+
+[ext_resource type="PackedScene" uid="uid://epqd25ox8xq7" path="res://MainGame/Plants/Bullet/Bullet.tscn" id="1_6olha"]
+[ext_resource type="Texture2D" uid="uid://xgqyd0ljecok" path="res://art/MainGame/Plants/Bullet/ProjectileSnowPea.png" id="2_2w1si"]
+[ext_resource type="Script" uid="uid://b3ltnofut1r4y" path="res://MainGame/Plants/Bullet/SnowPea.cs" id="2_veypd"]
+[ext_resource type="Texture2D" uid="uid://8rnn2d3xn24j" path="res://particles/SnowPea_splats.png" id="3_2w1si"]
+[ext_resource type="Texture2D" uid="uid://dxfdr2f0760d" path="res://particles/SnowFlakes.png" id="3_veypd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_35f2e"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_b6c5c"]
+_data = [Vector2(0, 1), 0.0, -0.75, 0, 1, Vector2(0.8, 0.4), -0.75, -2.0000002, 1, 1, Vector2(1, 0), -2.0000002, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jsqtb"]
+curve = SubResource("Curve_b6c5c")
+
+[sub_resource type="Curve" id="Curve_c00ck"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.1, 0.6), 0.0, 0.0, 0, 0, Vector2(0.7, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gswe4"]
+curve = SubResource("Curve_c00ck")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0w837"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -62.830013
+angular_velocity_max = 62.829983
+gravity = Vector3(0, 100, 0)
+scale_curve = SubResource("CurveTexture_gswe4")
+alpha_curve = SubResource("CurveTexture_jsqtb")
+anim_offset_max = 1.0
+
+[node name="SnowPea" unique_id=1815663550 node_paths=PackedStringArray("BulletSprite2D", "Shadow", "GpuParticles") instance=ExtResource("1_6olha")]
+script = ExtResource("2_veypd")
+BulletSprite2D = NodePath("Sprite2D")
+Shadow = NodePath("Shadow")
+GpuParticles = NodePath("Splats")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1981039138]
+texture = ExtResource("2_2w1si")
+
+[node name="Splats" parent="." index="1" unique_id=1262020735]
+texture = ExtResource("3_2w1si")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="4" unique_id=1158392877]
+material = SubResource("CanvasItemMaterial_35f2e")
+position = Vector2(0, 14)
+amount = 5
+texture = ExtResource("3_veypd")
+lifetime = 0.35000000000000003
+process_material = SubResource("ParticleProcessMaterial_0w837")

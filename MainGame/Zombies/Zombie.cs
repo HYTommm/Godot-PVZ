@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using static Godot.GD;
@@ -33,6 +34,8 @@ public partial class Zombie : HealthEntity
 
     // 身体部件（导出，供编辑器设置）
     [ExportGroup("Zombie Body Parts")]
+    [Export] protected Node2D Body;           // 身体
+
     [Export] protected Sprite2D Anim_innerArm1;        // 内臂上部
 
     [Export] protected Sprite2D Anim_innerArm2;        // 内臂下部
@@ -98,7 +101,7 @@ public partial class Zombie : HealthEntity
     public int CriticalHPLast;
 
     /// <summary>护甲系统</summary>
-    protected ArmorSystem ArmorSystem { get; } = new();
+    protected ArmorManager ArmorManager { get; } = new();
 
     // 常量与位置相关
     /// <summary>地面位置</summary>
@@ -111,6 +114,7 @@ public partial class Zombie : HealthEntity
 
     private bool _isReleaseRequested;
     private bool _isAnimationPlaying;
+    private float _baseEatAnimSpeed = 3.0f;
 
     public Zombie()
     {
@@ -180,13 +184,21 @@ public partial class Zombie : HealthEntity
         AddChild(EatSound);
         // 随机设置僵尸的行走速度，并打印出速度
         WalkSpeed = MainGame.Instance.RNG.RandfRange(640.0f / 99 / 735 * 100, 640.0f / 99 / 459 * 100);
-        _animation.Play("Zombie_walk", customBlend: 1 / 6.0f, customSpeed: WalkSpeed);
+        // play walk with effective speed considering status effects
+        _animation.Play("Zombie_walk", customBlend: 1 / 6.0f, customSpeed: WalkSpeed * StatusEffectManager.MovementMultiplier);
         Print("Zombie speed: " + WalkSpeed);
+
+        _animation.AnimationFinished += OnAnimationFinished;
+        StatusEffectManager.EffectsChanged += OnEffectsChanged;
+        _animCharred.AnimationFinished += OnAnimationFinished;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
+        // update status effects each frame
+        StatusEffectManager.Tick(delta);
+
         if (BIsMoving)
         {
             Vector2 temp = LastGroundPos - Ground.Position;
@@ -243,7 +255,7 @@ public partial class Zombie : HealthEntity
                 attackPlant.BIsPlanted)
             {
                 //Print("Eat Plant");
-                AttackTemp += Attack * delta; // 攻击暂存
+                AttackTemp += Attack * StatusEffectManager.AttackMultiplier * delta; // 攻击暂存
                 int attackInt = (int)AttackTemp; // 攻击整数
                 AttackTemp -= attackInt; // 攻击余数
                 Eat(attackPlant, attackInt);
@@ -280,11 +292,67 @@ public partial class Zombie : HealthEntity
         // 如果当前动画不是行走动画，则播放行走动画
         if (_animation.CurrentAnimation != "Zombie_walk")
         {
-            // 播放速度为WalkSpeed
-            _animation.Play("Zombie_walk", customBlend: customBlend, customSpeed: WalkSpeed);
+            // 计算有效速度（考虑状态效果），为0时停止移动
+            float effectiveSpeed = WalkSpeed * StatusEffectManager.MovementMultiplier;
+            if (effectiveSpeed <= 0f)
+            {
+                BIsMoving = false;
+                return;
+            }
+
+            // 播放速度为有效速度
+            _animation.Play("Zombie_walk", customBlend: customBlend, customSpeed: effectiveSpeed);
 
             // 继续移动
             BIsMoving = true;
+        }
+    }
+
+    private void OnEffectsChanged()
+    {
+        Print("Status effects changed. Current effects: " + string.Join(", ", StatusEffectManager.ActiveEffects.Select(e => e.ToString())));
+        if (StatusEffectManager.HasEffect(StatusEffectTypeEnum.Slow))
+        {
+            (Body.Material as ShaderMaterial)?.SetShaderParameter("modulate_color", Color.Color8(75, 75, 255, 255));
+        }
+        else
+        {
+            (Body.Material as ShaderMaterial)?.SetShaderParameter("modulate_color", Color.Color8(128, 128, 128, 128));
+        }
+        UpdateAnimationSpeeds();
+    }
+
+    private void UpdateAnimationSpeeds()
+    {
+        // Immediately update current animation playback speed according to status effects
+        if (_animation == null) return;
+
+        string current = _animation.CurrentAnimation;
+        float movementMul = StatusEffectManager.MovementMultiplier;
+
+        if (current == "Zombie_walk")
+        {
+            float effectiveSpeed = WalkSpeed * movementMul;
+            if (effectiveSpeed <= 0f)
+            {
+                // pause to keep current position
+                try { _animation.Pause(); } catch { }
+                BIsMoving = false;
+                return;
+            }
+
+            // resume or update play speed without resetting animation position
+            try { _animation.Play("Zombie_walk", customBlend: 0f, customSpeed: effectiveSpeed); } catch { }
+        }
+        else if (current == "Zombie_eat")
+        {
+            float newSpeed = _baseEatAnimSpeed * movementMul;
+            if (newSpeed <= 0f)
+            {
+                try { _animation.Pause(); } catch { }
+                return;
+            }
+            try { _animation.Play("Zombie_eat", customBlend: 0f, customSpeed: newSpeed); } catch { }
         }
     }
 
@@ -302,9 +370,16 @@ public partial class Zombie : HealthEntity
         {
             //播放吃植物动画
             BIsMoving = false;
-            _animation.Play("Zombie_eat", 0.2, 3.0f);
+            float eatSpeed = _baseEatAnimSpeed * StatusEffectManager.MovementMultiplier;
+            _animation.Play("Zombie_eat", 0.2, eatSpeed);
             //Ground.Position = ConstGroundPos;
         }
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        try { StatusEffectManager.EffectsChanged -= UpdateAnimationSpeeds; } catch { }
     }
 
     public virtual void PlayEatSound()
@@ -330,7 +405,7 @@ public partial class Zombie : HealthEntity
     {
         if (BIsDead) return;
 
-        ArmorSystem.ProcessDamage(hurt);
+        ArmorManager.ProcessDamage(hurt);
         Print("Damage: " + hurt.Damage);
 
         if (hurt.HurtType == HurtType.LawnMower)
@@ -427,7 +502,6 @@ public partial class Zombie : HealthEntity
         }
 
         _isAnimationPlaying = true;
-        _animation.AnimationFinished += OnAnimationFinished;
     }
 
     public void OnEffectsFinished()

@@ -8,9 +8,9 @@ public partial class PeaShooterSingle : Plants
 {
     private Vector2 _headPos; // 头部位置
     private readonly Vector2 _constStemPos = new((float)37.6, (float)48.7); //常数：茎位置
-    [Export] private AnimationPlayer _animIdle; // Idle动画和Head动画
-    [Export] private AnimationPlayer _animHead; // Idle动画和Head动画
-    private float _speedScaleOfIdle = 1.56f; // Idle动画速度
+    [Export] protected AnimationPlayer AnimIdle; // Idle动画和Head动画
+    [Export] protected AnimationPlayer AnimHead; // Idle动画和Head动画
+    protected float SpeedScaleOfIdle = 1.56f; // Idle动画速度
 
     public AudioStreamPlayer ShootSound = new(); // 射击音效
     [Export] private Node2D _nodeStem;// 茎节点
@@ -38,14 +38,14 @@ public partial class PeaShooterSingle : Plants
 
     public override void _Idle()
     {
-        _animIdle.CallDeferred("play", "PeaShooterSingle_idle", -1, _speedScaleOfIdle);
-        _animHead.CallDeferred("play", "Head_Idle", -1, _speedScaleOfIdle);
+        AnimIdle.CallDeferred("play", "PeaShooterSingle_idle", -1, SpeedScaleOfIdle);
+        AnimHead.CallDeferred("play", "Head_Idle", -1, SpeedScaleOfIdle);
     }
 
     public override void _Ready()
     {
         base._Ready();
-        _speedScaleOfIdle = MainGame.Instance.RNG.RandfRange(1.2f, 1.6f);
+        SpeedScaleOfIdle = MainGame.Instance.RNG.RandfRange(1.2f, 1.6f);
 
         ShootSound.Stream = Sound_Throw;
         AddChild(ShootSound);
@@ -109,13 +109,13 @@ public partial class PeaShooterSingle : Plants
     /// </summary>
     public void Shoot()
     {
-        if (_animHead.CurrentAnimation == "Head_Idle")
-            _timeOfIdleWhenShooting = _animHead.CurrentAnimationPosition; // 记录Idle动画的时间
+        if (AnimHead.CurrentAnimation == "Head_Idle")
+            _timeOfIdleWhenShooting = AnimHead.CurrentAnimationPosition; // 记录Idle动画的时间
 
         _canShoot = false; // 禁止射击
         RandomShootTime(); // 随机射击时间
 
-        _animHead.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0 / 12.0, 2.85f);  // 头部射击动画
+        AnimHead.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0 / 12.0, 2.85f);  // 头部射击动画
         GetTree().CreateTimer(0.35f).Timeout += ShootBullet; // 等待0.35秒后射击子弹
                                                              //await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
 
@@ -129,8 +129,8 @@ public partial class PeaShooterSingle : Plants
         GD.Print("ShootBullet()");
         Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
                                                            //GD.Print(bullet);
-        bullet.Position = GetNode<Node2D>("./Head/Idle_mouth").Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
-        bullet.ShadowPositionY = GetNode<Node2D>("Shadow").GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
+        bullet.Position = _nodeMouth.Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
+        bullet.ShadowPositionY = Shadow.GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
         AddChild(bullet); // 添加子弹到场景中
         ShootSound.Play(); // 播放射击音效
     }
@@ -162,10 +162,10 @@ public partial class PeaShooterSingle : Plants
                 temp = 11 / 12.0f;
             }
 
-            _animHead.Play("Head_Idle", 2.0 / 12.0, 0.0f);
+            AnimHead.Play("Head_Idle", 2.0 / 12.0, 0.0f);
 
-            _animHead.Seek(_timeOfIdleWhenShooting + temp / 2.85f * _speedScaleOfIdle);
-            _animHead.Play("Head_Idle", 2.0 / 12.0, _speedScaleOfIdle);
+            AnimHead.Seek(_timeOfIdleWhenShooting + temp / 2.85f * SpeedScaleOfIdle);
+            AnimHead.Play("Head_Idle", 2.0 / 12.0, SpeedScaleOfIdle);
             GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
         }
     }

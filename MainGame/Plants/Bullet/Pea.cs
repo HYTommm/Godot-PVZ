@@ -1,7 +1,7 @@
 ﻿using Godot;
 using static ResourceDB.Sounds;
 
-internal partial class Pea : Bullet
+public partial class Pea : Bullet
 {
     public override void PlaySplatSound()
     {
@@ -18,6 +18,7 @@ internal partial class Pea : Bullet
         };
 
         // 播放爆炸声音
+        BulletSplatsSound.PitchScale = MainGame.Instance.RNG.RandfRange(1.0f, 1.5f);
         BulletSplatsSound.Play();
     }
 }

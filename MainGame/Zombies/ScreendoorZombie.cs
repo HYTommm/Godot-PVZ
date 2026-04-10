@@ -37,6 +37,6 @@ public partial class ScreendoorZombie : Zombie
 				Anim_innerArm2,
 				Anim_innerArm3
 			]);
-		ArmorSystem.AddArmor(screendoor);
+		ArmorManager.AddArmor(screendoor);
 	}
 }
