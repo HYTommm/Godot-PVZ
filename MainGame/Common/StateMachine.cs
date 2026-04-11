@@ -150,11 +150,11 @@ public partial class StateMachine<TState> : Node where TState : Enum
 
         TState newState = _nextState;
 
-        // 触发事件（注意：事件处理中可能再次调用 SetNextState 等，需保证状态机内部状态已更新）
-        StateChanged?.Invoke(newState);
-
         // 更新当前状态
         _currentState = newState;
+
+        // 触发事件（注意：事件处理中可能再次调用 SetNextState 等，需保证状态机内部状态已更新）
+        StateChanged?.Invoke(newState);
 
         // 如果处于循环模式，尝试安排下一个状态
         if (_cycleMode)

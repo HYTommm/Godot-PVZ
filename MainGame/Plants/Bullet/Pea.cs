@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using static ResourceDB.Sounds;
 
 public partial class Pea : Bullet

@@ -53,13 +53,13 @@ public partial class NativeHitBox : Area2D, IHitBox
 
     private void OnAreaEntered(Area2D area)
     {
-        HitBoxEntered?.Invoke(area as IHitBox);
         _isDirty = true;
+        HitBoxEntered?.Invoke(area as IHitBox);
     }
 
     private void OnAreaExited(Area2D area)
     {
-        HitBoxExited?.Invoke(area as IHitBox);
         _isDirty = true;
+        HitBoxExited?.Invoke(area as IHitBox);
     }
 }

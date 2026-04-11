@@ -444,7 +444,6 @@ collision_base_size = 0.8
 process_material = ExtResource("39_gvoti")
 
 [node name="DefenseArea" type="Area2D" parent="." unique_id=307620065]
-visible = false
 position = Vector2(36.036, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 4
@@ -460,7 +459,6 @@ shape = SubResource("RectangleShape2D_o7o7o")
 debug_color = Color(0.7, 0.55, 0.25, 0.42)
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1955070829]
-visible = false
 position = Vector2(20.02, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 0

@@ -1,4 +1,5 @@
 # Godot 4+ specific ignores
+.claude/
 .godot/
 .vs/
 bin/
@@ -9,3 +10,4 @@ icon/
 particles/
 sounds/
 
+CLAUDE.md

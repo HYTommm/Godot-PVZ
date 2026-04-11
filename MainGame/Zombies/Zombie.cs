@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -164,7 +164,7 @@ public partial class Zombie : HealthEntity
         ZombieHeadParticles.Finished += OnEffectsFinished;
 
         // 获取主游戏节点
-        _zombieNode2D = GetNode<Node2D>("./Zombie");
+        //_zombieNode2D = GetNode<Node2D>("./Zombie");
         _zombieCharredNode2D = GetNodeOrNull<Node2D>("./ZombieCharred");
 
         LastGroundPos = Ground.Position;
@@ -472,7 +472,6 @@ public partial class Zombie : HealthEntity
         BIsDead = true;
         BIsMoving = false;
         DefenseHitBox.Monitorable = false;
-        // 从主游戏的僵尸栈中移除自己
         if (Index >= 0)
             MainGame.Instance.RemoveZombieFromStack(this);
         Print("Zombie Die");
@@ -484,7 +483,8 @@ public partial class Zombie : HealthEntity
         }
         else if (hurtType is HurtType.AshExplosion or HurtType.Explosion or HurtType.Squash)
         {
-            _zombieNode2D.Visible = false;
+            GetNode<Sprite2D>("./Shadow").Visible = false;
+            Body.Visible = false;
             if (hurtType == HurtType.AshExplosion && _zombieCharredNode2D != null)
             {
                 _zombieCharredNode2D.Visible = true;
@@ -527,15 +527,15 @@ public partial class Zombie : HealthEntity
     private void OnAnimationFinished(StringName animName)
     {
         _isAnimationPlaying = false;
-
+        GetNode<Sprite2D>("./Shadow").Visible = false;
         // 根据动画名称执行结束后的逻辑
         if (animName == "Zombie_death")
         {
-            _zombieNode2D.Visible = false;
+            Body.Visible = false;
         }
         else if (animName == "LawnMoweredZombie")
         {
-            foreach (Node child in _zombieNode2D.GetChildren())
+            foreach (Node child in Body.GetChildren())
                 if (child is Sprite2D sp) sp.Visible = false;
 
             // 动画结束后触发粒子（根据血量）

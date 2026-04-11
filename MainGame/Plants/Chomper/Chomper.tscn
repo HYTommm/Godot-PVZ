@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://bwv6uvk8ekuo7"]
+
+[ext_resource type="Texture2D" uid="uid://c6iy5xudk0ic" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf4.png" id="0_fuck"]
+[ext_resource type="Animation" uid="uid://c745vqifawirl" path="res://MainGame/Plants/Chomper/Chomper_swallow.tres" id="1_anim"]
+[ext_resource type="Texture2D" uid="uid://dwgx17cxmydd6" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf3.png" id="1_fuck"]
+[ext_resource type="Animation" uid="uid://desoixobrjua4" path="res://MainGame/Plants/Chomper/Chomper_chew.tres" id="2_anim"]
+[ext_resource type="Texture2D" uid="uid://b40vf3a2rpy4r" path="res://art/MainGame/Plants/Chomper/Chomper_stem3.png" id="2_fuck"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_look8"]
+[ext_resource type="Animation" uid="uid://bxipkgt26h8ps" path="res://MainGame/Plants/Chomper/Chomper_bite.tres" id="3_anim"]
+[ext_resource type="Texture2D" uid="uid://bf875bcvia503" path="res://art/MainGame/Plants/Chomper/Chomper_stem2.png" id="3_fuck"]
+[ext_resource type="Animation" uid="uid://dasrtshhq6nnn" path="res://MainGame/Plants/Chomper/Chomper_idle.tres" id="4_anim"]
+[ext_resource type="Texture2D" uid="uid://m3v7g1acgnco" path="res://art/MainGame/Plants/Chomper/Chomper_stem1.png" id="4_fuck"]
+[ext_resource type="Texture2D" uid="uid://da1dcqlvfwnxk" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf1.png" id="6_fuck"]
+[ext_resource type="Texture2D" uid="uid://bnkuic41ucae7" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf1tip.png" id="7_fuck"]
+[ext_resource type="Texture2D" uid="uid://661ipcododou" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf4.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://m4txknf8meh0" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf3.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://c8iwe46dve4tk" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf2.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://cmkypjwkgdx7q" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf1.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://o6dkc0klfb7j" path="res://art/MainGame/Plants/Chomper/Chomper_insidemouth.png" id="12_fuck"]
+[ext_resource type="Texture2D" uid="uid://b2pc0u7cj8ng3" path="res://art/MainGame/Plants/Chomper/Chomper_tongue.png" id="13_fuck"]
+[ext_resource type="Texture2D" uid="uid://qrlgs48d7faf" path="res://art/MainGame/Plants/Chomper/Chomper_underjaw.png" id="14_fuck"]
+[ext_resource type="Texture2D" uid="uid://c8j137g2a4cqm" path="res://art/MainGame/Plants/Chomper/Chomper_bottomlip.png" id="15_fuck"]
+[ext_resource type="Texture2D" uid="uid://x6p3a1kol1kb" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf2.png" id="18_fuck"]
+[ext_resource type="Texture2D" uid="uid://bstf4gx1i2c3j" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf2tip.png" id="19_fuck"]
+[ext_resource type="Texture2D" uid="uid://oft3xcli57ui" path="res://art/MainGame/Plants/Chomper/Chomper_spike.png" id="20_fuck"]
+[ext_resource type="Texture2D" uid="uid://bwadaak5f8xnb" path="res://art/MainGame/Plants/Chomper/Chomper_topjaw.png" id="21_fuck"]
+[ext_resource type="Script" uid="uid://c0xsjik480gq3" path="res://MainGame/Plants/Chomper/Chomper.cs" id="27_chompercs"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="28_nativehitbox"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_Chomper_idle"]
+_data = {
+&"Chomper_idle": ExtResource("4_anim")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_itk0x"]
+_data = {
+&"bite": ExtResource("3_anim"),
+&"chew": ExtResource("2_anim"),
+&"idle": ExtResource("4_anim"),
+&"swallow": ExtResource("1_anim")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_defense"]
+size = Vector2(20, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detection"]
+size = Vector2(170, 80)
+
+[node name="Chomper" type="CanvasGroup" unique_id=279541750 node_paths=PackedStringArray("AnimationPlayer", "TextEdit", "Shadow")]
+script = ExtResource("27_chompercs")
+AnimationPlayer = NodePath("Anim_Chomper")
+TextEdit = NodePath("TextEdit")
+Shadow = NodePath("Shadow")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=77400136]
+visible = false
+position = Vector2(40, 69)
+texture = ExtResource("2_look8")
+
+[node name="Chomper_groundleaf4" type="Sprite2D" parent="." unique_id=1292953629]
+position = Vector2(32.8, 65.7)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("0_fuck")
+centered = false
+
+[node name="Chomper_groundleaf3" type="Sprite2D" parent="." unique_id=228433426]
+position = Vector2(6.1, 65.2)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("1_fuck")
+centered = false
+
+[node name="Chomper_stem3" type="Sprite2D" parent="." unique_id=1803024346]
+position = Vector2(27.2, 67.4)
+rotation = 0.090757
+scale = Vector2(0.835, 0.698)
+skew = -0.118682
+texture = ExtResource("2_fuck")
+centered = false
+
+[node name="Chomper_stem2" type="Sprite2D" parent="." unique_id=1682672239]
+position = Vector2(4.6, 49.3)
+rotation = 0.090757
+scale = Vector2(0.835, 0.685)
+skew = -0.383972
+texture = ExtResource("3_fuck")
+centered = false
+
+[node name="Chomper_stem1" type="Sprite2D" parent="." unique_id=1168158232]
+position = Vector2(4, 39.8)
+rotation = 0.090757
+scale = Vector2(0.835, 0.698)
+skew = -0.118682
+texture = ExtResource("4_fuck")
+centered = false
+
+[node name="Chomper_stomach" type="Sprite2D" parent="." unique_id=2038992732]
+visible = false
+centered = false
+
+[node name="Chomper_groundleaf1" type="Sprite2D" parent="." unique_id=293403555]
+position = Vector2(6, 68.6)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("6_fuck")
+centered = false
+
+[node name="Chomper_groundleaf1tip" type="Sprite2D" parent="." unique_id=476296837]
+position = Vector2(-5.7, 77.6)
+rotation = -0.174533
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("7_fuck")
+centered = false
+
+[node name="Chomper_Headleaf4" type="Sprite2D" parent="." unique_id=1092373149]
+position = Vector2(5.4, 39.9)
+rotation = -0.261799
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_fuck")
+centered = false
+
+[node name="Chomper_Headleaf3" type="Sprite2D" parent="." unique_id=1808331244]
+position = Vector2(6.6, 22)
+rotation = -0.261799
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_fuck")
+centered = false
+
+[node name="Chomper_Headleaf2" type="Sprite2D" parent="." unique_id=75087917]
+position = Vector2(1.6, 24.3)
+rotation = -0.261799
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_fuck")
+centered = false
+
+[node name="Chomper_Headleaf1" type="Sprite2D" parent="." unique_id=340300607]
+position = Vector2(-2.3, 36.1)
+rotation = -0.261799
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11_fuck")
+centered = false
+
+[node name="Chomper_insidemouth" type="Sprite2D" parent="." unique_id=2003669930]
+position = Vector2(24.3, 32)
+rotation = -0.094248
+scale = Vector2(0.823, 0.759)
+texture = ExtResource("12_fuck")
+centered = false
+
+[node name="Chomper_tongue" type="Sprite2D" parent="." unique_id=1592233307]
+position = Vector2(18.2, 34)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_fuck")
+centered = false
+
+[node name="Chomper_underjaw" type="Sprite2D" parent="." unique_id=2084865303]
+position = Vector2(6.4, 27.4)
+rotation = -0.315905
+scale = Vector2(0.74, 0.736)
+texture = ExtResource("14_fuck")
+centered = false
+
+[node name="Chomper_bottomlip" type="Sprite2D" parent="." unique_id=1387589119]
+position = Vector2(17.6, 31.9)
+rotation = -0.366519
+scale = Vector2(0.798, 0.798)
+skew = 0.008727
+texture = ExtResource("15_fuck")
+centered = false
+
+[node name="Zombie_outerarm_hand" type="Sprite2D" parent="." unique_id=2097563747]
+visible = false
+centered = false
+
+[node name="Zombie_outerarm_lower" type="Sprite2D" parent="." unique_id=837651144]
+visible = false
+centered = false
+
+[node name="Chomper_groundleaf2" type="Sprite2D" parent="." unique_id=677921887]
+position = Vector2(30.4, 68.4)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("18_fuck")
+centered = false
+
+[node name="Chomper_groundleaf2tip" type="Sprite2D" parent="." unique_id=1036212460]
+position = Vector2(53.8, 73.4)
+rotation = 0.389208
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("19_fuck")
+centered = false
+
+[node name="Chomper_tongue_lick" type="Sprite2D" parent="." unique_id=676035123]
+visible = false
+centered = false
+
+[node name="Chomper_spike4" type="Sprite2D" parent="." unique_id=2065587177]
+position = Vector2(32.3, -6.4)
+rotation = -0.340339
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("20_fuck")
+centered = false
+
+[node name="Chomper_spike3" type="Sprite2D" parent="." unique_id=1297024991]
+position = Vector2(20, -0.2)
+rotation = -0.708604
+scale = Vector2(0.798, 0.798)
+texture = ExtResource("20_fuck")
+centered = false
+
+[node name="Chomper_spike2" type="Sprite2D" parent="." unique_id=1086713926]
+position = Vector2(10.5, 10.7)
+rotation = -1.064651
+scale = Vector2(0.798, 0.798)
+texture = ExtResource("20_fuck")
+centered = false
+
+[node name="Chomper_spike1" type="Sprite2D" parent="." unique_id=1232052633]
+position = Vector2(5.7, 21.9)
+rotation = -1.356121
+scale = Vector2(0.797, 0.797)
+texture = ExtResource("20_fuck")
+centered = false
+
+[node name="Chomper_topjaw" type="Sprite2D" parent="." unique_id=1336605535]
+position = Vector2(4.7, 11.6)
+rotation = -0.340339
+scale = Vector2(0.884, 0.799)
+texture = ExtResource("21_fuck")
+centered = false
+
+[node name="Anim_Chomper" type="AnimationPlayer" parent="." unique_id=1368564906]
+libraries/ = SubResource("AnimationLibrary_Chomper_idle")
+libraries/Chomper = SubResource("AnimationLibrary_itk0x")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1183778926]
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10
+
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=2106253545]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("28_nativehitbox")
+AttachedNodePath = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1304870260]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_defense")
+
+[node name="DetectionHitBox" type="Area2D" parent="." unique_id=630143975]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("28_nativehitbox")
+AttachedNodePath = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=592549196]
+position = Vector2(65, 40)
+shape = SubResource("RectangleShape2D_detection")
