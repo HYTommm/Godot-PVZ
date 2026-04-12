@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://df3pixddmfpqk"]
+[gd_scene format=3 uid="uid://df3pixddmfpqk"]
 
 [ext_resource type="Texture2D" uid="uid://c0dyvvuaxsv7w" path="res://art/MainMenu/SelectorScreen_BG.jpg" id="0_fuck"]
 [ext_resource type="Animation" uid="uid://mc5otfx3noj7" path="res://MainMenu/SelectorScreen_open.tres" id="1_anim"]

@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=32 format=3 uid="uid://sse324y6d2a3"]
+[gd_resource type="Animation" format=3 uid="uid://sse324y6d2a3"]
 
 [ext_resource type="Texture2D" uid="uid://b8b46pifvqsrt" path="res://art/MainMenu/SelectorScreen_Cloud1.png" id="1_fuck"]
 [ext_resource type="Texture2D" uid="uid://bev3twv5buro6" path="res://art/MainMenu/SelectorScreen_Cloud7.png" id="2_fuck"]

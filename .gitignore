@@ -1,13 +1,19 @@
 # Godot 4+ specific ignores
-.claude/
-.godot/
 .vs/
-bin/
-android/
-art/
-fonts/
-icon/
-particles/
-sounds/
+src/plants-vs-zombies/.claude/
+src/plants-vs-zombies/.godot/
+src/plants-vs-zombies/.vs/
+src/plants-vs-zombies/bin/
+src/plants-vs-zombies/android/
+src/plants-vs-zombies/art/
+src/plants-vs-zombies/fonts/
+src/plants-vs-zombies/icon/
+src/plants-vs-zombies/particles/
+src/plants-vs-zombies/sounds/
 
-CLAUDE.md
+src/plants-vs-zombies/CLAUDE.md
+
+src/plants-vs-zombies/shader/.git/
+
+src/GodotPvzSourceGenerator/obj/
+src/GodotPvzSourceGenerator/bin/

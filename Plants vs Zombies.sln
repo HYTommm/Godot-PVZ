@@ -1,12 +1,17 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants vs Zombies", "Plants vs Zombies.csproj", "{806D6105-4B4B-4DF2-8286-7883DD576ED2}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37111.16 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants vs Zombies", "src\plants-vs-zombies\Plants vs Zombies.csproj", "{806D6105-4B4B-4DF2-8286-7883DD576ED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodotPvzSourceGenerator", "src\GodotPvzSourceGenerator\GodotPvzSourceGenerator.csproj", "{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	Debug|Any CPU = Debug|Any CPU
-	ExportDebug|Any CPU = ExportDebug|Any CPU
-	ExportRelease|Any CPU = ExportRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -15,5 +20,17 @@ Global
 		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{806D6105-4B4B-4DF2-8286-7883DD576ED2}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportDebug|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportDebug|Any CPU.Build.0 = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C97A00B-F7CF-4111-A4DD-3CEA965FF320}
 	EndGlobalSection
 EndGlobal

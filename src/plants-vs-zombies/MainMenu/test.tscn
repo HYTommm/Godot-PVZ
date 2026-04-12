@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://did3dsbnx1k5s"]
+[gd_scene format=3 uid="uid://did3dsbnx1k5s"]
 
 [ext_resource type="Script" uid="uid://cvi7y54j6g0sc" path="res://CustomButton.cs" id="1_j2elb"]
 [ext_resource type="Texture2D" uid="uid://c6pn4v3cbioim" path="res://art/MainMenu/SelectorScreen_Adventure_button.png" id="2_n60xi"]
