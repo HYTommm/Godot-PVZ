@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://b4twltld22pus"]
+
+[ext_resource type="Script" uid="uid://cpcdgbkthmfcx" path="res://MainGame/Plants/PeaShooter/PeaShooter.cs" id="1_5alyk"]
+[ext_resource type="Animation" uid="uid://calnofcuyxnor" path="res://MainGame/Plants/PeaShooter/PeaShooter_shooting.tres" id="2_anim"]
+[ext_resource type="PackedScene" uid="uid://c5ltut3en7ovr" path="res://MainGame/Plants/Bullet/Pea.tscn" id="2_dvwvy"]
+[ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf.png" id="2_mrwnl"]
+[ext_resource type="Animation" uid="uid://b5ekiv01oyxf" path="res://MainGame/Plants/PeaShooter/PeaShooter_head_idle.tres" id="3_anim"]
+[ext_resource type="Texture2D" uid="uid://bxp2vufqrjqdi" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf_lefttip.png" id="3_kmqws"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="3_t0urw"]
+[ext_resource type="Texture2D" uid="uid://dxlsfe665fu83" path="res://art/MainGame/Plants/PeaShooter/Peashooter_backleaf_righttip.png" id="4_vaee4"]
+[ext_resource type="Texture2D" uid="uid://v6bnj1kkn1ec" path="res://art/MainGame/Plants/PeaShooter/Peashooter_stalk_bottom.png" id="5_gj8sn"]
+[ext_resource type="Texture2D" uid="uid://dhocqxcw4e8sn" path="res://art/MainGame/Plants/PeaShooter/Peashooter_stalk_top.png" id="6_5o5qt"]
+[ext_resource type="Animation" uid="uid://bud7heogjcd20" path="res://MainGame/Plants/PeaShooter/PeaShooter_blink.tres" id="7_anim"]
+[ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf.png" id="7_k7plv"]
+[ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf_righttip.png" id="8_dncmg"]
+[ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/PeaShooter/Peashooter_frontleaf_lefttip.png" id="9_4t5gl"]
+[ext_resource type="Texture2D" uid="uid://clomnwlnr7p0p" path="res://art/MainGame/Plants/PeaShooter/Peashooter_blink1.png" id="10_488os"]
+[ext_resource type="Texture2D" uid="uid://bgxuqg3248gus" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_farthest.png" id="10_rts07"]
+[ext_resource type="Texture2D" uid="uid://bibskg8u2lt3p" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_3rdfarthest.png" id="11_dvwvy"]
+[ext_resource type="Animation" uid="uid://cei5nd8wnf437" path="res://MainGame/Plants/PeaShooter/PeaShooter_idle.tres" id="12_rts07"]
+[ext_resource type="Texture2D" uid="uid://b4qvphr553hdk" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_nearest.png" id="12_t0urw"]
+[ext_resource type="Texture2D" uid="uid://b8jwrwno6y2gx" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_tip_bottom.png" id="13_tc2lk"]
+[ext_resource type="Texture2D" uid="uid://ebl4vvnd28iy" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_2rdfarthest.png" id="14_ptfyt"]
+[ext_resource type="Texture2D" uid="uid://bm0aht8c3info" path="res://art/MainGame/Plants/PeaShooter/Peashooter_headleaf_tip_top.png" id="15_mp5xn"]
+[ext_resource type="Texture2D" uid="uid://0artcn3mg8bc" path="res://art/MainGame/Plants/PeaShooter/Peashooter_head.png" id="16_qy4xm"]
+[ext_resource type="Texture2D" uid="uid://dsse36p2cqmuh" path="res://art/MainGame/Plants/PeaShooter/Peashooter_mouth.png" id="17_hikjp"]
+[ext_resource type="Texture2D" uid="uid://vobvlhdpaige" path="res://art/MainGame/Plants/PeaShooter/Peashooter_eyebrow.png" id="19_8s68r"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="26_dvwvy"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_PeaShooter_full_idle"]
+_data = {
+&"PeaShooter_idle": ExtResource("12_rts07")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_PeaShooter_blink"]
+_data = {
+&"PeaShooter_blink": ExtResource("7_anim")
+}
+
+[sub_resource type="Animation" id="Animation_rts07"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Anim_blink:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_PeaShooter_head_idle"]
+_data = {
+&"Head_Idle": ExtResource("3_anim"),
+&"Head_Shooting": ExtResource("2_anim"),
+&"RESET": SubResource("Animation_rts07")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0urw"]
+size = Vector2(20, 80)
+
+[node name="PeaShooter" type="CanvasGroup" unique_id=220235140 node_paths=PackedStringArray("AnimIdle", "AnimHead", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
+script = ExtResource("1_5alyk")
+AnimIdle = NodePath("Idle")
+AnimHead = NodePath("Head/Head")
+_nodeStem = NodePath("Anim_stem")
+_nodeHead = NodePath("Head")
+_nodeMouth = NodePath("Head/Idle_mouth")
+BulletScene = ExtResource("2_dvwvy")
+TextEdit = NodePath("TextEdit")
+Shadow = NodePath("Shadow")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1224628062]
+visible = false
+position = Vector2(40, 69)
+texture = ExtResource("3_t0urw")
+
+[node name="Backleaf" type="Sprite2D" parent="." unique_id=697253341]
+position = Vector2(27.7, 53)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("2_mrwnl")
+centered = false
+
+[node name="Backleaf_left_tip" type="Sprite2D" parent="." unique_id=271911017]
+position = Vector2(25, 53.9)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("3_kmqws")
+centered = false
+
+[node name="Backleaf_right_tip" type="Sprite2D" parent="." unique_id=1347002812]
+position = Vector2(47, 52.9)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("4_vaee4")
+centered = false
+
+[node name="Stalk_bottom" type="Sprite2D" parent="." unique_id=179185945]
+position = Vector2(36.1, 52.6)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("5_gj8sn")
+centered = false
+
+[node name="Stalk_top" type="Sprite2D" parent="." unique_id=1462634686]
+position = Vector2(31, 45.3)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("6_5o5qt")
+centered = false
+
+[node name="Frontleaf" type="Sprite2D" parent="." unique_id=1852467581]
+position = Vector2(22.8, 54.4)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("7_k7plv")
+centered = false
+
+[node name="Frontleaf_right_tip" type="Sprite2D" parent="." unique_id=405111810]
+position = Vector2(56.3, 56)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("8_dncmg")
+centered = false
+
+[node name="Frontleaf_tip_left" type="Sprite2D" parent="." unique_id=442642207]
+position = Vector2(19.4, 61.6)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("9_4t5gl")
+centered = false
+
+[node name="Anim_stem" type="Sprite2D" parent="." unique_id=182786651]
+visible = false
+position = Vector2(37.6, 48.7)
+centered = false
+
+[node name="Idle" type="AnimationPlayer" parent="." unique_id=880018710]
+libraries/ = SubResource("AnimationLibrary_PeaShooter_full_idle")
+
+[node name="Blink" type="AnimationPlayer" parent="." unique_id=629990200]
+libraries/ = SubResource("AnimationLibrary_PeaShooter_blink")
+
+[node name="Head" type="Node2D" parent="." unique_id=1052450244]
+position = Vector2(0.38, 0)
+
+[node name="Head" type="AnimationPlayer" parent="Head" unique_id=1245950009]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_PeaShooter_head_idle")
+
+[node name="Idle_headleaf_farthest" type="Sprite2D" parent="Head" unique_id=1753870508]
+position = Vector2(12.9, 38.1)
+rotation = -0.338594
+scale = Vector2(0.547, 0.501)
+skew = -0.0837757
+texture = ExtResource("10_rts07")
+centered = false
+
+[node name="Idle_headleaf_3rdfarthest" type="Sprite2D" parent="Head" unique_id=568681487]
+position = Vector2(22.6, 17.7)
+scale = Vector2(0.555, 0.493)
+texture = ExtResource("11_dvwvy")
+centered = false
+
+[node name="Idle_headleaf_2ndfarthest" type="Sprite2D" parent="Head" unique_id=6209037]
+position = Vector2(11.1, 29.1)
+scale = Vector2(0.555, 0.493)
+texture = ExtResource("12_t0urw")
+centered = false
+
+[node name="Idle_headleaf_tip_bottom" type="Sprite2D" parent="Head" unique_id=774356937]
+position = Vector2(6.2, 33.1)
+scale = Vector2(0.555, 0.493)
+texture = ExtResource("13_tc2lk")
+centered = false
+
+[node name="Idle_headleaf_nearest" type="Sprite2D" parent="Head" unique_id=102615433]
+position = Vector2(17, 18.4)
+scale = Vector2(0.527, 0.513)
+texture = ExtResource("14_ptfyt")
+centered = false
+
+[node name="Idle_headleaf_tip_top" type="Sprite2D" parent="Head" unique_id=833309451]
+position = Vector2(13, 18.4)
+scale = Vector2(0.527, 0.513)
+texture = ExtResource("15_mp5xn")
+centered = false
+
+[node name="Anim_face" type="Sprite2D" parent="Head" unique_id=808989400]
+position = Vector2(19.2, 17.8)
+scale = Vector2(0.555, 0.5)
+texture = ExtResource("16_qy4xm")
+centered = false
+
+[node name="Idle_mouth" type="Sprite2D" parent="Head" unique_id=1576889842]
+position = Vector2(52.4, 17.8)
+scale = Vector2(0.555, 0.5)
+texture = ExtResource("17_hikjp")
+centered = false
+
+[node name="Idle_shoot_blink" type="Sprite2D" parent="Head" unique_id=1978718296]
+visible = false
+centered = false
+
+[node name="Anim_blink" type="Sprite2D" parent="Head" unique_id=596894469]
+visible = false
+position = Vector2(37.5, 23.5)
+scale = Vector2(0.555, 0.555)
+texture = ExtResource("10_488os")
+centered = false
+
+[node name="PeaShooter_eyebrow" type="Sprite2D" parent="Head" unique_id=984173767]
+position = Vector2(34.8, 19.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("19_8s68r")
+centered = false
+
+[node name="DefenseArea" type="Area2D" parent="." unique_id=2029344575]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("26_dvwvy")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=1848655404]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_t0urw")
+debug_color = Color(0.7, 0.4, 0.7, 0.42)
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1408027187]
+visible = false
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10
+
+[connection signal="animation_finished" from="Head/Head" to="." method="StopShooting"]

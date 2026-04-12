@@ -16,10 +16,11 @@ public partial class PeaShooterSingle : Plants
     [Export] private Node2D _nodeStem;// 茎节点
     [Export] private Node2D _nodeHead;// 头节点
     [Export] private Node2D _nodeMouth;// 嘴
-    private double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
+    //protected double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
 
-    private bool _canShoot = false; // 是否可以射击
-    private readonly Timer _canShootTimer = new(); // 射击计时器
+    protected bool CanShoot { get; set; } = false;
+    protected readonly Timer CanShootTimer = new(); // 射击计时器
+    protected float AnimRate = 2.85f;
 
     public short ShootCount = 0; //射击次数
 
@@ -50,11 +51,11 @@ public partial class PeaShooterSingle : Plants
         ShootSound.Stream = Sound_Throw;
         AddChild(ShootSound);
 
-        _canShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
+        CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
-        _canShootTimer.OneShot = true;
-        _canShootTimer.Timeout += CanShoot;
-        AddChild(_canShootTimer);
+        CanShootTimer.OneShot = true;
+        CanShootTimer.Timeout += () => CanShoot = true;
+        AddChild(CanShootTimer);
 
         _headPos = _nodeHead.Position;
     }
@@ -64,7 +65,7 @@ public partial class PeaShooterSingle : Plants
     {
         _nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
 
-        if (_canShoot && MainGame.Instance != null && HP > 0) //如果可以射击且主游戏不为空
+        if (CanShoot && MainGame.Instance != null && HP > 0) //如果可以射击且主游戏不为空
         {
             foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
             {
@@ -85,7 +86,7 @@ public partial class PeaShooterSingle : Plants
                 }
             }
         }
-        else if (_canShoot == false)
+        else if (CanShoot == false)
         {
             //GD.Print("cannot shoot");
         }
@@ -95,29 +96,26 @@ public partial class PeaShooterSingle : Plants
         }
     }
 
-    /// <summary>
-    /// 允许射击
-    /// </summary>
-    public void CanShoot()
-    {
-        //Print("CanShoot()");
-        _canShoot = true;
-    }
+    ///// <summary>
+    ///// 允许射击
+    ///// </summary>
+    //public void CanShoot()
+    //{
+    //    //Print("CanShoot()");
+    //    _canShoot = true;
+    //}
 
     /// <summary>
     /// 射击
     /// </summary>
-    public void Shoot()
+    public virtual void Shoot()
     {
-        if (AnimHead.CurrentAnimation == "Head_Idle")
-            _timeOfIdleWhenShooting = AnimHead.CurrentAnimationPosition; // 记录Idle动画的时间
-
-        _canShoot = false; // 禁止射击
+        CanShoot = false; // 禁止射击
         RandomShootTime(); // 随机射击时间
 
         AnimHead.Play(ShootCount != 0 ? "Head_Shooting2" : "Head_Shooting", 2.0 / 12.0, 2.85f);  // 头部射击动画
-        GetTree().CreateTimer(0.35f).Timeout += ShootBullet; // 等待0.35秒后射击子弹
-                                                             //await ToSignal(GetTree().CreateTimer(0.35f), SceneTreeTimer.SignalName.Timeout); // 等待0.35秒
+        // 0.26秒后发射子弹（模拟原版射击延迟）
+        GetTree().CreateTimer(0.26f).Timeout += ShootBullet;
 
         ShootCount++; // 射击次数+1
 
@@ -136,10 +134,10 @@ public partial class PeaShooterSingle : Plants
     }
 
     /// <summary> 随机射击时间 </summary>
-    public void RandomShootTime()
+    public virtual void RandomShootTime()
     {
-        _canShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
-        _canShootTimer.Start(); // 计时器开启
+        CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+        CanShootTimer.Start(); // 计时器开启
     }
 
     /// <summary>
@@ -150,22 +148,11 @@ public partial class PeaShooterSingle : Plants
     {
         if (anim == "Head_Shooting" || anim == "Head_Shooting2")
         {
-            //Print("Stop shooting");
+            AnimHead.Play("Head_Idle", 0.20f, SpeedScaleOfIdle);
 
-            float temp = 0;
-            if (anim == "Head_Shooting")
-            {
-                temp = 2;
-            }
-            else if (anim == "Head_Shooting2")
-            {
-                temp = 11 / 12.0f;
-            }
+            //AnimHead.Seek(_timeOfIdleWhenShooting + temp / AnimRate * SpeedScaleOfIdle);
+            AnimHead.Seek(AnimIdle.CurrentAnimationPosition);
 
-            AnimHead.Play("Head_Idle", 2.0 / 12.0, 0.0f);
-
-            AnimHead.Seek(_timeOfIdleWhenShooting + temp / 2.85f * SpeedScaleOfIdle);
-            AnimHead.Play("Head_Idle", 2.0 / 12.0, SpeedScaleOfIdle);
             GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
         }
     }

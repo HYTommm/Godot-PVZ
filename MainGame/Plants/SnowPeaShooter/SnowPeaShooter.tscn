@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6gt46x1pp2f8"]
 
-[ext_resource type="Script" uid="uid://pb163foas6y5" path="res://MainGame/Plants/SnowPea/SnowPeaShooter.cs" id="1_yva6y"]
+[ext_resource type="Script" uid="uid://pb163foas6y5" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter.cs" id="1_yva6y"]
 [ext_resource type="PackedScene" uid="uid://ph3ip6bg1vj8" path="res://MainGame/Plants/Bullet/SnowPea.tscn" id="2_axam6"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="3_2g1h3"]
 [ext_resource type="Texture2D" uid="uid://bde8hqnhy0hav" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_backleaf.png" id="4_ik6yj"]
@@ -11,19 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://bcvb3o4cmb06t" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf.png" id="9_skm5q"]
 [ext_resource type="Texture2D" uid="uid://2cey5khhsh6" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_righttip.png" id="10_1cua7"]
 [ext_resource type="Texture2D" uid="uid://dnm5x4j1xjv0n" path="res://art/MainGame/Plants/PeaShooter/PeaShooter_frontleaf_lefttip.png" id="11_6bp7b"]
-[ext_resource type="Texture2D" uid="uid://bujre3u5i3rgi" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals1.png" id="12_243a0"]
-[ext_resource type="Texture2D" uid="uid://cchu0mxqvyajy" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals2.png" id="13_egmyu"]
-[ext_resource type="Texture2D" uid="uid://c7nkv7fyybde2" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals3.png" id="14_akb0w"]
-[ext_resource type="Texture2D" uid="uid://dlmc8knmb38nc" path="res://art/MainGame/Plants/SnowPea/SnowPea_head.png" id="15_tr1e0"]
-[ext_resource type="Texture2D" uid="uid://3g2dy5th6ofl" path="res://art/MainGame/Plants/SnowPea/SnowPea_mouth.png" id="16_8nvjs"]
-[ext_resource type="Texture2D" uid="uid://77tnh88v4512" path="res://art/MainGame/Plants/SnowPea/SnowPea_blink1.png" id="17_7jg4d"]
-[ext_resource type="Texture2D" uid="uid://bwym45aldwgdl" path="res://art/MainGame/Plants/SnowPea/SnowPea_blink2.png" id="18_eg20n"]
-[ext_resource type="Animation" uid="uid://bi5xj55pv72da" path="res://MainGame/Plants/SnowPea/SnowPea_full_idle.tres" id="19_mo1ob"]
-[ext_resource type="Animation" uid="uid://duldc7ka8sayt" path="res://MainGame/Plants/SnowPea/SnowPea_head_idle.tres" id="20_b8xt3"]
-[ext_resource type="Animation" uid="uid://dppsl6fugn0dk" path="res://MainGame/Plants/SnowPea/SnowPea_shooting.tres" id="21_wm5xr"]
-[ext_resource type="Animation" uid="uid://dn45nhjmubvlt" path="res://MainGame/Plants/SnowPea/SnowPea_shooting2.tres" id="22_mrkiy"]
-[ext_resource type="Animation" uid="uid://1c2djjjojd0r" path="res://MainGame/Plants/SnowPea/SnowPea_idle.tres" id="23_qmslf"]
-[ext_resource type="Animation" uid="uid://q81hudlaq86l" path="res://MainGame/Plants/SnowPea/SnowPea_blink.tres" id="24_lnrae"]
+[ext_resource type="Texture2D" uid="uid://bujre3u5i3rgi" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals1.png" id="12_243a0"]
+[ext_resource type="Texture2D" uid="uid://cchu0mxqvyajy" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals2.png" id="13_egmyu"]
+[ext_resource type="Texture2D" uid="uid://c7nkv7fyybde2" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals3.png" id="14_akb0w"]
+[ext_resource type="Texture2D" uid="uid://dlmc8knmb38nc" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_head.png" id="15_tr1e0"]
+[ext_resource type="Texture2D" uid="uid://3g2dy5th6ofl" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_mouth.png" id="16_8nvjs"]
+[ext_resource type="Texture2D" uid="uid://77tnh88v4512" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_blink1.png" id="17_7jg4d"]
+[ext_resource type="Texture2D" uid="uid://bwym45aldwgdl" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_blink2.png" id="18_eg20n"]
+[ext_resource type="Animation" uid="uid://duldc7ka8sayt" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter_head_idle.tres" id="20_b8xt3"]
+[ext_resource type="Animation" uid="uid://dppsl6fugn0dk" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter_shooting.tres" id="21_wm5xr"]
+[ext_resource type="Animation" uid="uid://dn45nhjmubvlt" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter_shooting2.tres" id="22_mrkiy"]
+[ext_resource type="Animation" uid="uid://1c2djjjojd0r" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter_idle.tres" id="23_qmslf"]
+[ext_resource type="Animation" uid="uid://q81hudlaq86l" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter_blink.tres" id="24_lnrae"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="25_y1uxg"]
 
 [sub_resource type="Animation" id="Animation_fuck"]
@@ -1379,11 +1378,6 @@ _data = {
 &"ALL_ANIMS": SubResource("Animation_fuck")
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_SnowPea_full_idle"]
-_data = {
-&"SnowPea_full_idle": ExtResource("19_mo1ob")
-}
-
 [sub_resource type="Animation" id="Animation_8pgox"]
 length = 0.001
 tracks/0/type = "value"
@@ -1551,9 +1545,6 @@ centered = false
 
 [node name="AnimLib" type="AnimationPlayer" parent="." unique_id=1886084687]
 libraries/ = SubResource("AnimationLibrary_fuck")
-
-[node name="Anim_SnowPea_full_idle" type="AnimationPlayer" parent="." unique_id=1600846706]
-libraries/ = SubResource("AnimationLibrary_SnowPea_full_idle")
 
 [node name="Anim_Head" type="AnimationPlayer" parent="." unique_id=987246324]
 libraries/ = SubResource("AnimationLibrary_SnowPea_head_idle")

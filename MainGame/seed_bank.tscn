@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d2u04t2i51frh" path="res://MainGame/Plants/CherryBomb/CherryBomb.tscn" id="6_8cs2s"]
 [ext_resource type="AudioStream" uid="uid://7en1bjf4sg5i" path="res://sounds/points.ogg" id="6_jv5um"]
 [ext_resource type="PackedScene" uid="uid://cehq02mhnv2kr" path="res://MainGame/Plants/Squash/Squash.tscn" id="7_r0a42"]
-[ext_resource type="PackedScene" uid="uid://b6gt46x1pp2f8" path="res://MainGame/Plants/SnowPea/SnowPeaShooter.tscn" id="8_2miuv"]
+[ext_resource type="PackedScene" uid="uid://b6gt46x1pp2f8" path="res://MainGame/Plants/SnowPeaShooter/SnowPeaShooter.tscn" id="8_2miuv"]
 [ext_resource type="PackedScene" uid="uid://bwv6uvk8ekuo7" path="res://MainGame/Plants/Chomper/Chomper.tscn" id="9_xhtv7"]
+[ext_resource type="PackedScene" uid="uid://b4twltld22pus" path="res://MainGame/Plants/PeaShooter/PeaShooter.tscn" id="10_nnsnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv5um"]
 size = Vector2(446, 87)
@@ -65,7 +66,7 @@ position = Vector2(223, 43.5)
 shape = SubResource("RectangleShape2D_jv5um")
 
 [node name="SeedPacketLarger1" parent="." unique_id=1374305107 instance=ExtResource("2_ns80v")]
-position = Vector2(78, 8)
+position = Vector2(79, 8)
 SeedScene = ExtResource("4_r0a42")
 
 [node name="SeedPacketLarger2" parent="." unique_id=1919318469 instance=ExtResource("2_ns80v")]
@@ -73,21 +74,25 @@ position = Vector2(130, 8)
 SeedScene = ExtResource("5_6x7yi")
 
 [node name="SeedPacketLarger3" parent="." unique_id=2057337463 instance=ExtResource("2_ns80v")]
-position = Vector2(182, 8)
+position = Vector2(181, 7.999999)
 rotation = 0.00209095
 SeedScene = ExtResource("6_8cs2s")
 
 [node name="SeedPacketLarger4" parent="." unique_id=1001389451 instance=ExtResource("2_ns80v")]
-position = Vector2(234, 8)
+position = Vector2(232, 8)
 SeedScene = ExtResource("7_r0a42")
 
 [node name="SeedPacketLarger5" parent="." unique_id=482211947 instance=ExtResource("2_ns80v")]
-position = Vector2(286, 8)
+position = Vector2(283, 8)
 SeedScene = ExtResource("8_2miuv")
 
 [node name="SeedPacketLarger6" parent="." unique_id=181529855 instance=ExtResource("2_ns80v")]
-position = Vector2(338, 8)
+position = Vector2(334, 8)
 SeedScene = ExtResource("9_xhtv7")
+
+[node name="SeedPacketLarger7" parent="." unique_id=70240285 instance=ExtResource("2_ns80v")]
+position = Vector2(385, 8)
+SeedScene = ExtResource("10_nnsnj")
 
 [node name="SunCountLabel" type="Label" parent="." unique_id=1469795737]
 offset_left = 12.0

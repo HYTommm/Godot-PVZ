@@ -138,10 +138,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq65k"]
 size = Vector2(20, 80)
 
-[node name="PeaShooterSingle" type="CanvasGroup" unique_id=1352503365 node_paths=PackedStringArray("_animIdle", "_animHead", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
+[node name="PeaShooterSingle" type="CanvasGroup" unique_id=1352503365 node_paths=PackedStringArray("AnimIdle", "AnimHead", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
 script = ExtResource("1_1y4xh")
-_animIdle = NodePath("Idle")
-_animHead = NodePath("Head/Head")
+AnimIdle = NodePath("Idle")
+AnimHead = NodePath("Head/Head")
 _nodeStem = NodePath("Anim_stem")
 _nodeHead = NodePath("Head")
 _nodeMouth = NodePath("Head/Idle_mouth")
