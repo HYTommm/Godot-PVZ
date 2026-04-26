@@ -1,23 +1,6 @@
 ﻿using Godot;
 using Godot.Collections;
 
-//using PlantsVsZombies;
-public interface IStatusEffect
-{
-    /// <summary>状态效果管理器</summary>
-    StatusEffectManager StatusEffectManager { get; }
-}
-
-public static class StatusEffectExtensions
-{
-    /// <summary>
-    /// 便捷方法：直接添加状态效果到实体
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <param name="effect"></param>
-    public static void AddStatusEffect(this IStatusEffect entity, StatusEffect effect) => entity.StatusEffectManager.AddEffect(effect);
-}
-
 public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect
 {
     /// <summary>僵尸死亡事件</summary>

@@ -1,4 +1,4 @@
-﻿public interface IHealthStage
+public interface IHealthStage
 {
     /// <summary>血量阶段组件</summary>
     HealthStageComponent HealthStageComponent { get; set; }
