@@ -1,57 +1,67 @@
 [gd_scene format=3 uid="uid://ee6hitnguoqq"]
 
-[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_3v7er"]
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/TieZombie.tscn" id="1_3v7er"]
 [ext_resource type="Script" uid="uid://dr3mtoscewka1" path="res://MainGame/Zombies/NormalZombie.cs" id="2_loqst"]
+[ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="3_rwmeu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f68vt"]
+resource_local_to_scene = true
+shader = ExtResource("3_rwmeu")
+shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
 
 [node name="NormalZombie" unique_id=460805229 instance=ExtResource("1_3v7er")]
 script = ExtResource("2_loqst")
+Abc = null
 
-[node name="Anim_innerarm3" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="3" unique_id=2006364563]
+[node name="Zombie" parent="." index="1" unique_id=620863438]
+material = SubResource("ShaderMaterial_f68vt")
+
+[node name="Anim_innerarm3" parent="Zombie" index="2" unique_id=2006364563]
 position = Vector2(4, 42.8)
 rotation = 1.06814
 scale = Vector2(0.791, 0.791)
 
-[node name="Anim_innerarm2" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="4" unique_id=187050176]
+[node name="Anim_innerarm2" parent="Zombie" index="3" unique_id=187050176]
 position = Vector2(19.2, 47.6)
 rotation = 1.22173
 scale = Vector2(0.845, 0.796)
 skew = 0.34383
 
-[node name="Anim_innerarm1" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="5" unique_id=1173577872]
+[node name="Anim_innerarm1" parent="Zombie" index="4" unique_id=1173577872]
 position = Vector2(37.6, 36.3)
 rotation = 1.29678
 scale = Vector2(0.905, 1.05)
 skew = -0.319396
 
-[node name="Zombie_flaghand" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="6" unique_id=859548646]
+[node name="Zombie_flaghand" parent="Zombie" index="5" unique_id=859548646]
 rotation = -0.55676
 
-[node name="Zombie_neck" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="8" unique_id=1594954976]
+[node name="Zombie_neck" parent="Zombie" index="7" unique_id=1594954976]
 position = Vector2(29.6, 33.9)
 rotation = 0.012217
 
-[node name="Zombie_tie" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="18" unique_id=1635309848]
+[node name="Zombie_tie" parent="Zombie" index="17" unique_id=1635309848]
 rotation = -0.146608
 
-[node name="Anim_tongue" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="20" unique_id=314275349]
+[node name="Anim_tongue" parent="Zombie" index="19" unique_id=314275349]
 rotation = -0.073304
 
-[node name="Anim_screendoor" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="22" unique_id=1116610779]
+[node name="Anim_screendoor" parent="Zombie" index="21" unique_id=1116610779]
 position = Vector2(2.1, 36.2)
 rotation = 0.258309
 scale = Vector2(0.799, 0.793)
 skew = -0.099484
 
-[node name="Zombie_outerarm_hand" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="25" unique_id=420245856]
+[node name="Zombie_outerarm_hand" parent="Zombie" index="24" unique_id=420245856]
 position = Vector2(4.2, 36.6)
 rotation = 0.101229
 
-[node name="Zombie_outerarm_upper" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="26" unique_id=1537768262]
+[node name="Zombie_outerarm_upper" parent="Zombie" index="25" unique_id=1537768262]
 position = Vector2(47.4, 40.2)
 rotation = 0.774926
 scale = Vector2(0.796, 0.796)
 
-[node name="Zombie_outerarm_lower" parent="Zombie" parent_id_path=PackedInt32Array(1598413310) index="27" unique_id=2117847408]
+[node name="Zombie_outerarm_lower" parent="Zombie" index="26" unique_id=2117847408]
 position = Vector2(37.4, 50.6)
 rotation = 1.7366
 scale = Vector2(0.799, 0.799)

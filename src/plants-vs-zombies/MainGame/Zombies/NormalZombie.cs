@@ -1,16 +1,15 @@
-using Godot;
+﻿using Godot;
 
-public partial class NormalZombie : Zombie
+public partial class NormalZombie : TieZombie
 {
-	public NormalZombie()
-	{
-		HP = 270;
-		MaxHP = 270;
-	}
+    public NormalZombie()
+    {
+        //HP = 270;
+        //MaxHP = 270;
+    }
 
-	public override void Init()
-	{
-		GD.Print("NormalZombie Init called");
-	}
-
+    public override void Init()
+    {
+        GD.Print("NormalZombie Init called");
+    }
 }

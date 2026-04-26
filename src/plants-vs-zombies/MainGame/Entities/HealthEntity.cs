@@ -1,10 +1,10 @@
-﻿
 public abstract partial class HealthEntity : Entity
 {
-	/// <summary>生命值</summary>
-	public int HP;
-	/// <summary>最大生命值</summary>
-	public int MaxHP;
+    ///// <summary>生命值</summary>
+    public int HP;
+
+    ///// <summary>最大生命值</summary>
+    public int MaxHP;
 
     /// <summary>状态效果管理器</summary>
     protected StatusEffectManager StatusEffectManager { get; } = new();
@@ -16,8 +16,8 @@ public abstract partial class HealthEntity : Entity
     public void AddStatusEffect(StatusEffect effect)
     {
         if (effect == null) return;
-        StatusEffectManager.AddEffect(effect, this);
+        StatusEffectManager.AddEffect(effect);
     }
 
-	public abstract void Hurt(Hurt hurt);
+    public abstract void Hurt(Hurt hurt);
 }

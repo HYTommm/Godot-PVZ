@@ -1,29 +1,30 @@
-using Godot;
+﻿using Godot;
 using System.Collections.Generic;
 using System;
 
-public partial class ConeheadZombie : Zombie
+public partial class ConeheadZombie : TieZombie
 {
-	[Export] public Sprite2D Zombie_cone;
-	public ConeheadZombie()
-	{
-		HP = 270;
-		MaxHP = 270;
-		GD.Print("ConeheadZombie Constructor");
-	}
+    [Export] public Sprite2D Zombie_cone;
 
-	public override void Init()
-	{
-		GD.Print("ConeheadZombie Init");
-	}
+    public ConeheadZombie()
+    {
+        //HP = 270;
+        //MaxHP = 270;
+        GD.Print("ConeheadZombie Constructor");
+    }
 
-	public override void _Ready()
-	{
-		base._Ready();
-		Cone cone = new(
-			Zombie_cone,
-			[],
-			[Zombie_hair]);
-		ArmorManager.AddArmor(cone);
-	}
+    public override void Init()
+    {
+        GD.Print("ConeheadZombie Init");
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+        Cone cone = new(
+            Zombie_cone,
+            [],
+            [Zombie_hair]);
+        ArmorManager.AddArmor(cone);
+    }
 }

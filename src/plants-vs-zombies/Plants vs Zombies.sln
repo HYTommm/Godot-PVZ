@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants vs Zombies", "Plants vs Zombies.csproj", "{36B076A2-5D4A-8D3D-2E33-F24F2304606D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodotPvzSourceGenerator", "..\GodotPvzSourceGenerator\GodotPvzSourceGenerator.csproj", "{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{36B076A2-5D4A-8D3D-2E33-F24F2304606D}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportDebug|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportDebug|Any CPU.Build.0 = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EB1EAB-8532-0D3C-CFFF-40685B7E670E}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C97A00B-F7CF-4111-A4DD-3CEA965FF320}
+	EndGlobalSection
+EndGlobal

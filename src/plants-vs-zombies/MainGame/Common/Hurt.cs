@@ -33,13 +33,13 @@ public enum HurtType
     Other,
 }
 
-public partial class Hurt(int damage, HurtType hurtType, bool bEnableTargetHitSFX = false) : Node2D
+public partial class Hurt(int damage, HurtType hurtType, bool bEnableTargetHitSFX = true) : Node2D
 {
     public int Damage { get; set; } = damage;
     public HurtType HurtType { get; set; } = hurtType;
 
     // 受击方是否被允许发出音效
-    public bool BEnableTargetHitSFX = true;
+    public bool BEnableTargetHitSFX = bEnableTargetHitSFX;
 
     //public Hurt HurtHealthEntity(HealthEntity entity)
     //{

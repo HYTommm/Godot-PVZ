@@ -1,42 +1,42 @@
-using Godot;
+﻿using Godot;
 
-public partial class ScreendoorZombie : Zombie
+public partial class ScreendoorZombie : TieZombie
 {
-	[Export] public Sprite2D Zombie_screendoor;
-	[Export] public Sprite2D Zombie_innerarm_screendoor;
-	[Export] public Sprite2D Zombie_innerarm_screendoor_hand;
-	[Export] public Sprite2D Zombie_outerarm_screendoor;
+    [Export] public Sprite2D Zombie_screendoor;
+    [Export] public Sprite2D Zombie_innerarm_screendoor;
+    [Export] public Sprite2D Zombie_innerarm_screendoor_hand;
+    [Export] public Sprite2D Zombie_outerarm_screendoor;
 
-	public ScreendoorZombie()
-	{
-		HP = 270;
-		MaxHP = 270;
-		GD.Print("ScreendoorZombie Constructor");
-	}
+    public ScreendoorZombie()
+    {
+        //HP = 270;
+        //MaxHP = 270;
+        GD.Print("ScreendoorZombie Constructor");
+    }
 
-	public override void Init()
-	{
-		GD.Print("ScreendoorZombie Init");
-	}
+    public override void Init()
+    {
+        GD.Print("ScreendoorZombie Init");
+    }
 
-	public override void _Ready()
-	{
-		base._Ready();
-		Screendoor screendoor = new(
-			Zombie_screendoor,
-			[
-				Zombie_innerarm_screendoor,
-				Zombie_innerarm_screendoor_hand,
-				Zombie_outerarm_screendoor
-			],
-			[
-				Zombie_outerarm_upper,
-				Zombie_outerarm_lower,
-				Zombie_outerarm_hand,
-				Anim_innerArm1,
-				Anim_innerArm2,
-				Anim_innerArm3
-			]);
-		ArmorManager.AddArmor(screendoor);
-	}
+    public override void _Ready()
+    {
+        base._Ready();
+        Screendoor screendoor = new(
+            Zombie_screendoor,
+            [
+                Zombie_innerarm_screendoor,
+                Zombie_innerarm_screendoor_hand,
+                Zombie_outerarm_screendoor
+            ],
+            [
+                Zombie_outerarm_upper,
+                Zombie_outerarm_lower,
+                Zombie_outerarm_hand,
+                Anim_innerArm1,
+                Anim_innerArm2,
+                Anim_innerArm3
+            ]);
+        ArmorManager.AddArmor(screendoor);
+    }
 }

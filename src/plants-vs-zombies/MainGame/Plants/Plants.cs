@@ -1,5 +1,6 @@
-using Godot;
+﻿using Godot;
 using System;
+using static HealthStage;
 
 /// <summary>
 /// <para>植物基类，继承自Node2D。</para>
@@ -8,10 +9,18 @@ using System;
 /// <para>子类需要实现_Idle()</para>
 /// <para>子类可实现_Plant()、_SetColor()、_SetAlpha()。</para>
 /// </summary>
-public abstract partial class Plants : HealthEntity
+public abstract partial class Plants : Entity, IHealthStage
 {
+    public virtual HealthStageComponent HealthStageComponent { get; set; } = new(300);
+    public bool Alive => HealthStageComponent.HP > 0;
+    public int HP => HealthStageComponent.HP;
+    public int MaxHP => HealthStageComponent.MaxHP;
+
     /// <summary>种植音效播放器</summary>
     private readonly AudioStreamPlayer _plantSound = new();
+
+    /// <summary>防御碰撞箱</summary>
+    private IHitBox _defenseHitBox;
 
     /// <summary>植物所在行</summary>
     public int Row;
@@ -52,8 +61,8 @@ public abstract partial class Plants : HealthEntity
 
     protected Plants()
     {
-        HP = 300; // 设置生命值
-        MaxHP = 300; // 设置最大生命值
+        //HP = 300; // 设置生命值
+        //MaxHP = 300; // 设置最大生命值
         Index = -1; // 设置索引/栈数
     }
 
@@ -63,12 +72,18 @@ public abstract partial class Plants : HealthEntity
         //MainGame = MainGame.Instance;
         AddChild(_plantSound); // 添加种植音效播放器
         GD.Print(MainGame.Instance);
+        //HealthStageComponent.HealthStages.Add(new HealthStage { Threshold = 0, TriggerType = TriggerTypeEnum.CrossBelowOrEqual, TriggerOnce = true });
+        //HealthStageComponent.BindActionWithIndex(0, _ => FreePlant()); // 绑定生命值为0时的事件，释放植物
+        HealthStageComponent.Defaults.StageZero.Action += _ => FreePlant();
+        _defenseHitBox = GetNode<IHitBox>("./DefenseHitBox");
     }
 
     /// <summary>
     /// 虚函数，用于实现植物的待机状态
     /// </summary>
     public abstract void _Idle();
+
+    public virtual void Hurt(Hurt hurt) => (this as IHealthStage).Hurt(hurt); // 调用接口的Hurt方法
 
     /// <summary>
     /// 虚函数，用于种植植物
@@ -105,16 +120,17 @@ public abstract partial class Plants : HealthEntity
     /// 虚函数，用于对植物扣血
     /// </summary>
     /// <param name="hurt"></param>
-    public override void Hurt(Hurt hurt)
-    {
-        int damage = Math.Min(hurt.Damage, HP);
-        HP -= damage;// 扣血
-        hurt.Damage -= damage;
-        if (HP <= 0) // 生命值小于等于0
-        {
-            FreePlant(); // 释放植物
-        }
-    }
+    //public void Hurt(Hurt hurt)
+    //{
+    //    ((IHealthStage)this).Hurt(hurt); // 调用接口的Hurt方法
+    //    //int damage = Math.Min(hurt.Damage, HP);
+    //    //HP -= damage;// 扣血
+    //    //hurt.Damage -= damage;
+    //    //if (HP <= 0) // 生命值小于等于0
+    //    //{
+    //    //    FreePlant(); // 释放植物
+    //    //}
+    //}
 
     /// <summary>
     /// 设置植物的颜色
@@ -145,6 +161,8 @@ public abstract partial class Plants : HealthEntity
             MainGame.Instance.RemovePlant(this);
         BIsPlanted = false; // 设置状态为 未种植
         Visible = false;
+        if (_defenseHitBox != null)
+            _defenseHitBox.Monitorable = false;
     }
 
     public override void SetZIndex()

@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcy00bamnnqm3"]
+[gd_scene format=3 uid="uid://dcy00bamnnqm3"]
 
-[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_ank4t"]
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/TieZombie.tscn" id="1_ank4t"]
 [ext_resource type="Script" uid="uid://c04msrsgs6opl" path="res://MainGame/Zombies/ConeheadZombie.cs" id="2_0dedt"]
+[ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="3_23mob"]
 [ext_resource type="Texture2D" uid="uid://cmyr866hx6nrq" path="res://art/MainGame/Zombie/Zombie_cone3.png" id="3_lx01r"]
 [ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="4_23mob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23mob"]
+resource_local_to_scene = true
+shader = ExtResource("3_23mob")
+shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_lx01r"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.8, 1), 0.0, 0.0, 1, 0, Vector2(1, 0), -5.0, nan, 1, 1]
@@ -71,14 +77,17 @@ shader_parameter/alpha_curve = SubResource("CurveTexture_23mob")
 shader_parameter/angular_velocity_texture = SubResource("CurveTexture_r0k4n")
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
-[node name="ConeheadZombie" node_paths=PackedStringArray("Zombie_cone") instance=ExtResource("1_ank4t")]
+[node name="ConeheadZombie" unique_id=1577869842 node_paths=PackedStringArray("Zombie_cone") instance=ExtResource("1_ank4t")]
 script = ExtResource("2_0dedt")
 Zombie_cone = NodePath("Zombie/Anim_cone")
 
-[node name="Anim_cone" parent="Zombie" index="29"]
+[node name="Zombie" parent="." index="1" unique_id=620863438]
+material = SubResource("ShaderMaterial_23mob")
+
+[node name="Anim_cone" parent="Zombie" index="28" unique_id=1845216620]
 visible = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Zombie/Anim_cone" index="0"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Zombie/Anim_cone" index="0" unique_id=1863453383]
 position = Vector2(28.5653, 27.239)
 emitting = false
 amount = 1
@@ -88,4 +97,4 @@ one_shot = true
 speed_scale = 2.0
 process_material = SubResource("ShaderMaterial_nisvg")
 
-[editable path="Node2D"]
+[editable path="ZombieCharred"]

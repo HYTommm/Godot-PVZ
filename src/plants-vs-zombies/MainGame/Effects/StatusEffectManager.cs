@@ -11,10 +11,10 @@ public class StatusEffectManager
 
     public event Action EffectsChanged;
 
-    public void AddEffect(StatusEffect effect, HealthEntity owner)
+    public void AddEffect(StatusEffect effect)
     {
-        if (effect == null || owner == null) return;
-        effect.Owner = owner;
+        if (effect == null) return;
+        //effect.Owner = owner;
 
         if (!effect.Stackable)
         {

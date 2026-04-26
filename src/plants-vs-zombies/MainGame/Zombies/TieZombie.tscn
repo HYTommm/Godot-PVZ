@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmcf3b83fe3ii"]
 
+[ext_resource type="Script" uid="uid://dabglov501p8b" path="res://MainGame/Zombies/TieZombie.cs" id="1_1shv0"]
 [ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="1_3r6sd"]
-[ext_resource type="Script" uid="uid://dt8fo0g1xv20p" path="res://MainGame/Zombies/Zombie.cs" id="1_wnjia"]
 [ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="2_6pykm"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_hyt8k"]
 [ext_resource type="Texture2D" uid="uid://cunx0aweq2j5h" path="res://art/MainGame/Zombie/Zombie_innerarm_lower.png" id="3_jlj50"]
@@ -194,7 +194,7 @@ polygon = PackedVector2Array(0, 0, 200, 0)
 
 [node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("_animation", "_animCharred", "Ground", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
 z_index = 1
-script = ExtResource("1_wnjia")
+script = ExtResource("1_1shv0")
 _animation = NodePath("Zombie/AnimationPlayer")
 _animCharred = NodePath("ZombieCharred/AnimLib")
 Ground = NodePath("Zombie/_ground")

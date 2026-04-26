@@ -2514,19 +2514,19 @@ offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseArea" type="Area2D" parent="." unique_id=1209817057]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=1209817057]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("26_be8nu")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=705567064]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=705567064]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_b36p7")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=635054517]
+[node name="DetectionHitBox" type="Area2D" parent="." unique_id=635054517]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -2534,7 +2534,7 @@ script = ExtResource("26_be8nu")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2002033035]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=2002033035]
 position = Vector2(33, 40)
 shape = SubResource("RectangleShape2D_eo0bp")
 debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
@@ -2604,4 +2604,4 @@ one_shot = true
 visibility_rect = Rect2(-150, -150, 300, 300)
 process_material = SubResource("ShaderMaterial_a4d5f")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="DamageZombies"]
+[connection signal="area_entered" from="DetectionHitBox" to="." method="DamageZombies"]

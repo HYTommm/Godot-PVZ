@@ -45,6 +45,7 @@ namespace StructInheritance
         public StructInheritanceAttribute(Type sourceType) => SourceType = sourceType;
     }
 }";
+                //attributeSource = "";
                 ctx.AddSource("StructInheritanceAttribute.g.cs", SourceText.From(attributeSource, Encoding.UTF8));
             });
             // 1. 获取所有带有 [StructInheritance] 特性的 partial struct 声明

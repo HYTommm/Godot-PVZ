@@ -1,13 +1,24 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.6.0">
+﻿<Project Sdk="Godot.NET.Sdk/4.6.2">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>PlantsvsZombies</RootNamespace>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<LangVersion>preview</LangVersion>
+	<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="addons\MonoCustomResourceRegistry\**" />
+    <EmbeddedResource Remove="addons\MonoCustomResourceRegistry\**" />
+  </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="../GodotPvzSourceGenerator/GodotPvzSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<Analyzer Include="../GodotPvzSourceGenerator/bin/Debug/netstandard2.0/GodotPvzSourceGenerator.dll"
+		          Condition="Exists('../GodotPvzSourceGenerator/bin/Debug/netstandard2.0/GodotPvzSourceGenerator.dll')" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="addons\" />
 	</ItemGroup>
 
 </Project>

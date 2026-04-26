@@ -13,9 +13,10 @@ public partial class Chomper : Plants
 
     public bool CanEat
     {
-        get => _canEat;
-        private set { _canEat = value; }
-    }
+        get;
+        private set
+        { if (field = value) CheckZombieInDetectionHitBox(); }
+    } = true;
 
     private Timer _chompTimer;
     private const float CHOMP_INTERVAL = 1.07f; // 啃咬间隔
@@ -32,7 +33,7 @@ public partial class Chomper : Plants
     }
 
     private StateMachine<ChomperState> _stateMachine;
-    private bool _canEat = true;
+    //private bool _canEat = true;
 
     public Chomper()
     {
@@ -129,7 +130,7 @@ public partial class Chomper : Plants
             case ChomperState.Idle:
                 CanEat = true;
                 _targetZombie = null;
-                CheckZombieInDetectionHitBox();
+
                 if (_stateMachine.CurrentState == ChomperState.Idle)
                 {
                     AnimationPlayer.Play("Chomper/idle");

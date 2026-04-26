@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using static Godot.GD;
 using System;
 using static System.Formats.Asn1.AsnWriter;
@@ -129,10 +129,11 @@ public partial class MainGame : MainNode2D
         //this.GetGlobalNode()
         //RNG.Randomize();// 随机种子
         _zombieWeightsAndGrades.SetZombieAllowed([
-            ZombieTypeEnum.Normal,
+            //ZombieTypeEnum.Normal,
             ZombieTypeEnum.Conehead,
-            ZombieTypeEnum.Buckethead,
-            ZombieTypeEnum.Screendoor
+            //ZombieTypeEnum.Buckethead,
+            //ZombieTypeEnum.Screendoor,
+            //ZombieTypeEnum.Polevaulter
         ]);
         //GetNode<Node>("/root").PrintTreePretty();
         GameScene = new LawnDayScene(Global.Instance);// 设置场景
@@ -421,7 +422,7 @@ public partial class MainGame : MainNode2D
                     ZombieStack++; // 僵尸栈加1
                 }
 
-                ZombieCurrentWaveMaxHP += preZombie.MaxHP; // 计算当前波最大生命值
+                ZombieCurrentWaveMaxHP += preZombie.HealthStageComponent.MaxHP; // 计算当前波最大生命值
                 AddZombie(preZombie); // 加入场景树
             }
         }
@@ -516,7 +517,7 @@ public partial class MainGame : MainNode2D
         {
             if (Zombies[i] != null && Zombies[i].Wave == ZombieCurrentWave - 1)
             {
-                _totalHealth += Zombies[i].HP > 0 ? Zombies[i].HP : 0;
+                _totalHealth += Zombies[i].Alive ? Zombies[i].HealthStageComponent.HP : 0;
             }
         }
         GD.Print("totalHealth: " + _totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);

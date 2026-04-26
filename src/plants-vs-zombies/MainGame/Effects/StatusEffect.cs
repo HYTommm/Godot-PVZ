@@ -24,7 +24,7 @@ public abstract partial class StatusEffect
 
     public virtual bool Stackable => false;
 
-    public HealthEntity Owner { get; internal set; }
+    //public IHealthStage Owner { get; internal set; }
 
     public virtual float MovementMultiplier => 1f;
     public virtual float AttackMultiplier => 1f;

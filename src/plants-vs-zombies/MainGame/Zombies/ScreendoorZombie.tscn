@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu7yf8d4ltb2g"]
+[gd_scene format=3 uid="uid://bu7yf8d4ltb2g"]
 
-[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/Zombie.tscn" id="1_djaoq"]
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/TieZombie.tscn" id="1_djaoq"]
 [ext_resource type="Script" uid="uid://dmh5hlc8k22au" path="res://MainGame/Zombies/ScreendoorZombie.cs" id="2_djaoq"]
+
 
 [node name="ScreendoorZombie" node_paths=PackedStringArray("Zombie_screendoor", "Zombie_innerarm_screendoor", "Zombie_innerarm_screendoor_hand", "Zombie_outerarm_screendoor") instance=ExtResource("1_djaoq")]
 script = ExtResource("2_djaoq")

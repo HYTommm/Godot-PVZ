@@ -259,14 +259,14 @@ wait_time = 2.0
 position = Vector2(35, 60)
 scale = Vector2(0.555, 0.555)
 
-[node name="DefenseArea" type="Area2D" parent="." unique_id=1571536265]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=1571536265]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("21_kq65k")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=441891673]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=441891673]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_kq65k")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)

@@ -1881,6 +1881,9 @@ shader_parameter/damping_min = 0.0
 shader_parameter/damping_max = 0.0
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8all"]
+size = Vector2(20, 80)
+
 [node name="CherryBomb" type="CanvasGroup" unique_id=2140982037 node_paths=PackedStringArray("_animExplode", "_particleExplode1", "_particleExplode2", "_particleExplode3", "_bodyNodeTree", "TextEdit", "Shadow")]
 script = ExtResource("1_s276h")
 _animExplode = NodePath("Body/Anim_CherryBomb_explode")
@@ -2066,3 +2069,15 @@ texture = ExtResource("22_0kbfa")
 lifetime = 0.5
 one_shot = true
 process_material = SubResource("ShaderMaterial_bby7p")
+
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=7665847]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("22_t8all")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=10457032]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_t8all")
+debug_color = Color(0.7, 0.4, 0.7, 0.42)

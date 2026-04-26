@@ -211,14 +211,14 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("19_8s68r")
 centered = false
 
-[node name="DefenseArea" type="Area2D" parent="." unique_id=2029344575]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=2029344575]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("26_dvwvy")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea" unique_id=1848655404]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1848655404]
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_t0urw")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)

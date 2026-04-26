@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;
@@ -65,7 +65,7 @@ public partial class PeaShooterSingle : Plants
     {
         _nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
 
-        if (CanShoot && MainGame.Instance != null && HP > 0) //如果可以射击且主游戏不为空
+        if (CanShoot && MainGame.Instance != null && Alive) //如果可以射击且主游戏不为空
         {
             foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
             {
@@ -169,9 +169,9 @@ public partial class PeaShooterSingle : Plants
         RandomShootTime(); // 随机射击时间
     }
 
-    public override void FreePlant()
-    {
-        base.FreePlant();
-        RemoveChild(GetNode<Area2D>("./DefenseArea"));
-    }
+    //public override void FreePlant()
+    //{
+    //    base.FreePlant();
+    //    RemoveChild(GetNode<Area2D>("./DefenseArea"));
+    //}
 }

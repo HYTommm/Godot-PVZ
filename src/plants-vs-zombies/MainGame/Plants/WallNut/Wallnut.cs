@@ -1,10 +1,12 @@
 using Godot;
 using System;
 using static ResourceDB.Images.Plants;
+
 public partial class Wallnut : Plants
 {
     // Called when the node enters the scene tree for the first time.
     [Export] public AnimationPlayer Anim_idle;
+
     [Export] public Sprite2D Body;
 
     // 动画暂停倒计时
@@ -12,8 +14,9 @@ public partial class Wallnut : Plants
 
     public Wallnut()
     {
-        MaxHP = 4000;
-        HP = MaxHP;
+        //MaxHP = 4000;
+        //HP = MaxHP;
+
         SunCost = 50; // 设置花费的阳光数量
         CDtime = CDTime.VERY_SLOW; // 设置冷却时间
     }
@@ -21,6 +24,13 @@ public partial class Wallnut : Plants
     public override void _Ready()
     {
         base._Ready();
+        HealthStageComponent.HP = 4000;
+        HealthStageComponent.MaxHP = 4000;
+        HealthStageComponent.Refresh();
+
+        HealthStageComponent.Defaults.StageHigh.Action += _ => Body.Texture = ImagePlant_WallNut_Cracked1;
+        HealthStageComponent.Defaults.StageLow.Action += _ => Body.Texture = ImagePlant_WallNut_Cracked2;
+        //HealthStageComponent.Defaults.StageZero.Action += Die;
     }
 
     public override void _Idle()
@@ -44,20 +54,21 @@ public partial class Wallnut : Plants
 
     public override void Hurt(Hurt hurt)
     {
+        base.Hurt(hurt);
         if (AnimPauseTime <= 0)
         {
             Anim_idle.Pause();
         }
-        int damage = Math.Min(hurt.Damage, HP);
-        base.Hurt(hurt);
-        if (HP is < 2666 and >= 1333 && HP + damage >= 2666)
-        {
-            Body.Texture = ImagePlant_WallNut_Cracked1;
-        }
-        else if (HP is < 1333 and > 0 && HP + damage >= 1333)
-        {
-            Body.Texture = ImagePlant_WallNut_Cracked2;
-        }
+        //int damage = Math.Min(hurt.Damage, HP);
+        //base.Hurt(hurt);
+        //if (HP is < 2666 and >= 1333 && HP + damage >= 2666)
+        //{
+        //    Body.Texture = ImagePlant_WallNut_Cracked1;
+        //}
+        //else if (HP is < 1333 and > 0 && HP + damage >= 1333)
+        //{
+        //    Body.Texture = ImagePlant_WallNut_Cracked2;
+        //}
         TextEdit.Text = "HP: " + HP;
         AnimPauseTime = 0.3;
     }

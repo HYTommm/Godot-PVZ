@@ -8,6 +8,12 @@
 
 config_version=5
 
+[MonoCustomResourceRegistry]
+
+ClassPrefix=""
+SearchType=0
+ResourceScriptDirectories=Array[String](["res://"])
+
 [animation]
 
 warnings/check_invalid_track_paths=false
