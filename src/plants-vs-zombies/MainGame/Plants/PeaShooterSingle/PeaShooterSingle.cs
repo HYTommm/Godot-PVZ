@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;

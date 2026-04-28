@@ -3,15 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/TieZombie.tscn" id="1_on1qn"]
 [ext_resource type="Script" uid="uid://clxj4f0qup8va" path="res://MainGame/Zombies/BucketheadZombie.cs" id="2_on1qn"]
 [ext_resource type="Texture2D" uid="uid://7poa7xmnf1th" path="res://art/MainGame/Zombie/Zombie_bucket3.png" id="3_8rtu7"]
-[ext_resource type="Script" uid="uid://ca1pp3h06cn7h" path="res://MainGame/Zombies/Abc.cs" id="3_snxa1"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="3_euyr8"]
 [ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="4_euyr8"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="4_gfr37"]
 [ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="4_qljpd"]
 
-[sub_resource type="Resource" id="Resource_gfr37"]
-script = ExtResource("3_snxa1")
-metadata/_custom_type_script = "uid://ca1pp3h06cn7h"
+[sub_resource type="Resource" id="Resource_euyr8"]
+resource_local_to_scene = true
+script = ExtResource("4_gfr37")
+HP = 270
+MaxHP = 270
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqac6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfr37"]
 resource_local_to_scene = true
 shader = ExtResource("4_euyr8")
 shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
@@ -85,14 +88,13 @@ shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 [node name="BucketheadZombie" unique_id=606530632 node_paths=PackedStringArray("Zombie_bucket") instance=ExtResource("1_on1qn")]
 script = ExtResource("2_on1qn")
 Zombie_bucket = NodePath("Zombie/Anim_bucket")
-Abc = SubResource("Resource_gfr37")
+HealthStageComponent = SubResource("Resource_euyr8")
 
 [node name="Zombie" parent="." index="1" unique_id=620863438]
-material = SubResource("ShaderMaterial_tqac6")
+material = SubResource("ShaderMaterial_gfr37")
 
 [node name="Anim_bucket" parent="Zombie" index="29" unique_id=915241309]
 visible = true
-texture = ExtResource("3_8rtu7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Zombie/Anim_bucket" index="0" unique_id=438669544]
 position = Vector2(28.5653, 27.239)

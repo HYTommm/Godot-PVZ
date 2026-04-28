@@ -1,0 +1,781 @@
+[gd_scene format=3 uid="uid://c5ggt2kf230h3"]
+
+[ext_resource type="Script" uid="uid://cb75tvjr02hyu" path="res://MainGame/Zombies/PolevaulterZombie/PolevaulterZombie.cs" id="1_1jvmw"]
+[ext_resource type="Texture2D" uid="uid://bbnfxrxpmmb13" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerleg_upper.png" id="1_773rf"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="1_lmikr"]
+[ext_resource type="Texture2D" uid="uid://dht3udqgnjg5h" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerleg_foot.png" id="2_1othi"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="2_ahuu0"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="3_d7dci"]
+[ext_resource type="Texture2D" uid="uid://t680t0miuw4b" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerleg_toe.png" id="3_og776"]
+[ext_resource type="Texture2D" uid="uid://bm0q25jv85tvx" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerleg_lower.png" id="4_qxxhf"]
+[ext_resource type="Texture2D" uid="uid://chik5k4hcoeup" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_innerarm_upper.png" id="5_ahuu0"]
+[ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="5_ofnyy"]
+[ext_resource type="Texture2D" uid="uid://bc0x3d22y4p2x" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerarm_lower.png" id="7_ofnyy"]
+[ext_resource type="Texture2D" uid="uid://qkepf84lofln" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_body2.png" id="8_8caaa"]
+[ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="8_ahuu0"]
+[ext_resource type="Texture2D" uid="uid://i5rxd4smnf6e" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_body1.png" id="9_tx6pm"]
+[ext_resource type="Texture2D" uid="uid://cfm8wyfxhxfrc" path="res://art/MainGame/Zombie/Zombie_head.png" id="10_i5w36"]
+[ext_resource type="Texture2D" uid="uid://f7gtbd17h7iu" path="res://art/MainGame/Zombie/Zombie_jaw.png" id="11_uku4g"]
+[ext_resource type="Texture2D" uid="uid://4kgmcl8govgk" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_hair.png" id="12_f2vqp"]
+[ext_resource type="Texture2D" uid="uid://b4ie6ojmjj0s0" path="res://art/MainGame/Zombie/Zombie_outerarm_hand.png" id="13_jhgjb"]
+[ext_resource type="Texture2D" uid="uid://b5w55is1aek0d" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerarm_upper.png" id="14_lspeu"]
+[ext_resource type="Texture2D" uid="uid://bsicitwcw3hf" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_pole2.png" id="16_ut14c"]
+[ext_resource type="Texture2D" uid="uid://c1a88kdng2x3v" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_pole.png" id="17_ds1ey"]
+[ext_resource type="Texture2D" uid="uid://cd0wuixgv8583" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_innerleg_upper.png" id="20_4p8gh"]
+[ext_resource type="Texture2D" uid="uid://dmtmiebhmtto0" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_innerleg_foot.png" id="21_dl5t4"]
+[ext_resource type="Texture2D" uid="uid://445d70ddlvdx" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_innerleg_toe.png" id="22_08pug"]
+[ext_resource type="Texture2D" uid="uid://dmves5ke2km6t" path="res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_innerleg_lower.png" id="23_dv2nt"]
+[ext_resource type="Animation" uid="uid://dmau5xldtkxtg" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_idle.tres" id="24_y00o3"]
+[ext_resource type="Animation" uid="uid://c10dnmyelj1g7" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_run.tres" id="25_atqw7"]
+[ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="26_ahuu0"]
+[ext_resource type="Animation" uid="uid://bmu82qp20674e" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_jump.tres" id="26_u7gpx"]
+[ext_resource type="Animation" uid="uid://c4mqtoc00wbg" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_walk.tres" id="27_d3dil"]
+[ext_resource type="Texture2D" uid="uid://cfmjwty1wml7k" path="res://particles/ZombiePoleVaulterHead.png" id="27_d7dci"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="27_poec6"]
+[ext_resource type="Animation" uid="uid://dkpqho05dsqip" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_death.tres" id="28_aikk0"]
+[ext_resource type="Animation" uid="uid://d4ng15dgbj8og" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_eat.tres" id="29_7ri4d"]
+[ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="30_1othi"]
+[ext_resource type="Animation" uid="uid://blfnv65ialj06" path="res://MainGame/LawnMower/LawnMoweredZombie.tres" id="36_d7dci"]
+
+[sub_resource type="Resource" id="Resource_i5w36"]
+resource_local_to_scene = true
+script = ExtResource("3_d7dci")
+HP = 270
+MaxHP = 270
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8caaa"]
+resource_local_to_scene = true
+shader = ExtResource("5_ofnyy")
+shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_d7dci"]
+_data = [Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_178r6"]
+curve = SubResource("Curve_d7dci")
+
+[sub_resource type="Curve" id="Curve_ofnyy"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_focp1"]
+curve = SubResource("Curve_ofnyy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8caaa"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0.8, 1, 0)
+spread = 47.5
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+angular_velocity_curve = SubResource("CurveTexture_focp1")
+gravity = Vector3(0, 150, 0)
+scale_min = 0.8
+scale_max = 0.8
+alpha_curve = SubResource("CurveTexture_178r6")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.4
+collision_use_scale = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmikr"]
+size = Vector2(42, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tuwp"]
+size = Vector2(20, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jvmw"]
+size = Vector2(70, 115)
+
+[sub_resource type="Animation" id="Animation_d7dci"]
+resource_name = "RESET"
+step = 0.083333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie/Anim_idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zombie/Anim_run:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Zombie/Anim_jump:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Zombie/Anim_walk:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Zombie/Anim_death:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Zombie/Anim_eat:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Zombie/_ground:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Zombie/Zombie_polevaulter_pole2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Zombie/Zombie_polevaulter_pole:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Zombie/Zombie_polevaulter_innerhand:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Zombie/Zombie_polevaulter_innerleg_upper:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Zombie/Zombie_polevaulter_innerleg_foot:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Zombie/Zombie_polevaulter_innerleg_toe:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Zombie/Zombie_polevaulter_innerleg_lower:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Zombie/Zombie_polevaulter_outerleg_upper:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Zombie/Zombie_polevaulter_outerleg_foot:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Zombie/Zombie_polevaulter_outerleg_toe:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Zombie/Zombie_polevaulter_outerleg_lower:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Zombie/Zombie_polevaulter_innerarm_upper:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Zombie/Zombie_polevaulter_innerarm_lower:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Zombie/Zombie_polevaulter_body2:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Zombie/Zombie_polevaulter_body1:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Zombie/Anim_head1:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Zombie/Anim_head2:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Zombie/Anim_hair:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Zombie/Zombie_outerarm_hand:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Zombie/Zombie_polevaulter_outerarm_upper:visible")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Zombie/Zombie_polevaulter_outerarm_lower:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Zombie/Particle_ZombieArm:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Zombie/Particle_ZombieHead:visible")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofnyy"]
+_data = {
+&"LawnMoweredZombie": ExtResource("36_d7dci"),
+&"RESET": SubResource("Animation_d7dci")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og776"]
+_data = {
+&"death": ExtResource("28_aikk0"),
+&"eat": ExtResource("29_7ri4d"),
+&"idle": ExtResource("24_y00o3"),
+&"jump": ExtResource("26_u7gpx"),
+&"run": ExtResource("25_atqw7"),
+&"walk": ExtResource("27_d3dil")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lr0jr"]
+closed = false
+polygon = PackedVector2Array(0, 0, 200, 0)
+
+[node name="PolevaulterZombie" type="Node2D" unique_id=756120486 node_paths=PackedStringArray("Animation", "AnimCharred", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "ZombieArmParticles", "ZombieHeadParticles")]
+script = ExtResource("1_1jvmw")
+Animation = NodePath("AnimationPlayer")
+AnimCharred = NodePath("ZombieCharred/AnimLib")
+Ground = NodePath("Zombie/_ground")
+Shadow = NodePath("Shadow")
+_textEdit = NodePath("TextEdit")
+_bodyPartsHalfHealth = [NodePath("Zombie/Zombie_outerarm_hand"), NodePath("Zombie/Zombie_polevaulter_outerarm_lower")]
+_bodyPartsDying = [NodePath("Zombie/Anim_head1"), NodePath("Zombie/Anim_head2"), NodePath("Zombie/Anim_hair"), NodePath("Zombie/Zombie_polevaulter_innerarm_upper"), NodePath("Zombie/Zombie_polevaulter_innerarm_lower"), NodePath("Zombie/Zombie_polevaulter_innerhand"), NodePath("Zombie/Zombie_polevaulter_pole"), NodePath("Zombie/Zombie_polevaulter_pole2")]
+Body = NodePath("Zombie")
+Anim_innerArm1 = NodePath("Zombie/Zombie_polevaulter_innerarm_upper")
+Anim_innerArm2 = NodePath("Zombie/Zombie_polevaulter_innerarm_lower")
+Anim_innerArm3 = NodePath("Zombie/Zombie_polevaulter_innerhand")
+Zombie_outerarm_upper = NodePath("Zombie/Zombie_polevaulter_outerarm_upper")
+Zombie_outerarm_lower = NodePath("Zombie/Zombie_polevaulter_outerarm_lower")
+Zombie_outerarm_hand = NodePath("Zombie/Zombie_outerarm_hand")
+Zombie_head = NodePath("Zombie/Anim_head1")
+Zombie_jaw = NodePath("Zombie/Anim_head2")
+Zombie_hair = NodePath("Zombie/Anim_hair")
+ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
+ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
+HealthStageComponent = SubResource("Resource_i5w36")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1839202710]
+position = Vector2(32.009003, 92)
+scale = Vector2(1.001, 1)
+texture = ExtResource("1_lmikr")
+centered = false
+
+[node name="Zombie" type="CanvasGroup" parent="." unique_id=99789485]
+material = SubResource("ShaderMaterial_8caaa")
+position = Vector2(7, -20)
+scale = Vector2(1.001, 1)
+
+[node name="Anim_idle" type="Sprite2D" parent="Zombie" unique_id=976879972]
+centered = false
+
+[node name="Anim_run" type="Sprite2D" parent="Zombie" unique_id=473291522]
+visible = false
+position = Vector2(6.1, 27.1)
+rotation = 0.087266
+scale = Vector2(0.993, 0.995)
+skew = 0.0034911
+centered = false
+
+[node name="Anim_jump" type="Sprite2D" parent="Zombie" unique_id=799647676]
+visible = false
+position = Vector2(6.1, 27.1)
+rotation = 0.087266
+scale = Vector2(0.993, 0.995)
+skew = 0.0034911
+centered = false
+
+[node name="Anim_walk" type="Sprite2D" parent="Zombie" unique_id=1408054068]
+visible = false
+position = Vector2(6.1, 27.1)
+rotation = 0.087266
+scale = Vector2(0.993, 0.995)
+skew = 0.0034911
+centered = false
+
+[node name="Anim_death" type="Sprite2D" parent="Zombie" unique_id=303955092]
+visible = false
+centered = false
+
+[node name="Anim_eat" type="Sprite2D" parent="Zombie" unique_id=1235293470]
+visible = false
+centered = false
+
+[node name="_ground" type="Sprite2D" parent="Zombie" unique_id=1191708396]
+visible = false
+position = Vector2(-59.8, 70.1)
+centered = false
+
+[node name="Zombie_polevaulter_pole2" type="Sprite2D" parent="Zombie" unique_id=162472535]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-7.5, 133.9)
+rotation = -3.139847
+scale = Vector2(1.221, 0.791)
+skew = -0.0453788
+texture = ExtResource("16_ut14c")
+centered = false
+
+[node name="Zombie_polevaulter_pole" type="Sprite2D" parent="Zombie" unique_id=1039604311]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-44, 134.1)
+rotation = -3.138102
+scale = Vector2(0.789, 0.788)
+skew = 0.0034906
+texture = ExtResource("17_ds1ey")
+centered = false
+
+[node name="Zombie_polevaulter_innerhand" type="Sprite2D" parent="Zombie" unique_id=1408499850]
+position = Vector2(29.7, 83.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_ahuu0")
+centered = false
+
+[node name="Zombie_polevaulter_innerleg_upper" type="Sprite2D" parent="Zombie" unique_id=248739420]
+position = Vector2(59.9, 90.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("20_4p8gh")
+centered = false
+
+[node name="Zombie_polevaulter_innerleg_foot" type="Sprite2D" parent="Zombie" unique_id=127887160]
+position = Vector2(44, 115.1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("21_dl5t4")
+centered = false
+
+[node name="Zombie_polevaulter_innerleg_toe" type="Sprite2D" parent="Zombie" unique_id=700379348]
+position = Vector2(51.4, 117.3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("22_08pug")
+centered = false
+
+[node name="Zombie_polevaulter_innerleg_lower" type="Sprite2D" parent="Zombie" unique_id=710515635]
+position = Vector2(49.1, 96.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("23_dv2nt")
+centered = false
+
+[node name="Zombie_polevaulter_outerleg_upper" type="Sprite2D" parent="Zombie" unique_id=713017482]
+position = Vector2(70.4, 89.3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_773rf")
+centered = false
+
+[node name="Zombie_polevaulter_outerleg_foot" type="Sprite2D" parent="Zombie" unique_id=850019895]
+position = Vector2(66.6, 121)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_1othi")
+centered = false
+
+[node name="Zombie_polevaulter_outerleg_toe" type="Sprite2D" parent="Zombie" unique_id=2001896465]
+position = Vector2(58.5, 122)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_og776")
+centered = false
+
+[node name="Zombie_polevaulter_outerleg_lower" type="Sprite2D" parent="Zombie" unique_id=1565997510]
+position = Vector2(71.2, 99.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_qxxhf")
+centered = false
+
+[node name="Zombie_polevaulter_innerarm_upper" type="Sprite2D" parent="Zombie" unique_id=2102850508]
+position = Vector2(36.2, 66.5)
+rotation = -1.226966
+scale = Vector2(0.798, 0.798)
+texture = ExtResource("5_ahuu0")
+centered = false
+
+[node name="Zombie_polevaulter_innerarm_lower" type="Sprite2D" parent="Zombie" unique_id=1458829766]
+position = Vector2(27, 65.9)
+rotation = -0.256563
+scale = Vector2(0.799, 0.838)
+texture = ExtResource("7_ofnyy")
+centered = false
+
+[node name="Zombie_polevaulter_body2" type="Sprite2D" parent="Zombie" unique_id=1625912922]
+position = Vector2(55.9, 69.1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_8caaa")
+centered = false
+
+[node name="Zombie_polevaulter_body1" type="Sprite2D" parent="Zombie" unique_id=224440673]
+position = Vector2(40.1, 39)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_tx6pm")
+centered = false
+
+[node name="Anim_head1" type="Sprite2D" parent="Zombie" unique_id=749872585]
+position = Vector2(20.5, 11.3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_i5w36")
+centered = false
+
+[node name="Anim_head2" type="Sprite2D" parent="Zombie" unique_id=1882003639]
+position = Vector2(25.5, 43.3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11_uku4g")
+centered = false
+
+[node name="Anim_hair" type="Sprite2D" parent="Zombie" unique_id=919879286]
+position = Vector2(12.9, 6.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_f2vqp")
+centered = false
+
+[node name="Zombie_outerarm_hand" type="Sprite2D" parent="Zombie" unique_id=968258632]
+position = Vector2(46.1, 87.4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_jhgjb")
+centered = false
+
+[node name="Zombie_polevaulter_outerarm_upper" type="Sprite2D" parent="Zombie" unique_id=1258234428]
+position = Vector2(63.3, 50)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("14_lspeu")
+centered = false
+
+[node name="Zombie_polevaulter_outerarm_lower" type="Sprite2D" parent="Zombie" unique_id=497498919]
+position = Vector2(50.6, 67.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_ofnyy")
+centered = false
+
+[node name="Particle_ZombieArm" type="GPUParticles2D" parent="Zombie" unique_id=637696046]
+position = Vector2(42, 83)
+emitting = false
+amount = 1
+texture = ExtResource("13_jhgjb")
+lifetime = 0.6
+one_shot = true
+collision_base_size = 0.8
+process_material = SubResource("ParticleProcessMaterial_8caaa")
+
+[node name="Particle_ZombieHead" type="GPUParticles2D" parent="Zombie" unique_id=1368292255]
+position = Vector2(27, 30)
+emitting = false
+amount = 1
+texture = ExtResource("27_d7dci")
+lifetime = 3.6
+one_shot = true
+speed_scale = 2.0
+collision_base_size = 0.8
+process_material = ExtResource("26_ahuu0")
+
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=360720330]
+position = Vector2(36.036, 0)
+scale = Vector2(1.001, 1)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("27_poec6")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="Body" type="CollisionShape2D" parent="DefenseHitBox" unique_id=489788785]
+position = Vector2(21, 57.5)
+shape = SubResource("RectangleShape2D_lmikr")
+debug_color = Color(0.7, 0.55, 0.25, 0.42)
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=707121413]
+position = Vector2(20.02, 0)
+scale = Vector2(1.001, 1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("27_poec6")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="Body" type="CollisionShape2D" parent="AttackHitBox" unique_id=988959377]
+position = Vector2(40, 57.5)
+shape = SubResource("RectangleShape2D_7tuwp")
+debug_color = Color(0.65, 0.35, 0.7, 0.42)
+
+[node name="DetectionHitBox" type="Area2D" parent="." unique_id=216388836]
+position = Vector2(6, 0)
+scale = Vector2(1.001, 1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("27_poec6")
+AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
+
+[node name="Body" type="CollisionShape2D" parent="DetectionHitBox" unique_id=1094305976]
+position = Vector2(0, 57.5)
+shape = SubResource("RectangleShape2D_1jvmw")
+debug_color = Color(0.65, 0.35, 0.7, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1505056956]
+libraries/ = SubResource("AnimationLibrary_ofnyy")
+libraries/PolevaulterZombie = SubResource("AnimationLibrary_og776")
+
+[node name="ZombieCharred" parent="." unique_id=1944765440 instance=ExtResource("30_1othi")]
+visible = false
+position = Vector2(7, -3)
+
+[node name="Anim_blink" parent="ZombieCharred" index="0"]
+visible = true
+
+[node name="Anim_crumble" parent="ZombieCharred" index="1"]
+visible = false
+
+[node name="Zombie_charred_blink" parent="ZombieCharred" index="11"]
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = null
+
+[node name="GroundConstraint" type="LightOccluder2D" parent="." unique_id=1202625971]
+position = Vector2(-20, 125)
+occluder = SubResource("OccluderPolygon2D_lr0jr")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1539871259]
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10
+editable = false
+
+[editable path="ZombieCharred"]

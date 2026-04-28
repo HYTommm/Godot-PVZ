@@ -130,10 +130,10 @@ public partial class MainGame : MainNode2D
         //RNG.Randomize();// 随机种子
         _zombieWeightsAndGrades.SetZombieAllowed([
             //ZombieTypeEnum.Normal,
-            ZombieTypeEnum.Conehead,
+            //ZombieTypeEnum.Conehead,
             //ZombieTypeEnum.Buckethead,
             //ZombieTypeEnum.Screendoor,
-            //ZombieTypeEnum.Polevaulter
+            ZombieTypeEnum.Polevaulter
         ]);
         //GetNode<Node>("/root").PrintTreePretty();
         GameScene = new LawnDayScene(Global.Instance);// 设置场景

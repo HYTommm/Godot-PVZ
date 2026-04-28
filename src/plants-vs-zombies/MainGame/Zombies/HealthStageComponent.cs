@@ -251,7 +251,7 @@ public partial class HealthStageComponent : Resource
         // 使用 List.AddRange + 排序 代替 LINQ 来减少分配
         _sortedStages.AddRange(configStages);
         _sortedStages.AddRange(_bindStages.Values);
-        _sortedStages.Sort((a, b) => b.Threshold.CompareTo(a.Threshold)); // 降序
+        _sortedStages.Sort((a, b) => a.Threshold.CompareTo(b.Threshold)); // 降序
     }
 
     // ========== 伤害处理 ==========

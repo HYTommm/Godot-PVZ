@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dabglov501p8b" path="res://MainGame/Zombies/TieZombie.cs" id="1_1shv0"]
 [ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="1_3r6sd"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="2_0sxjp"]
 [ext_resource type="Texture2D" uid="uid://duupl3i5ni35a" path="res://art/MainGame/Zombie/Zombie_innerarm_hand.png" id="2_6pykm"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="2_hyt8k"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="3_c1b70"]
 [ext_resource type="Texture2D" uid="uid://cunx0aweq2j5h" path="res://art/MainGame/Zombie/Zombie_innerarm_lower.png" id="3_jlj50"]
 [ext_resource type="Animation" uid="uid://cg1blsddwv2x6" path="res://MainGame/Zombies/Death.tres" id="4_3lsko"]
 [ext_resource type="Texture2D" uid="uid://b8t4gsiwru5v4" path="res://art/MainGame/Zombie/Zombie_innerarm_upper.png" id="4_p8jt5"]
@@ -42,6 +44,12 @@
 [ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="39_gvoti"]
 [ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="40_7rhiy"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="40_xoh5b"]
+
+[sub_resource type="Resource" id="Resource_i5w36"]
+resource_local_to_scene = true
+script = ExtResource("3_c1b70")
+HP = 270
+MaxHP = 270
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3r6sd"]
 resource_local_to_scene = true
@@ -192,12 +200,16 @@ size = Vector2(50, 115)
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("_animation", "_animCharred", "Ground", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
+[node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("Animation", "AnimCharred", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
 z_index = 1
 script = ExtResource("1_1shv0")
-_animation = NodePath("Zombie/AnimationPlayer")
-_animCharred = NodePath("ZombieCharred/AnimLib")
+Animation = NodePath("Zombie/AnimationPlayer")
+AnimCharred = NodePath("ZombieCharred/AnimLib")
 Ground = NodePath("Zombie/_ground")
+Shadow = NodePath("Shadow")
+_textEdit = NodePath("TextEdit")
+_bodyPartsHalfHealth = [NodePath("Zombie/Zombie_outerarm_hand"), NodePath("Zombie/Zombie_outerarm_lower")]
+_bodyPartsDying = [NodePath("Zombie/Anim_head1"), NodePath("Zombie/Anim_head2"), NodePath("Zombie/Anim_hair")]
 Body = NodePath("Zombie")
 Anim_innerArm1 = NodePath("Zombie/Anim_innerarm1")
 Anim_innerArm2 = NodePath("Zombie/Anim_innerarm2")
@@ -211,6 +223,7 @@ Zombie_hair = NodePath("Zombie/Anim_hair")
 Zombie_tongue = NodePath("Zombie/Anim_tongue")
 ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
 ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
+HealthStageComponent = SubResource("Resource_i5w36")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1830449369]
 position = Vector2(24.009, 99)
@@ -379,7 +392,6 @@ texture = ExtResource("24_dj3m6")
 centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="Zombie" unique_id=420245856]
-visible = false
 position = Vector2(32.9, 83.1)
 rotation = 6.23083
 scale = Vector2(0.8, 0.8)
@@ -394,7 +406,6 @@ texture = ExtResource("20_aioke")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="Zombie" unique_id=2117847408]
-visible = false
 position = Vector2(36.3, 66)
 rotation = 6.23083
 scale = Vector2(0.8, 0.8)
@@ -443,7 +454,7 @@ speed_scale = 2.0
 collision_base_size = 0.8
 process_material = ExtResource("39_gvoti")
 
-[node name="DefenseArea" type="Area2D" parent="." unique_id=307620065]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=307620065]
 position = Vector2(36.036, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 4
@@ -453,12 +464,12 @@ script = ExtResource("40_xoh5b")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="Body" type="CollisionShape2D" parent="DefenseArea" unique_id=1526612776]
+[node name="Body" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1526612776]
 position = Vector2(21, 57.5)
 shape = SubResource("RectangleShape2D_o7o7o")
 debug_color = Color(0.7, 0.55, 0.25, 0.42)
 
-[node name="AttackArea" type="Area2D" parent="." unique_id=1955070829]
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=1955070829]
 position = Vector2(20.02, 0)
 scale = Vector2(1.001, 1)
 collision_layer = 0
@@ -468,7 +479,7 @@ script = ExtResource("40_xoh5b")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="Body" type="CollisionShape2D" parent="AttackArea" unique_id=79993137]
+[node name="Body" type="CollisionShape2D" parent="AttackHitBox" unique_id=79993137]
 position = Vector2(25, 57.5)
 shape = SubResource("RectangleShape2D_acqne")
 debug_color = Color(0.65, 0.35, 0.7, 0.42)

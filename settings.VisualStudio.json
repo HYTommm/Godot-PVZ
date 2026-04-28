@@ -1,0 +1,25 @@
+/* Visual Studio Settings File */
+{
+  "environment.tasklist.tokens": [
+    {
+      "text": "HACK",
+      "priority": "normal"
+    },
+    {
+      "text": "UNDONE",
+      "priority": "normal"
+    },
+    {
+      "text": "UnresolvedMergeConflict",
+      "priority": "high"
+    },
+    {
+      "text": "OPTIMIZE",
+      "priority": "high"
+    },
+    {
+      "text": "PERF",
+      "priority": "low"
+    }
+  ]
+}

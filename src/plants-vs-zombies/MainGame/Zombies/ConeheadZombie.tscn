@@ -4,9 +4,17 @@
 [ext_resource type="Script" uid="uid://c04msrsgs6opl" path="res://MainGame/Zombies/ConeheadZombie.cs" id="2_0dedt"]
 [ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="3_23mob"]
 [ext_resource type="Texture2D" uid="uid://cmyr866hx6nrq" path="res://art/MainGame/Zombie/Zombie_cone3.png" id="3_lx01r"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="3_r0k4n"]
 [ext_resource type="Shader" uid="uid://cikju0ectkkms" path="res://shader/Mypartical.gdshader" id="4_23mob"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="4_nisvg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23mob"]
+[sub_resource type="Resource" id="Resource_i5w36"]
+resource_local_to_scene = true
+script = ExtResource("4_nisvg")
+HP = 270
+MaxHP = 270
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrcq1"]
 resource_local_to_scene = true
 shader = ExtResource("3_23mob")
 shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
@@ -77,12 +85,15 @@ shader_parameter/alpha_curve = SubResource("CurveTexture_23mob")
 shader_parameter/angular_velocity_texture = SubResource("CurveTexture_r0k4n")
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
-[node name="ConeheadZombie" unique_id=1577869842 node_paths=PackedStringArray("Zombie_cone") instance=ExtResource("1_ank4t")]
+[node name="ConeheadZombie" unique_id=1577869842 node_paths=PackedStringArray("Zombie_cone", "Shadow", "_textEdit") instance=ExtResource("1_ank4t")]
 script = ExtResource("2_0dedt")
 Zombie_cone = NodePath("Zombie/Anim_cone")
+Shadow = NodePath("Shadow")
+_textEdit = NodePath("TextEdit")
+HealthStageComponent = SubResource("Resource_i5w36")
 
 [node name="Zombie" parent="." index="1" unique_id=620863438]
-material = SubResource("ShaderMaterial_23mob")
+material = SubResource("ShaderMaterial_xrcq1")
 
 [node name="Anim_cone" parent="Zombie" index="28" unique_id=1845216620]
 visible = true
