@@ -65,5 +65,3 @@ scale = Vector2(0.796, 0.796)
 position = Vector2(37.4, 50.6)
 rotation = 1.7366
 scale = Vector2(0.799, 0.799)
-
-[editable path="ZombieCharred"]

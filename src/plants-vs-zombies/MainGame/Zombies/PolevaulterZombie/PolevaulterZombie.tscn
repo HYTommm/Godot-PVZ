@@ -34,7 +34,6 @@
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="27_poec6"]
 [ext_resource type="Animation" uid="uid://dkpqho05dsqip" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_death.tres" id="28_aikk0"]
 [ext_resource type="Animation" uid="uid://d4ng15dgbj8og" path="res://MainGame/Zombies/PolevaulterZombie/Zombie_polevaulter_eat.tres" id="29_7ri4d"]
-[ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="30_1othi"]
 [ext_resource type="Animation" uid="uid://blfnv65ialj06" path="res://MainGame/LawnMower/LawnMoweredZombie.tres" id="36_d7dci"]
 
 [sub_resource type="Resource" id="Resource_i5w36"]
@@ -475,10 +474,9 @@ _data = {
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="PolevaulterZombie" type="Node2D" unique_id=756120486 node_paths=PackedStringArray("Animation", "AnimCharred", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "ZombieArmParticles", "ZombieHeadParticles")]
+[node name="PolevaulterZombie" type="Node2D" unique_id=756120486 node_paths=PackedStringArray("Animation", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "ZombieArmParticles", "ZombieHeadParticles")]
 script = ExtResource("1_1jvmw")
 Animation = NodePath("AnimationPlayer")
-AnimCharred = NodePath("ZombieCharred/AnimLib")
 Ground = NodePath("Zombie/_ground")
 Shadow = NodePath("Shadow")
 _textEdit = NodePath("TextEdit")
@@ -753,20 +751,6 @@ debug_color = Color(0.65, 0.35, 0.7, 0.42)
 libraries/ = SubResource("AnimationLibrary_ofnyy")
 libraries/PolevaulterZombie = SubResource("AnimationLibrary_og776")
 
-[node name="ZombieCharred" parent="." unique_id=1944765440 instance=ExtResource("30_1othi")]
-visible = false
-position = Vector2(7, -3)
-
-[node name="Anim_blink" parent="ZombieCharred" index="0"]
-visible = true
-
-[node name="Anim_crumble" parent="ZombieCharred" index="1"]
-visible = false
-
-[node name="Zombie_charred_blink" parent="ZombieCharred" index="11"]
-position = Vector2(0, 0)
-scale = Vector2(1, 1)
-texture = null
 
 [node name="GroundConstraint" type="LightOccluder2D" parent="." unique_id=1202625971]
 position = Vector2(-20, 125)
@@ -778,4 +762,3 @@ offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 editable = false
 
-[editable path="ZombieCharred"]

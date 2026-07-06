@@ -42,7 +42,6 @@
 [ext_resource type="Texture2D" uid="uid://dfa4gh7yk78ip" path="res://art/MainGame/Zombie/Zombie_bucket1.png" id="30_1mwa4"]
 [ext_resource type="Texture2D" uid="uid://duy6qu0e54kto" path="res://particles/ZombieArm.png" id="32_rbuq3"]
 [ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="39_gvoti"]
-[ext_resource type="PackedScene" uid="uid://biw5dtgokpd6o" path="res://MainGame/Zombies/Zombie_charred.tscn" id="40_7rhiy"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="40_xoh5b"]
 
 [sub_resource type="Resource" id="Resource_i5w36"]
@@ -200,11 +199,10 @@ size = Vector2(50, 115)
 closed = false
 polygon = PackedVector2Array(0, 0, 200, 0)
 
-[node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("Animation", "AnimCharred", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
+[node name="BaseZombie" type="Node2D" unique_id=367011916 node_paths=PackedStringArray("Animation", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "Zombie_tongue", "ZombieArmParticles", "ZombieHeadParticles")]
 z_index = 1
 script = ExtResource("1_1shv0")
 Animation = NodePath("Zombie/AnimationPlayer")
-AnimCharred = NodePath("ZombieCharred/AnimLib")
 Ground = NodePath("Zombie/_ground")
 Shadow = NodePath("Shadow")
 _textEdit = NodePath("TextEdit")
@@ -484,20 +482,6 @@ position = Vector2(25, 57.5)
 shape = SubResource("RectangleShape2D_acqne")
 debug_color = Color(0.65, 0.35, 0.7, 0.42)
 
-[node name="ZombieCharred" parent="." unique_id=929791685 instance=ExtResource("40_7rhiy")]
-visible = false
-position = Vector2(7, -3)
-
-[node name="Anim_blink" parent="ZombieCharred" index="0"]
-visible = true
-
-[node name="Anim_crumble" parent="ZombieCharred" index="1"]
-visible = false
-
-[node name="Zombie_charred_blink" parent="ZombieCharred" index="11"]
-position = Vector2(0, 0)
-scale = Vector2(1, 1)
-texture = null
 
 [node name="GroundConstraint" type="LightOccluder2D" parent="." unique_id=905125144]
 position = Vector2(-20, 125)
@@ -510,4 +494,3 @@ theme_override_font_sizes/font_size = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1924282134]
 
-[editable path="ZombieCharred"]

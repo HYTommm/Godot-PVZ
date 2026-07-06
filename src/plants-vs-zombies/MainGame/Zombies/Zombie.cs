@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 
 public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect

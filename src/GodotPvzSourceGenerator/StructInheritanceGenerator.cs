@@ -9,15 +9,15 @@ using System.Linq;
 using System.Text;
 
 // StructInheritanceAttribute.cs
-namespace StructInheritance
-{
-    [AttributeUsage(AttributeTargets.Struct, AllowMultiple = true, Inherited = false)]
-    public sealed class StructInheritanceAttribute(Type sourceType) : Attribute
-    {
-        public Type SourceType { get; } = sourceType;
-        public bool IncludeNonPublic { get; set; } // 可选扩展
-    }
-}
+//namespace StructInheritance
+//{
+//    [AttributeUsage(AttributeTargets.Struct, AllowMultiple = true, Inherited = false)]
+//    internal sealed class StructInheritanceAttribute(Type sourceType) : Attribute
+//    {
+//        public Type SourceType { get; } = sourceType;
+//        public bool IncludeNonPublic { get; set; } // 可选扩展
+//    }
+//}
 
 
 

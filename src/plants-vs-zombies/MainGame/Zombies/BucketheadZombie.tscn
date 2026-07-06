@@ -109,4 +109,3 @@ process_material = SubResource("ShaderMaterial_a30si")
 [node name="TextEdit" parent="." index="6" unique_id=1260382652]
 text = "bucket"
 
-[editable path="ZombieCharred"]

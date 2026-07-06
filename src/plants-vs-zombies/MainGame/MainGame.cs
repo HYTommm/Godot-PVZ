@@ -133,7 +133,8 @@ public partial class MainGame : MainNode2D
             //ZombieTypeEnum.Conehead,
             //ZombieTypeEnum.Buckethead,
             //ZombieTypeEnum.Screendoor,
-            ZombieTypeEnum.Polevaulter
+            //ZombieTypeEnum.Polevaulter
+            ZombieTypeEnum.Newspaper
         ]);
         //GetNode<Node>("/root").PrintTreePretty();
         GameScene = new LawnDayScene(Global.Instance);// 设置场景

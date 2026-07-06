@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using StructInheritance;
 using static ResourceDB.Sounds;

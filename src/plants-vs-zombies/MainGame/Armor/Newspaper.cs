@@ -22,7 +22,7 @@ public partial class Newspaper : Armor
         HealthStageComponent.Defaults.StageZero.Action += Die;
     }
 
-    public override HealthStageComponent HealthStageComponent { get; set; } = new(150);
+    public sealed override HealthStageComponent HealthStageComponent { get; set; } = new(150);
 
     public override void PlaySound(Hurt hurt)
     {

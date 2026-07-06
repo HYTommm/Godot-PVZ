@@ -68,7 +68,6 @@ public partial class PolevaulterZombie : RegularZombie
         // 它们需要访问 _stateMachine。
         AddChild(_stateMachine = new StateMachine<PoleState>(PoleState.Run));
         _stateMachine.StateChanged += OnPoleStateChanged;
-        ZombieCharredNode2D = GetNodeOrNull<Node2D>("./ZombieCharred");
         base._Ready();
 
         // 触发初始状态（Run），播放奔跑动画

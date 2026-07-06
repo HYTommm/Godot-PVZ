@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://wxy20jo5c5rr"]
+
+[ext_resource type="Texture2D" uid="uid://bgqnwpreov4t5" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_rightarm_upper.png" id="0_fuck"]
+[ext_resource type="Animation" uid="uid://dfot5xlnwweku" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_death.tres" id="1_anim"]
+[ext_resource type="Texture2D" uid="uid://dojqoh43osatm" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_rightarm_lower.png" id="1_fuck"]
+[ext_resource type="Animation" uid="uid://c70mxalj1r7ug" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_eat.tres" id="2_anim"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="2_xthp6"]
+[ext_resource type="Animation" uid="uid://cn5oxvdimddki" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_eat_nopaper.tres" id="3_anim"]
+[ext_resource type="Texture2D" uid="uid://bl6nam4kt76ag" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_lowerbody2.png" id="3_fuck"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="3_t4mxb"]
+[ext_resource type="Animation" uid="uid://bhdc5r2yfm3qq" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_walk.tres" id="4_anim"]
+[ext_resource type="Texture2D" uid="uid://cyn82jfg3ttl5" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_rightleg_upper.png" id="4_fuck"]
+[ext_resource type="Animation" uid="uid://bvjqy2u3amlx4" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_walk_nopaper.tres" id="5_anim"]
+[ext_resource type="Texture2D" uid="uid://dxaridw05scr0" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_rightleg_lower.png" id="5_fuck"]
+[ext_resource type="Animation" uid="uid://d3lxhldc5g5br" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_idle.tres" id="6_anim"]
+[ext_resource type="Texture2D" uid="uid://dgtxq1o6jm11v" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_rightfoot.png" id="6_fuck"]
+[ext_resource type="Animation" uid="uid://cky8ipvmrjkwv" path="res://MainGame/Zombies/NewspaperZombie/Zombie_paper_gasp.tres" id="7_anim"]
+[ext_resource type="Texture2D" uid="uid://dsun8bi5v6n6b" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftleg_upper.png" id="7_fuck"]
+[ext_resource type="Texture2D" uid="uid://cm7mauaf0lerx" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftleg_lower.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://btdnkygp1wquh" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftfoot.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://ihd0w3xi142g" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_lowerbody1.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://dfoii3pjy7oef" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_body.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://bd0d6jl1x728d" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftarm_upper.png" id="12_fuck"]
+[ext_resource type="Texture2D" uid="uid://dv7tteopavafx" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftarm_lower.png" id="14_fuck"]
+[ext_resource type="Texture2D" uid="uid://djc7hfu1n8puc" path="res://art/MainGame/Zombie/Zombie_hair.png" id="15_fuck"]
+[ext_resource type="Texture2D" uid="uid://cfm8wyfxhxfrc" path="res://art/MainGame/Zombie/Zombie_head.png" id="16_fuck"]
+[ext_resource type="Texture2D" uid="uid://dwxeukspcu6p6" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_hairpiece.png" id="19_fuck"]
+[ext_resource type="Texture2D" uid="uid://f7gtbd17h7iu" path="res://art/MainGame/Zombie/Zombie_jaw.png" id="20_fuck"]
+[ext_resource type="Texture2D" uid="uid://dcivdgvf88up0" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_glasses.png" id="21_fuck"]
+[ext_resource type="Texture2D" uid="uid://t8240874j5r" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_paper1.png" id="22_fuck"]
+[ext_resource type="Texture2D" uid="uid://c17pxvyaoly3l" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_hands.png" id="23_q5x5t"]
+[ext_resource type="Script" uid="uid://cey81fbthu60e" path="res://MainGame/Zombies/NewspaperZombie/NewspaperZombie.cs" id="25_script"]
+[ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="26_hitbox"]
+[ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="27_shadow"]
+
+[sub_resource type="Resource" id="Resource_8pujl"]
+resource_local_to_scene = true
+script = ExtResource("3_t4mxb")
+HP = 270
+MaxHP = 270
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuck"]
+_data = {
+&"death": ExtResource("1_anim"),
+&"eat": ExtResource("2_anim"),
+&"eat_nopaper": ExtResource("3_anim"),
+&"gasp": ExtResource("7_anim"),
+&"idle": ExtResource("6_anim"),
+&"walk": ExtResource("4_anim"),
+&"walk_nopaper": ExtResource("5_anim")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_defense"]
+size = Vector2(42, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(50, 115)
+
+[node name="NewspaperZombie" type="Node2D" unique_id=611633380 node_paths=PackedStringArray("Animation", "Ground", "Shadow", "_textEdit", "Body")]
+script = ExtResource("25_script")
+Animation = NodePath("AnimLib")
+Ground = NodePath("Zombie/_ground")
+Shadow = NodePath("Shadow")
+_textEdit = NodePath("TextEdit")
+Body = NodePath("Zombie")
+HealthStageComponent = SubResource("Resource_8pujl")
+
+[node name="Zombie" type="CanvasGroup" parent="." unique_id=619559448]
+
+[node name="Anim_death" type="Sprite2D" parent="Zombie" unique_id=1557149941]
+visible = false
+centered = false
+
+[node name="Anim_eat" type="Sprite2D" parent="Zombie" unique_id=412561792]
+visible = false
+centered = false
+
+[node name="Anim_eat_nopaper" type="Sprite2D" parent="Zombie" unique_id=2028741588]
+visible = false
+centered = false
+
+[node name="Anim_walk" type="Sprite2D" parent="Zombie" unique_id=1699501497]
+centered = false
+
+[node name="Anim_walk_nopaper" type="Sprite2D" parent="Zombie" unique_id=777549817]
+visible = false
+centered = false
+
+[node name="Anim_idle" type="Sprite2D" parent="Zombie" unique_id=177737211]
+visible = false
+centered = false
+
+[node name="Anim_gasp" type="Sprite2D" parent="Zombie" unique_id=1366662812]
+visible = false
+centered = false
+
+[node name="_ground" type="Sprite2D" parent="Zombie" unique_id=1027961132]
+position = Vector2(-59.8, 125.1)
+centered = false
+
+[node name="Zombie_paper_rightarm_upper" type="Sprite2D" parent="Zombie" unique_id=27670544]
+position = Vector2(14.3, 53.7)
+rotation = -0.192
+scale = Vector2(0.699, 0.699)
+texture = ExtResource("0_fuck")
+centered = false
+
+[node name="Zombie_paper_rightarm_lower" type="Sprite2D" parent="Zombie" unique_id=1985772773]
+position = Vector2(-0.6, 57.4)
+rotation = -0.131
+scale = Vector2(0.699, 0.699)
+texture = ExtResource("1_fuck")
+centered = false
+
+[node name="Zombie_paper_hands2" type="Sprite2D" parent="Zombie" unique_id=1345719905]
+visible = false
+centered = false
+
+[node name="Zombie_paper_lowerbody2" type="Sprite2D" parent="Zombie" unique_id=710043912]
+position = Vector2(48.4, 90.3)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_fuck")
+centered = false
+
+[node name="Zombie_paper_rightleg_upper" type="Sprite2D" parent="Zombie" unique_id=1619953323]
+position = Vector2(49.3, 92.1)
+rotation = -0.145
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_fuck")
+centered = false
+
+[node name="Zombie_paper_rightleg_lower" type="Sprite2D" parent="Zombie" unique_id=2105523118]
+position = Vector2(43, 98.3)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_fuck")
+centered = false
+
+[node name="Zombie_paper_rightfoot" type="Sprite2D" parent="Zombie" unique_id=936502256]
+position = Vector2(35.5, 109.2)
+rotation = 0.075
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_fuck")
+centered = false
+
+[node name="Zombie_paper_leftleg_upper" type="Sprite2D" parent="Zombie" unique_id=266893416]
+position = Vector2(69.8, 92.1)
+rotation = 0.29
+scale = Vector2(0.699, 0.735)
+texture = ExtResource("7_fuck")
+centered = false
+
+[node name="Zombie_paper_leftleg_lower" type="Sprite2D" parent="Zombie" unique_id=911001940]
+position = Vector2(65.5, 98.7)
+rotation = -0.145
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_fuck")
+centered = false
+
+[node name="Zombie_paper_leftfoot" type="Sprite2D" parent="Zombie" unique_id=943064224]
+position = Vector2(54.9, 115.5)
+rotation = -0.061
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_fuck")
+centered = false
+
+[node name="Zombie_paper_lowerbody1" type="Sprite2D" parent="Zombie" unique_id=1944900830]
+position = Vector2(43.8, 75.6)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("10_fuck")
+centered = false
+
+[node name="Zombie_paper_body" type="Sprite2D" parent="Zombie" unique_id=162256966]
+position = Vector2(31, 39.8)
+rotation = -0.049
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_fuck")
+centered = false
+
+[node name="Zombie_paper_leftarm_upper" type="Sprite2D" parent="Zombie" unique_id=1442716698]
+position = Vector2(49.6, 42.5)
+rotation = 0.031
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_fuck")
+centered = false
+
+[node name="Zombie_paper_leftarm_lower" type="Sprite2D" parent="Zombie" unique_id=785328189]
+position = Vector2(41.1, 63.8)
+rotation = -0.11
+scale = Vector2(0.699, 0.699)
+texture = ExtResource("14_fuck")
+centered = false
+
+[node name="Anim_hair" type="Sprite2D" parent="Zombie" unique_id=641147498]
+position = Vector2(0.3, 14.1)
+rotation = -0.145
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("15_fuck")
+centered = false
+
+[node name="Anim_head1" type="Sprite2D" parent="Zombie" unique_id=280400431]
+position = Vector2(5, 16.4)
+rotation = -0.141
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("16_fuck")
+centered = false
+
+[node name="Anim_head_look" type="Sprite2D" parent="Zombie" unique_id=606054642]
+visible = false
+centered = false
+
+[node name="Anim_head_pupils" type="Sprite2D" parent="Zombie" unique_id=1044300215]
+visible = false
+centered = false
+
+[node name="Anim_hairpiece" type="Sprite2D" parent="Zombie" unique_id=646906870]
+position = Vector2(6.8, 13)
+rotation = -0.141
+scale = Vector2(0.829, 0.799)
+texture = ExtResource("19_fuck")
+centered = false
+
+[node name="Anim_head_jaw" type="Sprite2D" parent="Zombie" unique_id=296169338]
+position = Vector2(17, 47.8)
+rotation = -0.141
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("20_fuck")
+centered = false
+
+[node name="Anim_head_glasses" type="Sprite2D" parent="Zombie" unique_id=1737018757]
+position = Vector2(6.9, 33.5)
+rotation = -0.084
+scale = Vector2(0.799, 0.799)
+texture = ExtResource("21_fuck")
+centered = false
+
+[node name="Zombie_paper_paper" type="Sprite2D" parent="Zombie" unique_id=2061708337]
+position = Vector2(-6.4, 41.8)
+scale = Vector2(0.702, 0.702)
+texture = ExtResource("22_fuck")
+centered = false
+
+[node name="Zombie_paper_hands" type="Sprite2D" parent="Zombie" unique_id=958547893]
+position = Vector2(-7.4, 45.9)
+rotation = -0.049
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("23_q5x5t")
+centered = false
+
+[node name="AnimLib" type="AnimationPlayer" parent="." unique_id=831848145]
+libraries/Zombie_paper = SubResource("AnimationLibrary_fuck")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=770785457]
+position = Vector2(24, 99)
+texture = ExtResource("27_shadow")
+centered = false
+
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=1362624548]
+position = Vector2(36, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("26_hitbox")
+AttachedNodePath = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=26243866]
+position = Vector2(21, 57.5)
+shape = SubResource("RectangleShape2D_defense")
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=1538547401]
+position = Vector2(20, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("26_hitbox")
+AttachedNodePath = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=380483156]
+position = Vector2(25, 57.5)
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=41172448]
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1013988469]
+offset_top = -30.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 10

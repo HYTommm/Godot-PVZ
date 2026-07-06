@@ -108,4 +108,3 @@ one_shot = true
 speed_scale = 2.0
 process_material = SubResource("ShaderMaterial_nisvg")
 
-[editable path="ZombieCharred"]

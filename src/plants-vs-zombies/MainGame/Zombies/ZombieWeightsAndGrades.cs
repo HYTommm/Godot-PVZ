@@ -19,6 +19,7 @@ public class ZombieWeightsAndGrades
         _zombieWeightsDict.Add(ZombieTypeEnum.Buckethead, 1000);
         _zombieWeightsDict.Add(ZombieTypeEnum.Screendoor, 1500);
         _zombieWeightsDict.Add(ZombieTypeEnum.Polevaulter, 2000);
+        _zombieWeightsDict.Add(ZombieTypeEnum.Newspaper, 2000);
 
         _zombieTotalWeight = _zombieWeightsDict.Sum(x => x.Value);
 
@@ -27,12 +28,14 @@ public class ZombieWeightsAndGrades
         _zombieGradesDict.Add(ZombieTypeEnum.Buckethead, 4); // 4
         _zombieGradesDict.Add(ZombieTypeEnum.Screendoor, 3); // 3
         _zombieGradesDict.Add(ZombieTypeEnum.Polevaulter, 1); // 2
+        _zombieGradesDict.Add(ZombieTypeEnum.Newspaper, 1); // 2
 
         _zombieAllowedDict.Add(ZombieTypeEnum.Normal, false);
         _zombieAllowedDict.Add(ZombieTypeEnum.Conehead, false);
         _zombieAllowedDict.Add(ZombieTypeEnum.Buckethead, false);
         _zombieAllowedDict.Add(ZombieTypeEnum.Screendoor, false);
         _zombieAllowedDict.Add(ZombieTypeEnum.Polevaulter, false);
+        _zombieAllowedDict.Add(ZombieTypeEnum.Newspaper, false);
     }
 
     /// <summary>

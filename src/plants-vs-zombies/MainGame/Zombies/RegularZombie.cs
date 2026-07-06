@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 
@@ -8,7 +8,8 @@ public abstract partial class RegularZombie : Zombie
     [Export] protected AnimationPlayer Animation;
 
     // 焦炭动画
-    [Export] protected AnimationPlayer AnimCharred;
+    protected AnimationPlayer AnimCharred;
+    private static readonly PackedScene _charredScene = ResourceLoader.Load<PackedScene>("res://MainGame/Zombies/Zombie_charred.tscn");
 
     public virtual string CharredAnimationName => "ALL_ANIMS";
     protected Node2D ZombieCharredNode2D;
@@ -123,6 +124,18 @@ public abstract partial class RegularZombie : Zombie
         // 粒子完成信号
         ZombieArmParticles.Finished += OnEffectsFinished;
         ZombieHeadParticles.Finished += OnEffectsFinished;
+
+        // 实例化焦炭动画场景
+        if (_charredScene != null)
+        {
+            ZombieCharredNode2D = _charredScene.Instantiate<Node2D>();
+            ZombieCharredNode2D.Name = "ZombieCharred";
+            ZombieCharredNode2D.Position = new Vector2(7, -3);
+            ZombieCharredNode2D.Visible = false;
+            AddChild(ZombieCharredNode2D);
+            AnimCharred = ZombieCharredNode2D.GetNode<AnimationPlayer>("AnimLib");
+        }
+
         if (AnimCharred != null)
             AnimCharred.AnimationFinished += OnCharredAnimationFinished;
     }

@@ -12,6 +12,7 @@ public enum ZombieTypeEnum
     Buckethead,
     Screendoor,
     Polevaulter,
+    Newspaper,
 }
 
 public class ZombieType
@@ -25,6 +26,7 @@ public class ZombieType
         _zombieScenes.Add(ZombieTypeEnum.Buckethead, GD.Load<PackedScene>("res://MainGame/Zombies/BucketheadZombie.tscn"));
         _zombieScenes.Add(ZombieTypeEnum.Screendoor, GD.Load<PackedScene>("res://MainGame/Zombies/ScreendoorZombie.tscn"));
         _zombieScenes.Add(ZombieTypeEnum.Polevaulter, GD.Load<PackedScene>("res://MainGame/Zombies/PolevaulterZombie/PolevaulterZombie.tscn"));
+        _zombieScenes.Add(ZombieTypeEnum.Newspaper, GD.Load<PackedScene>("res://MainGame/Zombies/NewspaperZombie/NewspaperZombie.tscn"));
     }
 
     public PackedScene GetZombieScene(ZombieTypeEnum zombieType)
