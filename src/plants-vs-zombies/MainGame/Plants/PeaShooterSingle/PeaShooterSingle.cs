@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;
@@ -11,6 +11,7 @@ public partial class PeaShooterSingle : Plants
     [Export] protected AnimationPlayer AnimIdle; // Idle动画和Head动画
     [Export] protected AnimationPlayer AnimHead; // Idle动画和Head动画
     protected float SpeedScaleOfIdle = 1.56f; // Idle动画速度
+    private float _idleTransitionTimer = 0f; // Head_Idle section 计时器
 
     public AudioStreamPlayer ShootSound = new(); // 射击音效
     [Export] private Node2D _nodeStem;// 茎节点
@@ -65,6 +66,16 @@ public partial class PeaShooterSingle : Plants
     {
         _nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
 
+        if (_idleTransitionTimer > 0)
+        {
+            _idleTransitionTimer -= (float)delta;
+            if (_idleTransitionTimer <= 0)
+            {
+                _idleTransitionTimer = 0;
+                AnimHead.Play("Head_Idle", 0, SpeedScaleOfIdle);
+            }
+        }
+
         if (CanShoot && MainGame.Instance != null && Alive) //如果可以射击且主游戏不为空
         {
             foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
@@ -110,6 +121,7 @@ public partial class PeaShooterSingle : Plants
     /// </summary>
     public virtual void Shoot()
     {
+        _idleTransitionTimer = 0; // 取消待处理的 idle 过渡
         CanShoot = false; // 禁止射击
         RandomShootTime(); // 随机射击时间
 
@@ -148,10 +160,12 @@ public partial class PeaShooterSingle : Plants
     {
         if (anim == "Head_Shooting" || anim == "Head_Shooting2")
         {
-            AnimHead.Play("Head_Idle", 0.20f, SpeedScaleOfIdle);
+            double targetTime = AnimIdle.CurrentAnimationPosition;
+            double fullLength = AnimHead.GetAnimation("Head_Idle").Length;
 
-            //AnimHead.Seek(_timeOfIdleWhenShooting + temp / AnimRate * SpeedScaleOfIdle);
-            AnimHead.Seek(AnimIdle.CurrentAnimationPosition);
+            AnimHead.PlaySection("Head_Idle", targetTime, fullLength, 0.2f, SpeedScaleOfIdle, false);
+
+            _idleTransitionTimer = (float)((fullLength - targetTime) / SpeedScaleOfIdle);
 
             GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
         }
