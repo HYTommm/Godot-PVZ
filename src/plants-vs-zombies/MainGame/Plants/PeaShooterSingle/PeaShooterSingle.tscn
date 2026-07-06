@@ -135,13 +135,53 @@ _data = {
 &"RESET": SubResource("Animation_kq65k")
 }
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kq65k"]
+sync = true
+fadein_time = 0.1
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_atlar"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kq65k"]
+animation = &"Head_Idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_p7r5d"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmv3c"]
+animation = &"Head_Shooting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kefcy"]
+animation = &"Head_Shooting2"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w7bp1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_il4fd"]
+graph_offset = Vector2(-151.64075, -6.2777405)
+nodes/output/position = Vector2(980, 160)
+nodes/shoot_blend/node = SubResource("AnimationNodeBlend2_p7r5d")
+nodes/shoot_blend/position = Vector2(120, 440)
+nodes/head_idle/node = SubResource("AnimationNodeAnimation_kq65k")
+nodes/head_idle/position = Vector2(-180, 0)
+nodes/shooting2/node = SubResource("AnimationNodeAnimation_kefcy")
+nodes/shooting2/position = Vector2(-240, 600)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_atlar")
+nodes/TimeScale/position = Vector2(140, 40)
+nodes/time_scale2/node = SubResource("AnimationNodeTimeScale_w7bp1")
+nodes/time_scale2/position = Vector2(360, 380)
+nodes/shooting1/node = SubResource("AnimationNodeAnimation_nmv3c")
+nodes/shooting1/position = Vector2(-240, 360)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_kq65k")
+nodes/OneShot/position = Vector2(660, 140)
+node_connections = [&"output", 0, &"OneShot", &"shoot_blend", 0, &"shooting1", &"shoot_blend", 1, &"shooting2", &"TimeScale", 0, &"head_idle", &"time_scale2", 0, &"shoot_blend", &"OneShot", 0, &"TimeScale", &"OneShot", 1, &"time_scale2"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq65k"]
 size = Vector2(20, 80)
 
-[node name="PeaShooterSingle" type="CanvasGroup" unique_id=1352503365 node_paths=PackedStringArray("AnimIdle", "AnimHead", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
+[node name="PeaShooterSingle" type="CanvasGroup" unique_id=1352503365 node_paths=PackedStringArray("AnimIdle", "AnimHead", "AnimTree", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
 script = ExtResource("1_1y4xh")
 AnimIdle = NodePath("Idle")
 AnimHead = NodePath("Head/Head")
+AnimTree = NodePath("Head/HeadTree")
 _nodeStem = NodePath("Anim_stem")
 _nodeHead = NodePath("Head")
 _nodeMouth = NodePath("Head/Idle_mouth")
@@ -218,22 +258,22 @@ libraries/ = SubResource("AnimationLibrary_rrocw")
 libraries/ = SubResource("AnimationLibrary_5nfmd")
 
 [node name="Anim_sprout" type="Sprite2D" parent="Head" unique_id=490030672]
-position = Vector2(7.85156, 23.5174)
-rotation = 6.18361
+position = Vector2(7.4, 26.7)
+rotation = 6.02313
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("12_kn5d0")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Head" unique_id=602332911]
-position = Vector2(19.2559, 12.8634)
-scale = Vector2(0.555, 0.56941)
+position = Vector2(19.1, 14)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("13_nd4h7")
 centered = false
 
 [node name="Idle_mouth" type="Sprite2D" parent="Head" unique_id=1645477223]
-position = Vector2(52.5559, 12.6752)
+position = Vector2(52.4, 13.9)
 rotation = 2.07603e-05
-scale = Vector2(0.555839, 0.576615)
+scale = Vector2(0.555, 0.555)
 skew = -2.07603e-05
 texture = ExtResource("14_ly4gj")
 centered = false
@@ -251,6 +291,17 @@ position = Vector2(37.5, 23.5)
 scale = Vector2(0.555, 0.555)
 texture = ExtResource("2_e7dgn")
 centered = false
+
+[node name="HeadTree" type="AnimationTree" parent="Head" unique_id=1096807220]
+active = false
+tree_root = SubResource("AnimationNodeBlendTree_il4fd")
+anim_player = NodePath("../Head")
+parameters/shoot_blend/blend_amount = 0.0
+parameters/TimeScale/scale = 1.0
+parameters/time_scale2/scale = 1.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 
 [node name="Timer" type="Timer" parent="." unique_id=1481916708]
 wait_time = 2.0
