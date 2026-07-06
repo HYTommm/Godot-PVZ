@@ -16,7 +16,7 @@ public partial class PeaShooter : PeaShooterSingle
     {
         // 使用双发射手的动画，如果没有则使用基类动画
         AnimIdle.CallDeferred("play", "PeaShooter_idle", -1, SpeedScaleOfIdle);
-        AnimHead.CallDeferred("play", "Head_Idle", -1, SpeedScaleOfIdle);
+        AnimTree.CallDeferred("set", "active", true);
     }
 
     /// <summary>
@@ -46,9 +46,7 @@ public partial class PeaShooter : PeaShooterSingle
     {
         CanShoot = false; // 禁止射击
 
-        // 播放射击动画（使用ShootCount决定是哪个动画，_currentShot不影响动画选择）
-        AnimHead.Seek(0); // 从动画开头开始播放
-        AnimHead.Play("Head_Shooting", 0.10, 3.75f);
+        AnimTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
 
         // 0.26秒后发射子弹
         GetTree().CreateTimer(0.26f).Timeout += ShootBullet;

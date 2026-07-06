@@ -59,13 +59,45 @@ _data = {
 &"RESET": SubResource("Animation_rts07")
 }
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kq65k"]
+filter_enabled = true
+filters = ["", "Head/Anim_blink:visible", "Head/Anim_face:position", "Head/Anim_face:rotation", "Head/Anim_face:scale", "Head/Anim_face:skew", "Head/Idle_headleaf_2ndfarthest:position", "Head/Idle_headleaf_2ndfarthest:rotation", "Head/Idle_headleaf_2ndfarthest:scale", "Head/Idle_headleaf_2ndfarthest:skew", "Head/Idle_headleaf_3rdfarthest:position", "Head/Idle_headleaf_3rdfarthest:rotation", "Head/Idle_headleaf_3rdfarthest:scale", "Head/Idle_headleaf_3rdfarthest:skew", "Head/Idle_headleaf_farthest:position", "Head/Idle_headleaf_farthest:rotation", "Head/Idle_headleaf_farthest:scale", "Head/Idle_headleaf_farthest:skew", "Head/Idle_headleaf_nearest:position", "Head/Idle_headleaf_nearest:rotation", "Head/Idle_headleaf_nearest:scale", "Head/Idle_headleaf_nearest:skew", "Head/Idle_headleaf_tip_bottom:position", "Head/Idle_headleaf_tip_bottom:rotation", "Head/Idle_headleaf_tip_bottom:scale", "Head/Idle_headleaf_tip_bottom:skew", "Head/Idle_headleaf_tip_top:position", "Head/Idle_headleaf_tip_top:rotation", "Head/Idle_headleaf_tip_top:scale", "Head/Idle_headleaf_tip_top:skew", "Head/Idle_headleaf_tip_top:texture", "Head/Idle_mouth:position", "Head/Idle_mouth:rotation", "Head/Idle_mouth:scale", "Head/Idle_mouth:skew", "Head/Idle_shoot_blink:position", "Head/Idle_shoot_blink:rotation", "Head/Idle_shoot_blink:scale", "Head/Idle_shoot_blink:skew", "Head/Idle_shoot_blink:texture", "Head/Idle_shoot_blink:visible", "Head/PeaShooter_eyebrow:position", "Head/PeaShooter_eyebrow:rotation", "Head/PeaShooter_eyebrow:scale", "Head/PeaShooter_eyebrow:skew"]
+fadein_time = 0.1
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_atlar"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kq65k"]
+animation = &"Head_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmv3c"]
+animation = &"Head_Shooting"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w7bp1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_il4fd"]
+graph_offset = Vector2(-235.07428, -49.225647)
+nodes/output/position = Vector2(540, -60)
+nodes/head_idle/node = SubResource("AnimationNodeAnimation_kq65k")
+nodes/head_idle/position = Vector2(-180, 0)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_atlar")
+nodes/TimeScale/position = Vector2(80, -40)
+nodes/time_scale2/node = SubResource("AnimationNodeTimeScale_w7bp1")
+nodes/time_scale2/position = Vector2(80, 240)
+nodes/shooting/node = SubResource("AnimationNodeAnimation_nmv3c")
+nodes/shooting/position = Vector2(-180, 260)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_kq65k")
+nodes/OneShot/position = Vector2(320, -60)
+node_connections = [&"output", 0, &"OneShot", &"TimeScale", 0, &"head_idle", &"time_scale2", 0, &"shooting", &"OneShot", 0, &"TimeScale", &"OneShot", 1, &"time_scale2"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0urw"]
 size = Vector2(20, 80)
 
-[node name="PeaShooter" type="CanvasGroup" unique_id=220235140 node_paths=PackedStringArray("AnimIdle", "AnimHead", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
+[node name="PeaShooter" type="CanvasGroup" unique_id=220235140 node_paths=PackedStringArray("AnimIdle", "AnimHead", "AnimTree", "_nodeStem", "_nodeHead", "_nodeMouth", "TextEdit", "Shadow")]
 script = ExtResource("1_5alyk")
 AnimIdle = NodePath("Idle")
 AnimHead = NodePath("Head/Head")
+AnimTree = NodePath("Head/HeadTree")
 _nodeStem = NodePath("Anim_stem")
 _nodeHead = NodePath("Head")
 _nodeMouth = NodePath("Head/Idle_mouth")
@@ -144,53 +176,63 @@ position = Vector2(0.38, 0)
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_PeaShooter_head_idle")
 
+[node name="HeadTree" type="AnimationTree" parent="Head" unique_id=1096807220]
+active = false
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_il4fd")
+anim_player = NodePath("../Head")
+parameters/TimeScale/scale = 1.0
+parameters/time_scale2/scale = 1.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+
 [node name="Idle_headleaf_farthest" type="Sprite2D" parent="Head" unique_id=1753870508]
-position = Vector2(12.9, 38.1)
-rotation = -0.338594
-scale = Vector2(0.547, 0.501)
-skew = -0.0837757
+position = Vector2(12.9, 36.5)
+rotation = -0.378736
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("10_rts07")
 centered = false
 
 [node name="Idle_headleaf_3rdfarthest" type="Sprite2D" parent="Head" unique_id=568681487]
-position = Vector2(22.6, 17.7)
-scale = Vector2(0.555, 0.493)
+position = Vector2(22.6, 13.5)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("11_dvwvy")
 centered = false
 
 [node name="Idle_headleaf_2ndfarthest" type="Sprite2D" parent="Head" unique_id=6209037]
-position = Vector2(11.1, 29.1)
-scale = Vector2(0.555, 0.493)
+position = Vector2(11.1, 26.5)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("12_t0urw")
 centered = false
 
 [node name="Idle_headleaf_tip_bottom" type="Sprite2D" parent="Head" unique_id=774356937]
-position = Vector2(6.2, 33.1)
-scale = Vector2(0.555, 0.493)
+position = Vector2(6.2, 31)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("13_tc2lk")
 centered = false
 
 [node name="Idle_headleaf_nearest" type="Sprite2D" parent="Head" unique_id=102615433]
-position = Vector2(17, 18.4)
-scale = Vector2(0.527, 0.513)
+position = Vector2(17, 14.4)
+scale = Vector2(0.527, 0.578)
 texture = ExtResource("14_ptfyt")
 centered = false
 
 [node name="Idle_headleaf_tip_top" type="Sprite2D" parent="Head" unique_id=833309451]
-position = Vector2(13, 18.4)
-scale = Vector2(0.527, 0.513)
+position = Vector2(13, 14.4)
+scale = Vector2(0.527, 0.578)
 texture = ExtResource("15_mp5xn")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Head" unique_id=808989400]
-position = Vector2(19.2, 17.8)
-scale = Vector2(0.555, 0.5)
+position = Vector2(19.1, 14)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("16_qy4xm")
 centered = false
 
 [node name="Idle_mouth" type="Sprite2D" parent="Head" unique_id=1576889842]
-position = Vector2(52.4, 17.8)
-scale = Vector2(0.555, 0.5)
+position = Vector2(52.4, 13.9)
+scale = Vector2(0.555, 0.555)
 texture = ExtResource("17_hikjp")
 centered = false
 
@@ -206,7 +248,7 @@ texture = ExtResource("10_488os")
 centered = false
 
 [node name="PeaShooter_eyebrow" type="Sprite2D" parent="Head" unique_id=984173767]
-position = Vector2(34.8, 19.7)
+position = Vector2(35, 16.7)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("19_8s68r")
 centered = false

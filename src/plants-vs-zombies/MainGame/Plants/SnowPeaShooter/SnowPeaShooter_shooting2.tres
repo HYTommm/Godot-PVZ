@@ -1,15 +1,15 @@
 [gd_resource type="Animation" format=3 uid="uid://dn45nhjmubvlt"]
 
-[ext_resource type="Texture2D" uid="uid://bujre3u5i3rgi" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals1.png" id="8_fuck"]
-[ext_resource type="Texture2D" uid="uid://cchu0mxqvyajy" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals2.png" id="9_fuck"]
-[ext_resource type="Texture2D" uid="uid://c7nkv7fyybde2" path="res://art/MainGame/Plants/SnowPea/SnowPea_crystals3.png" id="10_fuck"]
-[ext_resource type="Texture2D" uid="uid://dlmc8knmb38nc" path="res://art/MainGame/Plants/SnowPea/SnowPea_head.png" id="11_fuck"]
-[ext_resource type="Texture2D" uid="uid://3g2dy5th6ofl" path="res://art/MainGame/Plants/SnowPea/SnowPea_mouth.png" id="12_fuck"]
-[ext_resource type="Texture2D" uid="uid://77tnh88v4512" path="res://art/MainGame/Plants/SnowPea/SnowPea_blink1.png" id="13_fuck"]
+[ext_resource type="Texture2D" uid="uid://bujre3u5i3rgi" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals1.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://cchu0mxqvyajy" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals2.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://c7nkv7fyybde2" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_crystals3.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://dlmc8knmb38nc" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_head.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://3g2dy5th6ofl" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_mouth.png" id="12_fuck"]
+[ext_resource type="Texture2D" uid="uid://77tnh88v4512" path="res://art/MainGame/Plants/SnowPeaShooter/SnowPea_blink1.png" id="13_fuck"]
 
 [resource]
 resource_name = "Head_Shooting"
-length = 0.91667134
+length = 1.537
 step = 0.083333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -69,7 +69,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 0.9166667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.054105, 0.045379, 0.027925499999999995, 0.045379, 0.025598599410498142]
+"values": [0.054105, 0.045379, 0.02792549999999999, 0.045379, 0.02559859941049814]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -141,7 +141,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 0.9166667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.054105, 0.0471242, 0.027925499999999995, 0.045379, 0.025598599410498142]
+"values": [0.054105, 0.0471242, 0.02792549999999999, 0.045379, 0.02559859941049814]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -213,7 +213,7 @@ tracks/16/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 0.9166667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.054105, 0.0453782, 0.027925499999999995, 0.045379, 0.025598599410498142]
+"values": [0.054105, 0.0453782, 0.02792549999999999, 0.045379, 0.02559859941049814]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
@@ -380,8 +380,8 @@ tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0, 0.75, 0.8333333, 0.9166667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [false, false, true, true]
+"update": 1,
+"values": [false, false, true, false]
 }
 tracks/31/type = "value"
 tracks/31/imported = false

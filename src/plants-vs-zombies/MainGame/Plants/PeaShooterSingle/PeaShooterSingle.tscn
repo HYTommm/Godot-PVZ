@@ -156,7 +156,7 @@ animation = &"Head_Shooting2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w7bp1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_il4fd"]
-graph_offset = Vector2(-151.64075, -6.2777405)
+graph_offset = Vector2(-259.01288, 59.939075)
 nodes/output/position = Vector2(980, 160)
 nodes/shoot_blend/node = SubResource("AnimationNodeBlend2_p7r5d")
 nodes/shoot_blend/position = Vector2(120, 440)
@@ -296,7 +296,7 @@ centered = false
 active = false
 tree_root = SubResource("AnimationNodeBlendTree_il4fd")
 anim_player = NodePath("../Head")
-parameters/shoot_blend/blend_amount = 0.0
+parameters/shoot_blend/blend_amount = 1.0
 parameters/TimeScale/scale = 1.0
 parameters/time_scale2/scale = 1.0
 parameters/OneShot/active = false

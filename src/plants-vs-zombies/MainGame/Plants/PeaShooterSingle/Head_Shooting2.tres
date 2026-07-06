@@ -4,7 +4,7 @@
 
 [resource]
 resource_name = "Shooting2"
-length = 1.186
+length = 1.556
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -112,7 +112,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.833333, 0.916667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true, true]
+"values": [false, true, false]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
