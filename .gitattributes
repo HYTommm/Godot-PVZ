@@ -1,0 +1,16 @@
+* text=auto
+*.cs text eol=crlf
+*.tscn text eol=crlf
+*.tres text eol=crlf
+*.csproj text eol=crlf
+*.sln text eol=crlf
+*.md text eol=crlf
+*.yml text eol=crlf
+*.yaml text eol=crlf
+*.json text eol=crlf
+
+*.png binary
+*.ogg binary
+*.ogv binary
+*.wav binary
+*.mp3 binary
