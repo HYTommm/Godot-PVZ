@@ -1660,70 +1660,58 @@ tracks/135/keys = {
 tracks/136/type = "value"
 tracks/136/imported = false
 tracks/136/enabled = true
-tracks/136/path = NodePath("Zombie/Zombie_paper_hands:visible")
+tracks/136/path = NodePath("Zombie/Zombie_paper_hands:position")
 tracks/136/interp = 1
 tracks/136/loop_wrap = true
 tracks/136/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.083333, 1.166667, 1.25, 1.333333, 1.416667, 1.5, 1.583333, 1.666667, 1.75, 1.833333, 1.916667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [true, true]
+"values": [Vector2(-7.4, 45.9), Vector2(-7.1, 44.5), Vector2(-6.7, 43.3), Vector2(-6.3, 42), Vector2(-6, 40.7), Vector2(-5.6, 39.3), Vector2(-5.3, 38.1), Vector2(-5.6, 38.9), Vector2(-5.9, 39.8), Vector2(-6.3, 41.3), Vector2(-6.7, 42.9), Vector2(-7.1, 44.4), Vector2(-7.4, 45.9), Vector2(-7.7, 46.9), Vector2(-8.1, 48), Vector2(-8.3, 49), Vector2(-8.6, 50), Vector2(-8.9, 51), Vector2(-9.2, 52.2), Vector2(-8.8, 51.5), Vector2(-8.6, 50.9), Vector2(-8.2, 49.6), Vector2(-8, 48.5), Vector2(-7.7, 47.1), Vector2(-7.4, 45.9)]
 }
 tracks/137/type = "value"
 tracks/137/imported = false
 tracks/137/enabled = true
-tracks/137/path = NodePath("Zombie/Zombie_paper_hands:position")
+tracks/137/path = NodePath("Zombie/Zombie_paper_hands:rotation")
 tracks/137/interp = 1
 tracks/137/loop_wrap = true
 tracks/137/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.083333, 1.166667, 1.25, 1.333333, 1.416667, 1.5, 1.583333, 1.666667, 1.75, 1.833333, 1.916667, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-7.4, 45.9), Vector2(-7.1, 44.5), Vector2(-6.7, 43.3), Vector2(-6.3, 42), Vector2(-6, 40.7), Vector2(-5.6, 39.3), Vector2(-5.3, 38.1), Vector2(-5.6, 38.9), Vector2(-5.9, 39.8), Vector2(-6.3, 41.3), Vector2(-6.7, 42.9), Vector2(-7.1, 44.4), Vector2(-7.4, 45.9), Vector2(-7.7, 46.9), Vector2(-8.1, 48), Vector2(-8.3, 49), Vector2(-8.6, 50), Vector2(-8.9, 51), Vector2(-9.2, 52.2), Vector2(-8.8, 51.5), Vector2(-8.6, 50.9), Vector2(-8.2, 49.6), Vector2(-8, 48.5), Vector2(-7.7, 47.1), Vector2(-7.4, 45.9)]
+"values": [-0.049, -0.04, -0.031, -0.023, -0.014, -0.005, 0.0, -0.005, -0.014, -0.023, -0.031, -0.04, -0.049, -0.052, -0.061, -0.066, -0.075, -0.079, -0.087, -0.079, -0.075, -0.066, -0.061, -0.052, -0.049]
 }
 tracks/138/type = "value"
 tracks/138/imported = false
 tracks/138/enabled = true
-tracks/138/path = NodePath("Zombie/Zombie_paper_hands:rotation")
+tracks/138/path = NodePath("Zombie/Zombie_paper_hands:scale")
 tracks/138/interp = 1
 tracks/138/loop_wrap = true
 tracks/138/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.083333, 1.166667, 1.25, 1.333333, 1.416667, 1.5, 1.583333, 1.666667, 1.75, 1.833333, 1.916667, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.049, -0.04, -0.031, -0.023, -0.014, -0.005, 0.0, -0.005, -0.014, -0.023, -0.031, -0.04, -0.049, -0.052, -0.061, -0.066, -0.075, -0.079, -0.087, -0.079, -0.075, -0.066, -0.061, -0.052, -0.049]
+"values": [Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7)]
 }
 tracks/139/type = "value"
 tracks/139/imported = false
 tracks/139/enabled = true
-tracks/139/path = NodePath("Zombie/Zombie_paper_hands:scale")
+tracks/139/path = NodePath("Zombie/Zombie_paper_hands:skew")
 tracks/139/interp = 1
 tracks/139/loop_wrap = true
 tracks/139/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.083333, 1.166667, 1.25, 1.333333, 1.416667, 1.5, 1.583333, 1.666667, 1.75, 1.833333, 1.916667, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(0.7, 0.7)]
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 }
 tracks/140/type = "value"
 tracks/140/imported = false
 tracks/140/enabled = true
-tracks/140/path = NodePath("Zombie/Zombie_paper_hands:skew")
+tracks/140/path = NodePath("Zombie/Zombie_paper_hands:texture")
 tracks/140/interp = 1
 tracks/140/loop_wrap = true
 tracks/140/keys = {
-"times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.083333, 1.166667, 1.25, 1.333333, 1.416667, 1.5, 1.583333, 1.666667, 1.75, 1.833333, 1.916667, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-}
-tracks/141/type = "value"
-tracks/141/imported = false
-tracks/141/enabled = true
-tracks/141/path = NodePath("Zombie/Zombie_paper_hands:texture")
-tracks/141/interp = 1
-tracks/141/loop_wrap = true
-tracks/141/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,

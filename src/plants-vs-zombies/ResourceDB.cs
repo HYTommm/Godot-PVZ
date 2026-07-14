@@ -71,6 +71,8 @@ public static class ResourceDB
 			public static readonly Texture2D ImageZombie_PolevaulterOuterarmUpper = Load<Texture2D>("uid://b5w55is1aek0d"); // Load<Texture2D>("res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerarm_upper.png");
 			public static readonly Texture2D ImageZombie_PolevaulterOuterarmUpper2 = Load<Texture2D>("uid://d2gxdff2oap4a"); // Load<Texture2D>("res://art/MainGame/Zombie/PolevaulterZombie/Zombie_polevaulter_outerarm_upper2.png");
 
+			public static readonly Texture2D ImageZombie_NewspaperOuterarmUpper2 = Load<Texture2D>("uid://cp4od15xu3sw3"); // Load<Texture2D>("res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftarm_upper2.png");
+
 			public static class Armors
 			{
 				public static readonly Texture2D ImageZombieArmor_Cone1 = Load<Texture2D>("uid://c14f2wbgkjgnx"); // Load<Texture2D>("res://art/MainGame/Zombie/Zombie_cone1.png");

@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bd0d6jl1x728d" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftarm_upper.png" id="12_fuck"]
 [ext_resource type="Texture2D" uid="uid://dv7tteopavafx" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_leftarm_lower.png" id="14_fuck"]
 [ext_resource type="Texture2D" uid="uid://djc7hfu1n8puc" path="res://art/MainGame/Zombie/Zombie_hair.png" id="15_fuck"]
-[ext_resource type="Texture2D" uid="uid://cfm8wyfxhxfrc" path="res://art/MainGame/Zombie/Zombie_head.png" id="16_fuck"]
+[ext_resource type="Texture2D" uid="uid://doparixqjxvym" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_madhead.png" id="19_8pujl"]
 [ext_resource type="Texture2D" uid="uid://dwxeukspcu6p6" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_hairpiece.png" id="19_fuck"]
 [ext_resource type="Texture2D" uid="uid://f7gtbd17h7iu" path="res://art/MainGame/Zombie/Zombie_jaw.png" id="20_fuck"]
 [ext_resource type="Texture2D" uid="uid://ddfrdcqxk73xj" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_head_look.png" id="20_h88jj"]
@@ -35,12 +35,35 @@
 [ext_resource type="Texture2D" uid="uid://cykuw1ltw00pv" path="res://art/MainGame/Zombie/NewspaperZombie/Zombie_paper_hands3.png" id="26_14l7a"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="26_hitbox"]
 [ext_resource type="Texture2D" uid="uid://mqvxa2ggakgx" path="res://art/MainGame/plantshadow.png" id="27_shadow"]
+[ext_resource type="Texture2D" uid="uid://duy6qu0e54kto" path="res://particles/ZombieArm.png" id="28_armpart"]
+[ext_resource type="Texture2D" uid="uid://bajm7o8540wvy" path="res://particles/ZombieHead.png" id="29_headpart"]
+[ext_resource type="Material" uid="uid://dkuhfvox6rv0j" path="res://particles/Particle_ZombieHead.tres" id="30_headmat"]
 
 [sub_resource type="Resource" id="Resource_8pujl"]
 resource_local_to_scene = true
 script = ExtResource("3_t4mxb")
 HP = 270
 MaxHP = 270
+
+[sub_resource type="Curve" id="Curve_arm2"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_arm"]
+curve = SubResource("Curve_arm2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_arm"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0.8, 1, 0)
+spread = 47.5
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+angular_velocity_curve = SubResource("CurveTexture_arm")
+gravity = Vector3(0, 150, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fuck"]
 _data = {
@@ -59,20 +82,36 @@ size = Vector2(42, 115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
 size = Vector2(50, 115)
 
-[node name="NewspaperZombie" type="Node2D" unique_id=611633380 node_paths=PackedStringArray("Animation", "Ground", "Shadow", "_textEdit", "Body")]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_paper"]
+closed = false
+polygon = PackedVector2Array(0, 0, 200, 0)
+
+[node name="NewspaperZombie" type="Node2D" unique_id=611633380 node_paths=PackedStringArray("Animation", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair", "ZombieArmParticles", "ZombieHeadParticles")]
 script = ExtResource("25_script")
 Animation = NodePath("AnimLib")
 Ground = NodePath("Zombie/_ground")
 Shadow = NodePath("Shadow")
 _textEdit = NodePath("TextEdit")
+_bodyPartsHalfHealth = [NodePath("Zombie/Zombie_paper_leftarm_lower"), NodePath("Zombie/Zombie_paper_hands")]
+_bodyPartsDying = [NodePath("Zombie/Anim_head1"), NodePath("Zombie/Anim_hair"), NodePath("Zombie/Anim_head_jaw"), NodePath("Zombie/Anim_hairpiece"), NodePath("Zombie/Anim_head_glasses")]
 Body = NodePath("Zombie")
+Anim_innerArm1 = NodePath("Zombie/Zombie_paper_rightarm_upper")
+Anim_innerArm2 = NodePath("Zombie/Zombie_paper_rightarm_lower")
+Anim_innerArm3 = NodePath("Zombie/Zombie_paper_hands2")
+Zombie_outerarm_upper = NodePath("Zombie/Zombie_paper_leftarm_upper")
+Zombie_outerarm_lower = NodePath("Zombie/Zombie_paper_leftarm_lower")
+Zombie_outerarm_hand = NodePath("Zombie/Zombie_paper_hands")
+Zombie_head = NodePath("Zombie/Anim_head1")
+Zombie_jaw = NodePath("Zombie/Anim_head_jaw")
+Zombie_hair = NodePath("Zombie/Anim_hair")
+ZombieArmParticles = NodePath("Zombie/Particle_ZombieArm")
+ZombieHeadParticles = NodePath("Zombie/Particle_ZombieHead")
 HealthStageComponent = SubResource("Resource_8pujl")
 
 [node name="Zombie" type="CanvasGroup" parent="." unique_id=619559448]
 
 [node name="_ground" type="Sprite2D" parent="Zombie" unique_id=1027961132]
-visible = false
-position = Vector2(-2, 125.1)
+position = Vector2(-59.8, 125.1)
 centered = false
 
 [node name="Zombie_paper_rightarm_upper" type="Sprite2D" parent="Zombie" unique_id=27670544]
@@ -177,27 +216,26 @@ texture = ExtResource("15_fuck")
 centered = false
 
 [node name="Anim_head1" type="Sprite2D" parent="Zombie" unique_id=280400431]
+visible = false
 position = Vector2(5, 16.4)
 rotation = -0.141
 scale = Vector2(0.799, 0.799)
-texture = ExtResource("16_fuck")
+texture = ExtResource("19_8pujl")
 centered = false
 
 [node name="Anim_head_look" type="Sprite2D" parent="Zombie" unique_id=606054642]
 visible = false
-position = Vector2(4.4, 18.7)
-rotation = -0.269
-scale = Vector2(0.76, 0.819)
-skew = 0.042
+position = Vector2(5.1, 16.3)
+rotation = -0.138
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("20_h88jj")
 centered = false
 
 [node name="Anim_head_pupils" type="Sprite2D" parent="Zombie" unique_id=1044300215]
 visible = false
-position = Vector2(12.9, 39.4)
-rotation = -0.255
-scale = Vector2(0.76, 0.82)
-skew = 0.04
+position = Vector2(11.6, 34.5)
+rotation = -0.126
+scale = Vector2(0.799, 0.799)
 texture = ExtResource("21_mqi3f")
 centered = false
 
@@ -235,6 +273,27 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("26_14l7a")
 centered = false
 
+[node name="Particle_ZombieArm" type="GPUParticles2D" parent="Zombie" unique_id=932210646]
+position = Vector2(42, 83)
+emitting = false
+amount = 1
+texture = ExtResource("14_fuck")
+lifetime = 0.6
+one_shot = true
+collision_base_size = 0.8
+process_material = SubResource("ParticleProcessMaterial_arm")
+
+[node name="Particle_ZombieHead" type="GPUParticles2D" parent="Zombie" unique_id=1232113766]
+position = Vector2(27, 30)
+emitting = false
+amount = 1
+texture = ExtResource("29_headpart")
+lifetime = 3.6
+one_shot = true
+speed_scale = 2.0
+collision_base_size = 0.8
+process_material = ExtResource("30_headmat")
+
 [node name="AnimLib" type="AnimationPlayer" parent="." unique_id=831848145]
 libraries/Zombie_paper = SubResource("AnimationLibrary_fuck")
 
@@ -268,6 +327,10 @@ position = Vector2(25, 57.5)
 shape = SubResource("RectangleShape2D_attack")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=41172448]
+
+[node name="GroundConstraint" type="LightOccluder2D" parent="."]
+position = Vector2(-20, 125)
+occluder = SubResource("OccluderPolygon2D_paper")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1013988469]
 offset_top = -30.0

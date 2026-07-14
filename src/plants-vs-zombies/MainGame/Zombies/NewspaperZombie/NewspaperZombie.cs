@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 public partial class NewspaperZombie : RegularZombie
 {
@@ -151,12 +151,14 @@ public partial class NewspaperZombie : RegularZombie
 
             case PaperState.Gasp:
                 BIsMoving = false;
-                Animation.Play(GaspAnim, 0.1, 2/3f);
+                Animation.Play(GaspAnim, 0.1, 2 / 3f);
                 break;
 
             case PaperState.WalkAngry:
                 BIsMoving = true; BIsDying = false; BIsDead = false;
+
                 Animation.Play(WalkAngryAnim, 0.2, WalkSpeed * AngrySpeedMultiplier);
+                Zombie_head.Visible = true;
                 break;
 
             case PaperState.EatAngry:
@@ -165,7 +167,7 @@ public partial class NewspaperZombie : RegularZombie
                 break;
 
             case PaperState.Dying:
-                if (!BIsDying && !BIsDead) { BIsDying = true; EmitSignal("ZombieDying"); }
+                if (!BIsDying && !BIsDead) { BIsDying = true; EmitSignal("ZombieDying"); OnDyingStarted(); }
                 break;
 
             case PaperState.Dead:
@@ -411,7 +413,17 @@ public partial class NewspaperZombie : RegularZombie
 
     protected override void OnHealthStageHigh()
     {
-        // 可扩展：半血视觉效果
+        base.OnHealthStageHigh();
+        Zombie_outerarm_upper.Texture = ResourceDB.Images.Zombies.ImageZombie_NewspaperOuterarmUpper2;
+        ZombieArmParticles.SetDeferred("emitting", true);
+        ActiveEffectsCount++;
+    }
+
+    protected override void OnDyingStarted()
+    {
+        base.OnDyingStarted();
+        ZombieHeadParticles.Emitting = true;
+        ActiveEffectsCount++;
     }
 
     public override void Init()
