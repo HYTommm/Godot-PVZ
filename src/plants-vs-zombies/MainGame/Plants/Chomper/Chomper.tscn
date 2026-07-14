@@ -12,16 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://m3v7g1acgnco" path="res://art/MainGame/Plants/Chomper/Chomper_stem1.png" id="4_fuck"]
 [ext_resource type="Texture2D" uid="uid://da1dcqlvfwnxk" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf1.png" id="6_fuck"]
 [ext_resource type="Texture2D" uid="uid://bnkuic41ucae7" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf1tip.png" id="7_fuck"]
-[ext_resource type="Texture2D" uid="uid://661ipcododou" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf4.png" id="8_fuck"]
-[ext_resource type="Texture2D" uid="uid://m4txknf8meh0" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf3.png" id="9_fuck"]
-[ext_resource type="Texture2D" uid="uid://c8iwe46dve4tk" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf2.png" id="10_fuck"]
-[ext_resource type="Texture2D" uid="uid://cmkypjwkgdx7q" path="res://art/MainGame/Plants/Chomper/Chomper_headleaf1.png" id="11_fuck"]
+[ext_resource type="Texture2D" uid="uid://661ipcododou" path="res://art/MainGame/Plants/Chomper/Chomper_Headleaf4.png" id="8_fuck"]
+[ext_resource type="Texture2D" uid="uid://m4txknf8meh0" path="res://art/MainGame/Plants/Chomper/Chomper_Headleaf3.png" id="9_fuck"]
+[ext_resource type="Texture2D" uid="uid://c8iwe46dve4tk" path="res://art/MainGame/Plants/Chomper/Chomper_Headleaf2.png" id="10_fuck"]
+[ext_resource type="Texture2D" uid="uid://cmkypjwkgdx7q" path="res://art/MainGame/Plants/Chomper/Chomper_Headleaf1.png" id="11_fuck"]
 [ext_resource type="Texture2D" uid="uid://o6dkc0klfb7j" path="res://art/MainGame/Plants/Chomper/Chomper_insidemouth.png" id="12_fuck"]
 [ext_resource type="Texture2D" uid="uid://b2pc0u7cj8ng3" path="res://art/MainGame/Plants/Chomper/Chomper_tongue.png" id="13_fuck"]
 [ext_resource type="Texture2D" uid="uid://qrlgs48d7faf" path="res://art/MainGame/Plants/Chomper/Chomper_underjaw.png" id="14_fuck"]
 [ext_resource type="Texture2D" uid="uid://c8j137g2a4cqm" path="res://art/MainGame/Plants/Chomper/Chomper_bottomlip.png" id="15_fuck"]
 [ext_resource type="Texture2D" uid="uid://x6p3a1kol1kb" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf2.png" id="18_fuck"]
+[ext_resource type="Texture2D" uid="uid://b4ie6ojmjj0s0" path="res://art/MainGame/Zombie/Zombie_outerarm_hand.png" id="18_tb74f"]
 [ext_resource type="Texture2D" uid="uid://bstf4gx1i2c3j" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf2tip.png" id="19_fuck"]
+[ext_resource type="Texture2D" uid="uid://b8mx76bkv5n1b" path="res://art/MainGame/Zombie/Zombie_outerarm_lower.png" id="19_w6p04"]
 [ext_resource type="Texture2D" uid="uid://oft3xcli57ui" path="res://art/MainGame/Plants/Chomper/Chomper_spike.png" id="20_fuck"]
 [ext_resource type="Texture2D" uid="uid://bwadaak5f8xnb" path="res://art/MainGame/Plants/Chomper/Chomper_topjaw.png" id="21_fuck"]
 [ext_resource type="Script" uid="uid://c0xsjik480gq3" path="res://MainGame/Plants/Chomper/Chomper.cs" id="27_chompercs"]
@@ -168,10 +170,12 @@ centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="." unique_id=2097563747]
 visible = false
+texture = ExtResource("18_tb74f")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="." unique_id=837651144]
 visible = false
+texture = ExtResource("19_w6p04")
 centered = false
 
 [node name="Chomper_groundleaf2" type="Sprite2D" parent="." unique_id=677921887]
@@ -231,6 +235,7 @@ libraries/ = SubResource("AnimationLibrary_Chomper_idle")
 libraries/Chomper = SubResource("AnimationLibrary_itk0x")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1183778926]
+visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10

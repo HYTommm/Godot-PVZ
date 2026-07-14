@@ -229,6 +229,7 @@ libraries/ = SubResource("AnimationLibrary_Wallnut_blink_twice")
 libraries/ = SubResource("AnimationLibrary_Wallnut_blink_thrice")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1095349218]
+visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10

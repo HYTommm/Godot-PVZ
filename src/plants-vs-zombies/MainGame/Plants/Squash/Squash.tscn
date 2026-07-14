@@ -678,6 +678,7 @@ libraries/Squash = SubResource("AnimationLibrary_5wtnc")
 libraries/ = SubResource("AnimationLibrary_Squash_blink")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1183778926]
+visible = false
 offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10

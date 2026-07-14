@@ -25,8 +25,8 @@ config/name="Plants vs Zombies"
 config/name_localized={
 "zh_CN": "植物大战僵尸"
 }
-run/main_scene="uid://bs1ikm6rlutci"
-config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+run/main_scene="uid://c4pak2uihe0s"
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/windows_native_icon="res://icon/windows.ico"
 
@@ -38,8 +38,6 @@ Global="*res://Global.tscn"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
-window/size/resizable=false
-window/stretch/mode="canvas_items"
 mouse_cursor/custom_image_hotspot=Vector2(5, 5)
 
 [dotnet]
@@ -49,6 +47,10 @@ project/assembly_name="Plants vs Zombies"
 [editor]
 
 export/convert_text_resources_to_binary=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/R2Ga_PVZ/plugin.cfg")
 
 [input]
 

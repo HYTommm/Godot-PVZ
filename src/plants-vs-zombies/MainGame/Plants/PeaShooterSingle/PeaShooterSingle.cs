@@ -1,176 +1,176 @@
-﻿using Godot;
+using Godot;
 using static Godot.GD;
 using System;
 using System.Threading.Tasks;
 using static ResourceDB.Sounds;
 public partial class PeaShooterSingle : Plants
 {
-    private Vector2 _headPos; // 头部位置
-    private readonly Vector2 _constStemPos = new((float)37.6, (float)48.7); //常数：茎位置
-    [Export] protected AnimationPlayer AnimIdle; // Idle动画和Head动画
-    [Export] protected AnimationPlayer AnimHead; // 保留tscn引用
-    [Export] protected AnimationTree AnimTree; // 头部动画树
-    protected float SpeedScaleOfIdle = 1.56f; // Idle动画速度
+	private Vector2 _headPos; // 头部位置
+	private readonly Vector2 _constStemPos = new((float)37.6, (float)48.7); //常数：茎位置
+	[Export] protected AnimationPlayer AnimIdle; // Idle动画和Head动画
+	[Export] protected AnimationPlayer AnimHead; // 保留tscn引用
+	[Export] protected AnimationTree AnimTree; // 头部动画树
+	protected float SpeedScaleOfIdle = 1.56f; // Idle动画速度
 
-    public AudioStreamPlayer ShootSound = new(); // 射击音效
-    [Export] private Node2D _nodeStem;// 茎节点
-    [Export] private Node2D _nodeHead;// 头节点
-    [Export] private Node2D _nodeMouth;// 嘴
-    //protected double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
+	public AudioStreamPlayer ShootSound = new(); // 射击音效
+	[Export] private Node2D _nodeStem;// 茎节点
+	[Export] private Node2D _nodeHead;// 头节点
+	[Export] private Node2D _nodeMouth;// 嘴
+	//protected double _timeOfIdleWhenShooting = 0.0f; // 射击时Idle动画的时间
 
-    protected bool CanShoot { get; set; } = false;
-    protected readonly Timer CanShootTimer = new(); // 射击计时器
-    protected float AnimRate = 2.85f;
+	protected bool CanShoot { get; set; } = false;
+	protected readonly Timer CanShootTimer = new(); // 射击计时器
+	protected float AnimRate = 2.85f;
 
-    public short ShootCount = 0; //射击次数
+	public short ShootCount = 0; //射击次数
 
-    public short ShootMaxInterval = 150; // 射击时间最大间隔
-    public short ShootMinInterval = 136; // 射击时间最小间隔
+	public short ShootMaxInterval = 150; // 射击时间最大间隔
+	public short ShootMinInterval = 136; // 射击时间最小间隔
 
-    [Export]
-    public PackedScene BulletScene { get; set; }
+	[Export]
+	public PackedScene BulletScene { get; set; }
 
-    public PeaShooterSingle()
-    {
-        SunCost = 100; // 阳光消耗
-        CDtime = 1f; // 冷却时间
-                     //CDTime = CDTime.FAST; // 冷却时间
-    }
+	public PeaShooterSingle()
+	{
+		SunCost = 100; // 阳光消耗
+		CDtime = 1f; // 冷却时间
+					 //CDTime = CDTime.FAST; // 冷却时间
+	}
 
-    public override void _Idle()
-    {
-        AnimIdle.CallDeferred("play", "PeaShooterSingle_idle", -1, SpeedScaleOfIdle);
-        AnimTree.CallDeferred("set", "active", true);
-    }
+	public override void _Idle()
+	{
+		AnimIdle.CallDeferred("play", "PeaShooterSingle_idle", -1, SpeedScaleOfIdle);
+		AnimTree.CallDeferred("set", "active", true);
+	}
 
-    public override void _Ready()
-    {
-        base._Ready();
-        SpeedScaleOfIdle = MainGame.Instance.RNG.RandfRange(1.2f, 1.6f);
+	public override void _Ready()
+	{
+		base._Ready();
+		SpeedScaleOfIdle = MainGame.Instance.RNG.RandfRange(1.2f, 1.6f);
 
-        AnimTree.Set("parameters/TimeScale/scale", SpeedScaleOfIdle);
-        AnimTree.Set("parameters/time_scale2/scale", AnimRate);
+		AnimTree.Set("parameters/TimeScale/scale", SpeedScaleOfIdle);
+		AnimTree.Set("parameters/time_scale2/scale", AnimRate);
 
-        ShootSound.Stream = Sound_Throw;
-        AddChild(ShootSound);
+		ShootSound.Stream = Sound_Throw;
+		AddChild(ShootSound);
 
-        CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
+		CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
-        CanShootTimer.OneShot = true;
-        CanShootTimer.Timeout += () => CanShoot = true;
-        AddChild(CanShootTimer);
+		CanShootTimer.OneShot = true;
+		CanShootTimer.Timeout += () => CanShoot = true;
+		AddChild(CanShootTimer);
 
-        _headPos = _nodeHead.Position;
-    }
+		_headPos = _nodeHead.Position;
+	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _PhysicsProcess(double delta)
-    {
-        _nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _PhysicsProcess(double delta)
+	{
+		_nodeHead.Position = _headPos + (_nodeStem.Position - _constStemPos); // 头部跟随茎移动
 
-        if (CanShoot && MainGame.Instance != null && Alive) //如果可以射击且主游戏不为空
-        {
-            foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
-            {
-                //Zombie zombie = mainGame.zombies[i]; // 取出僵尸
-                if (zombie == null) // 如果僵尸不为空
-                {
-                    break;
-                }
+		if (CanShoot && MainGame.Instance != null && Alive) //如果可以射击且主游戏不为空
+		{
+			foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
+			{
+				//Zombie zombie = mainGame.zombies[i]; // 取出僵尸
+				if (zombie == null) // 如果僵尸不为空
+				{
+					break;
+				}
 
-                //GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
-                if (!zombie.BIsDead && zombie.Row == Row && // 如果僵尸不死亡且在同一行
-                    zombie.DefenseHitBox.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
-                    zombie.DefenseHitBox.GlobalPosition.X <
-                    MainGame.Instance.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
-                {
-                    Shoot(); // 射击
-                    break;
-                }
-            }
-        }
-        else if (CanShoot == false)
-        {
-            //GD.Print("cannot shoot");
-        }
-        else
-        {
-            //GD.Print("mainGame is null");
-        }
-    }
+				//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
+				if (!zombie.BIsDead && zombie.Row == Row && // 如果僵尸不死亡且在同一行
+					zombie.DefenseHitBox.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
+					zombie.DefenseHitBox.GlobalPosition.X <
+					MainGame.Instance.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
+				{
+					Shoot(); // 射击
+					break;
+				}
+			}
+		}
+		else if (CanShoot == false)
+		{
+			//GD.Print("cannot shoot");
+		}
+		else
+		{
+			//GD.Print("mainGame is null");
+		}
+	}
 
-    ///// <summary>
-    ///// 允许射击
-    ///// </summary>
-    //public void CanShoot()
-    //{
-    //    //Print("CanShoot()");
-    //    _canShoot = true;
-    //}
+	///// <summary>
+	///// 允许射击
+	///// </summary>
+	//public void CanShoot()
+	//{
+	//    //Print("CanShoot()");
+	//    _canShoot = true;
+	//}
 
-    /// <summary>
-    /// 射击
-    /// </summary>
-    public virtual void Shoot()
-    {
-        CanShoot = false; // 禁止射击
-        RandomShootTime(); // 随机射击时间
+	/// <summary>
+	/// 射击
+	/// </summary>
+	public virtual void Shoot()
+	{
+		CanShoot = false; // 禁止射击
+		RandomShootTime(); // 随机射击时间
 
-        AnimTree.Set("parameters/shoot_blend/blend_amount", ShootCount == 0 ? 0.0f : 1.0f);
-        AnimTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
-        // 0.26秒后发射子弹（模拟原版射击延迟）
-        GetTree().CreateTimer(0.26f).Timeout += ShootBullet;
+		AnimTree.Set("parameters/shoot_blend/blend_amount", ShootCount == 0 ? 0.0f : 1.0f);
+		AnimTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
+		// 0.26秒后发射子弹（模拟原版射击延迟）
+		GetTree().CreateTimer(0.26f).Timeout += ShootBullet;
 
-        ShootCount++; // 射击次数+1
+		ShootCount++; // 射击次数+1
 
-        //Anim_Shoot.Play("RESET");
-    }
+		//Anim_Shoot.Play("RESET");
+	}
 
-    public void ShootBullet()
-    {
-        GD.Print("ShootBullet()");
-        Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
-                                                           //GD.Print(bullet);
-        bullet.Position = _nodeMouth.Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
-        bullet.ShadowPositionY = Shadow.GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
-        AddChild(bullet); // 添加子弹到场景中
-        ShootSound.Play(); // 播放射击音效
-    }
+	public void ShootBullet()
+	{
+		GD.Print("ShootBullet()");
+		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
+														   //GD.Print(bullet);
+		bullet.Position = _nodeMouth.Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
+		bullet.ShadowPositionY = Shadow.GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
+		AddChild(bullet); // 添加子弹到场景中
+		ShootSound.Play(); // 播放射击音效
+	}
 
-    /// <summary> 随机射击时间 </summary>
-    public virtual void RandomShootTime()
-    {
-        CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
-        CanShootTimer.Start(); // 计时器开启
-    }
+	/// <summary> 随机射击时间 </summary>
+	public virtual void RandomShootTime()
+	{
+		CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(ShootMinInterval, ShootMaxInterval) / 100.0f; // 随机射击时间
+		CanShootTimer.Start(); // 计时器开启
+	}
 
-    /// <summary>
-    /// 停止射击动画
-    /// </summary>
-    /// <param name="anim"></param>
-    public void StopShooting(StringName anim)
-    {
-        if (anim == "Head_Shooting" || anim == "Head_Shooting2")
-        {
-            GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
-        }
-    }
+	/// <summary>
+	/// 停止射击动画
+	/// </summary>
+	/// <param name="anim"></param>
+	public void StopShooting(StringName anim)
+	{
+		if (anim == "Head_Shooting" || anim == "Head_Shooting2")
+		{
+			GetNode<Sprite2D>("./Head/Idle_shoot_blink").Visible = false;
+		}
+	}
 
-    /// <summary>
-    /// 种植植物
-    /// </summary>
-    /// <param name="col"> 列 </param>
-    /// <param name="row"> 行 </param>
-    /// <param name="index"> 索引 </param>
-    public override void _Plant(int col, int row, int index)
-    {
-        base._Plant(col, row, index);
-        RandomShootTime(); // 随机射击时间
-    }
+	/// <summary>
+	/// 种植植物
+	/// </summary>
+	/// <param name="col"> 列 </param>
+	/// <param name="row"> 行 </param>
+	/// <param name="index"> 索引 </param>
+	public override void _Plant(int col, int row, int index)
+	{
+		base._Plant(col, row, index);
+		RandomShootTime(); // 随机射击时间
+	}
 
-    //public override void FreePlant()
-    //{
-    //    base.FreePlant();
-    //    RemoveChild(GetNode<Area2D>("./DefenseArea"));
-    //}
+	//public override void FreePlant()
+	//{
+	//    base.FreePlant();
+	//    RemoveChild(GetNode<Area2D>("./DefenseArea"));
+	//}
 }

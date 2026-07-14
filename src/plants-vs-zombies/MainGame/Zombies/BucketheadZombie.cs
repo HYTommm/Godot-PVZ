@@ -1,30 +1,30 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 
 public partial class BucketheadZombie : TieZombie
 {
-    [Export] public Sprite2D Zombie_bucket;
+	[Export] public Sprite2D Zombie_bucket;
 
-    public BucketheadZombie()
-    {
-        //HP = 270;
-        //MaxHP = 270;
-        GD.Print("BucketheadZombie Constructor");
-    }
+	public BucketheadZombie()
+	{
+		//HP = 270;
+		//MaxHP = 270;
+		GD.Print("BucketheadZombie Constructor");
+	}
 
-    public override void Init()
-    {
-        GD.Print("BucketheadZombie Init");
-    }
+	public override void Init()
+	{
+		GD.Print("BucketheadZombie Init");
+	}
 
-    public override void _Ready()
-    {
-        base._Ready();
-        Bucket bucket = new(
-            Zombie_bucket,
-            [],
-            [Zombie_hair]);
-        ArmorManager.AddArmor(bucket);
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		Bucket bucket = new(
+			Zombie_bucket,
+			[],
+			[Zombie_hair]);
+		ArmorManager.AddArmor(bucket);
+	}
 }
