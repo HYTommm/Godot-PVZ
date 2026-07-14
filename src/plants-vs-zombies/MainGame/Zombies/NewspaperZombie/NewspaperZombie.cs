@@ -151,7 +151,7 @@ public partial class NewspaperZombie : RegularZombie
 
             case PaperState.Gasp:
                 BIsMoving = false;
-                Animation.Play(GaspAnim, 0.1);
+                Animation.Play(GaspAnim, 0.1, 2/3f);
                 break;
 
             case PaperState.WalkAngry:
@@ -288,6 +288,8 @@ public partial class NewspaperZombie : RegularZombie
             Animation.Play(DeathAnim, 1.0f / 6.0f);
             IsAnimationPlaying = true;
         }
+
+        RequestRelease();
     }
 
     // ══════════════════════════════════════════

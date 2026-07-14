@@ -77,6 +77,10 @@ mouse_right={
 
 limits/message_queue/max_size_mb=64
 
+[physics]
+
+common/physics_ticks_per_second=100
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
