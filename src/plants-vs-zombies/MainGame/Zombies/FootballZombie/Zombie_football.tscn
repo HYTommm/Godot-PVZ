@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://cupydj032c8t3"]
 
 [ext_resource type="Texture2D" uid="uid://ci5er24widgyx" path="res://art/MainGame/Zombie/FootballZombie/zombie_football_leftarm_upper.png" id="0_fuck"]
-[ext_resource type="Animation" uid="uid://diqikt3e6mqeg" path="res://MainGame/Zombies/FootballZombie/Zombie_football_death.tres" id="1_anim"]
+[ext_resource type="Animation" uid="uid://cnotlngu40gry" path="res://MainGame/Zombies/FootballZombie/Zombie_football_death.tres" id="1_anim"]
 [ext_resource type="Texture2D" uid="uid://dkvdl0evp25ew" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_leftleg_foot.png" id="1_fuck"]
 [ext_resource type="Script" uid="uid://bkwh1sga5uogy" path="res://MainGame/Zombies/FootballZombie/FootballZombie.cs" id="1_vvr0t"]
-[ext_resource type="Animation" uid="uid://dlg45psux20i8" path="res://MainGame/Zombies/FootballZombie/Zombie_football_eat.tres" id="2_anim"]
+[ext_resource type="Animation" uid="uid://b7qdou2xug5my" path="res://MainGame/Zombies/FootballZombie/Zombie_football_eat.tres" id="2_anim"]
 [ext_resource type="Texture2D" uid="uid://7mpdfh52jt5p" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_leftleg_lower.png" id="2_fuck"]
 [ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="2_lktx5"]
-[ext_resource type="Animation" uid="uid://bqy4brl61x5vn" path="res://MainGame/Zombies/FootballZombie/Zombie_football_walk.tres" id="3_anim"]
+[ext_resource type="Animation" uid="uid://cs8w1tpr4lkb3" path="res://MainGame/Zombies/FootballZombie/Zombie_football_walk.tres" id="3_anim"]
 [ext_resource type="Texture2D" uid="uid://dqhxgjmiajos5" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_leftleg_upper.png" id="3_fuck"]
 [ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="3_j8bss"]
-[ext_resource type="Animation" uid="uid://ccw8unv6nm64j" path="res://MainGame/Zombies/FootballZombie/Zombie_football_idle.tres" id="4_anim"]
+[ext_resource type="Animation" uid="uid://cd0r8kjxh2jom" path="res://MainGame/Zombies/FootballZombie/Zombie_football_idle.tres" id="4_anim"]
 [ext_resource type="Texture2D" uid="uid://8a1vw6apaboe" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_lowerbody.png" id="4_fuck"]
-[ext_resource type="Animation" uid="uid://c6g1gjauw1k3k" path="res://MainGame/Zombies/FootballZombie/Zombie_football_hair.tres" id="5_anim"]
+[ext_resource type="Animation" uid="uid://bphvsip1laj8f" path="res://MainGame/Zombies/FootballZombie/Zombie_football_hair.tres" id="5_anim"]
 [ext_resource type="Texture2D" uid="uid://b0dv747825bsn" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_rightleg_lower.png" id="5_fuck"]
-[ext_resource type="Animation" uid="uid://ctethsptb7nbl" path="res://MainGame/Zombies/FootballZombie/Zombie_football_head1.tres" id="6_anim"]
+[ext_resource type="Animation" uid="uid://b6ksi0hp61ket" path="res://MainGame/Zombies/FootballZombie/Zombie_football_head1.tres" id="6_anim"]
 [ext_resource type="Texture2D" uid="uid://wwu0v6cqm7uw" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_rightleg_foot.png" id="6_fuck"]
-[ext_resource type="Animation" uid="uid://ox73tahubcgy" path="res://MainGame/Zombies/FootballZombie/Zombie_football_head2.tres" id="7_anim"]
+[ext_resource type="Animation" uid="uid://c7su0dtrn0u5o" path="res://MainGame/Zombies/FootballZombie/Zombie_football_head2.tres" id="7_anim"]
 [ext_resource type="Texture2D" uid="uid://dxrltsuaq845j" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_rightleg_upper.png" id="7_fuck"]
 [ext_resource type="Texture2D" uid="uid://6e8wy5vmxt3e" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_upperbody2.png" id="8_fuck"]
 [ext_resource type="Texture2D" uid="uid://d6muns0xsb44" path="res://art/MainGame/Zombie/FootballZombie/Zombie_football_leftarm_lower.png" id="9_fuck"]
@@ -2149,13 +2149,13 @@ tracks/174/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fuck"]
 _data = {
 &"ALL_ANIMS": SubResource("Animation_fuck"),
-&"Zombie_football_death": ExtResource("1_anim"),
-&"Zombie_football_eat": ExtResource("2_anim"),
-&"Zombie_football_hair": ExtResource("5_anim"),
-&"Zombie_football_head1": ExtResource("6_anim"),
-&"Zombie_football_head2": ExtResource("7_anim"),
-&"Zombie_football_idle": ExtResource("4_anim"),
-&"Zombie_football_walk": ExtResource("3_anim")
+&"death": ExtResource("1_anim"),
+&"eat": ExtResource("2_anim"),
+&"hair": ExtResource("5_anim"),
+&"head1": ExtResource("6_anim"),
+&"head2": ExtResource("7_anim"),
+&"idle": ExtResource("4_anim"),
+&"walk": ExtResource("3_anim")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p51vu"]
@@ -2164,16 +2164,33 @@ size = Vector2(42, 115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lktx5"]
 size = Vector2(50, 115)
 
-[node name="Zombie_football" type="Node2D" unique_id=1710311718 node_paths=PackedStringArray("Zombie_Football", "Animation", "Ground", "Shadow", "_textEdit")]
+[node name="Zombie_football" type="Node2D" unique_id=1710311718 node_paths=PackedStringArray("Zombie_Football", "Animation", "Ground", "Shadow", "_textEdit", "_bodyPartsHalfHealth", "_bodyPartsDying", "Body", "Anim_innerArm1", "Anim_innerArm2", "Anim_innerArm3", "Zombie_outerarm_upper", "Zombie_outerarm_lower", "Zombie_outerarm_hand", "Zombie_head", "Zombie_jaw", "Zombie_hair")]
 script = ExtResource("1_vvr0t")
 Zombie_Football = NodePath("FootballZombie/Zombie_football_helmet")
 Animation = NodePath("AnimLib")
 Ground = NodePath("FootballZombie/_ground")
-Shadow = NodePath("Shadow")
+Shadow = NodePath("FootballZombie/Shadow")
 _textEdit = NodePath("TextEdit")
+_bodyPartsHalfHealth = [NodePath("FootballZombie/Zombie_football_leftarm_lower"), NodePath("FootballZombie/Zombie_football_leftarm_hand")]
+_bodyPartsDying = [NodePath("FootballZombie/Anim_head1"), NodePath("FootballZombie/Anim_head2"), NodePath("FootballZombie/Anim_hair")]
+Body = NodePath("FootballZombie")
+Anim_innerArm1 = NodePath("FootballZombie/Zombie_football_rightarm_upper")
+Anim_innerArm2 = NodePath("FootballZombie/Zombie_football_rightarm_lower")
+Anim_innerArm3 = NodePath("FootballZombie/Zombie_football_rightarm_hand")
+Zombie_outerarm_upper = NodePath("FootballZombie/Zombie_football_leftarm_upper")
+Zombie_outerarm_lower = NodePath("FootballZombie/Zombie_football_leftarm_lower")
+Zombie_outerarm_hand = NodePath("FootballZombie/Zombie_football_leftarm_hand")
+Zombie_head = NodePath("FootballZombie/Anim_head1")
+Zombie_jaw = NodePath("FootballZombie/Anim_head2")
+Zombie_hair = NodePath("FootballZombie/Anim_hair")
 HealthStageComponent = SubResource("Resource_lktx5")
 
 [node name="FootballZombie" type="CanvasGroup" parent="." unique_id=458161041]
+
+[node name="Shadow" type="Sprite2D" parent="FootballZombie" unique_id=2046173579]
+position = Vector2(24, 99)
+texture = ExtResource("31_v5303")
+centered = false
 
 [node name="Anim_death" type="Sprite2D" parent="FootballZombie" unique_id=2052295745]
 visible = false
@@ -2184,160 +2201,159 @@ visible = false
 centered = false
 
 [node name="Anim_walk" type="Sprite2D" parent="FootballZombie" unique_id=1950301075]
-visible = false
 centered = false
 
 [node name="Anim_idle" type="Sprite2D" parent="FootballZombie" unique_id=1567865018]
-centered = false
-
-[node name="_ground" type="Sprite2D" parent="FootballZombie" unique_id=1655283061]
 visible = false
 centered = false
 
+[node name="_ground" type="Sprite2D" parent="FootballZombie" unique_id=1655283061]
+position = Vector2(-59.8, 70.1)
+centered = false
+
 [node name="Zombie_football_leftarm_upper" type="Sprite2D" parent="FootballZombie" unique_id=421555677]
-position = Vector2(35.9, 61.7)
-rotation = -0.026
-scale = Vector2(0.8, 0.8)
+position = Vector2(23.7, 62.6)
+rotation = 0.96676165
+scale = Vector2(0.7958197, 0.7958197)
 texture = ExtResource("0_fuck")
 centered = false
 
 [node name="Zombie_football_leftleg_foot" type="Sprite2D" parent="FootballZombie" unique_id=469242720]
-position = Vector2(36.6, 112.2)
-rotation = -0.052
-scale = Vector2(0.8, 0.8)
+position = Vector2(58, 112.6)
+rotation = -0.1067802
+scale = Vector2(0.79754245, 0.79754245)
 texture = ExtResource("1_fuck")
 centered = false
 
 [node name="Zombie_football_leftleg_lower" type="Sprite2D" parent="FootballZombie" unique_id=726789480]
-position = Vector2(48.9, 100)
-rotation = -0.101
-scale = Vector2(0.799, 0.799)
+position = Vector2(61.1, 108.7)
+rotation = -0.7108038
+scale = Vector2(0.7970044, 0.7970044)
 texture = ExtResource("2_fuck")
 centered = false
 
 [node name="Zombie_football_leftleg_upper" type="Sprite2D" parent="FootballZombie" unique_id=1954569173]
-position = Vector2(49.6, 80.5)
-rotation = 0.127
-scale = Vector2(0.8, 0.8)
+position = Vector2(50, 92.7)
+rotation = -0.51355004
+scale = Vector2(0.7979279, 0.7979279)
 texture = ExtResource("3_fuck")
 centered = false
 
 [node name="Zombie_football_lowerbody" type="Sprite2D" parent="FootballZombie" unique_id=1603052193]
-position = Vector2(56.3, 75.6)
-scale = Vector2(0.8, 0.8)
+position = Vector2(54.3, 76.8)
+rotation = 0.013613022
+scale = Vector2(0.8080748, 0.7997905)
+skew = -0.14401662
 texture = ExtResource("4_fuck")
 centered = false
 
 [node name="Zombie_football_rightleg_lower" type="Sprite2D" parent="FootballZombie" unique_id=230425478]
-position = Vector2(81.4, 108.8)
-rotation = -0.188
-scale = Vector2(0.799, 0.799)
+position = Vector2(72.8, 106.7)
+rotation = -0.98836666
+scale = Vector2(0.7962845, 0.7962845)
 texture = ExtResource("5_fuck")
 centered = false
 
 [node name="Zombie_football_rightleg_foot" type="Sprite2D" parent="FootballZombie" unique_id=491369812]
-position = Vector2(69.8, 125.7)
-rotation = -0.07
-scale = Vector2(0.708, 0.708)
+position = Vector2(80.5, 129.9)
+rotation = -1.1052488
+scale = Vector2(0.7061515, 0.7061515)
 texture = ExtResource("6_fuck")
 centered = false
 
 [node name="Zombie_football_rightleg_upper" type="Sprite2D" parent="FootballZombie" unique_id=1645058484]
-position = Vector2(73.4, 81.1)
-rotation = 0.127
-scale = Vector2(0.8, 0.8)
+position = Vector2(77.9, 74.3)
+rotation = 0.6109313
+scale = Vector2(0.79842347, 0.79842347)
 texture = ExtResource("7_fuck")
 centered = false
 
 [node name="Zombie_football_upperbody2" type="Sprite2D" parent="FootballZombie" unique_id=1012037183]
-position = Vector2(15.4, 21.1)
-rotation = -0.026
-scale = Vector2(0.8, 0.8)
+position = Vector2(7.2, 33.6)
+rotation = -0.15712251
+scale = Vector2(0.7988404, 0.7988404)
 texture = ExtResource("8_fuck")
 centered = false
 
 [node name="Zombie_football_leftarm_lower" type="Sprite2D" parent="FootballZombie" unique_id=344291989]
-position = Vector2(17.5, 69)
-rotation = -0.093
-scale = Vector2(0.799, 0.799)
+position = Vector2(-4.3, 67.2)
+rotation = -0.001257861
+scale = Vector2(0.7950006, 0.7950006)
 texture = ExtResource("9_fuck")
 centered = false
 
 [node name="Zombie_football_upperbody" type="Sprite2D" parent="FootballZombie" unique_id=1940649699]
-position = Vector2(15, 21.6)
-rotation = -0.026
-scale = Vector2(0.8, 0.8)
+position = Vector2(6.8, 34.2)
+rotation = -0.15712251
+scale = Vector2(0.7988404, 0.7988404)
 texture = ExtResource("11_fuck")
 centered = false
 
 [node name="Anim_hair" type="Sprite2D" parent="FootballZombie" unique_id=556258418]
-position = Vector2(26.7, 7.5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(15.6, 18.5)
+rotation = -0.13304773
+scale = Vector2(0.79906195, 0.79906195)
 texture = ExtResource("12_fuck")
 centered = false
 
 [node name="Anim_head1" type="Sprite2D" parent="FootballZombie" unique_id=734935471]
-position = Vector2(30.5, 10.2)
-rotation = -0.026
-scale = Vector2(0.8, 0.8)
+position = Vector2(20.2, 20.6)
+rotation = -0.14437404
+scale = Vector2(0.799316, 0.799316)
 texture = ExtResource("13_fuck")
 centered = false
 
 [node name="Zombie_football_rightarm_upper" type="Sprite2D" parent="FootballZombie" unique_id=1144013511]
-position = Vector2(80.6, 62.9)
-scale = Vector2(0.8, 0.8)
+position = Vector2(78.9, 64.7)
+rotation = -0.23617768
+scale = Vector2(0.7991858, 0.7991858)
 texture = ExtResource("14_fuck")
 centered = false
 
 [node name="Zombie_football_rightarm_lower" type="Sprite2D" parent="FootballZombie" unique_id=2003581714]
-position = Vector2(64, 67.7)
-rotation = -0.096
-scale = Vector2(0.799, 0.799)
+position = Vector2(63.9, 73.3)
+rotation = -0.3316512
+scale = Vector2(0.79851425, 0.79851425)
 texture = ExtResource("15_fuck")
 centered = false
 
 [node name="Zombie_football_upperbody3" type="Sprite2D" parent="FootballZombie" unique_id=1830274034]
-position = Vector2(15, 21.6)
-rotation = -0.026
-scale = Vector2(0.8, 0.8)
+position = Vector2(6.8, 34.2)
+rotation = -0.15712251
+scale = Vector2(0.7988404, 0.7988404)
 texture = ExtResource("16_fuck")
 centered = false
 
 [node name="Anim_head2" type="Sprite2D" parent="FootballZombie" unique_id=1103281927]
-position = Vector2(38.1, 44.8)
-rotation = -0.079
-scale = Vector2(0.799, 0.799)
+position = Vector2(31.9, 54)
+rotation = -0.19665864
+scale = Vector2(0.79838896, 0.79838896)
 texture = ExtResource("17_fuck")
 centered = false
 
 [node name="Zombie_football_helmet" type="Sprite2D" parent="FootballZombie" unique_id=504508976]
-position = Vector2(25.8, 2.8)
-rotation = -0.049
-scale = Vector2(0.8, 0.8)
+position = Vector2(14.6, 13.8)
+rotation = -0.16597173
+scale = Vector2(0.79897934, 0.79897934)
 texture = ExtResource("18_fuck")
 centered = false
 
 [node name="Zombie_football_leftarm_hand" type="Sprite2D" parent="FootballZombie" unique_id=46372315]
-position = Vector2(-1.3, 52.8)
-rotation = 0.07
-scale = Vector2(0.799, 0.799)
+position = Vector2(-6.2, 41.8)
+rotation = 0.7800697
+scale = Vector2(0.7962135, 0.7962135)
 texture = ExtResource("19_fuck")
 centered = false
 
 [node name="Zombie_football_rightarm_hand" type="Sprite2D" parent="FootballZombie" unique_id=748454790]
-position = Vector2(44.6, 69.1)
-rotation = 0.087
-scale = Vector2(0.799, 0.799)
+position = Vector2(47.6, 72.8)
+rotation = 0.10415571
+scale = Vector2(0.79832643, 0.79832643)
 texture = ExtResource("21_fuck")
 centered = false
 
 [node name="AnimLib" type="AnimationPlayer" parent="." unique_id=578933627]
-libraries/ = SubResource("AnimationLibrary_fuck")
-
-[node name="Shadow" type="Sprite2D" parent="." unique_id=2046173579]
-position = Vector2(24, 99)
-texture = ExtResource("31_v5303")
-centered = false
+libraries/Zombie_football = SubResource("AnimationLibrary_fuck")
 
 [node name="DefenseHitBox" type="Area2D" parent="." unique_id=132899068]
 position = Vector2(36, 0)
