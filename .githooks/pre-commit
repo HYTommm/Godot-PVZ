@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# 将 .cs 文件中的前导 tab 替换为 4 空格
+for file in $(git diff --cached --name-only --diff-filter=ACM | grep '\.cs$'); do
+    if [ -f "$file" ]; then
+        sed -i 's/^	/    /g' "$file"
+        git add "$file"
+    fi
+done
