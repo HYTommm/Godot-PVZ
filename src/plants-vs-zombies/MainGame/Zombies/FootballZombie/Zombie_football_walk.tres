@@ -232,7 +232,7 @@ tracks/16/keys = {
 }
 tracks/17/type = "value"
 tracks/17/imported = false
-tracks/17/enabled = true
+tracks/17/enabled = false
 tracks/17/path = NodePath("FootballZombie/Zombie_football_leftarm_upper:texture")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
@@ -532,7 +532,7 @@ tracks/41/keys = {
 }
 tracks/42/type = "value"
 tracks/42/imported = false
-tracks/42/enabled = true
+tracks/42/enabled = false
 tracks/42/path = NodePath("FootballZombie/Zombie_football_leftarm_lower:visible")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
@@ -604,7 +604,7 @@ tracks/47/keys = {
 }
 tracks/48/type = "value"
 tracks/48/imported = false
-tracks/48/enabled = true
+tracks/48/enabled = false
 tracks/48/path = NodePath("FootballZombie/Anim_hair:visible")
 tracks/48/interp = 1
 tracks/48/loop_wrap = true
@@ -628,7 +628,7 @@ tracks/49/keys = {
 }
 tracks/50/type = "value"
 tracks/50/imported = false
-tracks/50/enabled = true
+tracks/50/enabled = false
 tracks/50/path = NodePath("FootballZombie/Anim_hair:texture")
 tracks/50/interp = 1
 tracks/50/loop_wrap = true
@@ -640,7 +640,7 @@ tracks/50/keys = {
 }
 tracks/51/type = "value"
 tracks/51/imported = false
-tracks/51/enabled = true
+tracks/51/enabled = false
 tracks/51/path = NodePath("FootballZombie/Anim_head1:visible")
 tracks/51/interp = 1
 tracks/51/loop_wrap = true
@@ -784,7 +784,7 @@ tracks/62/keys = {
 }
 tracks/63/type = "value"
 tracks/63/imported = false
-tracks/63/enabled = true
+tracks/63/enabled = false
 tracks/63/path = NodePath("FootballZombie/Anim_head2:visible")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
@@ -820,7 +820,7 @@ tracks/65/keys = {
 }
 tracks/66/type = "value"
 tracks/66/imported = false
-tracks/66/enabled = true
+tracks/66/enabled = false
 tracks/66/path = NodePath("FootballZombie/Zombie_football_helmet:visible")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
@@ -844,7 +844,7 @@ tracks/67/keys = {
 }
 tracks/68/type = "value"
 tracks/68/imported = false
-tracks/68/enabled = true
+tracks/68/enabled = false
 tracks/68/path = NodePath("FootballZombie/Zombie_football_helmet:texture")
 tracks/68/interp = 1
 tracks/68/loop_wrap = true
@@ -856,7 +856,7 @@ tracks/68/keys = {
 }
 tracks/69/type = "value"
 tracks/69/imported = false
-tracks/69/enabled = true
+tracks/69/enabled = false
 tracks/69/path = NodePath("FootballZombie/Zombie_football_leftarm_hand:visible")
 tracks/69/interp = 1
 tracks/69/loop_wrap = true

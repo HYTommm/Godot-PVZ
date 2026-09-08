@@ -113,9 +113,7 @@ public abstract partial class RegularZombie : Zombie
 		AddChild(_eatSound);
 
 		// 随机速度
-		WalkSpeed = MainGame.Instance.RNG.RandfRange(
-			640.0f / 99 / 735 * 100,
-			640.0f / 99 / 459 * 100);
+		PickRandomSpeed();
 
 		// 信号
 		Animation.AnimationFinished += OnAnimationFinished;
@@ -172,6 +170,7 @@ public abstract partial class RegularZombie : Zombie
 		BIsMoving = true;
 		BIsDying = false;
 		BIsDead = false;
+		PickRandomSpeed();
 		Move(0.2f);
 	}
 
@@ -251,7 +250,7 @@ public abstract partial class RegularZombie : Zombie
 				break;
 
 			default:
-				Animation.Play(DeathAnimationName, 1.0 / 6.0);
+				Animation.Play(DeathAnimationName, 1.0 / 6.0, GetDeathAnimSpeed());
 				IsAnimationPlaying = true;
 				break;
 		}
@@ -260,6 +259,19 @@ public abstract partial class RegularZombie : Zombie
 	// ══════════════════════════════════════════
 	//  子类可重写的扩展点
 	// ══════════════════════════════════════════
+
+	/// <summary>抽取行走速度。原版每次开始行走都会重抽；本项目只在生成时抽一次</summary>
+	protected virtual void PickRandomSpeed()
+	{
+		// 平均速度 = 47 × 速度系数，速度系数 ∈ [0.23, 0.32]；customSpeed = 平均速度 ÷ (地面循环位移 ÷ 循环时长)
+		// 本动画 46 帧 / 49.8px / 3.83333s → S=1 时 12.99 px/s
+		WalkSpeed = MainGame.Instance.RNG.RandfRange(
+			640.0f / 99 / 735 * 100,
+			640.0f / 99 / 459 * 100);
+	}
+
+	/// <summary>死亡动画播放速率。PVZ 常规组随机 24–30 fps → customSpeed = 速率 ÷ 12 = 2.0–2.5</summary>
+	protected virtual float GetDeathAnimSpeed() => MainGame.Instance.RNG.RandfRange(2.0f, 2.5f);
 
 	/// <summary>血量降至 2/3 以下时调用（隐藏 BodyPartsHalfHealth 中的部件）</summary>
 	protected virtual void OnHealthStageHigh()
@@ -315,12 +327,12 @@ public abstract partial class RegularZombie : Zombie
 		foreach (Node child in Body.GetChildren())
 			if (child is Sprite2D sp) sp.Visible = false;
 
-		if (HealthStageComponent.HP > CriticalHP1)
+		if (ZombieArmParticles != null && HealthStageComponent.HP > CriticalHP1)
 		{
 			ActiveEffectsCount++;
 			ZombieArmParticles.Emitting = true;
 		}
-		if (HealthStageComponent.HP >= CriticalHPLast)
+		if (ZombieHeadParticles != null && HealthStageComponent.HP >= CriticalHPLast)
 		{
 			ActiveEffectsCount++;
 			ZombieHeadParticles.Emitting = true;

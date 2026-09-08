@@ -31,7 +31,7 @@ public partial class FootballHelmet : Armor
 		if (!hurt.BEnableTargetHitSFX)
 			return;
 
-		uint random = GD.Randi() % 2; // 随机播放啃食音效
+		uint random = GD.Randi() % 2; // PVZ FOLEY_PLASTIC_HIT：与路障/矿工帽同音，铁桶才是 FOLEY_SHIELD_HIT
 		Sound.Stream = random switch
 		{
 			0 => Sound_PlasticHit,
