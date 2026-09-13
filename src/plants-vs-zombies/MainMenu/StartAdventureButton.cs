@@ -1,6 +1,5 @@
 using Godot;
 using static ResourceDB.Sounds;
-using System;
 
 public partial class StartAdventureButton : GameBaseButton
 {
@@ -11,30 +10,17 @@ public partial class StartAdventureButton : GameBaseButton
 	/// </summary>
 	public const double LongPressSeconds = 1.0;
 
-	public PackedScene MainGameScene;
-
 	/// <summary> 按下时刻（秒，来自 Time.GetTicksMsec）；-1 表示当前没有按下 </summary>
 	private double _pressedAtSeconds = -1.0;
-
-	/// <summary> 单击开局时选定的关卡，等过渡动画播完再由 StartGame 使用 </summary>
-	private LevelData _pendingLevel;
-
-	private ZombieHand _zombieHand;
-	private ColorRect _colorRect;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		TapSound.Stream = Sound_GraveButton;
-		MainGameScene = ResourceLoader.Load<PackedScene>("res://MainGame/MainGame.tscn");
-
-		// 节点和信号在 _Ready 里一次接好：ZombieHand 此时已经在树上，
-		// 没必要每次点击都重新取节点、重新订阅（原来的 += 会累积连接，
-		// 导致重复点击时 StartGame 被调用多次）
-		_zombieHand = GetNode<ZombieHand>("../../ZombieHand");
-		_colorRect = GetNode<ColorRect>("../../ColorRect");
-		_zombieHand.AnimEnd += StartGame;
-
+		if (Main == null)
+		{
+			GD.PrintErr($"[StartAdventureButton] {Name} 的 Main 未指定，点击和长按都不会生效");
+		}
 	}
 
 	public override void _Input(InputEvent @event)
@@ -57,36 +43,20 @@ public partial class StartAdventureButton : GameBaseButton
 			: Time.GetTicksMsec() / 1000.0 - _pressedAtSeconds;
 		_pressedAtSeconds = -1.0;
 
+		// 开局流程全在菜单场景里，这里只上报意图
+		if (Main is not MainMenu_SelectorScreen menu)
+		{
+			return;
+		}
+
 		if (heldSeconds >= LongPressSeconds)
 		{
 			// 长按：打开选关界面，不直接开局
-			GD.Print($"[StartAdventureButton] 长按 {heldSeconds:F2}s，打开选关界面");
-			(Main as MainMenu_SelectorScreen)?.OpenLevelSelect();
+			menu.OpenLevelSelect();
 			return;
 		}
 
 		// 单击：固定进 1-1（第一版不做"推进到下一关"）
-		_pendingLevel = Global.Instance?.GetLevel(1, 1);
-		GD.Print($"[StartAdventureButton] 单击 {heldSeconds:F2}s，进入关卡 {_pendingLevel?.LevelId ?? "null"}");
-		PlayEnterAnimation();
-	}
-
-	/// <summary> 播进入游戏的过场动画，动画结束后由已接好的 AnimEnd 触发 StartGame </summary>
-	private void PlayEnterAnimation()
-	{
-		(Main as MainMenu_SelectorScreen)?.StopBgm();
-		// 停止背景音乐
-		_colorRect.Visible = true;
-		_zombieHand.Play();
-	}
-
-	public void StartGame()
-	{
-		GD.Print("start game");
-		if (Global.Instance != null)
-		{
-			Global.Instance.CurrentLevelData = _pendingLevel;
-		}
-		GetTree().ChangeSceneToPacked(MainGameScene);
+		menu.StartAdventure(Global.Instance?.GetLevel(1, 1));
 	}
 }

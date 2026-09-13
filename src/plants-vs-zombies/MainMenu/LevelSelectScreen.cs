@@ -18,14 +18,12 @@ public partial class LevelSelectScreen : CanvasLayer
 	private const int CellGap = 14;
 
 	private readonly List<GameBaseButton> _menuButtonsDisabled = new();
-	private PackedScene _mainGameScene;
 	private bool _built;
 
 	public override void _Ready()
 	{
 		Layer = 100;
 		Visible = false;
-		_mainGameScene = ResourceLoader.Load<PackedScene>("res://MainGame/MainGame.tscn");
 		Build();
 	}
 
@@ -122,16 +120,8 @@ public partial class LevelSelectScreen : CanvasLayer
 			return;
 		}
 		GD.Print($"[LevelSelectScreen] 选择关卡 {level.LevelId}");
-		if (Global.Instance != null)
-		{
-			Global.Instance.CurrentLevelData = level;
-		}
-		if (_mainGameScene == null)
-		{
-			GD.PrintErr("[LevelSelectScreen] MainGame.tscn 加载失败");
-			return;
-		}
-		GetTree().ChangeSceneToPacked(_mainGameScene);
+		// 切场景统一走菜单场景，免得 res:// 路径和 CurrentLevelData 的赋值散在两处
+		(GetParent() as MainMenu_SelectorScreen)?.EnterLevel(level);
 	}
 
 	public void Open()
