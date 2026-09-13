@@ -55,7 +55,8 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect
         if (IsReleaseRequested) return;   // 已请求过，防止重复
         IsReleaseRequested = true;
 
-        if (ActiveEffectsCount == 0 && !IsAnimationPlaying) // 没有活跃的效果和动画，可以直接释放
+        // 用 <= 0 而不是 == 0：计数一旦被某个多还的 Finished 扣成负数，== 0 就永远不成立，僵尸再也放不掉
+        if (ActiveEffectsCount <= 0 && !IsAnimationPlaying) // 没有活跃的效果和动画，可以直接释放
             QueueFree();
         // 否则等待粒子结束时（在 OnParticleFinished 中处理）
     }

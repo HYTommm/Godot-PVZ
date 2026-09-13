@@ -119,9 +119,12 @@ public abstract partial class RegularZombie : Zombie
 		Animation.AnimationFinished += OnAnimationFinished;
 		StatusEffectManager.EffectsChanged += OnEffectsChanged;
 
-		// 粒子完成信号
-		//ZombieArmParticles.Finished += OnEffectsFinished;
-		//ZombieHeadParticles.Finished += OnEffectsFinished;
+		// 粒子完成信号。粒子是[Export]的，不是每个僵尸场景都挂了，要判空。
+		// 这里必须接上：谁调用 ActiveEffectsCount++ 谁就得让计数归零，否则僵尸永远不释放
+		if (ZombieArmParticles != null)
+			ZombieArmParticles.Finished += OnEffectsFinished;
+		if (ZombieHeadParticles != null)
+			ZombieHeadParticles.Finished += OnEffectsFinished;
 
 		// 实例化焦炭动画场景
 		if (_charredScene != null)
@@ -498,14 +501,14 @@ public abstract partial class RegularZombie : Zombie
 		{
 			OnLawnMowerDeathAnimationFinished();
 		}
-		if (ActiveEffectsCount == 0 && !IsAnimationPlaying && IsReleaseRequested)
+		if (ActiveEffectsCount <= 0 && !IsAnimationPlaying && IsReleaseRequested)
 			QueueFree();
 	}
 
 	public void OnEffectsFinished()
 	{
 		ActiveEffectsCount--;
-		if (ActiveEffectsCount == 0 && !IsAnimationPlaying && IsReleaseRequested)
+		if (ActiveEffectsCount <= 0 && !IsAnimationPlaying && IsReleaseRequested)
 			QueueFree();
 	}
 
@@ -562,7 +565,7 @@ public abstract partial class RegularZombie : Zombie
 	{
 		ZombieCharredNode2D.Visible = false;
 		IsAnimationPlaying = false;
-		if (ActiveEffectsCount == 0 && !IsAnimationPlaying && IsReleaseRequested)
+		if (ActiveEffectsCount <= 0 && !IsAnimationPlaying && IsReleaseRequested)
 			QueueFree();
 	}
 }

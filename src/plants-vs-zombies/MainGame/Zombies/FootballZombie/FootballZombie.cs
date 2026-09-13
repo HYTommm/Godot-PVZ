@@ -33,10 +33,6 @@ public partial class FootballZombie : RegularZombie
 			[Zombie_hair]);
 		ArmorManager.AddArmor(footballhelmet);
 
-		// 粒子播完归还 ActiveEffectsCount，否则计数不归零、僵尸不释放
-		ZombieArmParticles.Finished += OnEffectsFinished;
-		ZombieHeadParticles.Finished += OnEffectsFinished;
-
 		_stateMachine.ForceSetState(FootballState.Walk);
 	}
 
