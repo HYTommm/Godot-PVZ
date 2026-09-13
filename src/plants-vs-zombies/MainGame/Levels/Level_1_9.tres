@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/ZombieWaveEntry.cs" id="1_vgu0a"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="2_onnpt"]
+
+[sub_resource type="Resource" id="Resource_sh6d1"]
+script = ExtResource("1_vgu0a")
+Weight = 4000
+
+[sub_resource type="Resource" id="Resource_vhf54"]
+script = ExtResource("1_vgu0a")
+Type = 1
+Weight = 4000
+Grade = 2
+
+[sub_resource type="Resource" id="Resource_eqvrh"]
+script = ExtResource("1_vgu0a")
+Type = 4
+Weight = 2000
+Grade = 2
+FirstAllowedWave = 5
+
+[sub_resource type="Resource" id="Resource_axatu"]
+script = ExtResource("1_vgu0a")
+Type = 2
+Weight = 3000
+Grade = 4
+
+[resource]
+script = ExtResource("2_onnpt")
+LevelName = "1-9"
+LevelId = "1-9"
+Waves = 20
+FirstWaveDelay = 18.0
+WavePool = Array[ExtResource("1_vgu0a")]([SubResource("Resource_sh6d1"), SubResource("Resource_vhf54"), SubResource("Resource_eqvrh"), SubResource("Resource_axatu")])

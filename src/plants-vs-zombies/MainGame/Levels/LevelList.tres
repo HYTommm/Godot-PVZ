@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelList" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="1_164c6"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_1.tres" id="2_2dy5j"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_2.tres" id="3_ele6w"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelList.cs" id="3_yu74y"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_3.tres" id="4_f2jbj"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_4.tres" id="5_c0042"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_5.tres" id="6_8syc5"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_6.tres" id="7_j6jht"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_7.tres" id="8_235e3"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_8.tres" id="9_8k5k1"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_9.tres" id="10_oxxey"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_1_10.tres" id="11_0k11k"]
+[ext_resource type="Resource" path="res://MainGame/Levels/Level_Debug.tres" id="12_ukiur"]
+
+[resource]
+script = ExtResource("3_yu74y")
+Levels = Array[Array]([Array[ExtResource("1_164c6")]([ExtResource("2_2dy5j"), ExtResource("3_ele6w"), ExtResource("4_f2jbj"), ExtResource("5_c0042"), ExtResource("6_8syc5"), ExtResource("7_j6jht"), ExtResource("8_235e3"), ExtResource("9_8k5k1"), ExtResource("10_oxxey"), ExtResource("11_0k11k")]), Array[ExtResource("1_164c6")]([ExtResource("12_ukiur")])])

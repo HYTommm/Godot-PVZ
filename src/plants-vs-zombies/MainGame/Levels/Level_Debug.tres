@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/ZombieWaveEntry.cs" id="1_khrvm"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="2_4r6xa"]
+
+[sub_resource type="Resource" id="Resource_noqr5"]
+script = ExtResource("1_khrvm")
+Weight = 4000
+
+[sub_resource type="Resource" id="Resource_nkrb8"]
+script = ExtResource("1_khrvm")
+Type = 1
+Weight = 4000
+Grade = 2
+
+[sub_resource type="Resource" id="Resource_uldon"]
+script = ExtResource("1_khrvm")
+Type = 2
+Weight = 3000
+Grade = 4
+
+[sub_resource type="Resource" id="Resource_hvc5v"]
+script = ExtResource("1_khrvm")
+Type = 3
+Weight = 3500
+Grade = 4
+FirstAllowedWave = 5
+
+[sub_resource type="Resource" id="Resource_6cl4b"]
+script = ExtResource("1_khrvm")
+Type = 4
+Weight = 2000
+Grade = 2
+FirstAllowedWave = 5
+
+[sub_resource type="Resource" id="Resource_10lt5"]
+script = ExtResource("1_khrvm")
+Type = 5
+Grade = 2
+
+[sub_resource type="Resource" id="Resource_6j750"]
+script = ExtResource("1_khrvm")
+Type = 6
+Weight = 2000
+Grade = 7
+FirstAllowedWave = 5
+
+[resource]
+script = ExtResource("2_4r6xa")
+LevelName = "DEBUG"
+LevelId = "DEBUG"
+SunStart = 50000
+Waves = 3
+FirstWaveDelay = 1.0
+WavePool = Array[ExtResource("1_khrvm")]([SubResource("Resource_noqr5"), SubResource("Resource_nkrb8"), SubResource("Resource_uldon"), SubResource("Resource_hvc5v"), SubResource("Resource_6cl4b"), SubResource("Resource_10lt5"), SubResource("Resource_6j750")])
