@@ -257,6 +257,25 @@ public abstract partial class Scene : Node
 		BgmNormalPlayer.Stop();
 		BgmHighPlayer.Stop();
 	}
+
+	/// <summary>
+	/// 按关卡数据里的场景类型创建场景实例。
+	///
+	/// 这里只负责"选哪一种场景"，草坪尺寸、单位大小、原点坐标、背景贴图、BGM
+	/// 仍然由各个子类的构造函数自己决定。
+	/// </summary>
+	public static Scene Create(SceneKind kind, Node global)
+	{
+		switch (kind)
+		{
+			case SceneKind.Pool:
+				return new PoolDayScene(global);
+
+			case SceneKind.Day:
+			default:
+				return new LawnDayScene(global);
+		}
+	}
 }
 
 public partial class MainMenuScene : Scene

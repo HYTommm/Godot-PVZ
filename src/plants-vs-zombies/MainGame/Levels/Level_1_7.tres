@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/ZombieWaveEntry.cs" id="1_5q2r0"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="2_wn2ys"]
+
+[sub_resource type="Resource" id="Resource_8wigj"]
+script = ExtResource("1_5q2r0")
+Weight = 4000
+
+[sub_resource type="Resource" id="Resource_qerll"]
+script = ExtResource("1_5q2r0")
+Type = 1
+Weight = 4000
+Grade = 2
+
+[sub_resource type="Resource" id="Resource_kkb5x"]
+script = ExtResource("1_5q2r0")
+Type = 4
+Weight = 2000
+Grade = 2
+FirstAllowedWave = 5
+
+[resource]
+script = ExtResource("2_wn2ys")
+LevelName = "1-7"
+LevelId = "1-7"
+Waves = 20
+FirstWaveDelay = 18.0
+WavePool = Array[ExtResource("1_5q2r0")]([SubResource("Resource_8wigj"), SubResource("Resource_qerll"), SubResource("Resource_kkb5x")])

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/ZombieWaveEntry.cs" id="1_pylia"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="2_y6le3"]
+
+[sub_resource type="Resource" id="Resource_vc2ct"]
+script = ExtResource("1_pylia")
+Weight = 4000
+
+[sub_resource type="Resource" id="Resource_bmr78"]
+script = ExtResource("1_pylia")
+Type = 1
+Weight = 4000
+Grade = 2
+
+[resource]
+script = ExtResource("2_y6le3")
+LevelName = "1-5"
+LevelId = "1-5"
+Waves = 8
+WaveCapacityMultiplier = 4.0
+FlagWaveInterval = 8
+FirstWaveDelay = 18.0
+WavePool = Array[ExtResource("1_pylia")]([SubResource("Resource_vc2ct"), SubResource("Resource_bmr78")])

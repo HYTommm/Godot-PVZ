@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://MainGame/Levels/ZombieWaveEntry.cs" id="1_gvs02"]
+[ext_resource type="Script" path="res://MainGame/Levels/LevelData.cs" id="2_0sani"]
+
+[sub_resource type="Resource" id="Resource_vhhft"]
+script = ExtResource("1_gvs02")
+Weight = 4000
+
+[sub_resource type="Resource" id="Resource_wlnlt"]
+script = ExtResource("1_gvs02")
+Type = 1
+Weight = 4000
+Grade = 2
+
+[sub_resource type="Resource" id="Resource_1nb4c"]
+script = ExtResource("1_gvs02")
+Type = 4
+Weight = 2000
+Grade = 2
+FirstAllowedWave = 5
+
+[resource]
+script = ExtResource("2_0sani")
+LevelName = "1-6"
+LevelId = "1-6"
+FirstWaveDelay = 18.0
+WavePool = Array[ExtResource("1_gvs02")]([SubResource("Resource_vhhft"), SubResource("Resource_wlnlt"), SubResource("Resource_1nb4c")])
+IntroducedZombie = 4
+SpawnIntroducedZombie = true

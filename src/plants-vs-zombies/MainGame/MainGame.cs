@@ -71,6 +71,12 @@ public partial class MainGame : MainNode2D
 	// 场景
 	public Scene GameScene;
 
+	/// <summary>
+	/// 本局使用的关卡数据。由选关界面经 Global.CurrentLevelData 传入；
+	/// 直接跑本场景时为 1-1；连 1-1 都取不到时为 null（此时退回硬编码默认值）。
+	/// </summary>
+	public LevelData Level;
+
 	/// <summary> 是否正在选中种子卡 </summary>
 	public bool BIsSeedCardSelected = false;
 
@@ -78,6 +84,13 @@ public partial class MainGame : MainNode2D
 	public bool BIsRefreshingZombies = false;
 
 	private int _totalHealth = 0;
+
+	/// <summary>
+	/// 本波使用的"提前推进"血量阈值（百分比）。
+	/// 原版每波重新抽一次（区间来自关卡数据的 EarlyAdvanceHealthPercentMin/Max），
+	/// 所以不能写成常量，要在每波开始时重抽。
+	/// </summary>
+	private int _earlyAdvanceThresholdPercent = 60;
 
 	public RandomNumberGenerator RNG = new();
 
@@ -128,18 +141,31 @@ public partial class MainGame : MainNode2D
 	{
 		//this.GetGlobalNode()
 		//RNG.Randomize();// 随机种子
-		_zombieWeightsAndGrades.SetZombieAllowed([
-			//ZombieTypeEnum.Normal,
-			//ZombieTypeEnum.Conehead,
-			//ZombieTypeEnum.Buckethead,
-			//ZombieTypeEnum.Screendoor,
-			//ZombieTypeEnum.Polevaulter,
-			//ZombieTypeEnum.Newspaper,
-			ZombieTypeEnum.Football
-		]);
+
+		// 关卡数据：选关界面经 Global 传进来；直接跑本场景时回退到 1-1。
+		// 两者都没有才退回硬编码默认值，此时僵尸池保持完整，避免开局没有僵尸可出。
+		Level = Global.Instance?.CurrentLevelData ?? Global.Instance?.GetLevel(1, 1);
+		if (Level != null)
+		{
+			_zombieWeightsAndGrades.ApplyWavePool(Level.WavePool);
+			GD.Print($"[MainGame] 关卡 {Level.LevelId}：{Level.Waves} 波，初始阳光 {Level.SunStart}，场景 {Level.SceneType}");
+		}
+		else
+		{
+			GD.PrintErr("[MainGame] 没拿到关卡数据，本次使用关卡化之前的硬编码默认值");
+			_zombieWeightsAndGrades.SetZombieAllowed([
+				ZombieTypeEnum.Normal,
+				ZombieTypeEnum.Conehead,
+				ZombieTypeEnum.Buckethead,
+				ZombieTypeEnum.Screendoor,
+				ZombieTypeEnum.Polevaulter,
+				ZombieTypeEnum.Newspaper,
+				ZombieTypeEnum.Football
+			]);
+		}
+
 		//GetNode<Node>("/root").PrintTreePretty();
-		GameScene = new LawnDayScene(Global.Instance);// 设置场景
-													  //GameScene = new PoolDayScene();
+		GameScene = Scene.Create(Level?.SceneType ?? SceneKind.Day, Global.Instance);// 设置场景
 		BackGround.Texture = GameScene.BackGroundTexture;// 设置背景
 		InitLawnMowers(GameScene);// 初始化草坪机
 
@@ -264,11 +290,13 @@ public partial class MainGame : MainNode2D
 		AddChild(button);
 		button.Pos = button.Position;
 
-		// 初始化
-		ZombieCurrentWave = 1; // 初始化当前波数
-		ZombieMaxWave = 20; // 初始化最大波数
+		// 初始化（数值来自关卡数据，取不到时回退到关卡化之前的硬编码值）
+		// 波数从 0 起算，与原版的波索引一致（原版的编号从 0 开始）。
+		// 这样所有比较式都能照抄原版，不必再做 0/1 起算的换算
+		ZombieCurrentWave = 0; // 初始化当前波数
+		ZombieMaxWave = Level?.Waves ?? 20; // 初始化最大波数
 
-		SunCount = 50000; // 初始化阳光数量
+		SunCount = Level?.SunStart ?? 50; // 初始化阳光数量
 
 		SeedBank.UpdateSunCount(); // 更新阳光数量
 								   //await ToSignal(GetTree().CreateTimer(2f), "timeout");
@@ -277,7 +305,7 @@ public partial class MainGame : MainNode2D
 		GameScene.TurnToNormalBgm();
 
 		RefreshSunTimer(); // 刷新阳光计时器
-		RefreshZombieTimer(19); // 刷新僵尸计时器
+		RefreshZombieTimer((float)(Level?.FirstWaveDelay ?? 19.0)); // 刷新僵尸计时器
 	}
 
 	// 选中种子
@@ -363,22 +391,33 @@ public partial class MainGame : MainNode2D
 		{
 			return;
 		}
+		// 波索引 0 起算，取值 0 ~ ZombieMaxWave-1；发到这个上界就是本关波次全部发完
 		if (ZombieCurrentWave >= ZombieMaxWave)
 		{
-			Print("Game Over");
+			Print("所有波次已发完");
 			return;
 		}
 		BIsRefreshingZombies = true;
-		// 每波容量上限 = int(int(当前波数 * 0.8) / 2) + 1，10的倍数为大波，大波容量上限乘2.5
+		// 每波容量上限 = int(int(当前波数 * WaveCapacityBase) / 2) + 1，
+		// 每隔 FlagWaveInterval 波为大波，大波容量上限乘 BigWaveMultiplier（系数均来自关卡数据）
 		ZombieCurrentWaveMaxHP = 0;
+		// 提前推进阈值每波重抽（原版是在 50%~65% 之间随机取）
+		RollEarlyAdvanceThreshold();
 		// Print("Wave: " + ZombieCurrentWave);
 		Zombie zombie = null;
-		int zombieMaxGrade = (int)((int)(ZombieCurrentWave * 0.8) / 2.0) + 1;
-		// 判断是否是大波
-		if (ZombieCurrentWave % 10 == 0)
+		int baseWaveGrade = (int)((int)(ZombieCurrentWave * (Level?.WaveCapacityBase ?? 2f / 3f)) / 2.0) + 1;
+		// 判断是否是大波。原版是"波索引 % 每旗帜波数 == 每旗帜波数 - 1"，
+		// 波索引 0 起算时块内最后一波恰好是 N-1
+		int flagWaveInterval = Level?.FlagWaveInterval ?? 10;
+		bool isFlagWave = flagWaveInterval > 0 && ZombieCurrentWave % flagWaveInterval == flagWaveInterval - 1;
+		int zombieMaxGrade = baseWaveGrade;
+		if (isFlagWave)
 		{
-			zombieMaxGrade = (int)(zombieMaxGrade * 2.5);
+			zombieMaxGrade = (int)(zombieMaxGrade * (Level?.BigWaveMultiplier ?? 2.5f));
 		}
+		// 关卡级倍率（坚果保龄球关 ×4、小 Boss 关 ×3）在旗帜 ×2.5 之后相乘。
+		// 原版两处都是"整数相乘后截断"，所以顺序不能交换。
+		zombieMaxGrade = (int)(zombieMaxGrade * (Level?.WaveCapacityMultiplier ?? 1.0f));
 
 		//zombieMaxGrade *= 20; // 20倍数
 		// Print("zombieCount: " + zombieCount);
@@ -388,7 +427,7 @@ public partial class MainGame : MainNode2D
 		//int zombieCount = 0; // 预备僵尸数量
 		for (int zombieCurrentGrade = 0; zombieCurrentGrade < zombieMaxGrade;)
 		{
-			ZombieTypeEnum zombieType = _zombieWeightsAndGrades.GetRandomZombieType();
+			ZombieTypeEnum zombieType = _zombieWeightsAndGrades.GetRandomZombieType(ZombieCurrentWave);
 			int tempGrade = _zombieWeightsAndGrades.GetZombieGrade(zombieType);
 			if (tempGrade + zombieCurrentGrade > zombieMaxGrade)
 			{
@@ -397,36 +436,29 @@ public partial class MainGame : MainNode2D
 			}
 			GD.Print("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
 			zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
-			if (_zombieType.GetZombieScene(zombieType).Instantiate() is Zombie preZombie)
+			SpawnZombieOfType(zombieType);
+		}
+
+		// 旗帜波除容量 ×BigWaveMultiplier 外，原版还会额外追加 min(本波点数, 8) 只普通僵尸
+		// （用的是乘倍数之前的点数）
+		if (isFlagWave)
+		{
+			int bonusNormalCount = Math.Min(baseWaveGrade, 8);
+			GD.Print("旗帜波附赠普通僵尸 " + bonusNormalCount + " 只");
+			for (int i = 0; i < bonusNormalCount; i++)
 			{
-				//preZombie.Init();
-				//preZombie[zombieCount] = _zombieType.GetZombieScene(zombieType).Instantiate() as Zombie;
-				//preZombie[zombieCount].Init(zombieType);
-
-				// 预备僵尸初始化
-				int tempIndex = -1;
-
-				if (Zombies[ZombieStack] != null)
-				{
-					tempIndex = Zombies[ZombieStack].Index;
-					Zombies[ZombieStack].RequestRelease(); // 请求释放僵尸，僵尸会在合适时自我释放
-				}
-
-				Zombies[ZombieStack] = preZombie; // 预备僵尸加入栈数组
-
-				preZombie.Index = ZombieStack; // 预备僵尸索引
-				if (tempIndex != -1)
-				{
-					ZombieStack = tempIndex; // 预备僵尸索引更新
-				}
-				else
-				{
-					ZombieStack++; // 僵尸栈加1
-				}
-
-				ZombieCurrentWaveMaxHP += preZombie.HealthStageComponent.MaxHP; // 计算当前波最大生命值
-				AddZombie(preZombie); // 加入场景树
+				SpawnZombieOfType(ZombieTypeEnum.Normal);
 			}
+		}
+
+		// 介绍僵尸定点亮相：原版在"该僵尸首次出现的关卡"里，
+		// 把它放在波索引 (总波数 / 2) 和最后一波各一只。
+		// 波索引 0 起算，所以"最后一波"是 Waves - 1
+		if (Level != null && Level.SpawnIntroducedZombie && Level.Waves > 1
+			&& (ZombieCurrentWave == Level.Waves / 2 || ZombieCurrentWave == Level.Waves - 1))
+		{
+			GD.Print("介绍僵尸亮相：" + Level.IntroducedZombie);
+			SpawnZombieOfType(Level.IntroducedZombie);
 		}
 		//// 刷新僵尸
 		//for (int i = 0; i < zombieCount; i++)
@@ -452,11 +484,70 @@ public partial class MainGame : MainNode2D
 		RefreshZombieTimer(); // 刷新计时器
 	}
 
+	/// <summary>
+	/// 生成一只指定类型的僵尸：加入栈数组、计入本波总血量、加入场景树。
+	///
+	/// 从原来 RefreshZombie 的填充循环里抽出来，好让"旗帜波附赠普通僵尸"
+	/// 和"介绍僵尸定点亮相"复用同一套入栈逻辑。
+	/// </summary>
+	private void SpawnZombieOfType(ZombieTypeEnum zombieType)
+	{
+		if (_zombieType.GetZombieScene(zombieType).Instantiate() is not Zombie preZombie)
+		{
+			return;
+		}
+
+		// 该位置的僵尸还没释放完，先让位
+		int tempIndex = -1;
+		if (Zombies[ZombieStack] != null)
+		{
+			tempIndex = Zombies[ZombieStack].Index;
+			Zombies[ZombieStack].RequestRelease(); // 请求释放僵尸，僵尸会在合适时自我释放
+		}
+
+		Zombies[ZombieStack] = preZombie; // 预备僵尸加入栈数组
+		preZombie.Index = ZombieStack; // 预备僵尸索引
+		if (tempIndex != -1)
+		{
+			ZombieStack = tempIndex; // 预备僵尸索引更新
+		}
+		else
+		{
+			ZombieStack++; // 僵尸栈加1
+		}
+
+		ZombieCurrentWaveMaxHP += preZombie.HealthStageComponent.MaxHP; // 计算当前波最大生命值
+		AddZombie(preZombie); // 加入场景树
+	}
+
+	/// <summary>
+	/// 重抽本波的"提前推进"血量阈值。原版每波抽一次，区间 50%~65%。
+	/// </summary>
+	private void RollEarlyAdvanceThreshold()
+	{
+		int minPercent = Level?.EarlyAdvanceHealthPercentMin ?? 50;
+		int maxPercent = Level?.EarlyAdvanceHealthPercentMax ?? 65;
+		if (maxPercent < minPercent)
+		{
+			maxPercent = minPercent;
+		}
+		_earlyAdvanceThresholdPercent = RNG.RandiRange(minPercent, maxPercent);
+	}
+
 	// 刷新僵尸计时器
 	public void RefreshZombieTimer()
 	{
-		// 在本波刷新 2500-3100cs 后生成下一波。
-		ZombieTimer.Start((float)(RNG.RandiRange(2500, 3100) / 100.0));
+		// 波次间隔来自关卡数据（秒）。这里换算成"厘秒整数"再取值，
+		// 保持和关卡化之前一样的随机粒度——原值 25~31 秒即 2500~3100cs。
+		double minSeconds = Level?.WaveIntervalMin ?? 25.0;
+		double maxSeconds = Level?.WaveIntervalMax ?? 31.0;
+		int minCentiSeconds = (int)Math.Round(minSeconds * 100);
+		int maxCentiSeconds = (int)Math.Round(maxSeconds * 100);
+		if (maxCentiSeconds < minCentiSeconds)
+		{
+			maxCentiSeconds = minCentiSeconds;
+		}
+		ZombieTimer.Start(RNG.RandiRange(minCentiSeconds, maxCentiSeconds) / 100f);
 	}
 
 	public void RefreshZombieTimer(float time)
@@ -517,6 +608,8 @@ public partial class MainGame : MainNode2D
 		_totalHealth = 0;
 		for (int i = 0; i < 1000; i++)
 		{
+			// 波索引 0 起算：RefreshZombie 发完一波就把 ZombieCurrentWave 加 1，
+			// 所以"刚发的那一波"就是 ZombieCurrentWave - 1
 			if (Zombies[i] != null && Zombies[i].Wave == ZombieCurrentWave - 1)
 			{
 				_totalHealth += Zombies[i].Alive ? Zombies[i].HealthStageComponent.HP : 0;
@@ -624,15 +717,18 @@ public partial class MainGame : MainNode2D
 		}
 
 		//GD.Print("TotalHealthPercent: " + GetZombieTotalHealthPercent() + "totalHealth: " + totalHealth + " WaveMaxHP: " + WaveMaxHP);
-		if (ZombieCurrentWave <= ZombieMaxWave && GetZombieTotalHealthPercent() <= 60)
+		// 阈值是本波开始时抽好的（_earlyAdvanceThresholdPercent），压缩秒数来自关卡数据
+		double earlyAdvanceSeconds = Level?.EarlyAdvanceSeconds ?? 2.0;
+		// 还有后续波次才值得提前推进（波索引 0 起算，发满即 ZombieCurrentWave == ZombieMaxWave）
+		if (ZombieCurrentWave < ZombieMaxWave && GetZombieTotalHealthPercent() <= _earlyAdvanceThresholdPercent)
 		{
 			//BIsRefreshingZombies = true;
 			Print("RefreshingZombies...");
 			// await ToSignal(GetTree().CreateTimer(2), SceneTreeTimer.SignalName.Timeout);
-			if (ZombieTimer.TimeLeft > 2)
+			if (ZombieTimer.TimeLeft > earlyAdvanceSeconds)
 			{
 				ZombieTimer.Stop();
-				ZombieTimer.Start(2);
+				ZombieTimer.Start(earlyAdvanceSeconds);
 			}
 		}
 	}

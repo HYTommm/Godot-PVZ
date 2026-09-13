@@ -31,7 +31,7 @@ public partial class ZombieHand : Node2D
 		animation.AnimationFinished += End;
 		Music();
 		animation.Play("Zombie_hand");
-		
+
 	}
 	public void End(StringName type)
 	{
@@ -41,7 +41,8 @@ public partial class ZombieHand : Node2D
 	public void End()
 	{
 		BIsEnd++;
-		if (BIsEnd == 2)
+		// 过场动画播到一半时选关界面也能直接切场景，这时本节点已经被释放，不能再发信号
+		if (BIsEnd == 2 && IsInsideTree())
 		{
 			EmitSignal(SignalName.AnimEnd);
 		}
@@ -51,6 +52,11 @@ public partial class ZombieHand : Node2D
 	{
 		_loseMusicSound.Play();
 		await ToSignal(GetTree().CreateTimer(1.46), SceneTreeTimer.SignalName.Timeout);
+		// 等待期间场景可能已经切走、本节点被释放，此时不能再碰子节点
+		if (!IsInstanceValid(this) || !IsInsideTree())
+		{
+			return;
+		}
 		_evilLaughSound.Play();
 		_evilLaughSound.Finished += End;
 	}
