@@ -82,6 +82,12 @@ public partial class MainGame : MainNode2D
 	public bool BIsSeedCardSelected = false;
 
 	/// <summary>
+	/// 选完卡后种子栏停在的 x。下降动画只管 y、x 始终留在 0（贴屏幕左边），
+	/// 选完卡再平移到这个位置
+	/// </summary>
+	[Export] public float SeedBankTargetX = 10f;
+
+	/// <summary>
 	/// 本局的选卡状态：选了哪几种植物、顺序如何。
 	/// 在 SelectSeedCard 里创建，选满并确认后由 SeedBank 应用到卡槽。
 	/// </summary>
@@ -313,8 +319,7 @@ public partial class MainGame : MainNode2D
 		GameScene.TurnOffAllBGM_FadeOut(Animation.CurrentAnimationLength);
 		await ToSignal(Animation, AnimationMixer.SignalName.AnimationFinished);
 
-		// 种子栏本来就挂在 CanvasLayer 下，是 UI 层，位置由 SeedBank 动画驱动。
-		// 不要再把它挪到 MainGame 根下——那会变成世界坐标，相机一动它就跟着飘
+		// 种子栏留在 CanvasLayer 下（UI 层），别挪到 MainGame 根下——那会变成世界坐标，位置跟着相机漂
 
 		// 将Button节点移动到节点树的外层
 		GameButton button = GetNode<GameButton>("./CanvasLayer/GameButton");
@@ -338,7 +343,12 @@ public partial class MainGame : MainNode2D
 		// 选卡要点着种子栏的空槽落位，所以必须等种子栏就位之后再弹
 		await SelectSeeds();
 
-		// 选完卡，画面切回草坪正中，小推车开进来
+		// 选完卡，种子栏从屏幕左边移到该待的位置，和画面切回草坪正中同时进行
+		Tween seedBankShift = CreateTween();
+		seedBankShift.TweenProperty(
+			SeedBank, "position", new Vector2(SeedBankTargetX, SeedBank.Position.Y), 1.0);
+
+		// 画面切回草坪正中，小推车开进来
 		SetLawnMowersPosX(155);
 		Camera.Move(GameScene.CameraCenterPos, 1);
 		await ToSignal(Camera, Camera.SignalName.MoveEnd);
@@ -411,7 +421,7 @@ public partial class MainGame : MainNode2D
 		GameScene.LawnUnitPlacePlant(_mouseUnitPos.X, _mouseUnitPos.Y);
 
 		SunCount -= _seedClone.SunCost;
-		GetNode<SeedBank>("./SeedBank").UpdateSunCount();
+		SeedBank.UpdateSunCount(); // 用 [Export] 字段，别写路径——种子栏挂在 CanvasLayer 下
 
 		//seedNode.ResetCD();
 		_seedPacketNode.isCDCooling = true;
