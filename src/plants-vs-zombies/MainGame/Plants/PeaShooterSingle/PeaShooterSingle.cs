@@ -46,6 +46,12 @@ public partial class PeaShooterSingle : Plants
 	public override void _Ready()
 	{
 		base._Ready();
+
+		if (BIsDisplayOnly)
+		{
+			return;
+		}
+
 		SpeedScaleOfIdle = MainGame.Instance.RNG.RandfRange(1.2f, 1.6f);
 
 		AnimTree.Set("parameters/TimeScale/scale", SpeedScaleOfIdle);

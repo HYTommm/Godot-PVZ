@@ -14,6 +14,12 @@ public abstract partial class MoneyCropsPlants : Plants
     public override void _Ready()
     {
         base._Ready();
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
+
         AddChild(TimerProduce);
 
     }

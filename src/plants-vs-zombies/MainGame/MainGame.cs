@@ -4,6 +4,7 @@ using System;
 using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using static ResourceDB.Sounds;
 
 public partial class MainGame : MainNode2D
@@ -79,6 +80,12 @@ public partial class MainGame : MainNode2D
 
 	/// <summary> 是否正在选中种子卡 </summary>
 	public bool BIsSeedCardSelected = false;
+
+	/// <summary>
+	/// 本局的选卡状态：选了哪几种植物、顺序如何。
+	/// 在 SelectSeedCard 里创建，选满并确认后由 SeedBank 应用到卡槽。
+	/// </summary>
+	public SeedSelection SeedSelection { get; private set; }
 
 	public bool BIsGameOver = false;
 	public bool BIsRefreshingZombies = false;
@@ -260,7 +267,44 @@ public partial class MainGame : MainNode2D
 		await ToSignal(Camera, Camera.SignalName.MoveEnd);
 
 		await ToSignal(GetTree().CreateTimer(1.2), SceneTreeTimer.SignalName.Timeout);
+
+		await SelectSeeds(); // 选卡：种子栏升起之前、僵尸开始之前
+
 		Game();
+	}
+
+	/// <summary>
+	/// 弹出选卡界面，等玩家选完，再把结果应用到种子栏。
+	///
+	/// 可选池当前是全部植物。将来接存档（已解锁植物）时，只换传给 SeedSelection 的那个池子。
+	/// 槽位数直接取种子栏实际有几个卡槽，不另外配一个数字，免得两处对不上。
+	/// </summary>
+	private async Task SelectSeeds()
+	{
+		int slotCount = SeedBank.GetSeedPackets().Count;
+		if (slotCount == 0)
+		{
+			GD.PrintErr("[MainGame] 种子栏没有任何卡槽，跳过选卡");
+			return;
+		}
+
+		SeedSelection = new SeedSelection(PlantTypes.All, slotCount);
+
+		// SeedBank 上那个一直没人读的 BIsForbiddenSelect 就是为这一段预留的：
+		// 选卡阶段禁止点卡。种子栏此时还没升起、卡片在屏幕外，但它走 Area2D 判定，
+		// 不受选卡界面那层 Control 遮挡影响，所以这道闸必须真的合上。
+		SeedBank.BIsForbiddenSelect = true;
+		bool confirmed = await SeedSelectScreen.ShowFor(this, SeedSelection);
+		SeedBank.BIsForbiddenSelect = false;
+
+		if (!confirmed)
+		{
+			GD.Print("[MainGame] 选卡未确认，种子栏保持原有卡槽");
+			return;
+		}
+
+		SeedBank.ApplySeedSelection(SeedSelection.Selected);
+		GD.Print($"[MainGame] 选卡完成，共 {SeedSelection.SelectedCount} 种植物上槽");
 	}
 
 	// 开始游戏

@@ -31,6 +31,15 @@ public abstract partial class Plants : Entity, IHealthStage
     /// <summary>是否已经种植</summary>
     public bool BIsPlanted = false;
 
+    /// <summary>
+    /// 只用于种子卡槽展示，不参与种植。
+    ///
+    /// 植物场景的 _Ready 是照"已经种在草坪上"写的——取碰撞箱、注册计时器、挂场景信号，
+    /// 而卡槽把它们实例出来只是为了显示外观（没有行列、也没有种植场景）。
+    /// 所以各处的 _Ready 都要先看这个标志。要在 AddChild 之前设置，否则 _Ready 已经跑过了。
+    /// </summary>
+    public bool BIsDisplayOnly = false;
+
     /// <summary>阳光消耗量</summary>
     public int SunCost = -1;
 
@@ -71,6 +80,12 @@ public abstract partial class Plants : Entity, IHealthStage
         base._Ready();
         //MainGame = MainGame.Instance;
         AddChild(_plantSound); // 添加种植音效播放器
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
+
         GD.Print(MainGame.Instance);
         //HealthStageComponent.HealthStages.Add(new HealthStage { Threshold = 0, TriggerType = TriggerTypeEnum.CrossBelowOrEqual, TriggerOnce = true });
         //HealthStageComponent.BindActionWithIndex(0, _ => FreePlant()); // 绑定生命值为0时的事件，释放植物

@@ -47,6 +47,12 @@ public partial class SunFlower : MoneyCropsPlants
     public override void _Ready()
     {
         base._Ready();
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
+
         GD.Print("SunFlower _Ready", MainGame.Instance);
         ProduceTime = MainGame.Instance.RNG.RandfRange(3.0f, 12.5f); // 设置产出时间
         Anim_idle = GetNode<AnimationPlayer>("./Idle");
