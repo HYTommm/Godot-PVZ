@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://igh26sahnl2e"]
+[gd_scene format=3 uid="uid://igh26sahnl2e"]
 
 [ext_resource type="Texture2D" uid="uid://kbb6af4ifc7a" path="res://art/MainGame/SeedPacket_Larger.png" id="1_qkslk"]
 [ext_resource type="Script" uid="uid://dprseex6qptlk" path="res://MainGame/SeedPacketLarger.cs" id="2_obxxw"]
 [ext_resource type="Texture2D" uid="uid://b3713ymdomei" path="res://particles/SeedPacketFlash.png" id="4_5264g"]
 [ext_resource type="Texture2D" uid="uid://cqrbaprqhitl2" path="res://art/MainGame/SeedPacketSilhouette.png" id="4_mv0vt"]
-[ext_resource type="FontFile" uid="uid://bhoepk0eqjiwi" path="res://fonts/wryh+pico12num.ttf" id="5_1adfj"]
+[ext_resource type="FontFile" uid="uid://dtbxld2nenknj" path="res://fonts/wryh+pico12num.ttf" id="5_1adfj"]
 [ext_resource type="Shader" uid="uid://tbfdkm4hbwv3" path="res://MainGame/SeedPacketLarger.gdshader" id="5_7dt0y"]
 [ext_resource type="Script" uid="uid://crrvjsotvcn4u" path="res://MainGame/Area2d.cs" id="5_viycb"]
 
@@ -79,31 +79,29 @@ shader_parameter/left_cd_time = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aceck"]
 size = Vector2(100, 140)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1877149226]
 script = ExtResource("2_obxxw")
 
-[node name="SeedPacketLarger" type="Sprite2D" parent="."]
+[node name="SeedPacketLarger" type="Sprite2D" parent="." unique_id=98805815]
 texture_filter = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_qkslk")
 centered = false
 
-[node name="SeedPacketSilhouette" type="Sprite2D" parent="."]
+[node name="SeedPacketSilhouette" type="Sprite2D" parent="." unique_id=583974637]
 texture = ExtResource("4_mv0vt")
 centered = false
 
-[node name="SeedPacketFlash" type="Sprite2D" parent="."]
+[node name="SeedPacketFlash" type="Sprite2D" parent="." unique_id=717005216]
 visible = false
 texture = ExtResource("4_5264g")
 centered = false
 
-[node name="SeedPacketFlash" type="AnimationPlayer" parent="SeedPacketFlash"]
+[node name="SeedPacketFlash" type="AnimationPlayer" parent="SeedPacketFlash" unique_id=1010394039]
 root_node = NodePath("../../SeedPacketSilhouette")
-libraries = {
-&"": SubResource("AnimationLibrary_7cord")
-}
+libraries/ = SubResource("AnimationLibrary_7cord")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1137059978]
 offset_left = 2.0
 offset_top = 51.0
 offset_right = 32.0
@@ -113,27 +111,27 @@ theme_override_fonts/font = ExtResource("5_1adfj")
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 
-[node name="CostColorRect" type="ColorRect" parent="."]
+[node name="CostColorRect" type="ColorRect" parent="." unique_id=1633475196]
 offset_right = 50.0
 offset_bottom = 70.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="CDColorRect" type="ColorRect" parent="."]
+[node name="CDColorRect" type="ColorRect" parent="." unique_id=170119116]
 material = SubResource("ShaderMaterial_5264g")
 offset_right = 50.0
 offset_bottom = 70.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=598098230]
 position = Vector2(25, 35)
 scale = Vector2(0.5, 0.5)
 collision_layer = 17
 collision_mask = 21
 script = ExtResource("5_viycb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1846395957]
 shape = SubResource("RectangleShape2D_aceck")
 
 [connection signal="input_event" from="Area2D" to="." method="OnInputEvent"]

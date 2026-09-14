@@ -6,6 +6,12 @@ using Godot.Collections;
 
 public partial class PotatoMine : Plants
 {
+    public PotatoMine()
+    {
+        SunCost = 25; // 阳光消耗
+        CDtime = CDTime.VERY_SLOW; // 冷却时间
+    }
+
     [ExportGroup("AnimationPlayer")]
     [Export] public AnimationPlayer Anim_armed;
 
@@ -37,6 +43,11 @@ public partial class PotatoMine : Plants
     public override void _Ready()
     {
         base._Ready();
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
 
         _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
         _detectionHitBox = GetNode<IHitBox>("%DetectionHitBox");

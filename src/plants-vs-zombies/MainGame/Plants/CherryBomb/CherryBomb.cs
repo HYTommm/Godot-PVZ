@@ -15,6 +15,12 @@ public partial class CherryBomb : Plants
     private IHitBox _attackHitBox;
     private AudioStreamPlayer _audioExplode = new();
 
+    public CherryBomb()
+    {
+        SunCost = 150; // 阳光消耗
+        CDtime = 50f; // 冷却时间，比 Plants.CDTime 里最慢的档位还长
+    }
+
     public override void _Idle()
     {
         Explode();
@@ -23,6 +29,12 @@ public partial class CherryBomb : Plants
     public override void _Ready()
     {
         base._Ready();
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
+
         _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
         AddChild(_audioExplode);
     }

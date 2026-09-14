@@ -46,6 +46,11 @@ public partial class Chomper : Plants
 	{
 		base._Ready();
 
+		if (BIsDisplayOnly)
+		{
+			return;
+		}
+
 		AddChild(_stateMachine = new StateMachine<ChomperState>(ChomperState.Idle));
 		_stateMachine.StateChanged += OnStateChanged;
 

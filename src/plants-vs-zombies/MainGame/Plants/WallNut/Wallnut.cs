@@ -24,6 +24,12 @@ public partial class Wallnut : Plants
     public override void _Ready()
     {
         base._Ready();
+
+        if (BIsDisplayOnly)
+        {
+            return;
+        }
+
         HealthStageComponent.HP = 4000;
         HealthStageComponent.MaxHP = 4000;
         HealthStageComponent.Refresh();

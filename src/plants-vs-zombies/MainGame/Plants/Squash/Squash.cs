@@ -7,6 +7,12 @@ using static ResourceDB.Sounds;
 
 public partial class Squash : Plants
 {
+	public Squash()
+	{
+		SunCost = 50; // 阳光消耗
+		CDtime = CDTime.VERY_SLOW; // 冷却时间
+	}
+
 	[Export] public AnimationPlayer Anim_main;
 	[Export] private int _damage = 1800;
 
@@ -38,6 +44,11 @@ public partial class Squash : Plants
 	public override void _Ready()
 	{
 		base._Ready();
+
+		if (BIsDisplayOnly)
+		{
+			return;
+		}
 
 		_defenseHitbox = GetNode<IHitBox>("%DefenseHitBox");
 		_attackHitBox = GetNode<IHitBox>("%AttackHitBox");
