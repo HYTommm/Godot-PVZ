@@ -267,9 +267,6 @@ public partial class MainGame : MainNode2D
 		await ToSignal(Camera, Camera.SignalName.MoveEnd);
 
 		await ToSignal(GetTree().CreateTimer(1.2), SceneTreeTimer.SignalName.Timeout);
-
-		await SelectSeeds(); // 选卡：种子栏升起之前、僵尸开始之前
-
 		Game();
 	}
 
@@ -310,21 +307,14 @@ public partial class MainGame : MainNode2D
 	// 开始游戏
 	public async void Game()
 	{
-		SetLawnMowersPosX(155); // 移动草坪机
-								// 移动相机到中心位置
-		Camera.Move(GameScene.CameraCenterPos, 1);
-		await ToSignal(Camera, Camera.SignalName.MoveEnd);
-		MoveLawnMowers(); // 移动草坪机
-						  // 显示种子卡槽
+		// 相机先不动：选卡期间画面停在草坪右侧，和过场结束时一致，切回正中留到选完之后。
+		// 种子栏的落位补偿依赖当时的相机位置，所以先在这里把它升起来
 		Animation.Play("SeedBank");
 		GameScene.TurnOffAllBGM_FadeOut(Animation.CurrentAnimationLength);
 		await ToSignal(Animation, AnimationMixer.SignalName.AnimationFinished);
 
-		// 将种子卡槽移动到节点树的外层
-		Vector2 seedBankGlobalPos = SeedBank.GlobalPosition;
-		SeedBank.GetParent().RemoveChild(SeedBank);
-		SeedBank.GlobalPosition = seedBankGlobalPos + Camera.GlobalPosition;
-		AddChild(SeedBank);
+		// 种子栏本来就挂在 CanvasLayer 下，是 UI 层，位置由 SeedBank 动画驱动。
+		// 不要再把它挪到 MainGame 根下——那会变成世界坐标，相机一动它就跟着飘
 
 		// 将Button节点移动到节点树的外层
 		GameButton button = GetNode<GameButton>("./CanvasLayer/GameButton");
@@ -343,6 +333,16 @@ public partial class MainGame : MainNode2D
 		SunCount = Level?.SunStart ?? 50; // 初始化阳光数量
 
 		SeedBank.UpdateSunCount(); // 更新阳光数量
+
+		// 种子栏已经升起、阳光也显示出来了，这才轮到选卡。
+		// 选卡要点着种子栏的空槽落位，所以必须等种子栏就位之后再弹
+		await SelectSeeds();
+
+		// 选完卡，画面切回草坪正中，小推车开进来
+		SetLawnMowersPosX(155);
+		Camera.Move(GameScene.CameraCenterPos, 1);
+		await ToSignal(Camera, Camera.SignalName.MoveEnd);
+		MoveLawnMowers();
 								   //await ToSignal(GetTree().CreateTimer(2f), "timeout");
 
 		GameScene.PlayMainGameBgm(); // 播放BGM
