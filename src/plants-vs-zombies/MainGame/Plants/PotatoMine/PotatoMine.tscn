@@ -2527,6 +2527,7 @@ shape = SubResource("RectangleShape2D_b36p7")
 debug_color = Color(0.7, 0.4, 0.7, 0.42)
 
 [node name="DetectionHitBox" type="Area2D" parent="." unique_id=635054517]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -2539,7 +2540,8 @@ position = Vector2(33, 40)
 shape = SubResource("RectangleShape2D_eo0bp")
 debug_color = Color(0.874789, 0.328681, 1.92523e-07, 0.42)
 
-[node name="AttackArea" type="Area2D" parent="." unique_id=865679646]
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=865679646]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -2547,7 +2549,7 @@ script = ExtResource("26_be8nu")
 AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1334124736]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1334124736]
 position = Vector2(20, 40)
 shape = SubResource("CircleShape2D_b36p7")
 
