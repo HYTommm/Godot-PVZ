@@ -53,11 +53,26 @@ public partial class SeedPacketLarger : Node2D
 			return;
 		}
 
+		if (SeedScene == seedScene)
+		{
+			return; // 已经是这个植物了，不必推倒重建。选卡时会频繁重刷同一批槽位
+		}
+
 		SeedScene = seedScene;
 		ApplySeedScene();
 	}
 
-	/// <summary>按当前 SeedScene 重建展示植物、卡面花费、CD 上限与遮挡状态</summary>
+	/// <summary>把这张卡清成空槽，只留 SeedPacketSilhouette 那层白色卡槽底</summary>
+	public void SetEmptySlot()
+	{
+		SeedScene = null;
+		ApplySeedScene();
+	}
+
+	/// <summary>
+	/// 按当前 SeedScene 重建展示植物、卡面花费、CD 上限与遮挡状态。
+	/// SeedScene 为 null 时进入空槽状态。
+	/// </summary>
 	private void ApplySeedScene()
 	{
 		if (seedShow != null && IsInstanceValid(seedShow))
@@ -65,7 +80,32 @@ public partial class SeedPacketLarger : Node2D
 			// 先从父节点摘掉再排队释放，否则旧植物会和新植物重叠一帧
 			seedShow.GetParent()?.RemoveChild(seedShow);
 			seedShow.QueueFree();
+			seedShow = null;
 		}
+
+		Sprite2D cardFace = GetNode<Sprite2D>("SeedPacketLarger");
+		Sprite2D slotBase = GetNode<Sprite2D>("SeedPacketSilhouette");
+
+		if (SeedScene == null)
+		{
+			// 空槽：场景里那层 SeedPacketSilhouette 就是没有植物时的白色卡槽底，
+			// 卡面与各项数值全部收起来
+			SetProcess(false); // 没有展示植物，开着 _Process 会拿 seedShow 空引用
+			cardFace.Visible = false;
+			slotBase.Visible = true;
+			GetNode<Label>("./Label").Text = "";
+			CostColorRect.Visible = false;
+			LeftCDTime = 0.0f;
+			MaxCDTime = 0.0f;
+			isCDCooling = false;
+			CDColorRectMaterial?.SetShaderParameter("max_cd_time", MaxCDTime);
+			CDColorRectMaterial?.SetShaderParameter("left_cd_time", LeftCDTime);
+			return;
+		}
+
+		cardFace.Visible = true;
+		slotBase.Visible = false;
+		SetProcess(true); // 有植物了，"阳光不足"的判定要跑起来
 
 		seedShow = SeedScene.Instantiate<Plants>(); // 实例化种子节点
 
@@ -143,16 +183,21 @@ public partial class SeedPacketLarger : Node2D
 
 		if (@event.IsAction("mouse_left"))
 		{
-			GD.Print("接收到输入事件");
-			//GD.Print("SeedPacketLarger: OnInputEvent");
-
-			// 选卡阶段禁止点卡。卡片是 Area2D 判定，不受选卡界面那层 Control 遮挡影响，
-			// 所以不能只靠"种子栏还没升起"来挡，得显式闸住
-			SeedBank bank = GetParent<SeedBank>();
-			if (bank != null && bank.BIsForbiddenSelect)
+			// 只有挂在种子栏上的卡才响应种植。选卡面板复用了同一个卡片场景，
+			// 面板里的卡由面板自己处理点击，这里必须挡掉
+			if (GetParent() is not SeedBank bank)
 			{
 				return;
 			}
+
+			// 选卡阶段禁止点卡。卡片是 Area2D 判定，不受面板那层 Control 遮挡影响，
+			// 所以不能只靠"种子栏还没升起"来挡，得显式闸住
+			if (bank.BIsForbiddenSelect)
+			{
+				return;
+			}
+
+			GD.Print("接收到输入事件");
 
 			if (MainGame.BMouse_left_down && MainGame.BIsSeedCardSelected == false)
 			{

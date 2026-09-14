@@ -55,8 +55,9 @@ public partial class SeedBank : Sprite2D
 
 	/// <summary>
 	/// 按选卡结果重排卡槽：第 i 个卡槽换成 plants[i]，槽位多于选择数的隐藏。
-	/// 顺序即卡槽顺序（先选的排在左边）。
+	/// 顺序即卡槽顺序（先选的排在左边）。传空列表就是把卡槽全清空。
 	///
+	/// 卡槽在场景里默认是隐藏的，开局该是空种子栏，这里只负责把选中的显示出来。
 	/// 只换每张卡对应的植物，不动节点结构——卡槽的位置、输入信号连接都在场景里定义好，
 	/// 重建节点反而要重新接线。
 	/// </summary>
@@ -68,9 +69,10 @@ public partial class SeedBank : Sprite2D
 			GD.PrintErr("[SeedBank] 一个卡槽都没找到，选卡结果无法应用");
 			return;
 		}
-		if (plants == null || plants.Count == 0)
+		// 空列表是合法输入：表示把卡槽全清空
+		if (plants == null)
 		{
-			GD.PrintErr("[SeedBank] 选卡结果为空，卡槽保持原样");
+			GD.PrintErr("[SeedBank] 选卡结果为 null，卡槽保持原样");
 			return;
 		}
 		if (plants.Count > packets.Count)
@@ -81,15 +83,17 @@ public partial class SeedBank : Sprite2D
 		for (int i = 0; i < packets.Count; i++)
 		{
 			SeedPacketLarger packet = packets[i];
+			packet.Visible = true; // 槽位本身始终在，区别只在里面有没有卡
+
 			if (i < plants.Count)
 			{
 				packet.SetSeedScene(PlantTypes.Instance.GetScene(plants[i]));
-				packet.Visible = true;
 			}
 			else
 			{
-				// 槽位多于选卡数时留空，而不是把剩下的槽位塞上重复植物
-				packet.Visible = false;
+				// 没派上用场的槽位退回空槽，露出白色卡槽底。
+				// 不能整个隐藏——那样连槽位本身都看不见了
+				packet.SetEmptySlot();
 			}
 		}
 
