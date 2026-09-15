@@ -319,7 +319,8 @@ public partial class MainGame : MainNode2D
 		GameScene.TurnOffAllBGM_FadeOut(Animation.CurrentAnimationLength);
 		await ToSignal(Animation, AnimationMixer.SignalName.AnimationFinished);
 
-		// 种子栏留在 CanvasLayer 下（UI 层），别挪到 MainGame 根下——那会变成世界坐标，位置跟着相机漂
+		// 种子栏此刻还留在 CanvasLayer 下：选卡要点它的空槽落位，UI 层坐标最稳。
+		// 相机落定之后才挂到 MainGame 根下（实体层），见下面落位那一段
 
 		// 将Button节点移动到节点树的外层
 		GameButton button = GetNode<GameButton>("./CanvasLayer/GameButton");
@@ -353,6 +354,20 @@ public partial class MainGame : MainNode2D
 		Camera.Move(GameScene.CameraCenterPos, 1);
 		await ToSignal(Camera, Camera.SignalName.MoveEnd);
 		MoveLawnMowers();
+
+		// 相机已经落定，这时候才把种子栏从 UI 层挂到 MainGame 根下，变成世界坐标。
+		// 加上当时的相机偏移，视觉位置一点不变；此后它固定在世界坐标上，不再随相机漂。
+		// 阳光飞向种子栏、点卡后跟着鼠标的植物走的都是世界坐标，种子栏留在 UI 层就对不上
+		if (seedBankShift.IsRunning())
+		{
+			// 落位 tween 没跑完就不能挂：挂载后 Position 的含义从画布坐标变成世界坐标，
+			// 剩下的 x 平移会跟着一起偏
+			await ToSignal(seedBankShift, Tween.SignalName.Finished);
+		}
+		Vector2 seedBankGlobalPos = SeedBank.GlobalPosition;
+		SeedBank.GetParent().RemoveChild(SeedBank);
+		SeedBank.GlobalPosition = seedBankGlobalPos + Camera.GlobalPosition;
+		AddChild(SeedBank);
 								   //await ToSignal(GetTree().CreateTimer(2f), "timeout");
 
 		GameScene.PlayMainGameBgm(); // 播放BGM
@@ -421,7 +436,7 @@ public partial class MainGame : MainNode2D
 		GameScene.LawnUnitPlacePlant(_mouseUnitPos.X, _mouseUnitPos.Y);
 
 		SunCount -= _seedClone.SunCost;
-		SeedBank.UpdateSunCount(); // 用 [Export] 字段，别写路径——种子栏挂在 CanvasLayer 下
+		SeedBank.UpdateSunCount(); // 用 [Export] 字段，别写路径——种子栏开局后会被挂到 MainGame 根下
 
 		//seedNode.ResetCD();
 		_seedPacketNode.isCDCooling = true;

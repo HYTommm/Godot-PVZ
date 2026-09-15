@@ -122,6 +122,10 @@ public partial class SeedPacketLarger : Node2D
 		// 若先设 0 再入树，这行就被它覆盖掉，植物会盖住卡面的文字与遮罩
 		seedShow.ZIndex = 0;
 
+		// 卡槽里的植物只拿来看：碰撞箱照常在物理世界判定，卡槽一旦落进僵尸走道就会误触发
+		// （土豆雷的 DamageZombies 首当其冲，它没有 _attackHitBox）。整棵子树在这里关掉判定
+		DisableHitBoxes(seedShow);
+
 		LeftCDTime = 0.0f; // 剩余CD时间
 		MaxCDTime = seedShow.CDtime; // 最大CD时间
 		isCDCooling = false;
@@ -249,5 +253,24 @@ public partial class SeedPacketLarger : Node2D
 	public void OnMouseEnter()
 	{
 		//GD.Print("SeedPacketLarger: OnMouseEnter");
+	}
+
+	/// <summary>
+	/// 递归关掉一棵子树里所有碰撞箱的物理判定。卡槽里展示用的植物要走这一遭：
+	/// 关闭的是判定，不是显示，卡面和动画照常。认 IHitBox 接口而不是 Area2D，
+	/// 免得将来换了碰撞箱实现就漏掉。
+	/// </summary>
+	private static void DisableHitBoxes(Node node)
+	{
+		if (node is IHitBox hitBox)
+		{
+			hitBox.Monitoring = false;
+			hitBox.Monitorable = false;
+		}
+
+		foreach (Node child in node.GetChildren())
+		{
+			DisableHitBoxes(child);
+		}
 	}
 }
