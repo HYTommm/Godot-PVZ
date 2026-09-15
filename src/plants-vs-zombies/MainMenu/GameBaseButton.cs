@@ -8,8 +8,8 @@ public partial class GameBaseButton : Sprite2D
 	public bool BCan_move = true;
 	public bool BPicked = false;
 	public bool BMouseEntered = false;
-	public bool BMouse_left_down = false;
-	public bool BMouse_left_up = false;
+	//public bool BMouse_left_down = false;
+	//public bool BMouse_left_up = false;
 	public bool BHas_frame = true;
 	public AudioStreamPlayer BleepSound = new();
 	public AudioStreamPlayer TapSound = new();
@@ -17,9 +17,14 @@ public partial class GameBaseButton : Sprite2D
 	public override void _Ready()
 	{
 		Pos = Position;
-		
-		//Main.MouseLeftUp += MouseLeftUp;
-		//Main.MouseLeftDown += MouseLeftDown;
+
+		// 走信号，不自己重写 _Input。鼠标状态是在 Main 的 _Input 里更新的，
+		// 这边再写一份的话响应时机取决于节点树顺序，可能读到还没更新的值
+		if (Main != null)
+		{
+			Main.MouseLeftDown += MouseLeftDown;
+			Main.MouseLeftUp += MouseLeftUp;
+		}
 
 		BleepSound.Stream = Sound_Bleep;
 		TapSound.Stream = Sound_Tap;
@@ -28,21 +33,12 @@ public partial class GameBaseButton : Sprite2D
 		AddChild(TapSound);
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _ExitTree()
 	{
-		if (@event is InputEventMouseButton mouseEvent)
+		if (Main != null)
 		{
-			if (mouseEvent.ButtonIndex == MouseButton.Left)
-			{
-				if (mouseEvent.Pressed)
-				{
-					MouseLeftDown();
-				}
-				else
-				{
-					MouseLeftUp();
-				}
-			}
+			Main.MouseLeftDown -= MouseLeftDown;
+			Main.MouseLeftUp -= MouseLeftUp;
 		}
 	}
 
@@ -93,7 +89,7 @@ public partial class GameBaseButton : Sprite2D
 		//GD.Print(picked);
 		GD.Print("MouseEntered");
 		BMouseEntered = true;
-		if (BMouse_left_down)
+		if (Main.BMouse_left_down)
 		{
 			if (Main.BMousePicked && BPicked && BCan_move)
 			{
@@ -113,7 +109,7 @@ public partial class GameBaseButton : Sprite2D
 		GD.Print("MouseExited");
 		BMouseEntered = false;
 		Position = Pos;
-		if (!BMouse_left_down && BHas_frame)
+		if (!Main.BMouse_left_down && BHas_frame)
 		{
 			Frame = 0;
 		}

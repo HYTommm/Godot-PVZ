@@ -23,14 +23,26 @@ public partial class MainNode2D : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsAction("mouse_left"))
-        {
-            BMouse_left_down = !BMouse_left_down;
-            EmitSignal(BMouse_left_down ? SignalName.MouseLeftDown : SignalName.MouseLeftUp);
-        }
-		if (@event.IsAction("mouse_right"))
+		// 按下和抬起分开判定。IsAction 对两者都返回真，靠取反来推状态的话，
+		// 一旦两边不对称（丢焦点、拖出窗口）状态就反了
+		if (@event.IsActionPressed("mouse_left"))
 		{
-			BMouseRightDown = !BMouseRightDown;
+			BMouse_left_down = true;
+			EmitSignal(SignalName.MouseLeftDown);
+		}
+		else if (@event.IsActionReleased("mouse_left"))
+		{
+			BMouse_left_down = false;
+			EmitSignal(SignalName.MouseLeftUp);
+		}
+
+		if (@event.IsActionPressed("mouse_right"))
+		{
+			BMouseRightDown = true;
+		}
+		else if (@event.IsActionReleased("mouse_right"))
+		{
+			BMouseRightDown = false;
 		}
 	}
 }
