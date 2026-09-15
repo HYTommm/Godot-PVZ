@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static ResourceDB.Sounds;
 
 /// <summary>
 /// 每关开打前的选卡面板。
@@ -65,6 +66,9 @@ public partial class SeedSelectScreen : CanvasLayer
 	private TextureButton _rockButton;
 	private Label _hintLabel;
 
+	/// <summary>按下卡片那一下的按钮音</summary>
+	private readonly AudioStreamPlayer _tapSound = new();
+
 	/// <summary>面板根节点。整个面板靠移动它来升降，飞行卡片则独立于它</summary>
 	private Control _root;
 
@@ -98,6 +102,9 @@ public partial class SeedSelectScreen : CanvasLayer
 
 	public override void _Ready()
 	{
+		_tapSound.Stream = Sound_Tap;
+		AddChild(_tapSound);
+
 		// 摆位要用视口尺寸，只能等入树之后再建
 		Build();
 		Refresh();
@@ -292,6 +299,8 @@ public partial class SeedSelectScreen : CanvasLayer
 			return;
 		}
 
+		_tapSound.Play();
+
 		// 选中立刻压暗，不等飞行结束——这层暗色是"已经选过了"的标记
 		Refresh();
 
@@ -325,6 +334,8 @@ public partial class SeedSelectScreen : CanvasLayer
 		{
 			return;
 		}
+
+		_tapSound.Play();
 
 		// 收回途中面板上这一张要保持"已选中"的暗色，落地才亮
 		Refresh(type);
