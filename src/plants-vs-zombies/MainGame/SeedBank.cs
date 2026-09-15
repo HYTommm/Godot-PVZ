@@ -13,8 +13,26 @@ public partial class SeedBank : Sprite2D
 	[Export] private AnimationPlayer _animSunCountFlashWarning;
 
 	public AudioStreamPlayer FlashWarningSound = new();
-	// 布尔值：是否禁止选卡
-	public bool BIsForbiddenSelect = false;
+
+	private bool _bIsForbiddenSelect;
+
+	/// <summary>
+	/// 选卡阶段：卡槽不响应种植，卡面也不按阳光数压暗（阳光数这时还没意义）。
+	/// 设值时顺手推给所有卡槽，免得每个卡槽各自去问一遍。
+	/// </summary>
+	public bool BIsForbiddenSelect
+	{
+		get => _bIsForbiddenSelect;
+		set
+		{
+			_bIsForbiddenSelect = value;
+			foreach (SeedPacketLarger packet in GetSeedPackets())
+			{
+				packet.BIsSelectionPreview = value;
+			}
+		}
+	}
+
 	public override void _Ready()
 	{
 		//UpdateSunCount();
@@ -35,6 +53,12 @@ public partial class SeedBank : Sprite2D
 		_animSunCountFlashWarning.Play("SunCountFlashWarning");
 		FlashWarningSound.Play();
 	}
+
+	/// <summary>
+	/// 选卡阶段点中卡槽时的通知。非 null 时卡槽不种植物，改由选卡界面把这张卡收回去。
+	/// 选卡界面开时挂上、关时摘掉，局内保持为 null。
+	/// </summary>
+	public Action<SeedPacketLarger> PacketClickedWhileSelecting;
 
 	/// <summary>
 	/// 按场景树顺序取全部卡槽。卡槽数是"本关能带几种植物"的实际依据，
@@ -84,6 +108,7 @@ public partial class SeedBank : Sprite2D
 		{
 			SeedPacketLarger packet = packets[i];
 			packet.Visible = true; // 槽位本身始终在，区别只在里面有没有卡
+			packet.BIsSelectionPreview = _bIsForbiddenSelect; // 选卡期间换上的卡同样只做展示
 
 			if (i < plants.Count)
 			{

@@ -21,6 +21,12 @@ public partial class SeedPacketLarger : Node2D
 
 	public bool isCDCooling; // 是否正在冷却CD
 
+	/// <summary>选卡阶段的展示卡：不按阳光数压暗，也不跑冷却。这时局还没开始，阳光数没有意义</summary>
+	public bool BIsSelectionPreview;
+
+	/// <summary>卡片还没落地：槽位上只留那层白色卡槽底。由选卡界面在飞行体落地时复位</summary>
+	private bool _bCardFaceHidden;
+
 	public AudioStreamPlayer SeedLiftSound = new();
 
 	public override void _Ready()
@@ -70,6 +76,37 @@ public partial class SeedPacketLarger : Node2D
 	}
 
 	/// <summary>
+	/// 收起卡面、只留白色卡槽底。卡片正往这个槽飞的时候用：
+	/// 槽位不该整块消失，底要一直在，飞过来的才是卡。
+	/// 空槽没有卡面可收，直接忽略。
+	/// </summary>
+	public void SetCardFaceHidden(bool hidden)
+	{
+		if (_bCardFaceHidden == hidden || SeedScene == null)
+		{
+			return;
+		}
+
+		_bCardFaceHidden = hidden;
+		ApplyCardFaceVisibility();
+	}
+
+	/// <summary>卡面、槽底、花费数字三者的可见性，全由"有没有植物"和"卡片是否还没落地"决定</summary>
+	private void ApplyCardFaceVisibility()
+	{
+		bool showFace = SeedScene != null && !_bCardFaceHidden;
+
+		GetNode<Sprite2D>("SeedPacketLarger").Visible = showFace;
+		GetNode<Sprite2D>("SeedPacketSilhouette").Visible = !showFace;
+		GetNode<Label>("./Label").Visible = showFace;
+
+		if (!showFace)
+		{
+			CostColorRect.Visible = false; // 卡面都收起来了，压暗没有意义
+		}
+	}
+
+	/// <summary>
 	/// 按当前 SeedScene 重建展示植物、卡面花费、CD 上限与遮挡状态。
 	/// SeedScene 为 null 时进入空槽状态。
 	/// </summary>
@@ -83,18 +120,13 @@ public partial class SeedPacketLarger : Node2D
 			seedShow = null;
 		}
 
-		Sprite2D cardFace = GetNode<Sprite2D>("SeedPacketLarger");
-		Sprite2D slotBase = GetNode<Sprite2D>("SeedPacketSilhouette");
-
 		if (SeedScene == null)
 		{
-			// 空槽：场景里那层 SeedPacketSilhouette 就是没有植物时的白色卡槽底，
-			// 卡面与各项数值全部收起来
+			// 空槽：SeedPacketSilhouette 就是没有植物时的白色卡槽底
 			SetProcess(false); // 没有展示植物，开着 _Process 会拿 seedShow 空引用
-			cardFace.Visible = false;
-			slotBase.Visible = true;
+			_bCardFaceHidden = false; // 空槽的槽底永远露着，没有"还没落地"这回事
+			ApplyCardFaceVisibility();
 			GetNode<Label>("./Label").Text = "";
-			CostColorRect.Visible = false;
 			LeftCDTime = 0.0f;
 			MaxCDTime = 0.0f;
 			isCDCooling = false;
@@ -103,8 +135,7 @@ public partial class SeedPacketLarger : Node2D
 			return;
 		}
 
-		cardFace.Visible = true;
-		slotBase.Visible = false;
+		ApplyCardFaceVisibility(); // 卡片还没落地的话只留槽底，等选卡界面把它露出来
 		SetProcess(true); // 有植物了，"阳光不足"的判定要跑起来
 
 		seedShow = SeedScene.Instantiate<Plants>(); // 实例化种子节点
@@ -143,6 +174,11 @@ public partial class SeedPacketLarger : Node2D
 
 	public override void _Process(double delta)
 	{
+		// 选卡阶段的卡只做展示，外观全由选卡界面说了算
+		if (BIsSelectionPreview)
+		{
+			return;
+		}
 
 		if (MainGame != null)
 		{
@@ -185,7 +221,7 @@ public partial class SeedPacketLarger : Node2D
 	private void OnInputEvent(Node viewport, InputEvent @event, int shape_idx)
 	{
 
-		if (@event.IsAction("mouse_left"))
+		if (@event.IsActionPressed("mouse_left"))
 		{
 			// 只有挂在种子栏上的卡才响应种植。选卡面板复用了同一个卡片场景，
 			// 面板里的卡由面板自己处理点击，这里必须挡掉
@@ -194,10 +230,11 @@ public partial class SeedPacketLarger : Node2D
 				return;
 			}
 
-			// 选卡阶段禁止点卡。卡片是 Area2D 判定，不受面板那层 Control 遮挡影响，
-			// 所以不能只靠"种子栏还没升起"来挡，得显式闸住
+			// 选卡阶段点卡槽 = 把这张卡收回选卡区，不种植物。
+			// 卡片走 Area2D 判定，不受面板那层 Control 遮挡影响，所以这里得显式分流
 			if (bank.BIsForbiddenSelect)
 			{
+				bank.PacketClickedWhileSelecting?.Invoke(this);
 				return;
 			}
 

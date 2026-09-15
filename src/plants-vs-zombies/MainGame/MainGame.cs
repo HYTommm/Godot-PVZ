@@ -315,9 +315,9 @@ public partial class MainGame : MainNode2D
 	{
 		// 相机先不动：选卡期间画面停在草坪右侧，和过场结束时一致，切回正中留到选完之后。
 		// 种子栏的落位补偿依赖当时的相机位置，所以先在这里把它升起来
+		// 种子栏下降和选卡界面升起是同一段时间，播着就往下走，不等它结束
 		Animation.Play("SeedBank");
 		GameScene.TurnOffAllBGM_FadeOut(Animation.CurrentAnimationLength);
-		await ToSignal(Animation, AnimationMixer.SignalName.AnimationFinished);
 
 		// 种子栏此刻还留在 CanvasLayer 下：选卡要点它的空槽落位，UI 层坐标最稳。
 		// 相机落定之后才挂到 MainGame 根下（实体层），见下面落位那一段
@@ -340,8 +340,8 @@ public partial class MainGame : MainNode2D
 
 		SeedBank.UpdateSunCount(); // 更新阳光数量
 
-		// 种子栏已经升起、阳光也显示出来了，这才轮到选卡。
-		// 选卡要点着种子栏的空槽落位，所以必须等种子栏就位之后再弹
+		// 阳光数量先摆好，选卡界面与种子栏的下降并行推进。
+		// 卡槽位置是场景里静态摆的，不随下降动画变，选卡结束时一定就位
 		await SelectSeeds();
 
 		// 选完卡，种子栏从屏幕左边移到该待的位置，和画面切回草坪正中同时进行
