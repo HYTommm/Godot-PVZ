@@ -2606,4 +2606,3 @@ one_shot = true
 visibility_rect = Rect2(-150, -150, 300, 300)
 process_material = SubResource("ShaderMaterial_a4d5f")
 
-[connection signal="area_entered" from="DetectionHitBox" to="." method="DamageZombies"]

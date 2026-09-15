@@ -58,6 +58,9 @@ public partial class PotatoMine : Plants
         TimerToRise.Timeout += Rise;
 
         _detectionHitBox.Monitoring = false;
+        // 信号在这里连（和窝瓜同一写法），别留在场景里：卡槽里的展示实例走 BIsDisplayOnly
+        // 提前 return，代码连的接不上，场景连的却照样把它叫醒
+        _detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
 
         AddChild(_audioExplode);
         //Position += new Vector2(30, 20);
@@ -88,8 +91,19 @@ public partial class PotatoMine : Plants
         //Explode();
     }
 
-    private void DamageZombies(Area2D area)
+    private void OnDetectionHitBoxEntered(IHitBox hitBox)
     {
+        DamageZombies();
+    }
+
+    private void DamageZombies()
+    {
+        // 展示实例没有 _attackHitBox（_Ready 走了 BIsDisplayOnly 分支），信号本该连不上，兜一道
+        if (_attackHitBox == null)
+        {
+            return;
+        }
+
         bool bHasZombie = false;
         IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
         foreach (IHitBox overlappingArea in overlappingAreas)
