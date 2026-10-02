@@ -44,6 +44,11 @@ public partial class PotatoMine : Plants
     {
         base._Ready();
 
+        // 这两个是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+        // 不挂它们就永远没有父节点，成了孤儿节点，引擎回收不到
+        AddChild(TimerToRise);
+        AddChild(_audioExplode);
+
         if (BIsDisplayOnly)
         {
             return;
@@ -52,7 +57,6 @@ public partial class PotatoMine : Plants
         _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
         _detectionHitBox = GetNode<IHitBox>("%DetectionHitBox");
 
-        AddChild(TimerToRise);
         TimerToRise.WaitTime = TimeToRise;
         TimerToRise.OneShot = true;
         TimerToRise.Timeout += Rise;
@@ -62,7 +66,6 @@ public partial class PotatoMine : Plants
         // 提前 return，代码连的接不上，场景连的却照样把它叫醒
         _detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
 
-        AddChild(_audioExplode);
         //Position += new Vector2(30, 20);
     }
 

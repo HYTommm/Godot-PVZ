@@ -94,6 +94,11 @@ public abstract partial class RegularZombie : Zombie
 	{
 		base._Ready();
 
+		// _eatSound 是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+		// 不挂它就永远没有父节点，成了孤儿节点，引擎回收不到。
+		// 卡槽里的展示僵尸每实例化一只就漏一个，累积起来很可观
+		AddChild(_eatSound);
+
 		if (BIsDisplayOnly)
 		{
 			// 种子栏卡槽展示：要的只有外观。血量回调、碰撞箱、行走速度、动画与粒子信号、
@@ -118,7 +123,6 @@ public abstract partial class RegularZombie : Zombie
 
 		// 音效
 		_eatSound.Finished += () => _isPlayingEatSound = false;
-		AddChild(_eatSound);
 
 		// 随机速度
 		PickRandomSpeed();

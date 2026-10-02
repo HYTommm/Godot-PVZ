@@ -14,6 +14,9 @@ public partial class MainGame : MainNode2D
 	private readonly ZombieWeightsAndGrades _zombieWeightsAndGrades = new();
 	private readonly ZombieType _zombieType = ZombieType.Instance; // 与选卡共用同一份注册表
 
+	/// <summary>子弹的数据集合。子弹没有节点，生成、移动、判定、绘制全在它里面</summary>
+	public BulletSystem Bullets { get; } = new();
+
 	// 当前波数
 	public int ZombieCurrentWave;
 
@@ -113,6 +116,24 @@ public partial class MainGame : MainNode2D
 	public bool BIsGameOver = false;
 	public bool BIsRefreshingZombies = false;
 
+	/// <summary>
+	/// 命中链路上的调试输出总开关。默认关掉：射速一高，子弹每发一发、每中一次都要打几行，
+	/// 控制台 I/O 会把真正要量的碰撞开销淹掉。排查命中问题时打开它。
+	/// 判断写在调用处而不是包个辅助方法——插值字符串会先求值，高频路径上那笔格式化开销不能白付。
+	/// </summary>
+	public static bool BEnableDebugPrint = false;
+
+	/// <summary>
+	/// 纯碰撞测试模式。打开后，命中链路上与碰撞无关的东西全部跳过：
+	///   - 子弹的粒子节点与音效播放器（连节点都不建）
+	///   - 射击音与溅射音
+	///   - 两处用来做延迟的 SceneTreeTimer（出膛的 0.26 秒、命中后等粒子放完的 0.5 秒）
+	///   - 本波血量百分比的 1000 槽全扫
+	/// 留下的只有"子弹移动 + 区域判定 + 扣血"，用来量碰撞本身的开销。
+	/// 测完改回 false 就恢复原样。
+	/// </summary>
+	public static bool BCollisionOnlyTest = true;
+
 	private int _totalHealth = 0;
 
 	/// <summary>
@@ -197,6 +218,9 @@ public partial class MainGame : MainNode2D
 		//GetNode<Node>("/root").PrintTreePretty();
 		GameScene = Scene.Create(Level?.SceneType ?? SceneKind.Day, Global.Instance);// 设置场景
 		BackGround.Texture = GameScene.BackGroundTexture;// 设置背景
+
+		// 子弹的每行画布项要等场景就绪（行数定下来）才能建
+		Bullets.Initialize(this, GameScene.LawnUnitCount.Y);
 		InitLawnMowers(GameScene);// 初始化草坪机
 
 		PutBackPlantSound.Stream = Sound_Tap2;
@@ -210,8 +234,37 @@ public partial class MainGame : MainNode2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		Bullets.Dispose(); // 自己建的画布项要自己还回去，不然就是泄漏的 RID
+	}
+
+	/// <summary>
+	/// 兜底：_ExitTree 在"直接关窗口退出"这类路径上不一定走到，
+	/// 而 PREDELETE 是节点从内存删掉时必调的（它在 RenderingServer 收摊之前）。
+	/// Dispose 是幂等的，两边都调没关系
+	/// </summary>
+	public override void _Notification(int what)
+	{
+		if (what == NotificationPredelete)
+		{
+			Bullets.Dispose();
+		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta);
+		// 子弹的移动与判定跑物理帧：跟原节点版本一致，判定频率不随渲染帧率浮动
+		Bullets.StepPhysics(delta);
+	}
+
 	public override void _Process(double delta)
 	{
+		// 绘制要每渲染帧重新提交——立即模式下上一帧的绘制列表已经清空了
+		Bullets.SubmitRender();
+
 		// 如果SeedCard被选中
 		if (BIsSeedCardSelected)
 		{
@@ -334,18 +387,36 @@ public partial class MainGame : MainNode2D
 		List<SeedType> pool = new();
 		foreach (PlantTypeEnum plant in PlantTypes.All)
 		{
-			pool.Add(SeedType.Of(plant));
+			AddIfLoaded(pool, SeedType.Of(plant));
 		}
 
 		if (Level?.CanPlaceZombies ?? false)
 		{
+			// 这一位就是"本关是调试关"的开关：调试专用植物与全部僵尸卡都从这里进场
+			foreach (PlantTypeEnum plant in PlantTypes.DebugOnly)
+			{
+				AddIfLoaded(pool, SeedType.Of(plant));
+			}
 			foreach (ZombieTypeEnum zombie in ZombieType.All)
 			{
-				pool.Add(SeedType.Of(zombie));
+				AddIfLoaded(pool, SeedType.Of(zombie));
 			}
 		}
 
 		return pool;
+	}
+
+	/// <summary>场景没加载出来的不进选卡池，免得摆上一张点开就崩的空卡</summary>
+	private static void AddIfLoaded(List<SeedType> pool, SeedType seed)
+	{
+		if (seed.GetScene() != null)
+		{
+			pool.Add(seed);
+		}
+		else
+		{
+			GD.PrintErr($"[MainGame] {seed} 的场景没加载出来，不进选卡池");
+		}
 	}
 
 	/// <summary>
@@ -750,7 +821,7 @@ public partial class MainGame : MainNode2D
 	/// </summary>
 	private void SpawnZombieOfType(ZombieTypeEnum zombieType)
 	{
-		if (_zombieType.GetZombieScene(zombieType).Instantiate() is not Zombie preZombie)
+		if (_zombieType.GetZombieScene(zombieType)?.Instantiate() is not Zombie preZombie)
 		{
 			return;
 		}
@@ -873,7 +944,10 @@ public partial class MainGame : MainNode2D
 				_totalHealth += Zombies[i].Alive ? Zombies[i].HealthStageComponent.HP : 0;
 			}
 		}
-		GD.Print("totalHealth: " + _totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);
+		if (BEnableDebugPrint)
+		{
+			GD.Print("totalHealth: " + _totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);
+		}
 		if (_totalHealth == 0 || ZombieCurrentWaveMaxHP == 0)
 		{
 			return 0;
@@ -967,6 +1041,11 @@ public partial class MainGame : MainNode2D
 	// 更新僵尸血量
 	public void UpdateZombieHP()
 	{
+		if (BCollisionOnlyTest)
+		{
+			return; // 纯碰撞测试：它只为"提前推进"服务，那一千次全扫跟碰撞无关
+		}
+
 		//GD.Print("BIsRefreshingZombies: " + BIsRefreshingZombies);
 		//for (int i = 0; i < 1000; i++)
 		if (BIsRefreshingZombies)

@@ -45,6 +45,11 @@ public partial class Squash : Plants
 	{
 		base._Ready();
 
+		// 这两个是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+		// 不挂它们就永远没有父节点，成了孤儿节点，引擎回收不到
+		AddChild(ThumpSound);
+		AddChild(HmmSound);
+
 		if (BIsDisplayOnly)
 		{
 			return;
@@ -57,9 +62,7 @@ public partial class Squash : Plants
 		_detectionHitBox.Monitoring = false;
 		_detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
 		ThumpSound.Stream = Thump;
-		AddChild(ThumpSound);
 		HmmSound.Stream = Hmm;
-		AddChild(HmmSound);
 
 		AddChild(_stateMachine = new StateMachine<SquashState>(SquashState.Idle));
 		_stateMachine.StateChanged += OnStateChanged;

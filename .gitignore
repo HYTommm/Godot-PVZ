@@ -20,6 +20,7 @@ src/GodotPvzSourceGenerator/bin/
 
 # 本地临时文件，不入库
 /.claude/
+/build/
 /flash.pdf
 /R2Ga.cf
 /tmp.txt

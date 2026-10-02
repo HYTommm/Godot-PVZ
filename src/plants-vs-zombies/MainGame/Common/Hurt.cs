@@ -33,16 +33,18 @@ public enum HurtType
     Other,
 }
 
-public partial class Hurt(int damage, HurtType hurtType, bool bEnableTargetHitSFX = true) : Node2D
+/// <summary>
+/// 一次伤害。纯数据——伤害值、伤害类型、要不要出声。
+///
+/// 它原本继承 Node2D，但从来没挂进过场景树：于是每次结算伤害（子弹命中、啃食、碾压……）
+/// 都留下一个没有父节点的 Node2D，白占一个 CanvasItem RID。子弹一密就累积成几万个，
+/// 退出时全算成 RID 泄漏。这里用不到任何节点能力，改成普通类——它本来也不该是节点。
+/// </summary>
+public class Hurt(int damage, HurtType hurtType, bool bEnableTargetHitSFX = true)
 {
     public int Damage { get; set; } = damage;
     public HurtType HurtType { get; set; } = hurtType;
 
-    // 受击方是否被允许发出音效
+    /// <summary>受击方是否被允许发出音效</summary>
     public bool BEnableTargetHitSFX = bEnableTargetHitSFX;
-
-    //public Hurt HurtHealthEntity(HealthEntity entity)
-    //{
-    //    return this;
-    //}
 }

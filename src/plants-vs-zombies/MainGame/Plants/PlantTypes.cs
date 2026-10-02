@@ -19,6 +19,7 @@ public enum PlantTypeEnum
 	PotatoMine,
 	Squash,
 	Chomper,
+	SuperPeaShooter,
 }
 
 /// <summary>
@@ -35,9 +36,9 @@ public class PlantTypes
 	public static PlantTypes Instance => _instance ??= new PlantTypes();
 
 	/// <summary>
-	/// 全部植物，顺序即选卡界面的展示顺序。
+	/// 正式植物，顺序即选卡界面的展示顺序。
 	/// 当前是"全部可选"（尚未做解锁进度）；将来接存档时，可选池改由存档决定，
-	/// 这个数组退化成"注册表里一共有哪些植物"。
+	/// 这个数组退化成"正式关能用的植物有哪些"。
 	/// </summary>
 	public static readonly PlantTypeEnum[] All =
 	{
@@ -50,6 +51,14 @@ public class PlantTypes
 		PlantTypeEnum.PotatoMine,
 		PlantTypeEnum.Squash,
 		PlantTypeEnum.Chomper,
+	};
+
+	/// <summary>
+	/// 调试专用植物：不进正式选卡池，只在调试图关（LevelData.CanPlaceZombies）里出现。
+	/// </summary>
+	public static readonly PlantTypeEnum[] DebugOnly =
+	{
+		PlantTypeEnum.SuperPeaShooter,
 	};
 
 	private readonly Dictionary<PlantTypeEnum, PackedScene> _scenes = new();
@@ -66,6 +75,7 @@ public class PlantTypes
 		Add(PlantTypeEnum.PotatoMine, "土豆雷", "res://MainGame/Plants/PotatoMine/PotatoMine.tscn");
 		Add(PlantTypeEnum.Squash, "窝瓜", "res://MainGame/Plants/Squash/Squash.tscn");
 		Add(PlantTypeEnum.Chomper, "大嘴花", "res://MainGame/Plants/Chomper/Chomper.tscn");
+		Add(PlantTypeEnum.SuperPeaShooter, "超级豌豆射手", "res://MainGame/Plants/SuperPeaShooter/SuperPeaShooter.tscn");
 	}
 
 	private void Add(PlantTypeEnum type, string displayName, string scenePath)

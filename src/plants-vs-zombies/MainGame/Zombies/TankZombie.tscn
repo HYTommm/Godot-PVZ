@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dq7tankscene4"]
+
+[ext_resource type="PackedScene" uid="uid://ee6hitnguoqq" path="res://MainGame/Zombies/NormalZombie.tscn" id="1_base"]
+[ext_resource type="Script" path="res://MainGame/Zombies/TankZombie.cs" id="2_script"]
+
+[node name="TankZombie" instance=ExtResource("1_base")]
+script = ExtResource("2_script")

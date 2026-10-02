@@ -18,6 +18,12 @@ public abstract partial class Bullet : Node2D
 
     public int Damage = 20; // 子弹伤害
 
+    /// <summary>
+    /// 击中时是否打溅射粒子。子类关掉它就能单看子弹碰撞本身的开销，
+    /// 量粒子在总开销里占多少。
+    /// </summary>
+    protected virtual bool BEnableSplats => true;
+
     public override void _Ready()
     {
         // Get Nodes
@@ -26,7 +32,22 @@ public abstract partial class Bullet : Node2D
         // Set Signals
         HitBox.HitBoxEntered += OnHitBoxEntered;
 
-        AddChild(BulletSplatsSound); // 添加子弹的爆炸声音节点
+        if (MainGame.BCollisionOnlyTest)
+        {
+            // 纯碰撞测试：粒子节点与音效播放器都不建。它们是每颗子弹各一份，
+            // 射速一高就是几百份挂在场上
+            if (GpuParticles != null)
+            {
+                RemoveChild(GpuParticles);
+                GpuParticles.QueueFree();
+                GpuParticles = null;
+            }
+        }
+        else
+        {
+            AddChild(BulletSplatsSound); // 添加子弹的爆炸声音节点
+        }
+
         Shadow.GlobalPosition = new Vector2(GlobalPosition.X, ShadowPositionY); // 设置子弹的阴影位置
     }
 
@@ -54,25 +75,34 @@ public abstract partial class Bullet : Node2D
     {
         if (_bisDisappear)
         {
-            GD.Print("Bullet has already disappeared!");
+            if (MainGame.BEnableDebugPrint)
+            {
+                GD.Print("Bullet has already disappeared!");
+            }
             return;
         }
 
-        GD.Print($"碰撞箱类型: {hitBox.GetType()}");
-        GD.Print($"AttachedNode: {hitBox.AttachedNode}");
-        if (hitBox.AttachedNode != null)
+        if (MainGame.BEnableDebugPrint)
         {
-            GD.Print($"AttachedNode Name: {hitBox.AttachedNode.Name}");
-            GD.Print($"AttachedNode IsValid: {IsInstanceValid(hitBox.AttachedNode)}");
-        }
-        else
-        {
-            GD.Print("AttachedNode 为 null");
+            GD.Print($"碰撞箱类型: {hitBox.GetType()}");
+            GD.Print($"AttachedNode: {hitBox.AttachedNode}");
+            if (hitBox.AttachedNode != null)
+            {
+                GD.Print($"AttachedNode Name: {hitBox.AttachedNode.Name}");
+                GD.Print($"AttachedNode IsValid: {IsInstanceValid(hitBox.AttachedNode)}");
+            }
+            else
+            {
+                GD.Print("AttachedNode 为 null");
+            }
         }
 
         if (!IsInstanceValid(hitBox.AttachedNode))
         {
-            GD.Print("碰撞箱的 AttachedNode 已失效，忽略本次碰撞");
+            if (MainGame.BEnableDebugPrint)
+            {
+                GD.Print("碰撞箱的 AttachedNode 已失效，忽略本次碰撞");
+            }
             return;
         }
 
@@ -85,12 +115,16 @@ public abstract partial class Bullet : Node2D
         HitBox.Monitoring = false; // 停止检测子弹碰撞
 
         // 判断子弹是否击中僵尸
-        GD.Print("Bullet collided with " + hitBox.AttachedNode.GetPath());
+        if (MainGame.BEnableDebugPrint)
+        {
+            GD.Print("Bullet collided with " + hitBox.AttachedNode.GetPath());
+        }
+
         if (hitBox.AttachedNode is Zombie zombie)
         {
             AttackZombie(zombie);
         }
-        else
+        else if (MainGame.BEnableDebugPrint)
         {
             GD.Print("子弹没有击中僵尸！它可能击中了其他东西：" + hitBox.AttachedNode.Name);
         }
@@ -98,13 +132,26 @@ public abstract partial class Bullet : Node2D
 
     public virtual async void AttackZombie(Zombie zombie)
     {
-        GD.Print("Bullet hit zombie");
+        if (MainGame.BEnableDebugPrint)
+        {
+            GD.Print("Bullet hit zombie");
+        }
         //僵尸扣血
         zombie.Hurt(new Hurt(Damage, HurtType));
         //zombie.Die();
         //是sprite节点不可见
 
-        GpuParticles.SetDeferred("emitting", true);
+        if (MainGame.BCollisionOnlyTest)
+        {
+            // 纯碰撞测试：不播溅射音、不建等粒子放完的那个定时器，命中即销毁
+            QueueFree();
+            return;
+        }
+
+        if (BEnableSplats)
+        {
+            GpuParticles.SetDeferred("emitting", true);
+        }
         PlaySplatSound();
         // 延迟0.4秒后销毁子弹
         await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);

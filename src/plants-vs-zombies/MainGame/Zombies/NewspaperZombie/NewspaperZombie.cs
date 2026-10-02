@@ -42,6 +42,10 @@ public partial class NewspaperZombie : RegularZombie
 
     public override void _Ready()
     {
+        // _eatSound 是本类字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+        // 不挂它就是孤儿节点，没有父节点，引擎回收不到
+        AddChild(_eatSound);
+
         if (BIsDisplayOnly)
         {
             // 种子栏卡槽展示：不要状态机，也不要碰撞箱与速度（WalkSpeed 要用 MainGame.Instance.RNG）。
@@ -72,7 +76,6 @@ public partial class NewspaperZombie : RegularZombie
 
         // 音效
         _eatSound.Finished += () => _isPlayingEatSound = false;
-        AddChild(_eatSound);
 
         // 随机速度
         WalkSpeed = MainGame.Instance.RNG.RandfRange(

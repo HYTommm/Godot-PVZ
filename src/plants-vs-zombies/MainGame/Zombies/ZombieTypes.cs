@@ -11,6 +11,7 @@ public enum ZombieTypeEnum
 	Newspaper,
 	Football,
 	Flag,
+	Tank,
 }
 
 /// <summary>
@@ -26,7 +27,10 @@ public class ZombieType
 	/// <summary>僵尸注册表，首次访问时加载</summary>
 	public static ZombieType Instance => _instance ??= new ZombieType();
 
-	/// <summary>全部僵尸，顺序即选卡界面的展示顺序</summary>
+	/// <summary>
+	/// 全部僵尸，顺序即选卡界面的展示顺序。
+	/// 僵尸卡本身只在调试图关出现，所以这里也含测试专用的那几种。
+	/// </summary>
 	public static readonly ZombieTypeEnum[] All =
 	{
 		ZombieTypeEnum.Normal,
@@ -37,6 +41,7 @@ public class ZombieType
 		ZombieTypeEnum.Newspaper,
 		ZombieTypeEnum.Football,
 		ZombieTypeEnum.Flag,
+		ZombieTypeEnum.Tank,
 	};
 
 	private readonly Dictionary<ZombieTypeEnum, PackedScene> _zombieScenes = new();
@@ -52,6 +57,7 @@ public class ZombieType
 		Add(ZombieTypeEnum.Newspaper, "读报僵尸", "res://MainGame/Zombies/NewspaperZombie/NewspaperZombie.tscn");
 		Add(ZombieTypeEnum.Football, "橄榄球僵尸", "res://MainGame/Zombies/FootballZombie/Zombie_football.tscn");
 		Add(ZombieTypeEnum.Flag, "旗帜僵尸", "res://MainGame/Zombies/FlagZombie.tscn");
+		Add(ZombieTypeEnum.Tank, "肉盾僵尸", "res://MainGame/Zombies/TankZombie.tscn");
 	}
 
 	private void Add(ZombieTypeEnum type, string displayName, string scenePath)
@@ -66,9 +72,10 @@ public class ZombieType
 		_displayNames[type] = displayName;
 	}
 
+	/// <summary>取僵尸的场景；未注册返回 null</summary>
 	public PackedScene GetZombieScene(ZombieTypeEnum zombieType)
 	{
-		return _zombieScenes[zombieType];
+		return _zombieScenes.TryGetValue(zombieType, out PackedScene scene) ? scene : null;
 	}
 
 	/// <summary>取僵尸的显示名；未注册时退化为枚举名</summary>

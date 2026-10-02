@@ -30,13 +30,16 @@ public partial class CherryBomb : Plants
     {
         base._Ready();
 
+        // _audioExplode 是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+        // 不挂它就永远没有父节点，成了孤儿节点，引擎回收不到
+        AddChild(_audioExplode);
+
         if (BIsDisplayOnly)
         {
             return;
         }
 
         _attackHitBox = GetNode<IHitBox>("%AttackHitBox");
-        AddChild(_audioExplode);
     }
 
     public void Explode()

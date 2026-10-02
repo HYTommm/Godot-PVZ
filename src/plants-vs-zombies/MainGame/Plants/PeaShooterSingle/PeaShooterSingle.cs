@@ -30,6 +30,9 @@ public partial class PeaShooterSingle : Plants
 	[Export]
 	public PackedScene BulletScene { get; set; }
 
+	/// <summary>本射手发射的弹种。换弹种靠重写这个，不再靠换 BulletScene</summary>
+	public virtual BulletKind FiredKind => BulletKind.Pea;
+
 	public PeaShooterSingle()
 	{
 		SunCost = 100; // 阳光消耗
@@ -47,6 +50,11 @@ public partial class PeaShooterSingle : Plants
 	{
 		base._Ready();
 
+		// 这两个是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+		// 展示态不挂它们就永远没有父节点，成了孤儿节点，引擎回收不到
+		AddChild(ShootSound);
+		AddChild(CanShootTimer);
+
 		if (BIsDisplayOnly)
 		{
 			return;
@@ -58,13 +66,11 @@ public partial class PeaShooterSingle : Plants
 		AnimTree.Set("parameters/time_scale2/scale", AnimRate);
 
 		ShootSound.Stream = Sound_Throw;
-		AddChild(ShootSound);
 
 		CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
 		CanShootTimer.OneShot = true;
 		CanShootTimer.Timeout += () => CanShoot = true;
-		AddChild(CanShootTimer);
 
 		_headPos = _nodeHead.Position;
 	}
@@ -122,6 +128,14 @@ public partial class PeaShooterSingle : Plants
 		CanShoot = false; // 禁止射击
 		RandomShootTime(); // 随机射击时间
 
+		if (MainGame.BCollisionOnlyTest)
+		{
+			// 纯碰撞测试：不摆射击动画，也不等那 0.26 秒的定时器，立刻出膛
+			ShootCount++; // 射击次数+1
+			ShootBullet();
+			return;
+		}
+
 		AnimTree.Set("parameters/shoot_blend/blend_amount", ShootCount == 0 ? 0.0f : 1.0f);
 		AnimTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
 		// 0.26秒后发射子弹（模拟原版射击延迟）
@@ -134,13 +148,19 @@ public partial class PeaShooterSingle : Plants
 
 	public void ShootBullet()
 	{
-		GD.Print("ShootBullet()");
-		Bullet bullet = BulletScene.Instantiate<Bullet>(); // 实例化子弹
-														   //GD.Print(bullet);
-		bullet.Position = _nodeMouth.Position + new Vector2(15, -6.5f); // 设置子弹位置为头部的嘴部
-		bullet.ShadowPositionY = Shadow.GlobalPosition.Y; // 设置子弹阴影位置为阴影的全局位置
-		AddChild(bullet); // 添加子弹到场景中
-		ShootSound.Play(); // 播放射击音效
+		if (MainGame.BEnableDebugPrint)
+		{
+			GD.Print("ShootBullet()");
+		}
+		// 子弹不再实例化成节点，改成往数据集合里塞一条。
+		// 位置要用世界坐标——数据集合里的 X/Y 都是世界坐标，没有父节点可依附
+		Vector2 mouth = _nodeMouth.GlobalPosition + new Vector2(15, -6.5f);
+		MainGame.Instance.Bullets.Spawn(FiredKind, mouth.X, mouth.Y, Row, Shadow.GlobalPosition.Y);
+
+		if (!MainGame.BCollisionOnlyTest)
+		{
+			ShootSound.Play(); // 播放射击音效
+		}
 	}
 
 	/// <summary> 随机射击时间 </summary>

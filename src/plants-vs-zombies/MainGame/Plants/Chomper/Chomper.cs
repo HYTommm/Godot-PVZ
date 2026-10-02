@@ -46,6 +46,10 @@ public partial class Chomper : Plants
 	{
 		base._Ready();
 
+		// BitSound 是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+		// 不挂它就是孤儿节点。（下面的 _chompTimer 是现 new 的，早退时压根不会建）
+		AddChild(BitSound);
+
 		if (BIsDisplayOnly)
 		{
 			return;
@@ -62,7 +66,6 @@ public partial class Chomper : Plants
 		_detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
 		
 		BitSound.Stream = Bigchomp;
-		AddChild(BitSound);
 
 		// 初始化啃咬计时器
 		_chompTimer = new Timer();
