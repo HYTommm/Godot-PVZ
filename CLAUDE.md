@@ -64,7 +64,7 @@ gradlew assembleDebug
 #   -cf  <配置文件>                         如 R2Ga.cf
 
 # 示例：转换双发射手动画
-<exe> C:\Users\HYTomZ\Documents\Godot\plants-vs-zombies\src\plants-vs-zombies\art\MainGame\Plants\PeaShooter\PeaShooter.reanim res://MainGame/Plants/PeaShooter/ res://art/MainGame/Plants/PeaShooter/ -fm keyframe -tm transform
+<exe> C:\Users\HYTomZ\Documents\Godot\plants-vs-zombies\src\plants-vs-zombies\art\MainGame\Plants\PeaShooter\PeaShooter.reanim res://MainGame/Plants/PeaShooter/ res://art/MainGame/Plants/PeaShooter/ -fm keyframe
 ```
 
 **参数说明：**
@@ -75,7 +75,9 @@ gradlew assembleDebug
 **模式说明：**
 - `-fm keyframe`：`<t>` 里的空字段保持为空、交给引擎插值。reanim 侧已经做过关键帧处理时必须用它；
   默认的 `inherit` 会把空字段填成上一帧的值，运动变成阶梯状。
-- `-tm transform`：把 pos/rot/scale/skew 合并为一条 `Transform2D` 轨道。
+- `-tm separate`：pos/rot/scale/skew 分开成四条轨道（**默认，别改成 transform**）。
+  合并成 `Transform2D` 后，跨动画交叉淡入淡出时 Godot 按**矩阵相乘**混合而不是加权平均，
+  切换瞬间姿态会跳——同一个动画内部的关键帧插值则不受影响。
 
 **输出文件：**
 - 默认输出到输入文件旁边；用 `-of <目录>` 可以直接指定输出目录。
