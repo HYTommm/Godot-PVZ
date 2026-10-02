@@ -32,7 +32,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Zombie/Anim_innerarm3:rotation")
-tracks/2/interp = 1
+tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -56,7 +56,7 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Zombie/Anim_innerarm3:skew")
-tracks/4/interp = 1
+tracks/4/interp = 3
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -92,7 +92,7 @@ tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Zombie/Anim_innerarm2:rotation")
-tracks/7/interp = 1
+tracks/7/interp = 3
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -116,7 +116,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Zombie/Anim_innerarm2:skew")
-tracks/9/interp = 1
+tracks/9/interp = 3
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -152,7 +152,7 @@ tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/path = NodePath("Zombie/Anim_innerarm1:rotation")
-tracks/12/interp = 1
+tracks/12/interp = 3
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -176,7 +176,7 @@ tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/path = NodePath("Zombie/Anim_innerarm1:skew")
-tracks/14/interp = 1
+tracks/14/interp = 3
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -212,7 +212,7 @@ tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/path = NodePath("Zombie/Zombie_flaghand:rotation")
-tracks/17/interp = 1
+tracks/17/interp = 3
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -236,7 +236,7 @@ tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
 tracks/19/path = NodePath("Zombie/Zombie_flaghand:skew")
-tracks/19/interp = 1
+tracks/19/interp = 3
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -272,7 +272,7 @@ tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
 tracks/22/path = NodePath("Zombie/Zombie_innerarm_screendoor:rotation")
-tracks/22/interp = 1
+tracks/22/interp = 3
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -296,7 +296,7 @@ tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
 tracks/24/path = NodePath("Zombie/Zombie_innerarm_screendoor:skew")
-tracks/24/interp = 1
+tracks/24/interp = 3
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -332,7 +332,7 @@ tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
 tracks/27/path = NodePath("Zombie/Zombie_neck:rotation")
-tracks/27/interp = 1
+tracks/27/interp = 3
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -356,7 +356,7 @@ tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
 tracks/29/path = NodePath("Zombie/Zombie_neck:skew")
-tracks/29/interp = 1
+tracks/29/interp = 3
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -404,7 +404,7 @@ tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
 tracks/33/path = NodePath("Zombie/Zombie_innerleg_upper:rotation")
-tracks/33/interp = 1
+tracks/33/interp = 3
 tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -428,7 +428,7 @@ tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
 tracks/35/path = NodePath("Zombie/Zombie_innerleg_upper:skew")
-tracks/35/interp = 1
+tracks/35/interp = 3
 tracks/35/loop_wrap = true
 tracks/35/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -464,7 +464,7 @@ tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
 tracks/38/path = NodePath("Zombie/Zombie_innerleg_lower:rotation")
-tracks/38/interp = 1
+tracks/38/interp = 3
 tracks/38/loop_wrap = true
 tracks/38/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -488,7 +488,7 @@ tracks/40/type = "value"
 tracks/40/imported = false
 tracks/40/enabled = true
 tracks/40/path = NodePath("Zombie/Zombie_innerleg_lower:skew")
-tracks/40/interp = 1
+tracks/40/interp = 3
 tracks/40/loop_wrap = true
 tracks/40/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -524,7 +524,7 @@ tracks/43/type = "value"
 tracks/43/imported = false
 tracks/43/enabled = true
 tracks/43/path = NodePath("Zombie/Zombie_innerleg_foot:rotation")
-tracks/43/interp = 1
+tracks/43/interp = 3
 tracks/43/loop_wrap = true
 tracks/43/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -548,7 +548,7 @@ tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
 tracks/45/path = NodePath("Zombie/Zombie_innerleg_foot:skew")
-tracks/45/interp = 1
+tracks/45/interp = 3
 tracks/45/loop_wrap = true
 tracks/45/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -584,7 +584,7 @@ tracks/48/type = "value"
 tracks/48/imported = false
 tracks/48/enabled = true
 tracks/48/path = NodePath("Zombie/Zombie_outerleg_upper:rotation")
-tracks/48/interp = 1
+tracks/48/interp = 3
 tracks/48/loop_wrap = true
 tracks/48/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -608,7 +608,7 @@ tracks/50/type = "value"
 tracks/50/imported = false
 tracks/50/enabled = true
 tracks/50/path = NodePath("Zombie/Zombie_outerleg_upper:skew")
-tracks/50/interp = 1
+tracks/50/interp = 3
 tracks/50/loop_wrap = true
 tracks/50/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -644,7 +644,7 @@ tracks/53/type = "value"
 tracks/53/imported = false
 tracks/53/enabled = true
 tracks/53/path = NodePath("Zombie/Zombie_outerleg_foot:rotation")
-tracks/53/interp = 1
+tracks/53/interp = 3
 tracks/53/loop_wrap = true
 tracks/53/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -668,7 +668,7 @@ tracks/55/type = "value"
 tracks/55/imported = false
 tracks/55/enabled = true
 tracks/55/path = NodePath("Zombie/Zombie_outerleg_foot:skew")
-tracks/55/interp = 1
+tracks/55/interp = 3
 tracks/55/loop_wrap = true
 tracks/55/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -704,7 +704,7 @@ tracks/58/type = "value"
 tracks/58/imported = false
 tracks/58/enabled = true
 tracks/58/path = NodePath("Zombie/Zombie_outerleg_lower:rotation")
-tracks/58/interp = 1
+tracks/58/interp = 3
 tracks/58/loop_wrap = true
 tracks/58/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -728,7 +728,7 @@ tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
 tracks/60/path = NodePath("Zombie/Zombie_outerleg_lower:skew")
-tracks/60/interp = 1
+tracks/60/interp = 3
 tracks/60/loop_wrap = true
 tracks/60/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -764,7 +764,7 @@ tracks/63/type = "value"
 tracks/63/imported = false
 tracks/63/enabled = true
 tracks/63/path = NodePath("Zombie/Zombie_body:rotation")
-tracks/63/interp = 1
+tracks/63/interp = 3
 tracks/63/loop_wrap = true
 tracks/63/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -788,7 +788,7 @@ tracks/65/type = "value"
 tracks/65/imported = false
 tracks/65/enabled = true
 tracks/65/path = NodePath("Zombie/Zombie_body:skew")
-tracks/65/interp = 1
+tracks/65/interp = 3
 tracks/65/loop_wrap = true
 tracks/65/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -824,7 +824,7 @@ tracks/68/type = "value"
 tracks/68/imported = false
 tracks/68/enabled = true
 tracks/68/path = NodePath("Zombie/Zombie_duckytube:rotation")
-tracks/68/interp = 1
+tracks/68/interp = 3
 tracks/68/loop_wrap = true
 tracks/68/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -848,7 +848,7 @@ tracks/70/type = "value"
 tracks/70/imported = false
 tracks/70/enabled = true
 tracks/70/path = NodePath("Zombie/Zombie_duckytube:skew")
-tracks/70/interp = 1
+tracks/70/interp = 3
 tracks/70/loop_wrap = true
 tracks/70/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -884,7 +884,7 @@ tracks/73/type = "value"
 tracks/73/imported = false
 tracks/73/enabled = true
 tracks/73/path = NodePath("Zombie/Zombie_tie:rotation")
-tracks/73/interp = 1
+tracks/73/interp = 3
 tracks/73/loop_wrap = true
 tracks/73/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -908,7 +908,7 @@ tracks/75/type = "value"
 tracks/75/imported = false
 tracks/75/enabled = true
 tracks/75/path = NodePath("Zombie/Zombie_tie:skew")
-tracks/75/interp = 1
+tracks/75/interp = 3
 tracks/75/loop_wrap = true
 tracks/75/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -968,7 +968,7 @@ tracks/80/type = "value"
 tracks/80/imported = false
 tracks/80/enabled = true
 tracks/80/path = NodePath("Zombie/Zombie_mustache:rotation")
-tracks/80/interp = 1
+tracks/80/interp = 3
 tracks/80/loop_wrap = true
 tracks/80/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -992,7 +992,7 @@ tracks/82/type = "value"
 tracks/82/imported = false
 tracks/82/enabled = true
 tracks/82/path = NodePath("Zombie/Zombie_mustache:skew")
-tracks/82/interp = 1
+tracks/82/interp = 3
 tracks/82/loop_wrap = true
 tracks/82/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1028,7 +1028,7 @@ tracks/85/type = "value"
 tracks/85/imported = false
 tracks/85/enabled = true
 tracks/85/path = NodePath("Zombie/Anim_screendoor:rotation")
-tracks/85/interp = 1
+tracks/85/interp = 3
 tracks/85/loop_wrap = true
 tracks/85/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1052,7 +1052,7 @@ tracks/87/type = "value"
 tracks/87/imported = false
 tracks/87/enabled = true
 tracks/87/path = NodePath("Zombie/Anim_screendoor:skew")
-tracks/87/interp = 1
+tracks/87/interp = 3
 tracks/87/loop_wrap = true
 tracks/87/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1088,7 +1088,7 @@ tracks/90/type = "value"
 tracks/90/imported = false
 tracks/90/enabled = true
 tracks/90/path = NodePath("Zombie/Zombie_innerarm_screendoor_hand:rotation")
-tracks/90/interp = 1
+tracks/90/interp = 3
 tracks/90/loop_wrap = true
 tracks/90/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1112,7 +1112,7 @@ tracks/92/type = "value"
 tracks/92/imported = false
 tracks/92/enabled = true
 tracks/92/path = NodePath("Zombie/Zombie_innerarm_screendoor_hand:skew")
-tracks/92/interp = 1
+tracks/92/interp = 3
 tracks/92/loop_wrap = true
 tracks/92/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1148,7 +1148,7 @@ tracks/95/type = "value"
 tracks/95/imported = false
 tracks/95/enabled = true
 tracks/95/path = NodePath("Zombie/Zombie_outerarm_screendoor:rotation")
-tracks/95/interp = 1
+tracks/95/interp = 3
 tracks/95/loop_wrap = true
 tracks/95/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1172,7 +1172,7 @@ tracks/97/type = "value"
 tracks/97/imported = false
 tracks/97/enabled = true
 tracks/97/path = NodePath("Zombie/Zombie_outerarm_screendoor:skew")
-tracks/97/interp = 1
+tracks/97/interp = 3
 tracks/97/loop_wrap = true
 tracks/97/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1220,7 +1220,7 @@ tracks/101/type = "value"
 tracks/101/imported = false
 tracks/101/enabled = true
 tracks/101/path = NodePath("Zombie/Zombie_outerarm_upper:rotation")
-tracks/101/interp = 1
+tracks/101/interp = 3
 tracks/101/loop_wrap = true
 tracks/101/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1244,7 +1244,7 @@ tracks/103/type = "value"
 tracks/103/imported = false
 tracks/103/enabled = true
 tracks/103/path = NodePath("Zombie/Zombie_outerarm_upper:skew")
-tracks/103/interp = 1
+tracks/103/interp = 3
 tracks/103/loop_wrap = true
 tracks/103/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1292,7 +1292,7 @@ tracks/107/type = "value"
 tracks/107/imported = false
 tracks/107/enabled = true
 tracks/107/path = NodePath("Zombie/Anim_hair:rotation")
-tracks/107/interp = 1
+tracks/107/interp = 3
 tracks/107/loop_wrap = true
 tracks/107/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1316,7 +1316,7 @@ tracks/109/type = "value"
 tracks/109/imported = false
 tracks/109/enabled = true
 tracks/109/path = NodePath("Zombie/Anim_hair:skew")
-tracks/109/interp = 1
+tracks/109/interp = 3
 tracks/109/loop_wrap = true
 tracks/109/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1352,7 +1352,7 @@ tracks/112/type = "value"
 tracks/112/imported = false
 tracks/112/enabled = true
 tracks/112/path = NodePath("Zombie/Anim_cone:rotation")
-tracks/112/interp = 1
+tracks/112/interp = 3
 tracks/112/loop_wrap = true
 tracks/112/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1376,7 +1376,7 @@ tracks/114/type = "value"
 tracks/114/imported = false
 tracks/114/enabled = true
 tracks/114/path = NodePath("Zombie/Anim_cone:skew")
-tracks/114/interp = 1
+tracks/114/interp = 3
 tracks/114/loop_wrap = true
 tracks/114/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1412,7 +1412,7 @@ tracks/117/type = "value"
 tracks/117/imported = false
 tracks/117/enabled = true
 tracks/117/path = NodePath("Zombie/Anim_bucket:rotation")
-tracks/117/interp = 1
+tracks/117/interp = 3
 tracks/117/loop_wrap = true
 tracks/117/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),
@@ -1436,7 +1436,7 @@ tracks/119/type = "value"
 tracks/119/imported = false
 tracks/119/enabled = true
 tracks/119/path = NodePath("Zombie/Anim_bucket:skew")
-tracks/119/interp = 1
+tracks/119/interp = 3
 tracks/119/loop_wrap = true
 tracks/119/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667),

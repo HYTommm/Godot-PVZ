@@ -55,7 +55,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Anim_blink:rotation")
-tracks/2/interp = 1
+tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -79,7 +79,7 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Anim_blink:skew")
-tracks/4/interp = 1
+tracks/4/interp = 3
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -139,7 +139,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Anim_crumble:rotation")
-tracks/9/interp = 1
+tracks/9/interp = 3
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -163,7 +163,7 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("Anim_crumble:skew")
-tracks/11/interp = 1
+tracks/11/interp = 3
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -223,7 +223,7 @@ tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/path = NodePath("Zombie_charred_body:rotation")
-tracks/16/interp = 1
+tracks/16/interp = 3
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -247,7 +247,7 @@ tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/path = NodePath("Zombie_charred_body:skew")
-tracks/18/interp = 1
+tracks/18/interp = 3
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -307,7 +307,7 @@ tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
 tracks/23/path = NodePath("Zombie_charred_tail:rotation")
-tracks/23/interp = 1
+tracks/23/interp = 3
 tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -331,7 +331,7 @@ tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
 tracks/25/path = NodePath("Zombie_charred_tail:skew")
-tracks/25/interp = 1
+tracks/25/interp = 3
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -391,7 +391,7 @@ tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
 tracks/30/path = NodePath("Layer 10:rotation")
-tracks/30/interp = 1
+tracks/30/interp = 3
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -415,7 +415,7 @@ tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
 tracks/32/path = NodePath("Layer 10:skew")
-tracks/32/interp = 1
+tracks/32/interp = 3
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -475,7 +475,7 @@ tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
 tracks/37/path = NodePath("Zombie_charred_pile2:rotation")
-tracks/37/interp = 1
+tracks/37/interp = 3
 tracks/37/loop_wrap = true
 tracks/37/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -499,7 +499,7 @@ tracks/39/type = "value"
 tracks/39/imported = false
 tracks/39/enabled = true
 tracks/39/path = NodePath("Zombie_charred_pile2:skew")
-tracks/39/interp = 1
+tracks/39/interp = 3
 tracks/39/loop_wrap = true
 tracks/39/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -559,7 +559,7 @@ tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
 tracks/44/path = NodePath("Zombie_charred_pile21:rotation")
-tracks/44/interp = 1
+tracks/44/interp = 3
 tracks/44/loop_wrap = true
 tracks/44/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -583,7 +583,7 @@ tracks/46/type = "value"
 tracks/46/imported = false
 tracks/46/enabled = true
 tracks/46/path = NodePath("Zombie_charred_pile21:skew")
-tracks/46/interp = 1
+tracks/46/interp = 3
 tracks/46/loop_wrap = true
 tracks/46/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -643,7 +643,7 @@ tracks/51/type = "value"
 tracks/51/imported = false
 tracks/51/enabled = true
 tracks/51/path = NodePath("Zombie_charred_pile1:rotation")
-tracks/51/interp = 1
+tracks/51/interp = 3
 tracks/51/loop_wrap = true
 tracks/51/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -667,7 +667,7 @@ tracks/53/type = "value"
 tracks/53/imported = false
 tracks/53/enabled = true
 tracks/53/path = NodePath("Zombie_charred_pile1:skew")
-tracks/53/interp = 1
+tracks/53/interp = 3
 tracks/53/loop_wrap = true
 tracks/53/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -727,7 +727,7 @@ tracks/58/type = "value"
 tracks/58/imported = false
 tracks/58/enabled = true
 tracks/58/path = NodePath("Zombie_charred_pile1_2:rotation")
-tracks/58/interp = 1
+tracks/58/interp = 3
 tracks/58/loop_wrap = true
 tracks/58/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -751,7 +751,7 @@ tracks/60/type = "value"
 tracks/60/imported = false
 tracks/60/enabled = true
 tracks/60/path = NodePath("Zombie_charred_pile1_2:skew")
-tracks/60/interp = 1
+tracks/60/interp = 3
 tracks/60/loop_wrap = true
 tracks/60/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -811,7 +811,7 @@ tracks/65/type = "value"
 tracks/65/imported = false
 tracks/65/enabled = true
 tracks/65/path = NodePath("Zombie_charred_head:rotation")
-tracks/65/interp = 1
+tracks/65/interp = 3
 tracks/65/loop_wrap = true
 tracks/65/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -835,7 +835,7 @@ tracks/67/type = "value"
 tracks/67/imported = false
 tracks/67/enabled = true
 tracks/67/path = NodePath("Zombie_charred_head:skew")
-tracks/67/interp = 1
+tracks/67/interp = 3
 tracks/67/loop_wrap = true
 tracks/67/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -895,7 +895,7 @@ tracks/72/type = "value"
 tracks/72/imported = false
 tracks/72/enabled = true
 tracks/72/path = NodePath("Zombie_hair:rotation")
-tracks/72/interp = 1
+tracks/72/interp = 3
 tracks/72/loop_wrap = true
 tracks/72/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -919,7 +919,7 @@ tracks/74/type = "value"
 tracks/74/imported = false
 tracks/74/enabled = true
 tracks/74/path = NodePath("Zombie_hair:skew")
-tracks/74/interp = 1
+tracks/74/interp = 3
 tracks/74/loop_wrap = true
 tracks/74/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -979,7 +979,7 @@ tracks/79/type = "value"
 tracks/79/imported = false
 tracks/79/enabled = true
 tracks/79/path = NodePath("Zombie_charred_blink:rotation")
-tracks/79/interp = 1
+tracks/79/interp = 3
 tracks/79/loop_wrap = true
 tracks/79/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
@@ -1003,7 +1003,7 @@ tracks/81/type = "value"
 tracks/81/imported = false
 tracks/81/enabled = true
 tracks/81/path = NodePath("Zombie_charred_blink:skew")
-tracks/81/interp = 1
+tracks/81/interp = 3
 tracks/81/loop_wrap = true
 tracks/81/keys = {
 "times": PackedFloat32Array(0.000000, 0.066667, 0.133333, 0.200000, 0.266667, 0.333333, 0.400000, 0.466667, 0.533333, 0.600000, 0.666667, 0.733333, 0.800000, 0.866667, 0.933333, 1.000000, 1.066667, 1.133333, 1.200000, 1.266667, 1.333333, 1.400000, 1.466667),
