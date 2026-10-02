@@ -12,7 +12,6 @@ public partial class PeaShooterSingle : Plants
 	[Export] protected AnimationTree AnimTree; // 头部动画树
 	protected float SpeedScaleOfIdle = 1.56f; // Idle动画速度
 
-	public AudioStreamPlayer ShootSound = new(); // 射击音效
 	[Export] private Node2D _nodeStem;// 茎节点
 	[Export] private Node2D _nodeHead;// 头节点
 	[Export] private Node2D _nodeMouth;// 嘴
@@ -50,9 +49,8 @@ public partial class PeaShooterSingle : Plants
 	{
 		base._Ready();
 
-		// 这两个是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
-		// 展示态不挂它们就永远没有父节点，成了孤儿节点，引擎回收不到
-		AddChild(ShootSound);
+		// CanShootTimer 是字段初始化器建出来的，必须在展示态早退**之前**挂上树：
+		// 不挂它就永远没有父节点，成了孤儿节点，引擎回收不到
 		AddChild(CanShootTimer);
 
 		if (BIsDisplayOnly)
@@ -64,8 +62,6 @@ public partial class PeaShooterSingle : Plants
 
 		AnimTree.Set("parameters/TimeScale/scale", SpeedScaleOfIdle);
 		AnimTree.Set("parameters/time_scale2/scale", AnimRate);
-
-		ShootSound.Stream = Sound_Throw;
 
 		CanShootTimer.WaitTime = MainGame.Instance.RNG.RandiRange(1, ShootMaxInterval) / 100.0f; // 随机射击时间
 
@@ -84,17 +80,27 @@ public partial class PeaShooterSingle : Plants
 		{
 			foreach (Zombie zombie in MainGame.Instance.Zombies) // 遍历所有僵尸
 			{
-				//Zombie zombie = mainGame.zombies[i]; // 取出僵尸
-				if (zombie == null) // 如果僵尸不为空
+				// Zombies 是"自由链表 + 原位覆盖"：数组元素从不移动，空槽复用靠 Index 串成链，
+				// 所以它是「前段紧凑 + 尾部 null」。撞上 null 就是有效段到头了，
+				// 这里必须 break——换成 continue 的话每帧都要白扫后面几百个空槽
+				if (zombie == null)
 				{
 					break;
 				}
 
-				//GD.Print("zombie.Row: " + zombie.Row + ", PeaShooterSingle.Row: " + Row);
-				if (!zombie.BIsDead && zombie.Row == Row && // 如果僵尸不死亡且在同一行
-					zombie.DefenseHitBox.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
-					zombie.DefenseHitBox.GlobalPosition.X <
-					MainGame.Instance.GameScene.CameraCenterPos.X + 800) // 僵尸防守区域在视野范围内
+				if (zombie.BIsDead || zombie.Row != Row) // 死了的、不在同一行的都跳过
+				{
+					continue;
+				}
+
+				IHitBox defense = zombie.DefenseHitBox;
+				if (defense == null)
+				{
+					continue;
+				}
+
+				if (defense.GlobalPosition.X > GlobalPosition.X + _constStemPos.X && // 僵尸防守区域在植物的右侧
+					defense.GlobalPosition.X < MainGame.Instance.GameScene.CameraCenterPos.X + 800) // 且在视野范围内
 				{
 					Shoot(); // 射击
 					break;
@@ -159,7 +165,8 @@ public partial class PeaShooterSingle : Plants
 
 		if (!MainGame.BCollisionOnlyTest)
 		{
-			ShootSound.Play(); // 播放射击音效
+			// 射击音走公共池：每株植物自带播放器的话，超频时会自己打断自己
+			MainGame.Instance.Bullets.Effects.PlayShoot();
 		}
 	}
 

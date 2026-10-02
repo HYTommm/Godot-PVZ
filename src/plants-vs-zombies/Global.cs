@@ -47,12 +47,25 @@ public partial class Global : Node
         }
     }
 
+    /// <summary>FPS 标签的刷新间隔累计。几帧刷一次就够，见 _Process 里的说明</summary>
+    private double _fpsRefreshTimer;
+
     public override void _Process(double delta)
     {
         if (_fpsLabel == null)
         {
             return;
         }
+
+        // 不要每帧刷：Label.Text 一改就要重新排版文本（TextServer 走一遍 shaping），
+        // 那是实打实的开销，而 Engine.GetFramesPerSecond() 本来就是秒级平均值，
+        // 每帧设一次等于白花几百次排版换一个不动的数字。四分之一秒刷一次足够跟手
+        _fpsRefreshTimer += delta;
+        if (_fpsRefreshTimer < 0.25)
+        {
+            return;
+        }
+        _fpsRefreshTimer = 0.0;
 
         // 子弹数只在关卡里才有意义，主菜单时那一位不显示。
         // 它是数据集合里的活跃条数，调子弹性能时比单看帧率有用

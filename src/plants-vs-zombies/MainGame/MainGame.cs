@@ -132,7 +132,7 @@ public partial class MainGame : MainNode2D
 	/// 留下的只有"子弹移动 + 区域判定 + 扣血"，用来量碰撞本身的开销。
 	/// 测完改回 false 就恢复原样。
 	/// </summary>
-	public static bool BCollisionOnlyTest = true;
+	public static bool BCollisionOnlyTest = false;
 
 	private int _totalHealth = 0;
 
