@@ -49,26 +49,39 @@ gradlew assembleDebug
 ### 动画格式转换
 用于将 PVZ 原版 reanim 格式转换为 Godot 动画资源。
 
+工具用 cpp 重写版：
+`C:\Users\HYTomZ\source\repos\PVZ_reanim2godot_animation\cpp\x64\Release\PVZ_reanim2godot_animation_cpp.exe`
+
 ```bash
 # 基本格式
-C:\Users\HYTomZ\试验场\所有工具\PVZ_reanim2godot_animation.exe <input_file> <anim_godot_path> <resource_godot_path> <"tscn_by_anim" || "anim_tres" || "auto">
+<exe> <reanim 文件> <动画资源路径> <素材路径> [选项]
+
+# 常用选项
+#   -om  auto | tscn_by_anim | anim_tres   输出模式，默认 auto
+#   -fm  inherit | keyframe                帧模式，默认 inherit
+#   -tm  separate | transform              轨道模式，默认 separate
+#   -of  <路径>                             只取目录部分，用来指定输出目录
+#   -cf  <配置文件>                         如 R2Ga.cf
 
 # 示例：转换双发射手动画
-C:\Users\HYTomZ\试验场\所有工具\PVZ_reanim2godot_animation.exe C:\Users\HYTomZ\Documents\Godot\plants-vs-zombies\art\MainGame\Plants\PeaShooter\PeaShooter.reanim res://MainGame/Plants/PeaShooter/ res://art/MainGame/Plants/PeaShooter/ auto
-
-# 示例：转换大嘴花动画
-C:\Users\HYTomZ\试验场\所有工具\PVZ_reanim2godot_animation.exe C:\Users\HYTomZ\Documents\Godot\plants-vs-zombies\art\MainGame\Plants\Chomper\Chomper.reanim res://MainGame/Plants/Chomper/ res://art/MainGame/Plants/Chomper/ auto
+<exe> C:\Users\HYTomZ\Documents\Godot\plants-vs-zombies\src\plants-vs-zombies\art\MainGame\Plants\PeaShooter\PeaShooter.reanim res://MainGame/Plants/PeaShooter/ res://art/MainGame/Plants/PeaShooter/ -fm keyframe
 ```
 
 **参数说明：**
-- `<input_file>`: 输入的 .reanim 文件路径
-- `<anim_godot_path>`: Godot 动画资源路径前缀 (用于 .tres 文件)
-- `<resource_godot_path>`: Godot 资源路径前缀 (用于纹理引用)
-- `<mode>`: 转换模式，通常使用 "auto"
+- 第 1 个（位置）：输入的 .reanim 文件路径
+- 第 2 个（位置）：动画资源路径，如 `res://MainGame/Plants/PeaShooter/`
+- 第 3 个（位置）：素材路径，即贴图实际所在的目录
+
+**模式说明：**
+- `-fm keyframe`：`<t>` 里的空字段保持为空、交给引擎插值。reanim 侧已经做过关键帧处理时必须用它；
+  默认的 `inherit` 会把空字段填成上一帧的值，运动变成阶梯状。
+- `-tm separate`：pos/rot/scale/skew 分开成四条轨道（**默认，别改成 transform**）。
+  合并成 `Transform2D` 后，跨动画交叉淡入淡出时 Godot 按**矩阵相乘**混合而不是加权平均，
+  切换瞬间姿态会跳——同一个动画内部的关键帧插值则不受影响。
 
 **输出文件：**
-- 生成的 .tscn 场景文件在 art 目录下，需要手动移动到 MainGame 对应目录
-- 生成的 .tres 动画资源文件在 art 目录下，需要手动移动到 MainGame 对应目录
+- 默认输出到输入文件旁边；用 `-of <目录>` 可以直接指定输出目录。
+- `auto` 模式下第 0 个动画段出 `.tscn`，其余段各出一个 `.tres`（只有一个动画段时就只有 tscn）。
 
 ## 代码架构
 

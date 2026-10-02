@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cslt5t21fls3r"]
+
+[ext_resource type="PackedScene" uid="uid://dmcf3b83fe3ii" path="res://MainGame/Zombies/TieZombie.tscn" id="1_3v7er"]
+[ext_resource type="Script" uid="uid://twh8hvpacqkw" path="res://MainGame/Zombies/FlagZombie.cs" id="2_loqst"]
+[ext_resource type="Script" uid="uid://x1gmxta2u2d2" path="res://MainGame/Zombies/HealthStage.cs" id="3_f8go0"]
+[ext_resource type="Shader" uid="uid://bnna7ns5gu1gd" path="res://MainGame/Zombies/Zombie.gdshader" id="3_rwmeu"]
+[ext_resource type="Script" uid="uid://cqh1xx48iqlfu" path="res://MainGame/Zombies/HealthStageComponent.cs" id="4_d0178"]
+[ext_resource type="PackedScene" uid="uid://dr80pmdf23yyr" path="res://MainGame/Zombies/Zombie_flagpole.tscn" id="4_flag"]
+
+[sub_resource type="Resource" id="Resource_m2k4f"]
+resource_local_to_scene = true
+script = ExtResource("4_d0178")
+HP = 270
+MaxHP = 270
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8td63"]
+resource_local_to_scene = true
+shader = ExtResource("3_rwmeu")
+shader_parameter/modulate_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[node name="FlagZombie" unique_id=460805229 node_paths=PackedStringArray("Zombie_flaghand", "Zombie_innerarm_screendoor", "Flagpole", "FlagpoleAnim") instance=ExtResource("1_3v7er")]
+script = ExtResource("2_loqst")
+Zombie_flaghand = NodePath("Zombie/Zombie_flaghand")
+Zombie_innerarm_screendoor = NodePath("Zombie/Zombie_innerarm_screendoor")
+Flagpole = NodePath("Zombie/Zombie_flagpole")
+FlagpoleAnim = NodePath("Zombie/Zombie_flagpole/AnimLib")
+HealthStageComponent = SubResource("Resource_m2k4f")
+
+[node name="Zombie" parent="." index="1" unique_id=620863438]
+material = SubResource("ShaderMaterial_8td63")
+
+[node name="Zombie_flagpole" parent="Zombie" index="6" unique_id=1349188361 instance=ExtResource("4_flag")]
+
+[node name="Zombie_outerarm_hand" parent="Zombie" index="25" unique_id=420245856]
+visible = false
+
+[node name="Zombie_outerarm_lower" parent="Zombie" index="27" unique_id=2117847408]
+visible = false

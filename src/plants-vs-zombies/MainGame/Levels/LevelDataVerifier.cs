@@ -107,6 +107,8 @@ public static class LevelDataVerifier
 		Check(failures, id, "EarlyAdvanceHealthPercentMax", level.EarlyAdvanceHealthPercentMax, LevelDataSpec.EarlyAdvanceHealthPercentMax);
 		Check(failures, id, "EarlyAdvanceSeconds", level.EarlyAdvanceSeconds, LevelDataSpec.EarlyAdvanceSeconds);
 
+		Check(failures, id, "DebugOnlyFlagZombie", level.DebugOnlyFlagZombie, expectation.DebugOnlyFlagZombie);
+
 		// 介绍僵尸
 		bool expectIntroduced = expectation.IntroducedZombie.HasValue;
 		Check(failures, id, "SpawnIntroducedZombie", level.SpawnIntroducedZombie, expectIntroduced);

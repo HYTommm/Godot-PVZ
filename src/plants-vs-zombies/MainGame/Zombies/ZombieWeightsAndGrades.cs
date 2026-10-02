@@ -25,6 +25,8 @@ public class ZombieWeightsAndGrades
 		_zombieWeightsDict.Add(ZombieTypeEnum.Polevaulter, 2000);
 		_zombieWeightsDict.Add(ZombieTypeEnum.Newspaper, 1000);
 		_zombieWeightsDict.Add(ZombieTypeEnum.Football, 2000);
+		// 旗帜僵尸权重 0：原版不由池抽取，只在旗帜波固定投放一只（见 MainGame.RefreshZombie）
+		_zombieWeightsDict.Add(ZombieTypeEnum.Flag, 0);
 
 		_zombieTotalWeight = _zombieWeightsDict.Sum(x => x.Value);
 
@@ -35,6 +37,7 @@ public class ZombieWeightsAndGrades
 		_zombieGradesDict.Add(ZombieTypeEnum.Polevaulter, 2);
 		_zombieGradesDict.Add(ZombieTypeEnum.Newspaper, 2);
 		_zombieGradesDict.Add(ZombieTypeEnum.Football, 7);
+		_zombieGradesDict.Add(ZombieTypeEnum.Flag, 1);
 
 		// 首个允许出场的波数同样取自原版：撑杆跳 / 铁栅门 / 橄榄球 = 5，其余 = 1
 		_zombieFirstAllowedWaveDict.Add(ZombieTypeEnum.Normal, 1);
@@ -44,6 +47,7 @@ public class ZombieWeightsAndGrades
 		_zombieFirstAllowedWaveDict.Add(ZombieTypeEnum.Polevaulter, 5);
 		_zombieFirstAllowedWaveDict.Add(ZombieTypeEnum.Newspaper, 1);
 		_zombieFirstAllowedWaveDict.Add(ZombieTypeEnum.Football, 5);
+		_zombieFirstAllowedWaveDict.Add(ZombieTypeEnum.Flag, 1);
 
 		_zombieAllowedDict.Add(ZombieTypeEnum.Normal, false);
 		_zombieAllowedDict.Add(ZombieTypeEnum.Conehead, false);
@@ -52,6 +56,7 @@ public class ZombieWeightsAndGrades
 		_zombieAllowedDict.Add(ZombieTypeEnum.Screendoor, false);
 		_zombieAllowedDict.Add(ZombieTypeEnum.Polevaulter, false);
 		_zombieAllowedDict.Add(ZombieTypeEnum.Newspaper, false);
+		_zombieAllowedDict.Add(ZombieTypeEnum.Flag, false);
 	}
 
 	/// <summary>

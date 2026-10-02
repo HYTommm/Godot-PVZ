@@ -14,10 +14,10 @@ public abstract partial class RegularZombie : Zombie
 	public virtual string CharredAnimationName => "ALL_ANIMS";
 	protected Node2D ZombieCharredNode2D;
 
-	public virtual string WalkAnimationName => "Zombie_walk";
-	public virtual string EatAnimationName => "Zombie_eat";
-	public virtual string DeathAnimationName => "Zombie_death";
-	public virtual string LawnMowerDeathAnimationName => "LawnMoweredZombie";
+	public virtual string WalkAnimationName => "Zombie/walk";
+	public virtual string EatAnimationName => "Zombie/eat";
+	public virtual string DeathAnimationName => "Zombie/death";
+	public virtual string LawnMowerDeathAnimationName => "Zombie/LawnMoweredZombie";
 
 	// ── 移动 ──
 	public float WalkSpeed = 1.0f;

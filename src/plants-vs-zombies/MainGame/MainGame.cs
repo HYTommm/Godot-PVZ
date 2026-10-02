@@ -492,43 +492,54 @@ public partial class MainGame : MainNode2D
 		//zombieMaxGrade *= 20; // 20倍数
 		// Print("zombieCount: " + zombieCount);
 
-		// 预备僵尸
-		//Zombie[] preZombie = new Zombie[100];// 预备僵尸数组
-		//int zombieCount = 0; // 预备僵尸数量
-		for (int zombieCurrentGrade = 0; zombieCurrentGrade < zombieMaxGrade;)
+		if (Level?.DebugOnlyFlagZombie ?? false)
 		{
-			ZombieTypeEnum zombieType = _zombieWeightsAndGrades.GetRandomZombieType(ZombieCurrentWave);
-			int tempGrade = _zombieWeightsAndGrades.GetZombieGrade(zombieType);
-			if (tempGrade + zombieCurrentGrade > zombieMaxGrade)
-			{
-				//zombieCount--; // 减1，重新尝试
-				continue;
-			}
-			GD.Print("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
-			zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
-			SpawnZombieOfType(zombieType);
+			// 调试图关后门：跳过随机池与波次容量，每波只投一只旗帜僵尸
+			SpawnZombieOfType(ZombieTypeEnum.Flag);
 		}
-
-		// 旗帜波除容量 ×BigWaveMultiplier 外，原版还会额外追加 min(本波点数, 8) 只普通僵尸
-		// （用的是乘倍数之前的点数）
-		if (isFlagWave)
+		else
 		{
-			int bonusNormalCount = Math.Min(baseWaveGrade, 8);
-			GD.Print("旗帜波附赠普通僵尸 " + bonusNormalCount + " 只");
-			for (int i = 0; i < bonusNormalCount; i++)
+			// 预备僵尸
+			//Zombie[] preZombie = new Zombie[100];// 预备僵尸数组
+			//int zombieCount = 0; // 预备僵尸数量
+			for (int zombieCurrentGrade = 0; zombieCurrentGrade < zombieMaxGrade;)
 			{
-				SpawnZombieOfType(ZombieTypeEnum.Normal);
+				ZombieTypeEnum zombieType = _zombieWeightsAndGrades.GetRandomZombieType(ZombieCurrentWave);
+				int tempGrade = _zombieWeightsAndGrades.GetZombieGrade(zombieType);
+				if (tempGrade + zombieCurrentGrade > zombieMaxGrade)
+				{
+					//zombieCount--; // 减1，重新尝试
+					continue;
+				}
+				GD.Print("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
+				zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
+				SpawnZombieOfType(zombieType);
 			}
-		}
 
-		// 介绍僵尸定点亮相：原版在"该僵尸首次出现的关卡"里，
-		// 把它放在波索引 (总波数 / 2) 和最后一波各一只。
-		// 波索引 0 起算，所以"最后一波"是 Waves - 1
-		if (Level != null && Level.SpawnIntroducedZombie && Level.Waves > 1
-			&& (ZombieCurrentWave == Level.Waves / 2 || ZombieCurrentWave == Level.Waves - 1))
-		{
-			GD.Print("介绍僵尸亮相：" + Level.IntroducedZombie);
-			SpawnZombieOfType(Level.IntroducedZombie);
+			if (isFlagWave)
+			{
+				// 旗帜波固定投一只旗帜僵尸：原版权重为 0，不进随机池，只从这里出场
+				SpawnZombieOfType(ZombieTypeEnum.Flag);
+
+				// 旗帜波除容量 ×BigWaveMultiplier 外，原版还会额外追加 min(本波点数, 8) 只普通僵尸
+				// （用的是乘倍数之前的点数）
+				int bonusNormalCount = Math.Min(baseWaveGrade, 8);
+				GD.Print("旗帜波附赠普通僵尸 " + bonusNormalCount + " 只");
+				for (int i = 0; i < bonusNormalCount; i++)
+				{
+					SpawnZombieOfType(ZombieTypeEnum.Normal);
+				}
+			}
+
+			// 介绍僵尸定点亮相：原版在"该僵尸首次出现的关卡"里，
+			// 把它放在波索引 (总波数 / 2) 和最后一波各一只。
+			// 波索引 0 起算，所以"最后一波"是 Waves - 1
+			if (Level != null && Level.SpawnIntroducedZombie && Level.Waves > 1
+				&& (ZombieCurrentWave == Level.Waves / 2 || ZombieCurrentWave == Level.Waves - 1))
+			{
+				GD.Print("介绍僵尸亮相：" + Level.IntroducedZombie);
+				SpawnZombieOfType(Level.IntroducedZombie);
+			}
 		}
 		//// 刷新僵尸
 		//for (int i = 0; i < zombieCount; i++)

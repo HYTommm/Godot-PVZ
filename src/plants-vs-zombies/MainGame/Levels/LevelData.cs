@@ -97,4 +97,10 @@ public partial class LevelData : Resource
 
 	/// <summary> 是否启用 IntroducedZombie 的定点亮相；没有新僵尸首现的关卡保持 false </summary>
 	[Export] public bool SpawnIntroducedZombie = false;
+
+	/// <summary>
+	/// 调试图关后门：跳过随机池与波次容量，每波只投一只旗帜僵尸。
+	/// 用来反复验证旗帜僵尸本身，正式关卡一律 false。
+	/// </summary>
+	[Export] public bool DebugOnlyFlagZombie = false;
 }

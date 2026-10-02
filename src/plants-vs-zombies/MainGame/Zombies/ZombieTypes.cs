@@ -14,6 +14,7 @@ public enum ZombieTypeEnum
 	Polevaulter,
 	Newspaper,
 	Football,
+	Flag,
 }
 
 public class ZombieType
@@ -29,6 +30,7 @@ public class ZombieType
 		_zombieScenes.Add(ZombieTypeEnum.Polevaulter, GD.Load<PackedScene>("res://MainGame/Zombies/PolevaulterZombie/PolevaulterZombie.tscn"));
 		_zombieScenes.Add(ZombieTypeEnum.Newspaper, GD.Load<PackedScene>("res://MainGame/Zombies/NewspaperZombie/NewspaperZombie.tscn"));
 		_zombieScenes.Add(ZombieTypeEnum.Football, GD.Load<PackedScene>("res://MainGame/Zombies/FootballZombie/Zombie_football.tscn"));
+		_zombieScenes.Add(ZombieTypeEnum.Flag, GD.Load<PackedScene>("res://MainGame/Zombies/FlagZombie.tscn"));
 	}
 
 	public PackedScene GetZombieScene(ZombieTypeEnum zombieType)

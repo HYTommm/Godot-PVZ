@@ -63,6 +63,8 @@ public static class LevelDataSpec
 		(ZombieTypeEnum.Polevaulter, 2000, 2, 5),
 		(ZombieTypeEnum.Newspaper, 1000, 2, 1),
 		(ZombieTypeEnum.Football, 2000, 7, 5),
+		// 旗帜僵尸权重 0：不由随机池抽取，每个旗帜波固定投放一只
+		(ZombieTypeEnum.Flag, 0, 1, 1),
 	];
 
 	/// <summary> 一种僵尸在某个关卡里的期望配置 </summary>
@@ -108,9 +110,12 @@ public static class LevelDataSpec
 		public readonly ZombieTypeEnum? IntroducedZombie;
 		public readonly ZombieExpectation[] Pool;
 
+		/// <summary> 调试图关后门：跳过随机池，每波只投一只旗帜僵尸 </summary>
+		public readonly bool DebugOnlyFlagZombie;
+
 		public LevelExpectation(string id, int world, int index, SceneKind scene, int sunStart,
 			int waves, int flagWaveInterval, double firstWaveDelay, float waveCapacityMultiplier,
-			ZombieTypeEnum? introducedZombie, ZombieTypeEnum[] pool)
+			ZombieTypeEnum? introducedZombie, ZombieTypeEnum[] pool, bool debugOnlyFlagZombie = false)
 		{
 			Id = id;
 			World = world;
@@ -122,6 +127,7 @@ public static class LevelDataSpec
 			FirstWaveDelay = firstWaveDelay;
 			WaveCapacityMultiplier = waveCapacityMultiplier;
 			IntroducedZombie = introducedZombie;
+			DebugOnlyFlagZombie = debugOnlyFlagZombie;
 			Pool = new ZombieExpectation[pool.Length];
 			for (int i = 0; i < pool.Length; i++)
 			{
@@ -163,14 +169,12 @@ public static class LevelDataSpec
 
 	/// <summary>
 	/// 调试图关。**这一关的数值是项目自己的调试配置，不是 PVZ 原版数值。**
-	/// 满阳光 + 全僵尸池 + 波数短 + 首波快，便于反复试。
+	/// 满阳光 + 波数短 + 首波快，便于反复试；池子按当前要测的东西改。
 	/// </summary>
 	public static readonly LevelExpectation[] DebugWorld =
 	[
 		new("DEBUG", 2, 1, SceneKind.Day, 50000, 3, 10, 1.0, 1f, null,
-			[ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead,
-			 ZombieTypeEnum.Screendoor, ZombieTypeEnum.Polevaulter, ZombieTypeEnum.Newspaper,
-			 ZombieTypeEnum.Football]),
+			[ZombieTypeEnum.Flag], debugOnlyFlagZombie: true),
 	];
 
 	/// <summary> 全部关卡的期望值（世界 1 + 调试图关） </summary>
