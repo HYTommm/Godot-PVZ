@@ -63,6 +63,9 @@ public static class LevelDataSpec
 		(ZombieTypeEnum.Polevaulter, 2000, 2, 5),
 		(ZombieTypeEnum.Newspaper, 1000, 2, 1),
 		(ZombieTypeEnum.Football, 2000, 7, 5),
+		// 原版旗帜僵尸权重是 0，不由随机池抽取（每个旗帜波固定投放一只）。
+		// 这里填 4000 是为了让调试关卡能真正抽到它，不是原版数值。
+		(ZombieTypeEnum.Flag, 4000, 1, 1),
 	];
 
 	/// <summary> 一种僵尸在某个关卡里的期望配置 </summary>
@@ -163,14 +166,12 @@ public static class LevelDataSpec
 
 	/// <summary>
 	/// 调试图关。**这一关的数值是项目自己的调试配置，不是 PVZ 原版数值。**
-	/// 满阳光 + 全僵尸池 + 波数短 + 首波快，便于反复试。
+	/// 满阳光 + 波数短 + 首波快，便于反复试；池子按当前要测的东西改。
 	/// </summary>
 	public static readonly LevelExpectation[] DebugWorld =
 	[
 		new("DEBUG", 2, 1, SceneKind.Day, 50000, 3, 10, 1.0, 1f, null,
-			[ZombieTypeEnum.Normal, ZombieTypeEnum.Conehead, ZombieTypeEnum.Buckethead,
-			 ZombieTypeEnum.Screendoor, ZombieTypeEnum.Polevaulter, ZombieTypeEnum.Newspaper,
-			 ZombieTypeEnum.Football]),
+			[ZombieTypeEnum.Flag]),
 	];
 
 	/// <summary> 全部关卡的期望值（世界 1 + 调试图关） </summary>
