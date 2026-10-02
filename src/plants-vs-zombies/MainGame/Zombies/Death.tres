@@ -6,7 +6,7 @@ length = 3.16667
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Zombie/Anim_innerarm3:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -66,7 +66,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Zombie/Anim_innerarm2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -126,7 +126,7 @@ tracks/9/keys = {
 }
 tracks/10/type = "value"
 tracks/10/imported = false
-tracks/10/enabled = true
+tracks/10/enabled = false
 tracks/10/path = NodePath("Zombie/Anim_innerarm1:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
@@ -186,7 +186,7 @@ tracks/14/keys = {
 }
 tracks/15/type = "value"
 tracks/15/imported = false
-tracks/15/enabled = true
+tracks/15/enabled = false
 tracks/15/path = NodePath("Zombie/Zombie_flaghand:visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
@@ -246,7 +246,7 @@ tracks/19/keys = {
 }
 tracks/20/type = "value"
 tracks/20/imported = false
-tracks/20/enabled = true
+tracks/20/enabled = false
 tracks/20/path = NodePath("Zombie/Zombie_innerarm_screendoor:visible")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
@@ -798,7 +798,7 @@ tracks/65/keys = {
 }
 tracks/66/type = "value"
 tracks/66/imported = false
-tracks/66/enabled = true
+tracks/66/enabled = false
 tracks/66/path = NodePath("Zombie/Zombie_duckytube:visible")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
@@ -930,7 +930,7 @@ tracks/76/keys = {
 }
 tracks/77/type = "value"
 tracks/77/imported = false
-tracks/77/enabled = true
+tracks/77/enabled = false
 tracks/77/path = NodePath("Zombie/Anim_tongue:visible")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
@@ -942,7 +942,7 @@ tracks/77/keys = {
 }
 tracks/78/type = "value"
 tracks/78/imported = false
-tracks/78/enabled = true
+tracks/78/enabled = false
 tracks/78/path = NodePath("Zombie/Zombie_mustache:visible")
 tracks/78/interp = 1
 tracks/78/loop_wrap = true
@@ -1002,7 +1002,7 @@ tracks/82/keys = {
 }
 tracks/83/type = "value"
 tracks/83/imported = false
-tracks/83/enabled = true
+tracks/83/enabled = false
 tracks/83/path = NodePath("Zombie/Anim_screendoor:visible")
 tracks/83/interp = 1
 tracks/83/loop_wrap = true
@@ -1062,7 +1062,7 @@ tracks/87/keys = {
 }
 tracks/88/type = "value"
 tracks/88/imported = false
-tracks/88/enabled = true
+tracks/88/enabled = false
 tracks/88/path = NodePath("Zombie/Zombie_innerarm_screendoor_hand:visible")
 tracks/88/interp = 1
 tracks/88/loop_wrap = true
@@ -1122,7 +1122,7 @@ tracks/92/keys = {
 }
 tracks/93/type = "value"
 tracks/93/imported = false
-tracks/93/enabled = true
+tracks/93/enabled = false
 tracks/93/path = NodePath("Zombie/Zombie_outerarm_screendoor:visible")
 tracks/93/interp = 1
 tracks/93/loop_wrap = true
@@ -1266,7 +1266,7 @@ tracks/104/keys = {
 }
 tracks/105/type = "value"
 tracks/105/imported = false
-tracks/105/enabled = true
+tracks/105/enabled = false
 tracks/105/path = NodePath("Zombie/Anim_hair:visible")
 tracks/105/interp = 1
 tracks/105/loop_wrap = true
@@ -1326,7 +1326,7 @@ tracks/109/keys = {
 }
 tracks/110/type = "value"
 tracks/110/imported = false
-tracks/110/enabled = true
+tracks/110/enabled = false
 tracks/110/path = NodePath("Zombie/Anim_cone:visible")
 tracks/110/interp = 1
 tracks/110/loop_wrap = true
@@ -1386,7 +1386,7 @@ tracks/114/keys = {
 }
 tracks/115/type = "value"
 tracks/115/imported = false
-tracks/115/enabled = true
+tracks/115/enabled = false
 tracks/115/path = NodePath("Zombie/Anim_bucket:visible")
 tracks/115/interp = 1
 tracks/115/loop_wrap = true

@@ -1376,7 +1376,7 @@ tracks/113/keys = {
 }
 tracks/114/type = "value"
 tracks/114/imported = false
-tracks/114/enabled = true
+tracks/114/enabled = false
 tracks/114/path = NodePath("Anim_innerarm3:visible")
 tracks/114/interp = 1
 tracks/114/loop_wrap = true
@@ -1388,7 +1388,7 @@ tracks/114/keys = {
 }
 tracks/115/type = "value"
 tracks/115/imported = false
-tracks/115/enabled = true
+tracks/115/enabled = false
 tracks/115/path = NodePath("Anim_innerarm2:visible")
 tracks/115/interp = 1
 tracks/115/loop_wrap = true
@@ -1400,7 +1400,7 @@ tracks/115/keys = {
 }
 tracks/116/type = "value"
 tracks/116/imported = false
-tracks/116/enabled = true
+tracks/116/enabled = false
 tracks/116/path = NodePath("Anim_innerarm1:visible")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
