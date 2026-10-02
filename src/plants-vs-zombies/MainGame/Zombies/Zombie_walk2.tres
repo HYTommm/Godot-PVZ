@@ -1332,7 +1332,7 @@ tracks/107/keys = {
 }
 tracks/108/type = "value"
 tracks/108/imported = false
-tracks/108/enabled = true
+tracks/108/enabled = false
 tracks/108/path = NodePath("Anim_head1:visible")
 tracks/108/interp = 1
 tracks/108/loop_wrap = true
@@ -2124,7 +2124,7 @@ tracks/173/keys = {
 }
 tracks/174/type = "value"
 tracks/174/imported = false
-tracks/174/enabled = true
+tracks/174/enabled = false
 tracks/174/path = NodePath("Anim_head2:visible")
 tracks/174/interp = 1
 tracks/174/loop_wrap = true
@@ -2400,7 +2400,7 @@ tracks/196/keys = {
 }
 tracks/197/type = "value"
 tracks/197/imported = false
-tracks/197/enabled = true
+tracks/197/enabled = false
 tracks/197/path = NodePath("Anim_screendoor:texture")
 tracks/197/interp = 1
 tracks/197/loop_wrap = true
@@ -2556,7 +2556,7 @@ tracks/209/keys = {
 }
 tracks/210/type = "value"
 tracks/210/imported = false
-tracks/210/enabled = true
+tracks/210/enabled = false
 tracks/210/path = NodePath("Zombie_outerarm_hand:visible")
 tracks/210/interp = 1
 tracks/210/loop_wrap = true
@@ -2688,7 +2688,7 @@ tracks/220/keys = {
 }
 tracks/221/type = "value"
 tracks/221/imported = false
-tracks/221/enabled = true
+tracks/221/enabled = false
 tracks/221/path = NodePath("Zombie_outerarm_upper:texture")
 tracks/221/interp = 1
 tracks/221/loop_wrap = true
@@ -2772,7 +2772,7 @@ tracks/227/keys = {
 }
 tracks/228/type = "value"
 tracks/228/imported = false
-tracks/228/enabled = true
+tracks/228/enabled = false
 tracks/228/path = NodePath("Zombie_outerarm_lower:visible")
 tracks/228/interp = 1
 tracks/228/loop_wrap = true
@@ -2976,7 +2976,7 @@ tracks/244/keys = {
 }
 tracks/245/type = "value"
 tracks/245/imported = false
-tracks/245/enabled = true
+tracks/245/enabled = false
 tracks/245/path = NodePath("Anim_cone:texture")
 tracks/245/interp = 1
 tracks/245/loop_wrap = true
@@ -3048,7 +3048,7 @@ tracks/250/keys = {
 }
 tracks/251/type = "value"
 tracks/251/imported = false
-tracks/251/enabled = true
+tracks/251/enabled = false
 tracks/251/path = NodePath("Anim_bucket:texture")
 tracks/251/interp = 1
 tracks/251/loop_wrap = true

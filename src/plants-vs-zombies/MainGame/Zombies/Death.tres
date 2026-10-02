@@ -366,7 +366,7 @@ tracks/29/keys = {
 }
 tracks/30/type = "value"
 tracks/30/imported = false
-tracks/30/enabled = true
+tracks/30/enabled = false
 tracks/30/path = NodePath("Zombie/Anim_head1:visible")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
@@ -918,7 +918,7 @@ tracks/75/keys = {
 }
 tracks/76/type = "value"
 tracks/76/imported = false
-tracks/76/enabled = true
+tracks/76/enabled = false
 tracks/76/path = NodePath("Zombie/Anim_head2:visible")
 tracks/76/interp = 1
 tracks/76/loop_wrap = true
@@ -1182,7 +1182,7 @@ tracks/97/keys = {
 }
 tracks/98/type = "value"
 tracks/98/imported = false
-tracks/98/enabled = true
+tracks/98/enabled = false
 tracks/98/path = NodePath("Zombie/Zombie_outerarm_hand:visible")
 tracks/98/interp = 1
 tracks/98/loop_wrap = true
@@ -1254,7 +1254,7 @@ tracks/103/keys = {
 }
 tracks/104/type = "value"
 tracks/104/imported = false
-tracks/104/enabled = true
+tracks/104/enabled = false
 tracks/104/path = NodePath("Zombie/Zombie_outerarm_lower:visible")
 tracks/104/interp = 1
 tracks/104/loop_wrap = true
