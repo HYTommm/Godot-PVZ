@@ -17,3 +17,10 @@ src/plants-vs-zombies/shader/.git/
 
 src/GodotPvzSourceGenerator/obj/
 src/GodotPvzSourceGenerator/bin/
+
+# 本地临时文件，不入库
+/.claude/
+/flash.pdf
+/R2Ga.cf
+/tmp.txt
+src/plants-vs-zombies/art.7z
