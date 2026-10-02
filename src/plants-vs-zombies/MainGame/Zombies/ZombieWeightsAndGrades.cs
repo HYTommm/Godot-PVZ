@@ -25,8 +25,8 @@ public class ZombieWeightsAndGrades
 		_zombieWeightsDict.Add(ZombieTypeEnum.Polevaulter, 2000);
 		_zombieWeightsDict.Add(ZombieTypeEnum.Newspaper, 1000);
 		_zombieWeightsDict.Add(ZombieTypeEnum.Football, 2000);
-		// 旗帜僵尸按原版权重是 0（不由池抽取），这里填 4000 只是为了调试关卡能抽到它
-		_zombieWeightsDict.Add(ZombieTypeEnum.Flag, 4000);
+		// 旗帜僵尸权重 0：原版不由池抽取，只在旗帜波固定投放一只（见 MainGame.RefreshZombie）
+		_zombieWeightsDict.Add(ZombieTypeEnum.Flag, 0);
 
 		_zombieTotalWeight = _zombieWeightsDict.Sum(x => x.Value);
 

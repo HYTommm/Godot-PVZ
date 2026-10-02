@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_noqr5"]
 script = ExtResource("1_khrvm")
 Type = 7
-Weight = 4000
+Weight = 0
 
 [resource]
 script = ExtResource("2_4r6xa")
@@ -16,3 +16,4 @@ SunStart = 50000
 Waves = 3
 FirstWaveDelay = 1.0
 WavePool = Array[ExtResource("1_khrvm")]([SubResource("Resource_noqr5")])
+DebugOnlyFlagZombie = true

@@ -89,6 +89,7 @@ public static class LevelDataGenerator
 			FlagWaveInterval = expectation.FlagWaveInterval,
 			FirstWaveDelay = expectation.FirstWaveDelay,
 			WaveCapacityMultiplier = expectation.WaveCapacityMultiplier,
+			DebugOnlyFlagZombie = expectation.DebugOnlyFlagZombie,
 
 			WaveCapacityBase = LevelDataSpec.WaveCapacityBase,
 			BigWaveMultiplier = LevelDataSpec.BigWaveMultiplier,
