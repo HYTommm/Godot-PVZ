@@ -12,7 +12,7 @@ public partial class MainGame : MainNode2D
 	public static MainGame Instance => _instance;
 	private static MainGame _instance;
 	private readonly ZombieWeightsAndGrades _zombieWeightsAndGrades = new();
-	private readonly ZombieType _zombieType = new();
+	private readonly ZombieType _zombieType = ZombieType.Instance; // 与选卡共用同一份注册表
 
 	// 当前波数
 	public int ZombieCurrentWave;
@@ -30,8 +30,22 @@ public partial class MainGame : MainNode2D
 	[Export] public Node2D ZombiesContainer;
 	[Export] public Node2D SunContainer;
 	[Export] public Sprite2D BackGround;
-	private Plants _seed, _seedClone;
+	/// <summary>手上跟随鼠标的预览体。植物与僵尸共用，所以是 Node2D；数值一律走 ISeedEntity</summary>
+	private Node2D _seed;
+
+	/// <summary>落在草坪上的克隆体：植物的那个会转正成真植物，僵尸的那个只作位置指示</summary>
+	private Node2D _seedClone;
+
+	/// <summary>按住 Shift 时脱离格子、按鼠标位置自由投放（只对僵尸卡有效）</summary>
+	private static bool FreePlacement => Input.IsKeyPressed(Key.Shift);
+
 	private SeedPacketLarger _seedPacketNode;
+
+	/// <summary>手上这张卡是不是僵尸卡。是的话走 AddZombieSeed / PlaceZombieSeed 那条路</summary>
+	private bool _bSeedCardIsZombie;
+
+	/// <summary>僵尸卡选中时暂存的僵尸场景，松手时照它实例一只真的出来</summary>
+	private PackedScene _zombieSeedScene;
 
 	// 是否可以重叠种植
 	public bool BCanOverlapPlant = false;
@@ -201,38 +215,54 @@ public partial class MainGame : MainNode2D
 		// 如果SeedCard被选中
 		if (BIsSeedCardSelected)
 		{
-			_seed.Position = _seedPacketNode.GetGlobalMousePosition() - _seed.Offset;
+			_seed.Position = _seedPacketNode.GetGlobalMousePosition() - ((ISeedEntity)_seed).Offset;
 
 			Vector2 mouseGlobalPos = GetGlobalMousePosition();
-			if (mouseGlobalPos.X >= GameScene.LawnLeftTopPos.X && mouseGlobalPos.X < GameScene.LawnLeftTopPos.X + GameScene.LawnUnitLength * GameScene.LawnUnitCount.X
-				&& mouseGlobalPos.Y >= GameScene.LawnLeftTopPos.Y && mouseGlobalPos.Y < GameScene.LawnLeftTopPos.Y + GameScene.LawnUnitWidth * GameScene.LawnUnitCount.Y
-				)
-			{
-				/*
-				MouseUnitPos =
-					new Vector2I((int)((MouseGlobalPos.X - GameScene.LawnLeftTopPos.X) / GameScene.LawnUnitLength),
-								(int)((MouseGlobalPos.Y - GameScene.LawnLeftTopPos.Y) / GameScene.LawnUnitWidth));
-				*/
-				_mouseUnitPos.X = (int)((mouseGlobalPos.X - GameScene.LawnLeftTopPos.X) / GameScene.LawnUnitLength);
-				_mouseUnitPos.Y = (int)((mouseGlobalPos.Y - GameScene.LawnLeftTopPos.Y) / GameScene.LawnUnitWidth);
-				//GD.Print(MouseUnitPos);
+			bool inLawn = mouseGlobalPos.X >= GameScene.LawnLeftTopPos.X
+				&& mouseGlobalPos.X < GameScene.LawnLeftTopPos.X + GameScene.LawnUnitLength * GameScene.LawnUnitCount.X
+				&& mouseGlobalPos.Y >= GameScene.LawnLeftTopPos.Y
+				&& mouseGlobalPos.Y < GameScene.LawnLeftTopPos.Y + GameScene.LawnUnitWidth * GameScene.LawnUnitCount.Y;
 
-				if (BCanOverlapPlant || GameScene.IsLawnUnitPlantEmpty(_mouseUnitPos.X, _mouseUnitPos.Y))
-				{
-					_seedClone.Position = new Vector2(_mouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
-													 _mouseUnitPos.Y * GameScene.LawnUnitWidth + GameScene.LawnLeftTopPos.Y);
-					_seedClone.Visible = true;
-				}
-				else
+			if (!inLawn)
+			{
+				// 鼠标不在草坪上：算作"没指到地方"，松手就是放回
+				_mouseUnitPos.X = -1;
+				_mouseUnitPos.Y = -1;
+				if (_seedClone != null)
 				{
 					_seedClone.Visible = false;
 				}
+				return;
+			}
+
+			_mouseUnitPos.X = (int)((mouseGlobalPos.X - GameScene.LawnLeftTopPos.X) / GameScene.LawnUnitLength);
+			_mouseUnitPos.Y = (int)((mouseGlobalPos.Y - GameScene.LawnLeftTopPos.Y) / GameScene.LawnUnitWidth);
+
+			if (_bSeedCardIsZombie)
+			{
+				// 手上那只始终跟着鼠标（函数开头已设），吸格子的是 _seedClone 那个位置指示。
+				// 按住 Shift 脱离格子自由投放，位置指示就没有意义了
+				bool free = FreePlacement;
+				_seedClone.Visible = !free;
+				if (!free)
+				{
+					_seedClone.Position = new Vector2(
+						_mouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
+						ZombieRowY(_mouseUnitPos.Y));
+				}
+				return;
+			}
+
+			if (BCanOverlapPlant || GameScene.IsLawnUnitPlantEmpty(_mouseUnitPos.X, _mouseUnitPos.Y))
+			{
+				_seedClone.Position = new Vector2(_mouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X,
+												 _mouseUnitPos.Y * GameScene.LawnUnitWidth + GameScene.LawnLeftTopPos.Y);
+				_seedClone.Visible = true;
 			}
 			else
 			{
+				// 格子被占了：不算"没指到地方"，松手既不种也不放回（与原逻辑一致）
 				_seedClone.Visible = false;
-				_mouseUnitPos.X = -1;
-				_mouseUnitPos.Y = -1;
 			}
 		}
 	}
@@ -246,9 +276,25 @@ public partial class MainGame : MainNode2D
 			{
 				return;
 			}
-			// 如果鼠标左键按下，且正在选中种子卡，则种植植物
+			// 如果鼠标左键按下，且正在选中种子卡，则种植植物 / 投放僵尸
 			if (!BIsSeedCardSelected)
 			{
+				return;
+			}
+			if (_bSeedCardIsZombie)
+			{
+				if (_mouseUnitPos is { X: -1, Y: -1 })
+				{
+					// 鼠标没落在草坪上，和放回植物一样把卡退回
+					GetViewport().SetInputAsHandled();
+					PutBackPlant();
+					_seedPacketNode.SetCDZero();
+					PutBackPlantSound.Play();
+				}
+				else
+				{
+					PlaceZombieSeed();
+				}
 				return;
 			}
 			if (_seedClone.Visible == false)
@@ -280,10 +326,33 @@ public partial class MainGame : MainNode2D
 	}
 
 	/// <summary>
+	/// 本关的可选池。正式关只有植物；调试图关把全部僵尸也放进去，方便手动摆怪测试。
+	/// 将来接存档（已解锁植物）时，改的也只是这里。
+	/// </summary>
+	private List<SeedType> BuildSeedPool()
+	{
+		List<SeedType> pool = new();
+		foreach (PlantTypeEnum plant in PlantTypes.All)
+		{
+			pool.Add(SeedType.Of(plant));
+		}
+
+		if (Level?.CanPlaceZombies ?? false)
+		{
+			foreach (ZombieTypeEnum zombie in ZombieType.All)
+			{
+				pool.Add(SeedType.Of(zombie));
+			}
+		}
+
+		return pool;
+	}
+
+	/// <summary>
 	/// 弹出选卡界面，等玩家选完，再把结果应用到种子栏。
 	///
-	/// 可选池当前是全部植物。将来接存档（已解锁植物）时，只换传给 SeedSelection 的那个池子。
-	/// 槽位数直接取种子栏实际有几个卡槽，不另外配一个数字，免得两处对不上。
+	/// 可选池见 BuildSeedPool。槽位数直接取种子栏实际有几个卡槽，
+	/// 不另外配一个数字，免得两处对不上。
 	/// </summary>
 	private async Task SelectSeeds()
 	{
@@ -294,7 +363,7 @@ public partial class MainGame : MainNode2D
 			return;
 		}
 
-		SeedSelection = new SeedSelection(PlantTypes.All, slotCount);
+		SeedSelection = new SeedSelection(BuildSeedPool(), slotCount);
 
 		// 选卡期间禁止点卡的那道闸由面板自己开关，寿命就是面板的寿命。
 		// 不在这里开合：结果在面板开始降下时就交出来，面板还要再走一段才消失，
@@ -385,11 +454,13 @@ public partial class MainGame : MainNode2D
 		_seedPacketNode = node;
 		_seed = seed;
 		_seedClone = seedClone;
+		_bSeedCardIsZombie = false;
+		_zombieSeedScene = null;
 
 		// 初始化克隆种子
-		_seedClone.Visible = false;
+		seedClone.Visible = false;
 		//seedClone.SelfModulate = new Color(1, 1, 1, 0.6f);
-		_seedClone._SetAlpha(0.6f);
+		seedClone._SetAlpha(0.6f);
 		// 添加克隆植物
 		PlantsContainer.AddChild(_seedClone);
 
@@ -406,6 +477,8 @@ public partial class MainGame : MainNode2D
 	// 种植植物
 	public void PlantSeed()
 	{
+		Plants clone = (Plants)_seedClone; // 走到这里的一定是植物卡
+
 		_seed.Visible = false;
 
 		BIsSeedCardSelected = false;
@@ -420,8 +493,8 @@ public partial class MainGame : MainNode2D
 			Plants[PlantStack]?.QueueFree();
 		}
 
-		Plants[PlantStack] = _seedClone;
-		_seedClone.Index = PlantStack;
+		Plants[PlantStack] = clone;
+		clone.Index = PlantStack;
 
 		if (tempIndex != -1)
 		{
@@ -433,10 +506,10 @@ public partial class MainGame : MainNode2D
 		}
 
 		_seed.QueueFree();
-		_seedClone._Plant(_mouseUnitPos.X, _mouseUnitPos.Y, _seedClone.Index);
+		clone._Plant(_mouseUnitPos.X, _mouseUnitPos.Y, clone.Index);
 		GameScene.LawnUnitPlacePlant(_mouseUnitPos.X, _mouseUnitPos.Y);
 
-		SunCount -= _seedClone.SunCost;
+		SunCount -= clone.SunCost;
 		SeedBank.UpdateSunCount(); // 用 [Export] 字段，别写路径——种子栏开局后会被挂到 MainGame 根下
 
 		//seedNode.ResetCD();
@@ -444,14 +517,118 @@ public partial class MainGame : MainNode2D
 		//GD.Print("MainGame: PlantSeed");
 	}
 
+	// 选中僵尸卡
+	public void AddZombieSeed(SeedPacketLarger node, Node2D seed, Node2D seedClone)
+	{
+		_seedPacketNode = node;
+		_seed = seed;
+		_seedClone = seedClone;
+		_zombieSeedScene = node.SeedScene;
+		_bSeedCardIsZombie = true;
+
+		seed.Position = node.GetViewport().GetMousePosition() - ((ISeedEntity)seed).Offset;
+		ZombiesContainer.AddChild(seed);
+
+		// 克隆体只作"松开后会落在哪"的位置指示，和植物一样半透明。
+		// 它是展示态：不然这只跟着指示跑的僵尸会去啃植物、挨子弹
+		seedClone.Visible = false;
+		((ISeedEntity)seedClone)._SetAlpha(0.6f);
+		ZombiesContainer.AddChild(seedClone);
+
+		BIsSeedCardSelected = true;
+	}
+
+	/// <summary>
+	/// 放下僵尸：在鼠标位置生成一只真的。
+	///
+	/// 手上那只预览体是展示态（没跑状态机、没接碰撞箱），不能转正——它的 _Ready 早退过，
+	/// 直接清标志会缺一大堆初始化。所以照卡面场景重新实例一只，预览体丢弃。
+	/// </summary>
+	private void PlaceZombieSeed()
+	{
+		int row = _mouseUnitPos.Y;
+		float x = FreePlacement
+			? GetGlobalMousePosition().X - ((ISeedEntity)_seed).Offset.X
+			: _mouseUnitPos.X * GameScene.LawnUnitLength + GameScene.LawnLeftTopPos.X;
+
+		_seed.QueueFree();
+		_seed = null;
+		_seedClone.QueueFree();
+		_seedClone = null;
+		BIsSeedCardSelected = false;
+
+		if (_zombieSeedScene?.Instantiate() is Zombie zombie)
+		{
+			AddZombieAt(zombie, row, x);
+		}
+		else
+		{
+			GD.PrintErr("[MainGame] 僵尸卡没有对应场景，放不出来");
+		}
+
+		_seedPacketNode = null;
+		_zombieSeedScene = null;
+		_bSeedCardIsZombie = false;
+	}
+
+	/// <summary>某一行的僵尸站位 Y。与 Zombie.Refresh 里的算法保持一致</summary>
+	private float ZombieRowY(int row) => GameScene.LawnLeftTopPos.Y + row * GameScene.LawnUnitWidth - 35;
+
+	/// <summary>
+	/// 把一只已经建好的僵尸按指定行放进场景树：纵向站在该行的站位上，横向落在 x。
+	///
+	/// 与 SpawnZombieOfType 那条路分开：那条是波次生成，行随机、位置钉在右侧入口；
+	/// 调试投放要的是"点哪行放哪行、点哪就在哪出现"。
+	/// </summary>
+	public void AddZombieAt(Zombie zombie, int row, float x)
+	{
+		int tempIndex = -1;
+		if (Zombies[ZombieStack] != null)
+		{
+			tempIndex = Zombies[ZombieStack].Index;
+			Zombies[ZombieStack].RequestRelease();
+		}
+
+		Zombies[ZombieStack] = zombie;
+		zombie.Index = ZombieStack;
+		if (tempIndex != -1)
+		{
+			ZombieStack = tempIndex;
+		}
+		else
+		{
+			ZombieStack++;
+		}
+
+		ZombieCurrentWaveMaxHP += zombie.HealthStageComponent.MaxHP;
+
+		// Refresh 会把位置钉回右侧入口，投放要的是点在哪就出现在哪，所以之后再覆盖。
+		// 纵向留 Refresh 算好的行站位，只改横向
+		zombie.Refresh(zombie.Index, GameScene, ZombieCurrentWave, row);
+		zombie.Position = new Vector2(x, zombie.Position.Y);
+
+		ZombiesNumOfRow[row]++;
+		ZombiesContainer.CallDeferred("add_child", zombie);
+
+		ZombieNum += 1;
+		UpdateZombieNum();
+	}
+
 	// 释放（松开、放回）植物
 	public void PutBackPlant()
 	{
-		_seedClone.Visible = false;
+		if (_seedClone != null)
+		{
+			_seedClone.Visible = false;
+			_seedClone.QueueFree();
+			_seedClone = null;
+		}
 		_seed.Visible = true;
-		_seedClone.QueueFree();
 		_seed.QueueFree();
+		_seed = null;
 		BIsSeedCardSelected = false;
+		_bSeedCardIsZombie = false;
+		_zombieSeedScene = null;
 	}
 
 	// 刷新僵尸

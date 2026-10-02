@@ -9,7 +9,7 @@ using static HealthStage;
 /// <para>子类需要实现_Idle()</para>
 /// <para>子类可实现_Plant()、_SetColor()、_SetAlpha()。</para>
 /// </summary>
-public abstract partial class Plants : Entity, IHealthStage
+public abstract partial class Plants : Entity, IHealthStage, ISeedEntity
 {
     public virtual HealthStageComponent HealthStageComponent { get; set; } = new(300);
     public bool Alive => HealthStageComponent.HP > 0;
@@ -38,10 +38,10 @@ public abstract partial class Plants : Entity, IHealthStage
     /// 而卡槽把它们实例出来只是为了显示外观（没有行列、也没有种植场景）。
     /// 所以各处的 _Ready 都要先看这个标志。要在 AddChild 之前设置，否则 _Ready 已经跑过了。
     /// </summary>
-    public bool BIsDisplayOnly = false;
+    public bool BIsDisplayOnly { get; set; } = false;
 
     /// <summary>阳光消耗量</summary>
-    public int SunCost = -1;
+    public int SunCost { get; set; } = -1;
 
     public virtual Vector2 Offset { get; set; } = new Vector2(35, 60);
 
@@ -63,7 +63,7 @@ public abstract partial class Plants : Entity, IHealthStage
     }
 
     /// <summary>冷却时间</summary>
-    public float CDtime = 0;// 冷却时间
+    public float CDtime { get; set; } = 0;// 冷却时间
 
     /// <summary>主游戏节点</summary>
     //public MainGame MainGame;

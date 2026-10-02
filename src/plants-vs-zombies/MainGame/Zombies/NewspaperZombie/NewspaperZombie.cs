@@ -42,6 +42,14 @@ public partial class NewspaperZombie : RegularZombie
 
     public override void _Ready()
     {
+        if (BIsDisplayOnly)
+        {
+            // 种子栏卡槽展示：不要状态机，也不要碰撞箱与速度（WalkSpeed 要用 MainGame.Instance.RNG）。
+            // 报纸是场景自带的子节点，不挂护甲本身也是可见的
+            base._Ready();
+            return;
+        }
+
         // 状态机
         AddChild(_stateMachine = new StateMachine<PaperState>(PaperState.Walk));
         _stateMachine.StateChanged += OnStateChanged;
@@ -98,6 +106,11 @@ public partial class NewspaperZombie : RegularZombie
 
     public override void _PhysicsProcess(double delta)
     {
+        if (BIsDisplayOnly)
+        {
+            return; // 展示态没有 _stateMachine
+        }
+
         switch (_stateMachine.CurrentState)
         {
             case PaperState.Walk:

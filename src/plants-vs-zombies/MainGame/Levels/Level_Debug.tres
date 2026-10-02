@@ -17,3 +17,4 @@ Waves = 3
 FirstWaveDelay = 1.0
 WavePool = Array[ExtResource("1_khrvm")]([SubResource("Resource_noqr5")])
 DebugOnlyFlagZombie = true
+CanPlaceZombies = true

@@ -22,18 +22,26 @@ public partial class FootballZombie : RegularZombie
 
 	public override void _Ready()
 	{
-		AddChild(_stateMachine = new StateMachine<FootballState>(FootballState.Walk));
-		_stateMachine.StateChanged += OnStateChanged;
+		if (!BIsDisplayOnly)
+		{
+			// 状态机在 base._Ready 之前初始化
+			AddChild(_stateMachine = new StateMachine<FootballState>(FootballState.Walk));
+			_stateMachine.StateChanged += OnStateChanged;
+		}
 
 		base._Ready();
 
+		// 头盔展示态照样要挂——卡面上认的就是它
 		FootballHelmet footballhelmet = new(
 			Zombie_Football,
 			[],
 			[Zombie_hair]);
 		ArmorManager.AddArmor(footballhelmet);
 
-		_stateMachine.ForceSetState(FootballState.Walk);
+		if (!BIsDisplayOnly)
+		{
+			_stateMachine.ForceSetState(FootballState.Walk);
+		}
 	}
 
 	protected override void PickRandomSpeed()
@@ -68,6 +76,11 @@ public partial class FootballZombie : RegularZombie
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (BIsDisplayOnly)
+		{
+			return; // 展示态没有 _stateMachine，这里必须先于 base 早退
+		}
+
 		base._PhysicsProcess(delta);
 
 		switch (_stateMachine.CurrentState)

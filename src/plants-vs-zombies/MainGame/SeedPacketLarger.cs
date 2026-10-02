@@ -8,7 +8,10 @@ public partial class SeedPacketLarger : Node2D
 	[Export]
 	public PackedScene SeedScene; // 种子节点
 
-	public Plants seedShow, seed, seedClone; // 卡片展示的种子节点，跟随鼠标位置的种子节点，位于可种植区的克隆种子节点
+	// 卡面展示体、手上跟随鼠标的预览体、落在草坪上的克隆体。
+	// 类型是 Node2D 而非 Plants：卡片既能装植物也能装僵尸，卡槽只关心它们的显示，
+	// 数值部分一律通过 ISeedEntity 取。
+	public Node2D seedShow, seed, seedClone;
 
 	ColorRect CostColorRect; // 花费遮挡阴影
 	ColorRect CDColorRect; // CD遮挡阴影
@@ -138,13 +141,23 @@ public partial class SeedPacketLarger : Node2D
 		ApplyCardFaceVisibility(); // 卡片还没落地的话只留槽底，等选卡界面把它露出来
 		SetProcess(true); // 有植物了，"阳光不足"的判定要跑起来
 
-		seedShow = SeedScene.Instantiate<Plants>(); // 实例化种子节点
+		seedShow = SeedScene.Instantiate<Node2D>(); // 实例化卡面实体（植物或僵尸）
 
-		// 必须在入树之前置位：卡槽里的植物只显示外观，各植物的 _Ready 是照种植场景写的，
-		// 不去跳过的话，找 %AttackHitBox 这类种植期节点会报 Node not found
-		seedShow.BIsDisplayOnly = true;
+		if (seedShow is not ISeedEntity seedData)
+		{
+			GD.PrintErr($"[SeedPacketLarger] 卡面场景不是可上卡槽的实体，本卡留空：{SeedScene.ResourcePath}");
+			seedShow.QueueFree();
+			seedShow = null;
+			SetProcess(false);
+			return;
+		}
 
-		seedShow.Position = new Vector2(7, 18); // 种子展示位置
+		// 必须在入树之前置位：卡槽里只显示外观。实体的 _Ready 都是照"已经种在草坪上 /
+		// 已经走进草坪"写的——植物会去找 %AttackHitBox，僵尸会去抽行走速度（要用
+		// MainGame.Instance.RNG）、取碰撞箱、建状态机。不跳过就跑不通
+		seedData.BIsDisplayOnly = true;
+
+		seedShow.Position = new Vector2(7, 18); // 展示位置
 
 		GetNode<Sprite2D>("SeedPacketLarger").AddChild(seedShow, false, InternalMode.Front); // 将种子展示节点添加到SeedPacketLarger节点下
 
@@ -158,7 +171,7 @@ public partial class SeedPacketLarger : Node2D
 		DisableHitBoxes(seedShow);
 
 		LeftCDTime = 0.0f; // 剩余CD时间
-		MaxCDTime = seedShow.CDtime; // 最大CD时间
+		MaxCDTime = seedData.CDtime; // 最大CD时间
 		isCDCooling = false;
 
 		CDColorRectMaterial?.SetShaderParameter("max_cd_time", MaxCDTime); // 设置最大CD时间
@@ -166,8 +179,8 @@ public partial class SeedPacketLarger : Node2D
 
 		CostColorRect.Visible = false; // 换卡后不再处于"阳光不足"状态，交给 _Process 重新判
 
-		if (seedShow.SunCost >= 0) // 种子花费大于0
-			GetNode<Label>("./Label").Text = seedShow.SunCost.ToString(); // 显示花费
+		if (seedData.SunCost >= 0) // 卡面有花费
+			GetNode<Label>("./Label").Text = seedData.SunCost.ToString(); // 显示花费
 		else
 			GetNode<Label>("./Label").Text = ""; // 隐藏花费
 	}
@@ -180,9 +193,14 @@ public partial class SeedPacketLarger : Node2D
 			return;
 		}
 
+		if (seedShow is not ISeedEntity seedData)
+		{
+			return; // 空槽没有卡面，_Process 这时本就该是关着的
+		}
+
 		if (MainGame != null)
 		{
-			if (MainGame.SunCount < seedShow.SunCost)
+			if (MainGame.SunCount < seedData.SunCost)
 			{
 				CostColorRect.Visible = true;
 				//SeedPacketFlash.Play("SeedPacketFlash");
@@ -201,7 +219,7 @@ public partial class SeedPacketLarger : Node2D
 		else
 		{
 			//GD.Print(CostColorRect.Visible);
-			if (MainGame.SunCount >= seedShow.SunCost && CostColorRect.Visible == true)
+			if (MainGame.SunCount >= seedData.SunCost && CostColorRect.Visible == true)
 			{
 				CostColorRect.Visible = false;
 				SeedPacketFlash.Play("SeedPacketFlash");
@@ -242,18 +260,37 @@ public partial class SeedPacketLarger : Node2D
 
 			if (MainGame.BMouse_left_down && MainGame.BIsSeedCardSelected == false)
 			{
-				// 如果阳光大于植物 costs 并且 CD 冷却完毕
-				if (MainGame.SunCount >= seedShow.SunCost && LeftCDTime <= 0.0f)
+				if (seedShow is not ISeedEntity seedData)
 				{
-					seed = SeedScene.Instantiate<Plants>();
-					seedClone = SeedScene.Instantiate<Plants>();
-					//seed.Scale = new Vector2(2.0f, 2.0f);
+					return; // 空槽没有卡面，点不到这里
+				}
 
-					MainGame.AddSeed(this, seed, seedClone);
+				// 如果阳光大于花费 并且 CD 冷却完毕
+				if (MainGame.SunCount >= seedData.SunCost && LeftCDTime <= 0.0f)
+				{
+					if (seedShow is Zombie)
+					{
+						// 僵尸卡：手上那只与格子位置指示那只都要，和植物一样。
+						// 两只都是展示态——预览的僵尸不该去啃植物、也不该挨子弹
+						seed = SeedScene.Instantiate<Node2D>();
+						seedClone = SeedScene.Instantiate<Node2D>();
+						((ISeedEntity)seed).BIsDisplayOnly = true;
+						((ISeedEntity)seedClone).BIsDisplayOnly = true;
+						MainGame.AddZombieSeed(this, seed, seedClone);
+					}
+					else
+					{
+						seed = SeedScene.Instantiate<Node2D>();
+						seedClone = SeedScene.Instantiate<Node2D>();
+						//seed.Scale = new Vector2(2.0f, 2.0f);
+
+						MainGame.AddSeed(this, (Plants)seed, (Plants)seedClone);
+					}
+
 					SeedLiftSound.Play();
 					ResetCD();
 				}
-				else if (MainGame.SunCount < seedShow.SunCost)
+				else if (MainGame.SunCount < seedData.SunCost)
 				{
 					GetParent<SeedBank>().SunCountFlashWarning();
 				}

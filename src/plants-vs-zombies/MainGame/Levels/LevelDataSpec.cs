@@ -113,9 +113,13 @@ public static class LevelDataSpec
 		/// <summary> 调试图关后门：跳过随机池，每波只投一只旗帜僵尸 </summary>
 		public readonly bool DebugOnlyFlagZombie;
 
+		/// <summary> 本关是否允许把僵尸当种子卡用（调试关专用） </summary>
+		public readonly bool CanPlaceZombies;
+
 		public LevelExpectation(string id, int world, int index, SceneKind scene, int sunStart,
 			int waves, int flagWaveInterval, double firstWaveDelay, float waveCapacityMultiplier,
-			ZombieTypeEnum? introducedZombie, ZombieTypeEnum[] pool, bool debugOnlyFlagZombie = false)
+			ZombieTypeEnum? introducedZombie, ZombieTypeEnum[] pool, bool debugOnlyFlagZombie = false,
+			bool canPlaceZombies = false)
 		{
 			Id = id;
 			World = world;
@@ -128,6 +132,7 @@ public static class LevelDataSpec
 			WaveCapacityMultiplier = waveCapacityMultiplier;
 			IntroducedZombie = introducedZombie;
 			DebugOnlyFlagZombie = debugOnlyFlagZombie;
+			CanPlaceZombies = canPlaceZombies;
 			Pool = new ZombieExpectation[pool.Length];
 			for (int i = 0; i < pool.Length; i++)
 			{
@@ -170,11 +175,12 @@ public static class LevelDataSpec
 	/// <summary>
 	/// 调试图关。**这一关的数值是项目自己的调试配置，不是 PVZ 原版数值。**
 	/// 满阳光 + 波数短 + 首波快，便于反复试；池子按当前要测的东西改。
+	/// 也是唯一允许把僵尸当种子卡用的关卡。
 	/// </summary>
 	public static readonly LevelExpectation[] DebugWorld =
 	[
 		new("DEBUG", 2, 1, SceneKind.Day, 50000, 3, 10, 1.0, 1f, null,
-			[ZombieTypeEnum.Flag], debugOnlyFlagZombie: true),
+			[ZombieTypeEnum.Flag], debugOnlyFlagZombie: true, canPlaceZombies: true),
 	];
 
 	/// <summary> 全部关卡的期望值（世界 1 + 调试图关） </summary>

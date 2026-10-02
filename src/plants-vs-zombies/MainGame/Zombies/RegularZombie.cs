@@ -94,6 +94,14 @@ public abstract partial class RegularZombie : Zombie
 	{
 		base._Ready();
 
+		if (BIsDisplayOnly)
+		{
+			// 种子栏卡槽展示：要的只有外观。血量回调、碰撞箱、行走速度、动画与粒子信号、
+			// 焦炭场景一概不接——其中 PickRandomSpeed 还要 MainGame.Instance.RNG，
+			// 选卡阶段未必就绪。护甲不在此列，那是子类 _Ready 里挂的，展示态照样要挂
+			return;
+		}
+
 		// 血量阶段回调
 		HealthStageComponent.Defaults.StageHigh.Action += _ => OnHealthStageHigh();
 		HealthStageComponent.Defaults.StageLow.Action += _ => Dying();
@@ -149,6 +157,11 @@ public abstract partial class RegularZombie : Zombie
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (BIsDisplayOnly)
+		{
+			return; // 卡槽里的展示体不跑状态效果，也不做地面补偿
+		}
+
 		StatusEffectManager.Tick(delta);
 
 		// 地面动画位移补偿

@@ -61,6 +61,13 @@ public partial class PolevaulterZombie : RegularZombie
 
 	public override void _Ready()
 	{
+		if (BIsDisplayOnly)
+		{
+			// 种子栏卡槽展示：不要状态机，也不要跳跃检测碰撞箱与影子位移记录
+			base._Ready();
+			return;
+		}
+
 		//_vaultPhase = VaultPhase.PreVault;
 
 		// 状态机必须在 base._Ready 之前初始化，
@@ -117,6 +124,11 @@ public partial class PolevaulterZombie : RegularZombie
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (BIsDisplayOnly)
+		{
+			return; // 展示态没有 _stateMachine
+		}
+
 		StatusEffectManager.Tick(delta);
 
 		switch (_stateMachine.CurrentState)

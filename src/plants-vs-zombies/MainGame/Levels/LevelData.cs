@@ -103,4 +103,10 @@ public partial class LevelData : Resource
 	/// 用来反复验证旗帜僵尸本身，正式关卡一律 false。
 	/// </summary>
 	[Export] public bool DebugOnlyFlagZombie = false;
+
+	/// <summary>
+	/// 本关允许把僵尸当种子卡用：选卡池里混进全部僵尸，点草坪就能直接放一只。
+	/// 调试图关专用，正式关卡一律 false——不然普通关也能随便摆怪。
+	/// </summary>
+	[Export] public bool CanPlaceZombies = false;
 }

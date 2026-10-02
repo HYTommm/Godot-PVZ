@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect
+public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISeedEntity
 {
     /// <summary>僵尸死亡事件</summary>
     [Signal]
@@ -16,6 +16,29 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect
 
     /// <summary>是否死亡</summary>
     [Export] public bool BIsDead = false;
+
+    /// <summary>
+    /// 只用于种子栏卡槽展示，不参与出场。
+    ///
+    /// 僵尸场景的 _Ready 是照"已经走进草坪"写的——抽行走速度（要用 MainGame.Instance.RNG）、
+    /// 取防御与攻击碰撞箱、接动画与粒子信号、实例化焦炭场景；而卡槽把它们实例出来只是显示外观。
+    /// 所以各僵尸类的 _Ready 都要先看这个标志。要在 AddChild 之前设置，否则 _Ready 已经跑过了。
+    /// </summary>
+    public bool BIsDisplayOnly { get; set; } = false;
+
+    // ── ISeedEntity：卡槽只在意的四个数值 ──
+
+    /// <summary>僵尸卡免费</summary>
+    public int SunCost => 0;
+
+    /// <summary>僵尸卡不冷却：调试时连着放才顺手</summary>
+    public float CDtime => 0f;
+
+    /// <summary>跟随鼠标时，僵尸原点相对鼠标的偏移</summary>
+    public Vector2 Offset => new(35, 60);
+
+    /// <summary>整身透明度，用于手上的半透明预览</summary>
+    public void _SetAlpha(float alpha) => Modulate = new Color(1, 1, 1, alpha);
 
     public bool IsReleaseRequested;
     public bool IsAnimationPlaying;

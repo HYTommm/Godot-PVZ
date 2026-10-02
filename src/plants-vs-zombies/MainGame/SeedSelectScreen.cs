@@ -225,10 +225,10 @@ public partial class SeedSelectScreen : CanvasLayer
 		float originX = (PanelSize.X - gridWidth) / 2f;
 
 		int index = 0;
-		foreach (PlantTypeEnum type in _selection.Available)
+		foreach (SeedType type in _selection.Available)
 		{
 			SeedPacketLarger card = _cardScene.Instantiate<SeedPacketLarger>();
-			card.SeedScene = PlantTypes.Instance.GetScene(type); // 必须在入树前设好，_Ready 要用
+			card.SeedScene = type.GetScene(); // 必须在入树前设好，_Ready 要用
 			card.BIsSelectionPreview = true; // 面板里的卡只做展示，不按阳光数压暗
 			card.Position = new Vector2(
 				originX + index % Columns * (CardSize.X + CardGap),
@@ -257,7 +257,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		}
 	}
 
-	private void ConnectCardInput(Area2D area, PlantTypeEnum type)
+	private void ConnectCardInput(Area2D area, SeedType type)
 	{
 		area.InputEvent += (Node viewport, InputEvent @event, long shapeIdx) =>
 		{
@@ -307,7 +307,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		root.AddChild(_hintLabel);
 	}
 
-	private async void OnCardClicked(PlantTypeEnum type)
+	private async void OnCardClicked(SeedType type)
 	{
 		if (_closing)
 		{
@@ -320,7 +320,7 @@ public partial class SeedSelectScreen : CanvasLayer
 			return;
 		}
 
-		List<PlantTypeEnum> oldOrder = SnapshotSelected();
+		List<SeedType> oldOrder = SnapshotSelected();
 		if (!_selection.Toggle(type))
 		{
 			return;
@@ -331,7 +331,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		// 选中立刻压暗，不等飞行结束——这层暗色是"已经选过了"的标记
 		Refresh();
 
-		(PlantTypeEnum, Vector2, Vector2)? lifted = null;
+		(SeedType, Vector2, Vector2)? lifted = null;
 		if (TryGetSlotPosition(_selection.SelectedCount - 1, out Vector2 slot))
 		{
 			lifted = (type, CardScreenPosition(type), slot);
@@ -361,8 +361,8 @@ public partial class SeedSelectScreen : CanvasLayer
 			return;
 		}
 
-		List<PlantTypeEnum> oldOrder = SnapshotSelected();
-		PlantTypeEnum type = oldOrder[slotIndex];
+		List<SeedType> oldOrder = SnapshotSelected();
+		SeedType type = oldOrder[slotIndex];
 		if (!_selection.Toggle(type))
 		{
 			return;
@@ -385,10 +385,10 @@ public partial class SeedSelectScreen : CanvasLayer
 	/// <param name="oldOrder">变更前的已选顺序</param>
 	/// <param name="lifted">往返于面板与种子栏的那张卡（放入 / 收回）；没有就传 null</param>
 	private async Task CommitSelection(
-		IReadOnlyList<PlantTypeEnum> oldOrder,
-		(PlantTypeEnum Type, Vector2 From, Vector2 To)? lifted)
+		IReadOnlyList<SeedType> oldOrder,
+		(SeedType Type, Vector2 From, Vector2 To)? lifted)
 	{
-		IReadOnlyList<PlantTypeEnum> newOrder = _selection.Selected;
+		IReadOnlyList<SeedType> newOrder = _selection.Selected;
 		SeedBank.Instance?.ApplySeedSelection(newOrder);
 
 		List<SeedPacketLarger> packets = SeedBank.Instance?.GetSeedPackets();
@@ -431,10 +431,10 @@ public partial class SeedSelectScreen : CanvasLayer
 	}
 
 	/// <summary>已选顺序的副本。Toggle 会改动原列表，比对得留着变更前的样子</summary>
-	private List<PlantTypeEnum> SnapshotSelected() => new(_selection.Selected);
+	private List<SeedType> SnapshotSelected() => new(_selection.Selected);
 
 	/// <summary>type 在列表中的位置，不在里面返回 -1</summary>
-	private static int IndexOf(IReadOnlyList<PlantTypeEnum> list, PlantTypeEnum type)
+	private static int IndexOf(IReadOnlyList<SeedType> list, SeedType type)
 	{
 		for (int i = 0; i < list.Count; i++)
 		{
@@ -447,10 +447,10 @@ public partial class SeedSelectScreen : CanvasLayer
 	}
 
 	/// <summary>type 在面板里的那一格</summary>
-	private int IndexInAvailable(PlantTypeEnum type) => IndexOf(_selection.Available, type);
+	private int IndexInAvailable(SeedType type) => IndexOf(_selection.Available, type);
 
 	/// <summary>面板里这张卡当前在屏幕上的位置。面板可能在升起途中，所以每次现算</summary>
-	private Vector2 CardScreenPosition(PlantTypeEnum type)
+	private Vector2 CardScreenPosition(SeedType type)
 	{
 		int index = IndexInAvailable(type);
 		if (index < 0 || index >= _cards.Count)
@@ -482,7 +482,7 @@ public partial class SeedSelectScreen : CanvasLayer
 	/// 用来把被它盖住的真实槽位露出来。
 	/// 飞行卡挂在面板这一层、用屏幕坐标，所以面板自身的升降不影响它。
 	/// </summary>
-	private async Task FlyCard(PlantTypeEnum type, Vector2 from, Vector2 to, float duration, Action onLanded = null)
+	private async Task FlyCard(SeedType type, Vector2 from, Vector2 to, float duration, Action onLanded = null)
 	{
 		if (_cardScene == null)
 		{
@@ -490,7 +490,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		}
 
 		SeedPacketLarger flyer = _cardScene.Instantiate<SeedPacketLarger>();
-		flyer.SeedScene = PlantTypes.Instance.GetScene(type); // 入树前设好，_Ready 要用
+		flyer.SeedScene = type.GetScene(); // 入树前设好，_Ready 要用
 		flyer.BIsSelectionPreview = true; // 飞行中的卡同样只做展示
 		flyer.Position = from;
 		AddChild(flyer);
@@ -508,14 +508,14 @@ public partial class SeedSelectScreen : CanvasLayer
 
 	/// <summary>刷新提示条与各卡的明暗</summary>
 	/// <param name="frozen">这次不动这张卡的明暗。收回途中它要保持"已选中"的暗色</param>
-	private void Refresh(PlantTypeEnum? frozen = null)
+	private void Refresh(SeedType? frozen = null)
 	{
 		// 已选中的卡压暗：用的就是局内"阳光不足"那一层 CostColorRect，
 		// 卡片场景里它是 alpha 0.5 的黑。选卡阶段 _Process 不跑，不会自动改回来
-		IReadOnlyList<PlantTypeEnum> available = _selection.Available;
+		IReadOnlyList<SeedType> available = _selection.Available;
 		for (int i = 0; i < _cards.Count && i < available.Count; i++)
 		{
-			PlantTypeEnum type = available[i];
+			SeedType type = available[i];
 			if (type == frozen)
 			{
 				continue;

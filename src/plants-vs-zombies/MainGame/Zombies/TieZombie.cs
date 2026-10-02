@@ -26,6 +26,14 @@ public partial class TieZombie : RegularZombie
 
     public override void _Ready()
     {
+        if (BIsDisplayOnly)
+        {
+            // 种子栏卡槽展示：不建状态机、不播行走动画、不设手臂贴图。
+            // base 照走——RegularZombie._Ready 在展示态自己早退，留下的是 Entity._Ready 的 SetZIndex
+            base._Ready();
+            return;
+        }
+
         // 状态机必须在 base._Ready 之前初始化
         AddChild(_stateMachine = new StateMachine<TieState>(TieState.Walk));
         _stateMachine.StateChanged += OnTieStateChanged;
@@ -49,6 +57,11 @@ public partial class TieZombie : RegularZombie
 
     public override void _PhysicsProcess(double delta)
     {
+        if (BIsDisplayOnly)
+        {
+            return; // 展示态没有 _stateMachine，这里必须先于 base 早退
+        }
+
         base._PhysicsProcess(delta); // StatusEffectManager.Tick + 地面补偿
 
         switch (_stateMachine.CurrentState)
