@@ -42,8 +42,8 @@ public partial class SeedSelectScreen : CanvasLayer
 	/// <summary>网格顶边相对面板顶边的距离（让开顶部的标题条）</summary>
 	private const float GridTop = 38f;
 
-	/// <summary>面板从屏幕下方升入的时长（秒）</summary>
-	private const float PanelRiseDuration = 0.4f;
+	/// <summary>面板升入 / 降出屏幕的时长（秒）</summary>
+	private const float PanelSlideDuration = 0.25f;
 
 	/// <summary>卡片在面板与卡槽之间飞行的时长（秒）</summary>
 	private const float CardFlyDuration = 0.25f;
@@ -69,27 +69,36 @@ public partial class SeedSelectScreen : CanvasLayer
 	/// <summary>按下卡片那一下的按钮音</summary>
 	private readonly AudioStreamPlayer _tapSound = new();
 
+	/// <summary>已经按下 LET'S ROCK，面板正在降下去。这期间不再收点击</summary>
+	private bool _closing;
+
 	/// <summary>面板根节点。整个面板靠移动它来升降，飞行卡片则独立于它</summary>
 	private Control _root;
+
+	/// <summary>面板升降用的补间。起和落共用一条，改向时要把上一条掐掉</summary>
+	private Tween _panelTween;
 
 	/// <summary>卡片场景，面板与飞行卡片共用</summary>
 	private PackedScene _cardScene;
 
-	/// <summary>面板关闭后的结果：true = 已确认开局，false = 被取消</summary>
+	/// <summary>
+	/// 面板的结果：true = 已确认开局，false = 被取消。
+	/// 确认时在面板**开始降下**那一刻就 resolve，不等它降完——
+	/// 相机与种子栏的时间线要从那一刻起跑，和面板降下并行。
+	/// </summary>
 	public Task<bool> Result => _result.Task;
 
 	/// <summary>
 	/// 弹出选卡面板并等玩家确认。
 	/// 返回 true 表示可以开局，此时 selection.Selected 的顺序就是卡槽顺序。
+	/// 面板自己负责收摊（降完之后 QueueFree），这里不代劳。
 	/// </summary>
 	public static async Task<bool> ShowFor(Node parent, SeedSelection selection)
 	{
 		SeedSelectScreen screen = new();
 		screen.Begin(selection);
 		parent.AddChild(screen);
-		bool confirmed = await screen.Result;
-		screen.QueueFree();
-		return confirmed;
+		return await screen.Result;
 	}
 
 	/// <summary>初始化。要在 AddChild 之前调用，好让 Result 从入树那一刻起就有效</summary>
@@ -110,10 +119,12 @@ public partial class SeedSelectScreen : CanvasLayer
 		Refresh();
 		RisePanel();
 
-		// 点卡槽要把卡收回面板，这件事归面板管
+		// 选卡期间种子栏不响应点击，卡槽里的卡也不按阳光数压暗。
+		// 这道闸的寿命就是面板的寿命，跟着一起开关
 		if (SeedBank.Instance != null)
 		{
 			SeedBank.Instance.PacketClickedWhileSelecting = OnSlotClicked;
+			SeedBank.Instance.BIsForbiddenSelect = true;
 		}
 	}
 
@@ -122,24 +133,35 @@ public partial class SeedSelectScreen : CanvasLayer
 		if (SeedBank.Instance != null)
 		{
 			SeedBank.Instance.PacketClickedWhileSelecting = null;
+			SeedBank.Instance.BIsForbiddenSelect = false;
 		}
 	}
 
-	/// <summary>
-	/// 面板从屏幕下方升到落位处。位移量就是面板自身高度，
-	/// 起点让面板整个藏在屏幕底边之外。
-	/// </summary>
+	/// <summary>面板从屏幕下方升到落位处。起点让面板整个藏在屏幕底边之外</summary>
 	private void RisePanel()
 	{
 		Vector2 viewport = GetViewport().GetVisibleRect().Size;
-		float hiddenY = viewport.Y;
-		float shownY = viewport.Y - PanelSize.Y;
+		MovePanel(viewport.Y, viewport.Y - PanelSize.Y);
+	}
 
-		Tween tween = CreateTween();
-		tween.TweenMethod(
+	/// <summary>面板降回屏幕底边之外，降到头才返回</summary>
+	private async Task LowerPanel()
+	{
+		Vector2 viewport = GetViewport().GetVisibleRect().Size;
+		// 起点取当前位置：升起还没跑完就按了确认的话，从半路接着往下降，不跳
+		MovePanel(_root.Position.Y, viewport.Y);
+		await ToSignal(_panelTween, Tween.SignalName.Finished);
+	}
+
+	private void MovePanel(float fromY, float toY)
+	{
+		_panelTween?.Kill();
+
+		_panelTween = CreateTween();
+		_panelTween.TweenMethod(
 			Callable.From<float>(t =>
-				_root.Position = new Vector2(PanelLeft, Mathf.Lerp(hiddenY, shownY, Ease(t)))),
-			0f, 1f, PanelRiseDuration);
+				_root.Position = new Vector2(PanelLeft, Mathf.Lerp(fromY, toY, Ease(t)))),
+			0f, 1f, PanelSlideDuration);
 	}
 
 	/// <summary>位移用的缓动：3t²−2t³ 套两层，两端更平、中段更快</summary>
@@ -287,6 +309,11 @@ public partial class SeedSelectScreen : CanvasLayer
 
 	private async void OnCardClicked(PlantTypeEnum type)
 	{
+		if (_closing)
+		{
+			return; // 已经在往下走了，这期间点什么都不算
+		}
+
 		// 面板里点已选中的卡什么都不做：放回要靠点卡槽
 		if (_selection.IsSelected(type))
 		{
@@ -315,6 +342,12 @@ public partial class SeedSelectScreen : CanvasLayer
 	/// <summary>点卡槽：把这张卡收回面板</summary>
 	private async void OnSlotClicked(SeedPacketLarger packet)
 	{
+		if (_closing)
+		{
+			// 已经在往下走了。这时种子栏还是选卡阶段的状态，不接着处理这张卡
+			return;
+		}
+
 		List<SeedPacketLarger> packets = SeedBank.Instance?.GetSeedPackets();
 		int slotIndex = packets?.IndexOf(packet) ?? -1;
 		if (slotIndex < 0 || slotIndex >= _selection.Selected.Count)
@@ -494,13 +527,19 @@ public partial class SeedSelectScreen : CanvasLayer
 		_rockButton.Disabled = !_selection.CanStart;
 	}
 
-	private void Confirm()
+	private async void Confirm()
 	{
-		if (!_selection.CanStart)
+		if (_closing || !_selection.CanStart)
 		{
 			return;
 		}
+		_closing = true;
+
 		GD.Print($"[SeedSelectScreen] 选卡确认，共 {_selection.SelectedCount} 种");
+
+		// 先交结果再降：相机与种子栏从这一刻起跑，和面板降下并行，不是等它降完
 		_result.TrySetResult(true);
+		await LowerPanel();
+		QueueFree();
 	}
 }

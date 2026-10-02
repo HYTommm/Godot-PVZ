@@ -87,6 +87,9 @@ public partial class MainGame : MainNode2D
 	/// </summary>
 	[Export] public float SeedBankTargetX = 10f;
 
+	/// <summary>选完卡后种子栏从屏幕左边平移到落位的时长（秒）</summary>
+	private const float SeedBankShiftDuration = 1.25f;
+
 	/// <summary>
 	/// 本局的选卡状态：选了哪几种植物、顺序如何。
 	/// 在 SelectSeedCard 里创建，选满并确认后由 SeedBank 应用到卡槽。
@@ -293,12 +296,10 @@ public partial class MainGame : MainNode2D
 
 		SeedSelection = new SeedSelection(PlantTypes.All, slotCount);
 
-		// SeedBank 上那个一直没人读的 BIsForbiddenSelect 就是为这一段预留的：
-		// 选卡阶段禁止点卡。种子栏此时还没升起、卡片在屏幕外，但它走 Area2D 判定，
-		// 不受选卡界面那层 Control 遮挡影响，所以这道闸必须真的合上。
-		SeedBank.BIsForbiddenSelect = true;
+		// 选卡期间禁止点卡的那道闸由面板自己开关，寿命就是面板的寿命。
+		// 不在这里开合：结果在面板开始降下时就交出来，面板还要再走一段才消失，
+		// 由这里提前放开的话，那段时间里点卡槽会走成种植
 		bool confirmed = await SeedSelectScreen.ShowFor(this, SeedSelection);
-		SeedBank.BIsForbiddenSelect = false;
 
 		if (!confirmed)
 		{
@@ -347,7 +348,7 @@ public partial class MainGame : MainNode2D
 		// 选完卡，种子栏从屏幕左边移到该待的位置，和画面切回草坪正中同时进行
 		Tween seedBankShift = CreateTween();
 		seedBankShift.TweenProperty(
-			SeedBank, "position", new Vector2(SeedBankTargetX, SeedBank.Position.Y), 1.0);
+			SeedBank, "position", new Vector2(SeedBankTargetX, SeedBank.Position.Y), SeedBankShiftDuration);
 
 		// 画面切回草坪正中，小推车开进来
 		SetLawnMowersPosX(155);
