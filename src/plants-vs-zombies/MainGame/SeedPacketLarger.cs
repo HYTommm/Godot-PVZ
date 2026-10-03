@@ -58,7 +58,7 @@ public partial class SeedPacketLarger : Node2D
 	{
 		if (seedScene == null)
 		{
-			GD.PrintErr("[SeedPacketLarger] SetSeedScene 收到空场景，本卡保持原样");
+			Log.Error("[SeedPacketLarger] SetSeedScene 收到空场景，本卡保持原样");
 			return;
 		}
 
@@ -145,7 +145,7 @@ public partial class SeedPacketLarger : Node2D
 
 		if (seedShow is not ISeedEntity seedData)
 		{
-			GD.PrintErr($"[SeedPacketLarger] 卡面场景不是可上卡槽的实体，本卡留空：{SeedScene.ResourcePath}");
+			Log.Error($"[SeedPacketLarger] 卡面场景不是可上卡槽的实体，本卡留空：{SeedScene.ResourcePath}");
 			seedShow.QueueFree();
 			seedShow = null;
 			SetProcess(false);
@@ -256,7 +256,7 @@ public partial class SeedPacketLarger : Node2D
 				return;
 			}
 
-			GD.Print("接收到输入事件");
+			Log.Debug("接收到输入事件");
 
 			if (MainGame.BMouse_left_down && MainGame.BIsSeedCardSelected == false)
 			{

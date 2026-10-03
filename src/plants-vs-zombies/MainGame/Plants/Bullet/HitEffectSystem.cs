@@ -76,7 +76,7 @@ public class HitEffectSystem
 			// 空池：FireParticle 遍历长度为 0 的数组会直接返回，等于不表现
 			_peaSplats = System.Array.Empty<GpuParticles2D>();
 			_snowPeaSplats = System.Array.Empty<GpuParticles2D>();
-			GD.Print("[HitEffectSystem] 粒子已禁用（BEnableParticles = false），只留音效");
+			Log.Info("[HitEffectSystem] 粒子已禁用（BEnableParticles = false），只留音效");
 		}
 
 		_initialized = true;
@@ -200,14 +200,14 @@ public class HitEffectSystem
 	{
 		if (GD.Load<PackedScene>(bulletScenePath)?.Instantiate() is not Node2D template)
 		{
-			GD.PrintErr($"[HitEffectSystem] 粒子模板加载失败：{bulletScenePath}");
+			Log.Error($"[HitEffectSystem] 粒子模板加载失败：{bulletScenePath}");
 			return System.Array.Empty<GpuParticles2D>();
 		}
 
 		const string nodeName = "Splats";
 		if (template.GetNodeOrNull<GpuParticles2D>(nodeName) is not GpuParticles2D splats)
 		{
-			GD.PrintErr($"[HitEffectSystem] {bulletScenePath} 里没有 {nodeName} 节点");
+			Log.Error($"[HitEffectSystem] {bulletScenePath} 里没有 {nodeName} 节点");
 			template.QueueFree();
 			return System.Array.Empty<GpuParticles2D>();
 		}

@@ -85,6 +85,6 @@ public partial class FlagZombie : TieZombie
 
     public override void Init()
     {
-        GD.Print("FlagZombie Init");
+        Log.Debug("FlagZombie Init");
     }
 }

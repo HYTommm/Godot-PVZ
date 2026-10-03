@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Global : Node
@@ -28,6 +29,9 @@ public partial class Global : Node
             AddFpsLabel();
         }
 
+        // 放在关卡工具之前：那些工具的输出本身就是日志，等级得先定下来
+        ApplyLogCommandLineArgs();
+
         // 关卡数据工具：只在命令行显式要求时运行，正常游戏完全不受影响。
         // 参数要用 "--" 传给应用本身（否则会被 Godot 自己解析）：
         //   godot --headless --quit --path <项目目录> -- --generate-levels
@@ -43,6 +47,39 @@ public partial class Global : Node
                 case "--verify-levels":
                     LevelDataVerifier.VerifyAll();
                     break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 日志等级也能从命令行给，导出后不重新编译就能调：
+    /// <code>
+    /// --quiet                                    全部关掉
+    /// --log-level=trace|debug|info|warn|error|off
+    /// </code>
+    /// 两个参数都是同一个阈值，同时给时后写的生效。不给就保持 Log 里的默认值。
+    /// </summary>
+    private static void ApplyLogCommandLineArgs()
+    {
+        const string logLevelArg = "--log-level=";
+
+        foreach (string argument in OS.GetCmdlineUserArgs())
+        {
+            if (argument == "--quiet")
+            {
+                Log.MinLevel = LogLevel.Off;
+            }
+            else if (argument.StartsWith(logLevelArg, StringComparison.Ordinal))
+            {
+                string value = argument[logLevelArg.Length..];
+                if (Enum.TryParse(value, ignoreCase: true, out LogLevel level))
+                {
+                    Log.MinLevel = level;
+                }
+                else
+                {
+                    Log.Warn("[Global] 认不出的日志等级：", value);
+                }
             }
         }
     }
@@ -125,7 +162,7 @@ public partial class Global : Node
             _levelList = ResourceLoader.Load<LevelList>("res://MainGame/Levels/LevelList.tres");
             if (_levelList == null)
             {
-                GD.PrintErr("[Global] 加载 res://MainGame/Levels/LevelList.tres 失败");
+                Log.Error("[Global] 加载 res://MainGame/Levels/LevelList.tres 失败");
             }
         }
         return _levelList;

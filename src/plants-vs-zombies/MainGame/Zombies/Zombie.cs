@@ -114,6 +114,6 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISee
 
     public virtual void Init()
     {
-        GD.Print("Zombie Constructor called");
+        Log.Debug("Zombie Constructor called");
     }
 }

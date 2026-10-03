@@ -70,7 +70,7 @@ public static class LevelDataGenerator
 		}
 		failCount += Save(list, $"{LevelDataSpec.LevelsDir}{LevelDataSpec.ListFileName}.tres");
 
-		GD.Print(failCount == 0
+		Log.Info(failCount == 0
 			? $"[生成器] 完成，共 {list.TotalLevelCount()} 关 / {list.WorldCount} 个世界，全部保存成功"
 			: $"[生成器] 完成，但有 {failCount} 处保存失败");
 		return failCount;
@@ -127,10 +127,10 @@ public static class LevelDataGenerator
 		Error err = ResourceSaver.Save(resource, path);
 		if (err != Error.Ok)
 		{
-			GD.PrintErr($"[生成器] 保存失败 {path}: {err}");
+			Log.Error($"[生成器] 保存失败 {path}: {err}");
 			return 1;
 		}
-		GD.Print($"[生成器] 已保存 {path}");
+		Log.Debug($"[生成器] 已保存 {path}");
 		return 0;
 	}
 }

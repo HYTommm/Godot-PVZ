@@ -83,7 +83,7 @@ public class PlantTypes
 		PackedScene scene = GD.Load<PackedScene>(scenePath);
 		if (scene == null)
 		{
-			GD.PrintErr($"[PlantTypes] 植物场景加载失败：{scenePath}");
+			Log.Error($"[PlantTypes] 植物场景加载失败：{scenePath}");
 			return;
 		}
 		_scenes[type] = scene;

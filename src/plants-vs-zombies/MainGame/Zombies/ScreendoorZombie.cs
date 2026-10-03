@@ -11,12 +11,12 @@ public partial class ScreendoorZombie : TieZombie
     {
         //HP = 270;
         //MaxHP = 270;
-        GD.Print("ScreendoorZombie Constructor");
+        Log.Debug("ScreendoorZombie Constructor");
     }
 
     public override void Init()
     {
-        GD.Print("ScreendoorZombie Init");
+        Log.Debug("ScreendoorZombie Init");
     }
 
     public override void _Ready()

@@ -19,7 +19,7 @@ public partial class StartAdventureButton : GameBaseButton
 		TapSound.Stream = Sound_GraveButton;
 		if (Main == null)
 		{
-			GD.PrintErr($"[StartAdventureButton] {Name} 的 Main 未指定，点击和长按都不会生效");
+			Log.Error($"[StartAdventureButton] {Name} 的 Main 未指定，点击和长按都不会生效");
 		}
 	}
 

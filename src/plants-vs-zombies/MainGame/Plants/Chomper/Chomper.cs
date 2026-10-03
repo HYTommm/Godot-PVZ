@@ -88,26 +88,26 @@ public partial class Chomper : Plants
 
 	private void CheckZombieInDetectionHitBox()
 	{
-		GD.Print("Chomper: Checking detection hit box");
+		Log.Trace("Chomper: Checking detection hit box");
 		if (_stateMachine.CurrentState != ChomperState.Idle)
 		{
-			GD.Print("_stateMachine.CurrentState != ChomperState.Idle, _stateMachine.CurrentState = ", _stateMachine.CurrentState);
+			Log.Trace("_stateMachine.CurrentState != ChomperState.Idle, _stateMachine.CurrentState = ", _stateMachine.CurrentState);
 			return;
 		}
 
 		if (!CanEat)
 		{
-			GD.Print("CanEat == false");
+			Log.Trace("CanEat == false");
 			return;
 		}
 
-		GD.Print("Chomper: Zombie detected in detection hit box");
+		Log.Trace("Chomper: Zombie detected in detection hit box");
 
 		Zombie target = GetTargetFromDetectionHitBox();
 		if (target == null) return;
 		_targetZombie = target;
 
-		GD.Print("Chomper enters idle state");
+		Log.Trace("Chomper enters idle state");
 		if (CanSwallowZombie(target))
 		{
 			_stateMachine.ForceSetState(ChomperState.Biting);
@@ -135,7 +135,7 @@ public partial class Chomper : Plants
 
 	private void OnStateChanged(ChomperState newState)
 	{
-		GD.Print($"Chomper state changed: {newState}");
+		Log.Debug($"Chomper state changed: {newState}");
 		TextEdit.Text = $"State: {newState}";
 		switch (newState)
 		{
@@ -150,7 +150,7 @@ public partial class Chomper : Plants
 				break;
 
 			case ChomperState.Biting:
-				GD.Print("Chomper starts biting");
+				Log.Debug("Chomper starts biting");
 				CanEat = false;
 				AnimationPlayer.Play("Chomper/bite", 0.2, 2f);
 				_stateMachine.SetNextState(ChomperState.Chewing, 1f);
@@ -162,7 +162,7 @@ public partial class Chomper : Plants
 				break;
 
 			case ChomperState.Swallowing:
-				GD.Print("Chomper starts swallowing");
+				Log.Debug("Chomper starts swallowing");
 				AnimationPlayer.Play("Chomper/swallow", 0.2, 1f);
 				_stateMachine.SetNextState(ChomperState.Idle, 2.25);
 				break;

@@ -10,7 +10,7 @@ public partial class SnowPea : Pea
     {
         if (MainGame.BEnableDebugPrint)
         {
-            GD.Print("Bullet hit zombie");
+            Log.Trace("Bullet hit zombie");
         }
         //僵尸扣血
         zombie.Hurt(new Hurt(Damage, HurtType));

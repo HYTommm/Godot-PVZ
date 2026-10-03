@@ -62,12 +62,12 @@ public abstract partial class Armor : Entity, IHealthStage
         {
             case HurtType.Direct:
             case HurtType.Thrown:
-                GD.Print("Play sound");
+                Log.Trace("Play sound");
                 break;
 
             case HurtType.AshExplosion:
             case HurtType.Explosion:
-                GD.Print("AshExplosion, no sound");
+                Log.Trace("AshExplosion, no sound");
                 hurt.BEnableTargetHitSFX = false;
                 break;
         }
@@ -76,7 +76,7 @@ public abstract partial class Armor : Entity, IHealthStage
     public virtual void PlayParticles()
     {
         Array<Node> particles = ArmorSprite.FindChildren("*", "GPUParticles2D", recursive: true);
-        GD.Print("particles count: " + particles.Count);
+        Log.Trace("particles count: " + particles.Count);
         if (particles.Count > 0)
         {
             particles.Cast<GpuParticles2D>().ToList().ForEach(x => x.Emitting = true);

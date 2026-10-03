@@ -21,7 +21,7 @@ public partial class TieZombie : RegularZombie
 
     protected TieZombie()
     {
-        GD.Print("Base Zombie Constructor called");
+        Log.Debug("Base Zombie Constructor called");
     }
 
     public override void _Ready()

@@ -107,7 +107,7 @@ public partial class HealthStageComponent : Resource
     /// <param name="flags">刷新行为标志组合</param>
     public void Refresh(StageRefreshFlags flags = StageRefreshFlags.Default)
     {
-        GD.Print($"HealthStageComponent: 刷新阶段配置，Flags={flags}");
+        Log.Debug($"HealthStageComponent: 刷新阶段配置，Flags={flags}");
         if (_healthStages.Count > 0)
         {
             _useDefaultStages = false;
@@ -193,7 +193,7 @@ public partial class HealthStageComponent : Resource
     {
         if (_healthStages.Count == 0)
         {
-            GD.PushWarning("HealthStageComponent: 尝试使用配置阶段，但 _healthStages 为空。将保持默认阶段。");
+            Log.Warn("HealthStageComponent: 尝试使用配置阶段，但 _healthStages 为空。将保持默认阶段。");
             return;
         }
         _useDefaultStages = false;
@@ -239,7 +239,7 @@ public partial class HealthStageComponent : Resource
 
     private void RebuildSortedStages()
     {
-        GD.Print("HealthStageComponent: 重建排序阶段列表");
+        Log.Debug("HealthStageComponent: 重建排序阶段列表");
         _sortedStages.Clear();
 
         // 获取当前配置阶段源

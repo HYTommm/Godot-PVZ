@@ -77,23 +77,23 @@ public abstract partial class Bullet : Node2D
         {
             if (MainGame.BEnableDebugPrint)
             {
-                GD.Print("Bullet has already disappeared!");
+                Log.Trace("Bullet has already disappeared!");
             }
             return;
         }
 
         if (MainGame.BEnableDebugPrint)
         {
-            GD.Print($"碰撞箱类型: {hitBox.GetType()}");
-            GD.Print($"AttachedNode: {hitBox.AttachedNode}");
+            Log.Trace($"碰撞箱类型: {hitBox.GetType()}");
+            Log.Trace($"AttachedNode: {hitBox.AttachedNode}");
             if (hitBox.AttachedNode != null)
             {
-                GD.Print($"AttachedNode Name: {hitBox.AttachedNode.Name}");
-                GD.Print($"AttachedNode IsValid: {IsInstanceValid(hitBox.AttachedNode)}");
+                Log.Trace($"AttachedNode Name: {hitBox.AttachedNode.Name}");
+                Log.Trace($"AttachedNode IsValid: {IsInstanceValid(hitBox.AttachedNode)}");
             }
             else
             {
-                GD.Print("AttachedNode 为 null");
+                Log.Trace("AttachedNode 为 null");
             }
         }
 
@@ -101,7 +101,7 @@ public abstract partial class Bullet : Node2D
         {
             if (MainGame.BEnableDebugPrint)
             {
-                GD.Print("碰撞箱的 AttachedNode 已失效，忽略本次碰撞");
+                Log.Trace("碰撞箱的 AttachedNode 已失效，忽略本次碰撞");
             }
             return;
         }
@@ -117,7 +117,7 @@ public abstract partial class Bullet : Node2D
         // 判断子弹是否击中僵尸
         if (MainGame.BEnableDebugPrint)
         {
-            GD.Print("Bullet collided with " + hitBox.AttachedNode.GetPath());
+            Log.Trace("Bullet collided with " + hitBox.AttachedNode.GetPath());
         }
 
         if (hitBox.AttachedNode is Zombie zombie)
@@ -126,7 +126,7 @@ public abstract partial class Bullet : Node2D
         }
         else if (MainGame.BEnableDebugPrint)
         {
-            GD.Print("子弹没有击中僵尸！它可能击中了其他东西：" + hitBox.AttachedNode.Name);
+            Log.Trace("子弹没有击中僵尸！它可能击中了其他东西：" + hitBox.AttachedNode.Name);
         }
     }
 
@@ -134,7 +134,7 @@ public abstract partial class Bullet : Node2D
     {
         if (MainGame.BEnableDebugPrint)
         {
-            GD.Print("Bullet hit zombie");
+            Log.Trace("Bullet hit zombie");
         }
         //僵尸扣血
         zombie.Hurt(new Hurt(Damage, HurtType));

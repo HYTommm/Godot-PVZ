@@ -44,10 +44,10 @@ public partial class GameBaseButton : Sprite2D
 
 	public void MouseLeftUp()
 	{
-		GD.Print("MouseLeftUp");
+		Log.Debug("MouseLeftUp");
 		if (BPicked)
 		{
-			GD.Print("MouseLeftUp : BPicked");
+			Log.Debug("MouseLeftUp : BPicked");
 			Main.BMousePicked = false;
 			Position = Pos;
 			if (!Main.BMouse_left_down && BHas_frame)
@@ -62,7 +62,7 @@ public partial class GameBaseButton : Sprite2D
 		}
 		else if (BMouseEntered)
 		{
-			GD.Print("MouseLeftUp : bleep");
+			Log.Debug("MouseLeftUp : bleep");
 			if (BHas_frame)
 				Frame = 1;
 			Bleep();
@@ -71,7 +71,7 @@ public partial class GameBaseButton : Sprite2D
 
 	public void MouseLeftDown()
 	{
-		GD.Print("BMouse_left_down");
+		Log.Debug("BMouse_left_down");
 		if (BMouseEntered)
 		{
 			BPicked = true;
@@ -87,7 +87,7 @@ public partial class GameBaseButton : Sprite2D
 	private void OnMouseEntered()
 	{
 		//GD.Print(picked);
-		GD.Print("MouseEntered");
+		Log.Debug("MouseEntered");
 		BMouseEntered = true;
 		if (Main.BMouse_left_down)
 		{
@@ -106,7 +106,7 @@ public partial class GameBaseButton : Sprite2D
 	}
 	private void OnMouseExited()
 	{
-		GD.Print("MouseExited");
+		Log.Debug("MouseExited");
 		BMouseEntered = false;
 		Position = Pos;
 		if (!Main.BMouse_left_down && BHas_frame)
@@ -117,7 +117,7 @@ public partial class GameBaseButton : Sprite2D
 
 	private void NotPicked()
 	{
-		GD.Print("NotPicked");
+		Log.Debug("NotPicked");
 		BPicked = false;
 	}
 
@@ -160,7 +160,7 @@ public partial class GameBaseButton : Sprite2D
 
 	public virtual void GetClicked()
 	{
-		GD.Print(this.Name);
+		Log.Debug(this.Name);
 	}
 
 	public virtual void Bleep()

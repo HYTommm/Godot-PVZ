@@ -141,7 +141,7 @@ public class BulletSystem
 		if (!BEnableRendering)
 		{
 			// 隔离实验：一个画布项都不建，逻辑照跑。SubmitRender 见 _rowCanvasItems 为 null 会自己返回
-			GD.Print("[BulletSystem] 渲染已关闭（BEnableRendering = false），只跑碰撞");
+			Log.Info("[BulletSystem] 渲染已关闭（BEnableRendering = false），只跑碰撞");
 			_initialized = true;
 			return;
 		}

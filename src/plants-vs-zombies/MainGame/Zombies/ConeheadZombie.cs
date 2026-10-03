@@ -10,12 +10,12 @@ public partial class ConeheadZombie : TieZombie
     {
         //HP = 270;
         //MaxHP = 270;
-        GD.Print("ConeheadZombie Constructor");
+        Log.Debug("ConeheadZombie Constructor");
     }
 
     public override void Init()
     {
-        GD.Print("ConeheadZombie Init");
+        Log.Debug("ConeheadZombie Init");
     }
 
     public override void _Ready()

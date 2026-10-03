@@ -111,10 +111,10 @@ public partial class PotatoMine : Plants
         IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
         foreach (IHitBox overlappingArea in overlappingAreas)
         {
-            GD.Print("PotatoMine overlapping area: " + overlappingArea.GetType());
+            Log.Trace("PotatoMine overlapping area: " + overlappingArea.GetType());
             if (overlappingArea.AttachedNode is Zombie zombie && zombie.Row == Row)
             {
-                GD.Print("PotatoMine damaging zombie! Row: ", Row, "Zombie Row: ", zombie.Row);
+                Log.Trace("PotatoMine damaging zombie! Row: ", Row, "Zombie Row: ", zombie.Row);
                 bHasZombie = true;
                 //僵尸扣血
                 zombie.Hurt(new Hurt(_damage, HurtType.Explosion));
@@ -126,7 +126,7 @@ public partial class PotatoMine : Plants
 
     private async void Explode()
     {
-        GD.Print("PotatoMine exploded!");
+        Log.Debug("PotatoMine exploded!");
         _detectionHitBox.Monitoring = false;
         _bodyNodeTree.Visible = false;
         Shadow.Visible = false;

@@ -65,7 +65,7 @@ public class ZombieType
 		PackedScene scene = GD.Load<PackedScene>(scenePath);
 		if (scene == null)
 		{
-			GD.PrintErr($"[ZombieType] 僵尸场景加载失败：{scenePath}");
+			Log.Error($"[ZombieType] 僵尸场景加载失败：{scenePath}");
 			return;
 		}
 		_zombieScenes[type] = scene;

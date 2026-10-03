@@ -158,7 +158,7 @@ public partial class MainGame : MainNode2D
 
 	public void InitLawnMowers(Scene scene)
 	{
-		GD.Print("InitLawnMower");
+		Log.Debug("InitLawnMower");
 		for (int i = 0; i < scene.LawnUnitCount.Y; i++)
 		{
 			LawnMower lawnMower = Load<PackedScene>("res://MainGame/LawnMower/LawnMower.tscn").Instantiate<LawnMower>();
@@ -199,11 +199,11 @@ public partial class MainGame : MainNode2D
 		if (Level != null)
 		{
 			_zombieWeightsAndGrades.ApplyWavePool(Level.WavePool);
-			GD.Print($"[MainGame] 关卡 {Level.LevelId}：{Level.Waves} 波，初始阳光 {Level.SunStart}，场景 {Level.SceneType}");
+			Log.Info($"[MainGame] 关卡 {Level.LevelId}：{Level.Waves} 波，初始阳光 {Level.SunStart}，场景 {Level.SceneType}");
 		}
 		else
 		{
-			GD.PrintErr("[MainGame] 没拿到关卡数据，本次使用关卡化之前的硬编码默认值");
+			Log.Warn("[MainGame] 没拿到关卡数据，本次使用关卡化之前的硬编码默认值");
 			_zombieWeightsAndGrades.SetZombieAllowed([
 				ZombieTypeEnum.Normal,
 				ZombieTypeEnum.Conehead,
@@ -415,7 +415,7 @@ public partial class MainGame : MainNode2D
 		}
 		else
 		{
-			GD.PrintErr($"[MainGame] {seed} 的场景没加载出来，不进选卡池");
+			Log.Error($"[MainGame] {seed} 的场景没加载出来，不进选卡池");
 		}
 	}
 
@@ -430,7 +430,7 @@ public partial class MainGame : MainNode2D
 		int slotCount = SeedBank.GetSeedPackets().Count;
 		if (slotCount == 0)
 		{
-			GD.PrintErr("[MainGame] 种子栏没有任何卡槽，跳过选卡");
+			Log.Error("[MainGame] 种子栏没有任何卡槽，跳过选卡");
 			return;
 		}
 
@@ -443,12 +443,12 @@ public partial class MainGame : MainNode2D
 
 		if (!confirmed)
 		{
-			GD.Print("[MainGame] 选卡未确认，种子栏保持原有卡槽");
+			Log.Info("[MainGame] 选卡未确认，种子栏保持原有卡槽");
 			return;
 		}
 
 		SeedBank.ApplySeedSelection(SeedSelection.Selected);
-		GD.Print($"[MainGame] 选卡完成，共 {SeedSelection.SelectedCount} 种植物上槽");
+		Log.Info($"[MainGame] 选卡完成，共 {SeedSelection.SelectedCount} 种植物上槽");
 	}
 
 	// 开始游戏
@@ -555,12 +555,12 @@ public partial class MainGame : MainNode2D
 		BIsSeedCardSelected = false;
 
 		int tempIndex = -1;
-		GD.Print("plantStack: " + PlantStack);
+		Log.Trace("plantStack: " + PlantStack);
 		if (Plants[PlantStack] != null)
 		{
-			GD.Print("plants[plantStack] != null");
+			Log.Trace("plants[plantStack] != null");
 			tempIndex = Plants[PlantStack].Index;
-			GD.Print("tempIndex: " + tempIndex);
+			Log.Trace("tempIndex: " + tempIndex);
 			Plants[PlantStack]?.QueueFree();
 		}
 
@@ -634,7 +634,7 @@ public partial class MainGame : MainNode2D
 		}
 		else
 		{
-			GD.PrintErr("[MainGame] 僵尸卡没有对应场景，放不出来");
+			Log.Error("[MainGame] 僵尸卡没有对应场景，放不出来");
 		}
 
 		_seedPacketNode = null;
@@ -712,7 +712,7 @@ public partial class MainGame : MainNode2D
 		// 波索引 0 起算，取值 0 ~ ZombieMaxWave-1；发到这个上界就是本关波次全部发完
 		if (ZombieCurrentWave >= ZombieMaxWave)
 		{
-			Print("所有波次已发完");
+			Log.Info("所有波次已发完");
 			return;
 		}
 		BIsRefreshingZombies = true;
@@ -759,7 +759,7 @@ public partial class MainGame : MainNode2D
 					//zombieCount--; // 减1，重新尝试
 					continue;
 				}
-				GD.Print("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
+				Log.Debug("zombieType: " + zombieType, "tempGrade: " + tempGrade, "zombieCurrentGrade: " + zombieCurrentGrade);
 				zombieCurrentGrade += tempGrade; // 增加僵尸当前等级
 				SpawnZombieOfType(zombieType);
 			}
@@ -772,7 +772,7 @@ public partial class MainGame : MainNode2D
 				// 旗帜波除容量 ×BigWaveMultiplier 外，原版还会额外追加 min(本波点数, 8) 只普通僵尸
 				// （用的是乘倍数之前的点数）
 				int bonusNormalCount = Math.Min(baseWaveGrade, 8);
-				GD.Print("旗帜波附赠普通僵尸 " + bonusNormalCount + " 只");
+				Log.Debug("旗帜波附赠普通僵尸 " + bonusNormalCount + " 只");
 				for (int i = 0; i < bonusNormalCount; i++)
 				{
 					SpawnZombieOfType(ZombieTypeEnum.Normal);
@@ -785,7 +785,7 @@ public partial class MainGame : MainNode2D
 			if (Level != null && Level.SpawnIntroducedZombie && Level.Waves > 1
 				&& (ZombieCurrentWave == Level.Waves / 2 || ZombieCurrentWave == Level.Waves - 1))
 			{
-				GD.Print("介绍僵尸亮相：" + Level.IntroducedZombie);
+				Log.Info("介绍僵尸亮相：" + Level.IntroducedZombie);
 				SpawnZombieOfType(Level.IntroducedZombie);
 			}
 		}
@@ -887,10 +887,10 @@ public partial class MainGame : MainNode2D
 	// 添加僵尸
 	public void AddZombie(Zombie zombie)
 	{
-		GD.Print("zombie: " + zombie.Name + " Index: " + zombie.Index);
+		Log.Debug("zombie: " + zombie.Name + " Index: " + zombie.Index);
 
 		int row = GetRandomZombieRow(); // 随机僵尸所在行
-		Print("Row: " + row);
+		Log.Trace("Row: " + row);
 
 		zombie.Refresh(zombie.Index, GameScene, ZombieCurrentWave, row); // 刷新僵尸
 		ZombiesNumOfRow[row]++; // 该行僵尸数加1
@@ -911,7 +911,7 @@ public partial class MainGame : MainNode2D
 
 	public void UpdateZombieNum()
 	{
-		GD.Print("ZombieNum: " + ZombieNum, "BIsClimaxing: " + BIsClimaxing);
+		Log.Trace("ZombieNum: " + ZombieNum, "BIsClimaxing: " + BIsClimaxing);
 		if (BIsClimaxing)
 		{
 			if (ZombieNum <= 3)
@@ -925,7 +925,7 @@ public partial class MainGame : MainNode2D
 			if (ZombieNum >= 10)
 			{
 				BIsClimaxing = true;
-				GD.Print("Turn to HighBGM");
+				Log.Info("Turn to HighBGM");
 				GameScene.TurnToHighBgm();
 			}
 		}
@@ -946,7 +946,7 @@ public partial class MainGame : MainNode2D
 		}
 		if (BEnableDebugPrint)
 		{
-			GD.Print("totalHealth: " + _totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);
+			Log.Trace("totalHealth: " + _totalHealth + " WaveMaxHP: " + ZombieCurrentWaveMaxHP);
 		}
 		if (_totalHealth == 0 || ZombieCurrentWaveMaxHP == 0)
 		{
@@ -1060,7 +1060,7 @@ public partial class MainGame : MainNode2D
 		if (ZombieCurrentWave < ZombieMaxWave && GetZombieTotalHealthPercent() <= _earlyAdvanceThresholdPercent)
 		{
 			//BIsRefreshingZombies = true;
-			Print("RefreshingZombies...");
+			Log.Debug("RefreshingZombies...");
 			// await ToSignal(GetTree().CreateTimer(2), SceneTreeTimer.SignalName.Timeout);
 			if (ZombieTimer.TimeLeft > earlyAdvanceSeconds)
 			{
@@ -1082,7 +1082,7 @@ public partial class MainGame : MainNode2D
 	// 刷新阳光
 	public void RefreshSun()
 	{
-		GD.Print("RefreshSun");
+		Log.Debug("RefreshSun");
 		if (GD.Load<PackedScene>("res://MainGame/Drops/Sun.tscn").Instantiate() is Sun sun)
 		{
 			sun.Position = new Vector2(RNG.RandfRange(100, 700) + GameScene.CameraCenterPos.X, 90); // 设置阳光的位置
@@ -1091,7 +1091,7 @@ public partial class MainGame : MainNode2D
 		}
 		else
 		{
-			PrintErr("Sun is null");
+			Log.Error("Sun is null");
 		}
 
 		SunRefreshedCount += 25; // 阳光掉落数加25
@@ -1115,13 +1115,13 @@ public partial class MainGame : MainNode2D
 		int sunRefreshTime = sunRefreshTimeA + sunRefreshTimeB;
 
 		SunTimer.Start(sunRefreshTime / 100f);
-		GD.Print("SunRefreshTime: " + sunRefreshTime);
+		Log.Trace("SunRefreshTime: " + sunRefreshTime);
 	}
 
 	// 游戏结束
 	public void GameOver()
 	{
 		BIsGameOver = true;
-		GD.Print("Game Over");
+		Log.Info("Game Over");
 	}
 }

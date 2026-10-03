@@ -52,14 +52,14 @@ public partial class CherryBomb : Plants
 
     private async void DamageZombies(StringName animName)
     {
-        GD.Print("CherryBomb exploded!");
+        Log.Debug("CherryBomb exploded!");
         IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
         foreach (IHitBox overlappingArea in overlappingAreas)
         {
-            GD.Print("CherryBomb overlapping area: " + overlappingArea.GetType());
+            Log.Trace("CherryBomb overlapping area: " + overlappingArea.GetType());
             if (overlappingArea.AttachedNode is Zombie zombie)
             {
-                GD.Print("CherryBomb damaging zombie!");
+                Log.Trace("CherryBomb damaging zombie!");
                 //僵尸扣血
                 zombie.Hurt(new Hurt(_damage, HurtType.AshExplosion));
             }

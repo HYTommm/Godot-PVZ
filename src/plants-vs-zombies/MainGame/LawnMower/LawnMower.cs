@@ -36,7 +36,7 @@ public partial class LawnMower : Entity
 
     public void MoveTo(Vector2 endPosition)
     {
-        GD.Print("LawnMower: Moving to " + endPosition);
+        Log.Debug("LawnMower: Moving to " + endPosition);
         _endPosition = endPosition;
         _isMoving = true;
         AnimMoveNormal.Play(name: "LawnMower_normal", customSpeed: 1.5f);
@@ -60,7 +60,7 @@ public partial class LawnMower : Entity
                 remainingDirection.X * direction.X < 0 ||
                 remainingDirection.Y * direction.Y < 0)
             {
-                GD.Print("LawnMower: Reached destination " + _endPosition);
+                Log.Debug("LawnMower: Reached destination " + _endPosition);
                 _isMoving = false;
                 Position = _endPosition;
                 AnimMoveNormal.Stop();
@@ -77,11 +77,11 @@ public partial class LawnMower : Entity
     // 当与僵尸碰撞时，触发此函数
     public void OnAreaEntered(Area2D area)
     {
-        GD.Print("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
+        Log.Debug("LawnMower: Area " + area.Name + " has entered LawnMower " + Name);
         if (area.GetNode("..") is Zombie zombie && zombie.Row == Row)
         {
             zombie.Hurt(new Hurt(65535, HurtType.LawnMower));
-            GD.Print("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
+            Log.Debug("LawnMower: Zombie " + zombie.Name + " has collided with LawnMower " + Name);
             if (!_isMoving)
             {
                 _speed = NormalSpeed;

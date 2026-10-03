@@ -15,22 +15,22 @@ public partial class testButton : Button
 	
 	public void OnButtonPressed()
 	{
-		GD.Print("Button pressed!");
+		Log.Debug("Button pressed!");
 	}
 
 	public void OnButtonUp()
 	{
-		GD.Print("Button up!");
+		Log.Debug("Button up!");
 	}
 
 	public void OnButtonDown()
 	{
-		GD.Print("Button down!");
+		Log.Debug("Button down!");
 	}
 
 	public void OnButtonToggled(bool toggled)
 	{
-		GD.Print("Button toggled!");
-		GD.Print(toggled);
+		Log.Debug("Button toggled!");
+		Log.Debug(toggled);
 	}
 }

@@ -39,7 +39,7 @@ public static class LevelDataVerifier
 		LevelList list = ResourceLoader.Load<LevelList>(listPath);
 		if (list == null)
 		{
-			GD.PrintErr($"[验证器] 加载失败：{listPath}");
+			Log.Error($"[验证器] 加载失败：{listPath}");
 			return 1;
 		}
 
@@ -69,14 +69,14 @@ public static class LevelDataVerifier
 
 		if (failures.Count == 0)
 		{
-			GD.Print($"[验证器] 通过：{checkedIds.Count} 个关卡全部与 LevelDataSpec 一致");
+			Log.Info($"[验证器] 通过：{checkedIds.Count} 个关卡全部与 LevelDataSpec 一致");
 			return 0;
 		}
 
-		GD.PrintErr($"[验证器] 发现 {failures.Count} 处不一致：");
+		Log.Error($"[验证器] 发现 {failures.Count} 处不一致：");
 		foreach (string failure in failures)
 		{
-			GD.PrintErr($"  - {failure}");
+			Log.Error($"  - {failure}");
 		}
 		return failures.Count;
 	}

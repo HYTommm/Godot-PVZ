@@ -86,7 +86,7 @@ public partial class LevelSelectScreen : CanvasLayer
 				grid.AddChild(CreateCell(world, index, level));
 				cellCount++;
 			});
-			GD.Print($"[LevelSelectScreen] 生成 {cellCount} 个关卡格子，共 {levelList.WorldCount} 个世界");
+			Log.Info($"[LevelSelectScreen] 生成 {cellCount} 个关卡格子，共 {levelList.WorldCount} 个世界");
 		}
 
 		Button back = new()
@@ -116,10 +116,10 @@ public partial class LevelSelectScreen : CanvasLayer
 	{
 		if (level == null)
 		{
-			GD.PrintErr("[LevelSelectScreen] 选到的关卡为空");
+			Log.Error("[LevelSelectScreen] 选到的关卡为空");
 			return;
 		}
-		GD.Print($"[LevelSelectScreen] 选择关卡 {level.LevelId}");
+		Log.Info($"[LevelSelectScreen] 选择关卡 {level.LevelId}");
 		// 切场景统一走菜单场景，免得 res:// 路径和 CurrentLevelData 的赋值散在两处
 		(GetParent() as MainMenu_SelectorScreen)?.EnterLevel(level);
 	}

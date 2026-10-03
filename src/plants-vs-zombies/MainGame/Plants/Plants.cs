@@ -86,7 +86,7 @@ public abstract partial class Plants : Entity, IHealthStage, ISeedEntity
             return;
         }
 
-        GD.Print(MainGame.Instance);
+        Log.Debug(MainGame.Instance);
         //HealthStageComponent.HealthStages.Add(new HealthStage { Threshold = 0, TriggerType = TriggerTypeEnum.CrossBelowOrEqual, TriggerOnce = true });
         //HealthStageComponent.BindActionWithIndex(0, _ => FreePlant()); // 绑定生命值为0时的事件，释放植物
         HealthStageComponent.Defaults.StageZero.Action += _ => FreePlant();

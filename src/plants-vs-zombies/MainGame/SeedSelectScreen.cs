@@ -215,7 +215,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		_cardScene = GD.Load<PackedScene>(CardScenePath);
 		if (_cardScene == null)
 		{
-			GD.PrintErr($"[SeedSelectScreen] 卡片场景加载失败：{CardScenePath}");
+			Log.Error($"[SeedSelectScreen] 卡片场景加载失败：{CardScenePath}");
 			return;
 		}
 
@@ -535,7 +535,7 @@ public partial class SeedSelectScreen : CanvasLayer
 		}
 		_closing = true;
 
-		GD.Print($"[SeedSelectScreen] 选卡确认，共 {_selection.SelectedCount} 种");
+		Log.Info($"[SeedSelectScreen] 选卡确认，共 {_selection.SelectedCount} 种");
 
 		// 先交结果再降：相机与种子栏从这一刻起跑，和面板降下并行，不是等它降完
 		_result.TrySetResult(true);

@@ -107,7 +107,7 @@ public partial class Squash : Plants
 
 	private void OnStateChanged(SquashState newState)
 	{
-		GD.Print($"Squash state changed: {newState}");
+		Log.Debug($"Squash state changed: {newState}");
 		switch (newState)
 		{
 			case SquashState.Idle:
@@ -115,13 +115,13 @@ public partial class Squash : Plants
 				break;
 
 			case SquashState.LookRight:
-				GD.Print("Squash looking right at zombie! Zombie Row: ", _targetZombie?.Row);
+				Log.Debug("Squash looking right at zombie! Zombie Row: ", _targetZombie?.Row);
 				Anim_main.Play("Squash/Squash_lookright", 0.1, 2);
 				_stateMachine.SetNextState(SquashState.JumpUp, 0.8);
 				break;
 
 			case SquashState.LookLeft:
-				GD.Print("Squash looking left at zombie! Zombie Row: ", _targetZombie?.Row);
+				Log.Debug("Squash looking left at zombie! Zombie Row: ", _targetZombie?.Row);
 				Anim_main.Play("Squash/Squash_lookleft", 0.1, 2);
 				_stateMachine.SetNextState(SquashState.JumpUp, 0.8);
 				break;
@@ -145,7 +145,7 @@ public partial class Squash : Plants
 				break;
 
 			case SquashState.JumpDown:
-				GD.Print("Squash jumping down!");
+				Log.Debug("Squash jumping down!");
 				_timeCount = 0.05d;
 				Anim_main.Play("Squash/Squash_jumpdown", 0, 5);
 				_stateMachine.SetNextState(SquashState.AfterJump, 0.1);
@@ -186,14 +186,14 @@ public partial class Squash : Plants
 
 	private void DamageZombies()
 	{
-		GD.Print("Squash damaging zombies in row: " + Row);
+		Log.Trace("Squash damaging zombies in row: " + Row);
 		IReadOnlyList<IHitBox> overlappingAreas = _attackHitBox.GetOverlappingHitBox();
 		foreach (IHitBox overlappingArea in overlappingAreas)
 		{
-			GD.Print("Squash overlapping area: " + overlappingArea.GetType());
+			Log.Trace("Squash overlapping area: " + overlappingArea.GetType());
 			if (overlappingArea.AttachedNode is Zombie zombie && zombie.Row == Row)
 			{
-				GD.Print("Squash damaging zombie! Row: ", Row, "Zombie Row: ", zombie.Row);
+				Log.Trace("Squash damaging zombie! Row: ", Row, "Zombie Row: ", zombie.Row);
 				//僵尸扣血
 				zombie.Hurt(new Hurt(_damage, HurtType.Squash));
 			}

@@ -444,6 +444,6 @@ public partial class NewspaperZombie : RegularZombie
 
     public override void Init()
     {
-        GD.Print("NewspaperZombie Init");
+        Log.Debug("NewspaperZombie Init");
     }
 }

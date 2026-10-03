@@ -39,7 +39,7 @@ public partial class MainMenu_SelectorScreen : MainNode2D
 		}
 		else
 		{
-			GD.PrintErr("[MainMenu_SelectorScreen] 找不到 ZombieHand / ColorRect，单击开局将没有过场动画");
+			Log.Error("[MainMenu_SelectorScreen] 找不到 ZombieHand / ColorRect，单击开局将没有过场动画");
 		}
 
 		LevelSelect = new LevelSelectScreen();
@@ -86,7 +86,7 @@ public partial class MainMenu_SelectorScreen : MainNode2D
 		}
 		if (_mainGameScene == null)
 		{
-			GD.PrintErr("[MainMenu_SelectorScreen] MainGame.tscn 加载失败");
+			Log.Error("[MainMenu_SelectorScreen] MainGame.tscn 加载失败");
 			return;
 		}
 		GetTree().ChangeSceneToPacked(_mainGameScene);

@@ -77,7 +77,7 @@ public partial class NativeHitBox : Area2D, IHitBox
                 _rectShape = shapeNode.Shape as RectangleShape2D;
                 if (_rectShape == null)
                 {
-                    GD.PrintErr($"[NativeHitBox] {Name} 的形状不是矩形，" +
+                    Log.Error($"[NativeHitBox] {Name} 的形状不是矩形，" +
                                 "自己算矩形判定时它会被当成零尺寸");
                 }
                 break;

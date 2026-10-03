@@ -109,7 +109,7 @@ public abstract partial class Scene : Node
 		}
 		for (int i = 0; i < LawnUnitRowCount; i++)
 		{
-			Print("Weight[i] = " + Weight[i] + ", WeightAll = " + weightAll);
+			Log.Trace("Weight[i] = " + Weight[i] + ", WeightAll = " + weightAll);
 			WeightP[i] += Weight[i] / weightAll;
 		}
 
@@ -363,14 +363,14 @@ public partial class LawnDayScene : Scene
 	public override void TurnToHighBgm()
 	{
 		//BgmHighPlayer.VolumeDb = -10;
-		GD.Print("LawnDayScene::TurnToHighBGM");
+		Log.Debug("LawnDayScene::TurnToHighBGM");
 		Tween tween = BgmHighPlayer.CreateTween();
 		tween
 			.TweenProperty(BgmHighPlayer, "volume_db", 0, 5f)
 			.SetEase(Tween.EaseType.InOut)
 			.SetTrans(Tween.TransitionType.Linear);
 		// 在 Tween 完成后打印实际音量
-		tween.Finished += () => Print("Final volume: " + BgmHighPlayer.VolumeDb);
+		tween.Finished += () => Log.Debug("Final volume: " + BgmHighPlayer.VolumeDb);
 	}
 
 }

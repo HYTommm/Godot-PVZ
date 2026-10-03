@@ -10,6 +10,6 @@ public partial class NormalZombie : TieZombie
 
     public override void Init()
     {
-        GD.Print("NormalZombie Init called");
+        Log.Debug("NormalZombie Init called");
     }
 }

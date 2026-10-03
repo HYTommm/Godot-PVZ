@@ -186,6 +186,17 @@ Entity (Node2D)
 - 集中管理游戏资源 (图片、音效)
 - 通过静态属性访问，例如 `ResourceDB.Images.Zombies.ImageZombie_OuterarmUpper`
 
+#### 9. 日志系统 (`Log.cs`)
+- 全项目唯一的日志出口，代码里不再出现 `GD.Print()` / `GD.PrintErr()`
+- 等级 `Trace` < `Debug` < `Info` < `Warn` < `Error`，低于阈值的在写出之前就丢掉
+- 三个旋钮：`Log.Enabled` 一键开关、`Log.MinLevel` 阈值、`Log.Prefix` / `Log.Suffix` 前后缀
+- 阈值也能从命令行给，导出后不重编译就能调：`--quiet` 全关，`--log-level=<等级>` 指定阈值
+  （都是同一件事，同时给时后写的生效）
+- `Warn` / `Error` 交给 `GD.PushWarning` / `GD.PushError`（编辑器进 Errors 面板、导出后进 stderr），
+  其余走 stdout
+- 参数是 `params object[]`，和 `GD.Print` 一样直接往下排；参数在调用处就求值，
+  所以逐帧路径上先问 `Log.IsOn(level)` 再拼消息
+
 ### 物理层配置
 在 `project.godot` 中配置的 2D 物理层:
 - `layer_1`: ground (地面)
@@ -275,8 +286,17 @@ Entity (Node2D)
 ## 调试技巧
 
 ### 控制台输出
-- 使用 `GD.Print()` 进行调试输出
-- 僵尸速度、状态效果变化等重要信息已包含调试输出
+- 调试输出一律走 `Log`，写法与 `GD.Print` 一致：
+
+```csharp
+Log.Debug("[MainGame] 僵尸 ", zombie.Name, " 落位第 ", row, " 行");
+```
+
+- 等级按输出频率选：逐帧、逐发子弹用 `Log.Trace`；构造与状态迁移用 `Log.Debug`；
+  一局里值得留痕的节点（关卡装载、选卡落定、游戏结束、工具结论）用 `Log.Info`；
+  能继续跑但不对的状态用 `Log.Warn`；真正的失败用 `Log.Error`
+- 排查时把阈值放开：`Log.MinLevel = LogLevel.Trace;`
+- 一键关掉全部输出：`Log.Disable();`
 
 ### 场景树查看
 ```csharp

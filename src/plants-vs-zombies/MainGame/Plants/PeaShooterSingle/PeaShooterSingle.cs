@@ -156,7 +156,7 @@ public partial class PeaShooterSingle : Plants
 	{
 		if (MainGame.BEnableDebugPrint)
 		{
-			GD.Print("ShootBullet()");
+			Log.Trace("ShootBullet()");
 		}
 		// 子弹不再实例化成节点，改成往数据集合里塞一条。
 		// 位置要用世界坐标——数据集合里的 X/Y 都是世界坐标，没有父节点可依附

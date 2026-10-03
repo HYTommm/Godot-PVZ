@@ -36,7 +36,7 @@ public partial class SunFlower : MoneyCropsPlants
 
         TimerProduce.WaitTime = MainGame.Instance.RNG.RandfRange(23.5f, 35.0f); // 设置生产时间
         TimerProduce.Start(); // 启动生产计时器
-        GD.Print("TimerProduce : Time = " + TimerProduce.WaitTime);
+        Log.Trace("TimerProduce : Time = " + TimerProduce.WaitTime);
     }
 
     //public override void Hurt(Hurt hurt)
@@ -53,7 +53,7 @@ public partial class SunFlower : MoneyCropsPlants
             return;
         }
 
-        GD.Print("SunFlower _Ready", MainGame.Instance);
+        Log.Debug("SunFlower _Ready", MainGame.Instance);
         ProduceTime = MainGame.Instance.RNG.RandfRange(3.0f, 12.5f); // 设置产出时间
         Anim_idle = GetNode<AnimationPlayer>("./Idle");
         Anim_blink = GetNode<AnimationPlayer>("./Blink");

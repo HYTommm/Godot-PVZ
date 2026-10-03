@@ -47,12 +47,12 @@ public partial class PolevaulterZombie : RegularZombie
 
 	public PolevaulterZombie()
 	{
-		GD.Print("PolevaulterZombie Constructor");
+		Log.Debug("PolevaulterZombie Constructor");
 	}
 
 	public override void Init()
 	{
-		GD.Print("PolevaulterZombie Init");
+		Log.Debug("PolevaulterZombie Init");
 	}
 
 	// ══════════════════════════════════════════

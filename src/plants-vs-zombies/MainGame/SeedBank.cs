@@ -90,18 +90,18 @@ public partial class SeedBank : Sprite2D
 		List<SeedPacketLarger> packets = GetSeedPackets();
 		if (packets.Count == 0)
 		{
-			GD.PrintErr("[SeedBank] 一个卡槽都没找到，选卡结果无法应用");
+			Log.Error("[SeedBank] 一个卡槽都没找到，选卡结果无法应用");
 			return;
 		}
 		// 空列表是合法输入：表示把卡槽全清空
 		if (seeds == null)
 		{
-			GD.PrintErr("[SeedBank] 选卡结果为 null，卡槽保持原样");
+			Log.Error("[SeedBank] 选卡结果为 null，卡槽保持原样");
 			return;
 		}
 		if (seeds.Count > packets.Count)
 		{
-			GD.PrintErr($"[SeedBank] 选了 {seeds.Count} 种，但只有 {packets.Count} 个卡槽，超出的会被丢弃");
+			Log.Warn($"[SeedBank] 选了 {seeds.Count} 种，但只有 {packets.Count} 个卡槽，超出的会被丢弃");
 		}
 
 		for (int i = 0; i < packets.Count; i++)
@@ -122,6 +122,6 @@ public partial class SeedBank : Sprite2D
 			}
 		}
 
-		GD.Print($"[SeedBank] 卡槽已按选卡结果重排：{seeds.Count} / {packets.Count}");
+		Log.Info($"[SeedBank] 卡槽已按选卡结果重排：{seeds.Count} / {packets.Count}");
 	}
 }

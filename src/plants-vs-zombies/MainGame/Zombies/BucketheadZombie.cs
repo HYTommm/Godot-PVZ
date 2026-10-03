@@ -10,12 +10,12 @@ public partial class BucketheadZombie : TieZombie
 	{
 		//HP = 270;
 		//MaxHP = 270;
-		GD.Print("BucketheadZombie Constructor");
+		Log.Debug("BucketheadZombie Constructor");
 	}
 
 	public override void Init()
 	{
-		GD.Print("BucketheadZombie Init");
+		Log.Debug("BucketheadZombie Init");
 	}
 
 	public override void _Ready()
