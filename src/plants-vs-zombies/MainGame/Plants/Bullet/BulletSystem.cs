@@ -49,6 +49,21 @@ public class BulletSystem
 	/// <summary>每帧重建的活跃僵尸列表。复用同一个 List，不每帧新建</summary>
 	private readonly List<Zombie> _activeZombies = new();
 
+	/// <summary>
+	/// 子弹下标按行分桶，外加一个跨行子弹的全局桶。
+	///
+	/// 分桶是为了让每只僵尸只跟自己那一行的子弹比，而不是扫全部子弹——PVZ 的规则本来就是
+	/// "子弹只跟同行的僵尸发生关系"，按行切开就是最贴合规则的空间划分，比四叉树那种
+	/// 通用空间结构简单也更快。每帧重建一次，O(子弹数)，很便宜。
+	///
+	/// **全局桶**装的是不属于任何一行的子弹：杨桃那种斜线弹会跨行，行桶装不下它，
+	/// 每只僵尸都得过一遍。Row 小于 0 就进这里。
+	/// </summary>
+	private int[][] _rowBuckets;
+	private int[] _rowBucketCounts;
+	private int[] _globalBucket;
+	private int _globalBucketCount;
+
 	/// <summary>命中表现（溅射粒子 + 音效）。同样是池化的，运行时零节点创建</summary>
 	private readonly HitEffectSystem _effects = new();
 
@@ -141,6 +156,15 @@ public class BulletSystem
 		_peaCounts = new int[rowCount];
 		_snowPeaCounts = new int[rowCount];
 		_shadowCounts = new int[rowCount];
+
+		_rowBuckets = new int[rowCount][];
+		_rowBucketCounts = new int[rowCount];
+		for (int row = 0; row < rowCount; row++)
+		{
+			// 每个桶都按最坏情况给满：所有子弹挤在同一行是可能的
+			_rowBuckets[row] = new int[Capacity];
+		}
+		_globalBucket = new int[Capacity];
 
 		Rid parent = host.GetCanvasItem();
 
@@ -312,6 +336,7 @@ public class BulletSystem
 		}
 
 		CollectActiveZombies(zombies);
+		BuildBuckets();
 
 		for (int zi = 0; zi < _activeZombies.Count; zi++)
 		{
@@ -324,26 +349,59 @@ public class BulletSystem
 
 			Rect2 zombieRect = defense.GlobalRect;
 
-			for (int i = 0; i < _count; i++)
+			// 先比同一行的
+			int row = zombie.Row;
+			if (row >= 0 && row < _rowBuckets.Length)
 			{
-				if (!zombie.Alive)
-				{
-					break; // 刚被前面的子弹打死，剩下的子弹不该再喂给它
-				}
-
-				ref BulletData b = ref _bullets[i];
-				if (!b.Alive || b.Row != zombie.Row)
-				{
-					continue;
-				}
-
-				if (!HitRect(b).Intersects(zombieRect, true))
-				{
-					continue;
-				}
-
-				Hit(ref b, zombie);
+				HitAgainst(zombie, zombieRect, _rowBuckets[row], _rowBucketCounts[row]);
 			}
+
+			// 跨行子弹每只僵尸都要过一遍
+			HitAgainst(zombie, zombieRect, _globalBucket, _globalBucketCount);
+		}
+	}
+
+	/// <summary>每帧把子弹下标填进各行的桶（Row 小于 0 的进全局桶）。一趟 O(子弹数)</summary>
+	private void BuildBuckets()
+	{
+		System.Array.Clear(_rowBucketCounts, 0, _rowBucketCounts.Length);
+		_globalBucketCount = 0;
+
+		for (int i = 0; i < _count; i++)
+		{
+			int row = _bullets[i].Row;
+			if (row < 0 || row >= _rowBuckets.Length)
+			{
+				_globalBucket[_globalBucketCount++] = i;
+			}
+			else
+			{
+				_rowBuckets[row][_rowBucketCounts[row]++] = i;
+			}
+		}
+	}
+
+	private void HitAgainst(Zombie zombie, Rect2 zombieRect, int[] bucket, int count)
+	{
+		for (int k = 0; k < count; k++)
+		{
+			if (!zombie.Alive)
+			{
+				return; // 刚被前面的子弹打死，剩下的不该再喂给它
+			}
+
+			ref BulletData b = ref _bullets[bucket[k]];
+			if (!b.Alive) // 桶是重建过的，但同一帧里前面的僵尸可能已经把它打掉了
+			{
+				continue;
+			}
+
+			if (!HitRect(b).Intersects(zombieRect, true))
+			{
+				continue;
+			}
+
+			Hit(ref b, zombie);
 		}
 	}
 
