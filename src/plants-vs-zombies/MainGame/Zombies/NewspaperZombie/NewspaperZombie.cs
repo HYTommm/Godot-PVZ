@@ -15,6 +15,9 @@ public partial class NewspaperZombie : RegularZombie
     }
 
     private StateMachine<PaperState> _stateMachine;
+
+    /// <summary>报纸僵尸有两个啃食态：正常的和报纸被打掉之后的</summary>
+    public override bool IsEating => _stateMachine?.CurrentState is PaperState.Eat or PaperState.EatAngry;
     private HurtType _pendingDeathHurtType = HurtType.Direct;
 
     // ── 动画名称 ──

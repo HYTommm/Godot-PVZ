@@ -11,6 +11,8 @@ public partial class FootballZombie : RegularZombie
 	}
 
 	private StateMachine<FootballState> _stateMachine;
+
+	public override bool IsEating => _stateMachine?.CurrentState == FootballState.Eat;
 	private HurtType _pendingDeathHurtType = HurtType.Direct;
 
 	[Export] public Sprite2D Zombie_Football;

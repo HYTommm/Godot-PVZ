@@ -47,7 +47,7 @@ _data = {
 size = Vector2(20, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_detection"]
-size = Vector2(170, 80)
+size = Vector2(40, 80)
 
 [node name="Chomper" type="CanvasGroup" unique_id=279541750 node_paths=PackedStringArray("AnimationPlayer", "TextEdit", "Shadow")]
 script = ExtResource("27_chompercs")
@@ -261,5 +261,5 @@ AttachedNodePath = NodePath("..")
 metadata/_custom_type_script = "uid://ho7egyxo0rqu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=592549196]
-position = Vector2(65, 40)
+position = Vector2(100, 40)
 shape = SubResource("RectangleShape2D_detection")

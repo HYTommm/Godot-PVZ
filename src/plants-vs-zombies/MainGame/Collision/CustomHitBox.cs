@@ -29,12 +29,14 @@ namespace PlantsVsZombies.Collision;
 public partial class CustomHitBox : Node2D, IHitBox
 {
     /// <summary>
-    /// 特判修正：在场景配的基准形状上做调整（比如土豆雷按同行撑杆数平移左界）。
-    /// null 就是直接用场景配的。
+    /// 特判修正：在场景配的基准形状上做调整。null 就是直接用场景配的。
+    ///
+    /// 第二个参数是**这次判定面对的对手**。有用得着的场合：大嘴花对每只僵尸要让开的
+    /// 量不同，光看自己的形状算不出来。用不着的（土豆雷按同行撑杆数平移）忽略它就行。
     ///
     /// 建一次存着，别每帧新建——捕获局部变量的 lambda 每次求值都会分配。
     /// </summary>
-    public Func<HitShape, HitShape> AdjustShape;
+    public Func<HitShape, IHitBox, HitShape> AdjustShape;
 
     // 初始化时从场景读出来的两样东西：形状本身（尺寸/半径），以及它相对箱子的偏移。
     // 读完就不再碰那些节点了——它们只是启动时的配置载体
@@ -79,12 +81,13 @@ public partial class CustomHitBox : Node2D, IHitBox
     /// 现算：箱子自己的位置加上初始化时记下的偏移，摆到世界坐标，再套上特判修正。
     /// **不碰形状节点**——它们在 <c>_Ready</c> 之后就没有用处了，删掉也不影响。
     ///
-    /// 每次问都重算，同一帧内问两次可以拿到两个不同的值（箱子会动、特判也会改形状）。
+    /// 每次问都重算，同一帧内问两次可以拿到两个不同的值（箱子会动、对手不同、
+    /// 特判也会改形状）。
     /// </summary>
-    public HitShape GetShape(int index)
+    public HitShape GetShape(int index, IHitBox target)
     {
         HitShape shape = ToWorld(_shapes[index], GlobalPosition + _offsets[index]);
-        return AdjustShape?.Invoke(shape) ?? shape;
+        return AdjustShape?.Invoke(shape, target) ?? shape;
     }
 
     /// <summary>从形状节点读出尺寸。位置不在这里管</summary>

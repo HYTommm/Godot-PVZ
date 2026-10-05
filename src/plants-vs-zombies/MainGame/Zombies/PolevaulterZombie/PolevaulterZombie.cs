@@ -18,6 +18,8 @@ public partial class PolevaulterZombie : RegularZombie
 	// ── 状态机 ──
 	private StateMachine<PoleState> _stateMachine;
 
+	public override bool IsEating => _stateMachine?.CurrentState == PoleState.Eat;
+
 	/// <summary>是否已经跳过</summary>
 	public bool IsJumped => _stateMachine.CurrentState != PoleState.Run;
 

@@ -351,7 +351,9 @@ public class BulletSystem
 				continue;
 			}
 
-			Rect2 zombieRect = ToRect2(defense.GetShape(0));
+			// 子弹在这条判定里只当"点"，没有箱子可以传过去。僵尸那边的形状也不按
+			// 对手调整，传 null 是安全的
+			Rect2 zombieRect = ToRect2(defense.GetShape(0, null));
 
 			// 先比同一行的
 			int row = zombie.Row;

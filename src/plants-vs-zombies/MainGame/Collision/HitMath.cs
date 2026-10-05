@@ -80,12 +80,12 @@ public static class HitMath
 
 		for (int i = 0; i < a.ShapeCount; i++)
 		{
-			HitShape left = a.GetShape(i);
+			HitShape left = a.GetShape(i, b);      // 按对手调整过的形状
 			RequireRect(left);
 
 			for (int j = 0; j < b.ShapeCount; j++)
 			{
-				HitShape right = b.GetShape(j);
+				HitShape right = b.GetShape(j, a);  // 反过来也一样
 				RequireRect(right);
 
 				int overlap = OverlapX(left, right);

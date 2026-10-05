@@ -8,7 +8,8 @@ public partial class Chomper : Plants
 {
 	[Export] public AnimationPlayer AnimationPlayer;
 
-	private Collision.IHitBox _detectionHitBox;
+	// 检测箱是自己的，按具体类型拿——好挂 AdjustShape。判定方那边只看 IHitBox，两回事
+	private Collision.CustomHitBox _detectionHitBox;
 	public AudioStreamPlayer BitSound = new();
 	private Zombie _targetZombie;
 
@@ -65,7 +66,23 @@ public partial class Chomper : Plants
 		_stateMachine.StateChanged += OnStateChanged;
 
 		// 只管检测箱；防御箱由基类 Plants 自己拿自己管
-		_detectionHitBox = GetNode<Collision.IHitBox>("%DetectionHitBox");
+		_detectionHitBox = GetNode<Collision.CustomHitBox>("%DetectionHitBox");
+
+		// 区间在场景里配基准，这里按对手调整：那只僵尸正在啃东西的话，区间左右各伸 60。
+		// 啃谁不论——啃坚果一样算，所以看的是僵尸自己的攻击箱，不是"它有没有啃我"。
+		//
+		// TODO 还差一条：对每只僵尸，区间左端还要让开 20 × N，N = 编号 ≤ 它的反向矿工数
+		//（矿工僵尸从最后一格出土后掉头往右走的那种）。等矿工僵尸做出来，在这下面读
+		// target 数出 N 补上。
+		_detectionHitBox.AdjustShape = (shape, target) =>
+		{
+			if (target?.AttachedNode is Zombie zombie && zombie.IsEating)
+			{
+				shape = shape with { X = shape.X - 60, Width = shape.Width + 120 };
+			}
+
+			return shape;
+		};
 
 		// 检测规则建一次存着。捕获 this 的写法编译期就缓存，每帧用不会分配
 		_canChomp = (source, zombie, box) =>

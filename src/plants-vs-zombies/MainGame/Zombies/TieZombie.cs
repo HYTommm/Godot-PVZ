@@ -16,6 +16,8 @@ public partial class TieZombie : RegularZombie
     // ── 状态机 ──
     private StateMachine<TieState> _stateMachine;
 
+    public override bool IsEating => _stateMachine?.CurrentState == TieState.Eat;
+
     // ── 死亡伤害类型暂存 ──
     private HurtType _pendingDeathHurtType = HurtType.Direct;
 

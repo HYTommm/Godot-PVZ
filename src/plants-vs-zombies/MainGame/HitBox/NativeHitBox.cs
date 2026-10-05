@@ -59,7 +59,7 @@ public partial class NativeHitBox : Area2D, IHitBox, Collision.IHitBox
     /// </summary>
     public int ShapeCount => _rectShape == null ? 0 : 1;
 
-    public Collision.HitShape GetShape(int index)
+    public Collision.HitShape GetShape(int index, Collision.IHitBox target)
     {
         Vector2 size = _rectShape.Size;
         Vector2 topLeft = _shapeNode.GlobalPosition - size * 0.5f;

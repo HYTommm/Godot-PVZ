@@ -66,6 +66,15 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISee
     /// <summary>攻击区域节点</summary>
     public IHitBox AttackHitBox;
 
+    /// <summary>
+    /// 正在啃植物。**啃谁不论**——啃坚果、啃别的植物都算，不限于啃自己。
+    ///
+    /// 基类没有啃食这个状态，所以默认 false；各僵尸都有自己的一套状态机，
+    /// 重写它去读自己的状态。状态机是各僵尸的私有成员、只有它自己够得着，
+    /// 这也正是要按子类重写、而不在基类里统一判的原因。
+    /// </summary>
+    public virtual bool IsEating => false;
+
     /// <summary>血量阶段组件</summary>
     [Export] public HealthStageComponent HealthStageComponent { get; set; } = new(270);
 
