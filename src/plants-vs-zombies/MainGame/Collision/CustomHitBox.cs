@@ -25,6 +25,7 @@ namespace PlantsVsZombies.Collision;
 /// **形状只认矩形和圆。** 别的 <see cref="Shape2D"/> 是配置错误，直接抛——
 /// 静默当零尺寸糊过去的话，判定会悄悄失效，那种错比启动就炸难查得多。
 /// </summary>
+[GlobalClass]
 public partial class CustomHitBox : Node2D, IHitBox
 {
     /// <summary>

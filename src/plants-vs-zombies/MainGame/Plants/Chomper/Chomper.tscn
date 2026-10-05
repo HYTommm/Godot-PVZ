@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bwv6uvk8ekuo7"]
 
 [ext_resource type="Texture2D" uid="uid://c6iy5xudk0ic" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf4.png" id="0_fuck"]
-[ext_resource type="Script" uid="uid://ho7egyxo0rqu" path="res://MainGame/Collision/CustomHitBox.cs" id="99_custombox"]
 [ext_resource type="Animation" uid="uid://c745vqifawirl" path="res://MainGame/Plants/Chomper/Chomper_swallow.tres" id="1_anim"]
 [ext_resource type="Texture2D" uid="uid://dwgx17cxmydd6" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf3.png" id="1_fuck"]
 [ext_resource type="Animation" uid="uid://desoixobrjua4" path="res://MainGame/Plants/Chomper/Chomper_chew.tres" id="2_anim"]
@@ -29,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bwadaak5f8xnb" path="res://art/MainGame/Plants/Chomper/Chomper_topjaw.png" id="21_fuck"]
 [ext_resource type="Script" uid="uid://c0xsjik480gq3" path="res://MainGame/Plants/Chomper/Chomper.cs" id="27_chompercs"]
 [ext_resource type="Script" uid="uid://0p5821jv8wuc" path="res://MainGame/HitBox/NativeHitBox.cs" id="28_nativehitbox"]
+[ext_resource type="Script" uid="uid://ho7egyxo0rqu" path="res://MainGame/Collision/CustomHitBox.cs" id="99_custombox"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_Chomper_idle"]
 _data = {
@@ -241,13 +241,14 @@ offset_top = -30.0
 offset_right = 180.0
 theme_override_font_sizes/font_size = 10
 
-[node name="DefenseHitBox" type="Area2D" parent="." unique_id=2106253545]
+[node name="DefenseHitBox" type="Area2D" parent="." unique_id=1464273652]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("28_nativehitbox")
 AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://0p5821jv8wuc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseHitBox" unique_id=1304870260]
 position = Vector2(40, 40)
@@ -257,6 +258,7 @@ shape = SubResource("RectangleShape2D_defense")
 unique_name_in_owner = true
 script = ExtResource("99_custombox")
 AttachedNodePath = NodePath("..")
+metadata/_custom_type_script = "uid://ho7egyxo0rqu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=592549196]
 position = Vector2(65, 40)
