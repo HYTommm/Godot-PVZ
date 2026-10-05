@@ -52,7 +52,15 @@ public static class CollisionSystem
         for (int i = 0; i < candidates.Count; i++)
         {
             T item = candidates[i];
-            IHitBox target = item?.HitBox;
+
+            // 先问有效性，再碰箱子：候选可能是延迟回收窗口里**已经释放的节点**，
+            // 那个状态下读箱子的节点属性会抛 ObjectDisposedException
+            if (item is null || !item.IsValid)
+            {
+                continue;
+            }
+
+            IHitBox target = item.HitBox;
             if (target is not { Monitorable: true })
             {
                 continue;
@@ -87,7 +95,12 @@ public static class CollisionSystem
     {
         foreach (T item in candidates)
         {
-            IHitBox target = item?.HitBox;
+            if (item is null || !item.IsValid)
+            {
+                continue;
+            }
+
+            IHitBox target = item.HitBox;
             if (target is not { Monitorable: true })
             {
                 continue;

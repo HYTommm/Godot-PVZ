@@ -65,4 +65,16 @@ public interface IHitBox
 public interface IHittable
 {
 	IHitBox HitBox { get; }
+
+	/// <summary>
+	/// 这一侧现在还能不能参与判定。
+	///
+	/// 调度器不知道候选是什么——节点、纯数据、还是别的——所以它没法自己判，
+	/// 由实现方回答。僵尸那边至少要考虑两件事：节点是不是已经被释放了
+	/// （数组是延迟回收的，死掉的不会立刻从里面消失），以及它是不是已经死了。
+	///
+	/// **这个判断必须在碰箱子的节点属性之前做**：已释放的节点上读 `Monitorable`
+	/// 会抛 ObjectDisposedException。
+	/// </summary>
+	bool IsValid { get; }
 }

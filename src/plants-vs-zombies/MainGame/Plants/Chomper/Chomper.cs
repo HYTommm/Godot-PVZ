@@ -84,10 +84,10 @@ public partial class Chomper : Plants
 			return shape;
 		};
 
-		// 检测规则建一次存着。捕获 this 的写法编译期就缓存，每帧用不会分配
+		// 检测规则建一次存着。捕获 this 的写法编译期就缓存，每帧用不会分配。
+		// 死没死不用在这儿判——PickFirst 调这个之前已经问过 IsValid 了
 		_canChomp = (source, zombie, box) =>
 			zombie.Row == Row
-			&& !zombie.BIsDead
 			&& Collision.HitMath.OverlapX(source, box) >= 0;
 		
 		BitSound.Stream = Bigchomp;

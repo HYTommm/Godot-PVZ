@@ -63,6 +63,12 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISee
     /// <summary>参与判定的一侧：调度器要的就是这个箱子</summary>
     public Collision.IHitBox HitBox => DefenseHitBox;
 
+    /// <summary>
+    /// 还能不能参与判定。两件事：节点还在不在（数组是延迟回收的，死掉的僵尸不会
+    /// 立刻从里面消失，判 null 判不出来），以及它是不是已经死了。
+    /// </summary>
+    public bool IsValid => GodotObject.IsInstanceValid(this) && !BIsDead;
+
     /// <summary>攻击区域节点</summary>
     public IHitBox AttackHitBox;
 
