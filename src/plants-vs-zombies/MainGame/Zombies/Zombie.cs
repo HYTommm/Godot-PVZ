@@ -1,7 +1,8 @@
 using Godot;
 using Godot.Collections;
+using Collision = PlantsVsZombies.Collision;
 
-public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISeedEntity
+public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISeedEntity, Collision.IHittable
 {
     /// <summary>僵尸死亡事件</summary>
     [Signal]
@@ -54,8 +55,13 @@ public abstract partial class Zombie : Entity, IHealthStage, IStatusEffect, ISee
     public int Row = -1;
 
     // 命中盒/区域
-    /// <summary>防御区域节点</summary>
-    public IHitBox DefenseHitBox;
+    /// <summary>
+    /// 防御区域节点。判定层走新接口——自算的判定（子弹、植物的检测）都从这里取几何
+    /// </summary>
+    public Collision.IHitBox DefenseHitBox;
+
+    /// <summary>参与判定的一侧：调度器要的就是这个箱子</summary>
+    public Collision.IHitBox HitBox => DefenseHitBox;
 
     /// <summary>攻击区域节点</summary>
     public IHitBox AttackHitBox;

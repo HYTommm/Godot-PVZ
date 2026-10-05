@@ -1,5 +1,5 @@
 using Godot;
-using System.Collections.Generic;
+using Collision = PlantsVsZombies.Collision;
 
 /// <summary>
 /// 子弹的数据集合：一个预分配的 <see cref="BulletData"/> 数组，每帧几趟遍历处理。
@@ -45,9 +45,6 @@ public class BulletSystem
 
 	private readonly BulletData[] _bullets = new BulletData[Capacity];
 	private int _count;
-
-	/// <summary>每帧重建的活跃僵尸列表。复用同一个 List，不每帧新建</summary>
-	private readonly List<Zombie> _activeZombies = new();
 
 	/// <summary>
 	/// 子弹下标按行分桶，外加一个跨行子弹的全局桶。
@@ -325,7 +322,11 @@ public class BulletSystem
 	/// 而槽位绝大部分是 null；场上的僵尸只有几十只，让它们当外层，
 	/// 内层扫的就是紧凑的子弹数组 [0, _count)，量级差两个数量级。
 	///
-	/// 僵尸按 x 从小到大扫，所以两只僵尸重叠时子弹先被最靠前那只吃掉——正是原版的规则。
+	/// 外层直接走僵尸数组，顺序就是栈位序：同一帧里多只僵尸都能判定同一颗子弹时，
+	/// 由栈位小的先拿，跟僵尸站在哪儿无关。
+	///
+	/// 矩形是自己算的，物理引擎不会替我们挡 Monitorable，谁能被打得在这查：
+	/// 杆跳僵尸跳跃期间就靠它不吃子弹。
 	/// </summary>
 	private void Collide()
 	{
@@ -335,19 +336,22 @@ public class BulletSystem
 			return;
 		}
 
-		CollectActiveZombies(zombies);
 		BuildBuckets();
 
-		for (int zi = 0; zi < _activeZombies.Count; zi++)
+		foreach (Zombie zombie in zombies)
 		{
-			Zombie zombie = _activeZombies[zi];
-			IHitBox defense = zombie.DefenseHitBox;
-			if (!zombie.Alive || defense == null)
+			if (zombie == null || !zombie.Alive)
 			{
 				continue;
 			}
 
-			Rect2 zombieRect = defense.GlobalRect;
+			Collision.IHitBox defense = zombie.DefenseHitBox;
+			if (defense == null || !defense.Monitorable || defense.ShapeCount == 0)
+			{
+				continue;
+			}
+
+			Rect2 zombieRect = ToRect2(defense.GetShape(0));
 
 			// 先比同一行的
 			int row = zombie.Row;
@@ -402,36 +406,6 @@ public class BulletSystem
 			}
 
 			Hit(ref b, zombie);
-		}
-	}
-
-	/// <summary>
-	/// 收活跃僵尸并按 x 升序排。僵尸只有几十只，所以用插入排序：它零分配，
-	/// 这个量级下也比 List.Sort 快（后者要包一层比较器）。
-	/// 排序是为了让"最靠前的那只先吃子弹"，重叠时才有一致的先后。
-	/// </summary>
-	private void CollectActiveZombies(Zombie[] zombies)
-	{
-		_activeZombies.Clear();
-		foreach (Zombie zombie in zombies)
-		{
-			if (zombie != null && zombie.Alive && zombie.DefenseHitBox != null)
-			{
-				_activeZombies.Add(zombie);
-			}
-		}
-
-		for (int i = 1; i < _activeZombies.Count; i++)
-		{
-			Zombie key = _activeZombies[i];
-			float keyX = key.Position.X;
-			int j = i - 1;
-			while (j >= 0 && _activeZombies[j].Position.X > keyX)
-			{
-				_activeZombies[j + 1] = _activeZombies[j];
-				j--;
-			}
-			_activeZombies[j + 1] = key;
 		}
 	}
 
@@ -586,5 +560,11 @@ public class BulletSystem
 	private static Rect2 HitRect(in BulletData b)
 	{
 		return new Rect2(b.X - 14f, b.Y, 56f, 27f);
+	}
+
+	/// <summary>判定层的整数形状转成 Godot 矩形。子弹这边的判定眼下还是二维的</summary>
+	private static Rect2 ToRect2(in Collision.HitShape shape)
+	{
+		return new Rect2(shape.X, shape.Y, shape.Width, shape.Height);
 	}
 }

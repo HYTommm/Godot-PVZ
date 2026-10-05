@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bwv6uvk8ekuo7"]
 
 [ext_resource type="Texture2D" uid="uid://c6iy5xudk0ic" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf4.png" id="0_fuck"]
+[ext_resource type="Script" uid="uid://ho7egyxo0rqu" path="res://MainGame/Collision/CustomHitBox.cs" id="99_custombox"]
 [ext_resource type="Animation" uid="uid://c745vqifawirl" path="res://MainGame/Plants/Chomper/Chomper_swallow.tres" id="1_anim"]
 [ext_resource type="Texture2D" uid="uid://dwgx17cxmydd6" path="res://art/MainGame/Plants/Chomper/Chomper_groundleaf3.png" id="1_fuck"]
 [ext_resource type="Animation" uid="uid://desoixobrjua4" path="res://MainGame/Plants/Chomper/Chomper_chew.tres" id="2_anim"]
@@ -252,12 +253,9 @@ AttachedNodePath = NodePath("..")
 position = Vector2(40, 40)
 shape = SubResource("RectangleShape2D_defense")
 
-[node name="DetectionHitBox" type="Area2D" parent="." unique_id=630143975]
+[node name="DetectionHitBox" type="Node2D" parent="." unique_id=630143975]
 unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-script = ExtResource("28_nativehitbox")
+script = ExtResource("99_custombox")
 AttachedNodePath = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionHitBox" unique_id=592549196]

@@ -3,6 +3,7 @@ using static Godot.GD;
 using System;
 using System.Threading.Tasks;
 using static ResourceDB.Sounds;
+using Collision = PlantsVsZombies.Collision;
 public partial class PeaShooterSingle : Plants
 {
 	private Vector2 _headPos; // 头部位置
@@ -93,7 +94,7 @@ public partial class PeaShooterSingle : Plants
 					continue;
 				}
 
-				IHitBox defense = zombie.DefenseHitBox;
+				Collision.IHitBox defense = zombie.DefenseHitBox;
 				if (defense == null)
 				{
 					continue;

@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
+using Collision = PlantsVsZombies.Collision;
 
 public abstract partial class RegularZombie : Zombie
 {
@@ -113,7 +114,7 @@ public abstract partial class RegularZombie : Zombie
 		HealthStageComponent.Defaults.StageZero.Action += hurt => Die(hurt.HurtType);
 
 		// 碰撞区域
-		DefenseHitBox = GetNode<IHitBox>("./DefenseHitBox");
+		DefenseHitBox = GetNode<Collision.IHitBox>("./DefenseHitBox");
 		AttackHitBox = GetNode<IHitBox>("./AttackHitBox");
 		DefenseHitBox.AttachedNode = this;
 		AttackHitBox.AttachedNode = this;

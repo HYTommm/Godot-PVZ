@@ -2,15 +2,21 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using static ResourceDB.Sounds;
+using Collision = PlantsVsZombies.Collision;
 
 public partial class Chomper : Plants
 {
 	[Export] public AnimationPlayer AnimationPlayer;
 
-	private IHitBox _detectionHitBox;
-	private IHitBox _defenseHitBox;
+	private Collision.IHitBox _detectionHitBox;
 	public AudioStreamPlayer BitSound = new();
 	private Zombie _targetZombie;
+
+	/// <summary>检测规则。建一次存着，别在每帧的检查里新建</summary>
+	private Collision.HitPredicate<Zombie> _canChomp;
+
+	/// <summary>种下之后才开始检测；卡槽里的展示实例不参与</summary>
+	private bool _armed;
 
 	public bool CanEat
 	{
@@ -58,12 +64,14 @@ public partial class Chomper : Plants
 		AddChild(_stateMachine = new StateMachine<ChomperState>(ChomperState.Idle));
 		_stateMachine.StateChanged += OnStateChanged;
 
-		// 获取碰撞区域
-		_detectionHitBox = GetNode<IHitBox>("%DetectionHitBox");
-		_defenseHitBox = GetNode<IHitBox>("%DefenseHitBox");
+		// 只管检测箱；防御箱由基类 Plants 自己拿自己管
+		_detectionHitBox = GetNode<Collision.IHitBox>("%DetectionHitBox");
 
-		_detectionHitBox.Monitoring = false;
-		_detectionHitBox.HitBoxEntered += OnDetectionHitBoxEntered;
+		// 检测规则建一次存着。捕获 this 的写法编译期就缓存，每帧用不会分配
+		_canChomp = (source, zombie, box) =>
+			zombie.Row == Row
+			&& !zombie.BIsDead
+			&& Collision.HitMath.OverlapX(source, box) >= 0;
 		
 		BitSound.Stream = Bigchomp;
 
@@ -78,7 +86,19 @@ public partial class Chomper : Plants
 	public override void _Plant(int col, int row, int index)
 	{
 		base._Plant(col, row, index);
-		_detectionHitBox.Monitoring = true;
+		_armed = true;
+	}
+
+	/// <summary>
+	/// 检测改成每帧看一眼，不再靠引擎的"进入"事件。
+	///
+	/// 引擎那个事件是状态转移，而判定要的是每帧重判：僵尸从检测框里穿过去、
+	/// 目标中途死了，事件都不会再响。检查本身很便宜——不在 Idle 状态就直接返回。
+	/// </summary>
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta);
+		CheckZombieInDetectionHitBox();
 	}
 
 	public override void _Idle()
@@ -89,6 +109,10 @@ public partial class Chomper : Plants
 	private void CheckZombieInDetectionHitBox()
 	{
 		Log.Trace("Chomper: Checking detection hit box");
+		if (!_armed)
+		{
+			return;
+		}
 		if (_stateMachine.CurrentState != ChomperState.Idle)
 		{
 			Log.Trace("_stateMachine.CurrentState != ChomperState.Idle, _stateMachine.CurrentState = ", _stateMachine.CurrentState);
@@ -118,12 +142,6 @@ public partial class Chomper : Plants
 		}
 	}
 
-	private void OnDetectionHitBoxEntered(IHitBox hitBox)
-	{
-		//GD.Print("Detection hitbox entered by: " + (hitBox.AttachedNode != null ? hitBox.AttachedNode.Name : "Unknown"));
-		CheckZombieInDetectionHitBox();
-	}
-
 	//public override void Hurt(Hurt hurt)
 	//{
 	//    // 在咀嚼/消化期间，大嘴花可以被僵尸啃食
@@ -140,8 +158,11 @@ public partial class Chomper : Plants
 		switch (newState)
 		{
 			case ChomperState.Idle:
-				CanEat = true;
+				// 先清空、再放开吃。CanEat 的 setter 会当场去检测框挑目标、挑到就切进
+				// Biting；清空写在它后面的话，刚挑到的目标会被这一句抹掉——表现是咬了
+				// 一口、有音效、动画照播，但僵尸没事
 				_targetZombie = null;
+				CanEat = true;
 
 				if (_stateMachine.CurrentState == ChomperState.Idle)
 				{
@@ -197,8 +218,7 @@ public partial class Chomper : Plants
 	public override void FreePlant()
 	{
 		base.FreePlant();
-		if (_detectionHitBox != null)
-			_detectionHitBox.Monitoring = false;
+		_armed = false;
 	}
 
 	private bool CanSwallowZombie(Zombie zombie)
@@ -207,25 +227,21 @@ public partial class Chomper : Plants
 		return true;
 	}
 
+	/// <summary>
+	/// 在检测范围内挑一只僵尸。**按栈位从小到大的顺序**——那是原版的优先级来源
+	/// （所有判定都是从数组下标 0 开始、第一个满足条件的即采用），所以这里不再比
+	/// Index 的大小，遍历顺序本身就是答案。
+	/// </summary>
 	private Zombie GetTargetFromDetectionHitBox()
 	{
-		if (_detectionHitBox == null) return null;
-
-		IReadOnlyList<IHitBox> overlapping = _detectionHitBox.GetOverlappingHitBox();
-		Zombie theZombie = null;
-
-		int maxStack = -1;
-
-		foreach (IHitBox hitBox in overlapping)
+		if (_detectionHitBox == null || MainGame.Instance == null)
 		{
-			if (hitBox.AttachedNode is not Zombie zombie || zombie.Row != Row || zombie.BIsDead || zombie.Index <= maxStack)
-				continue;
-			maxStack = zombie.Index;
-			theZombie = zombie;
+			return null;
 		}
-		//if (theZombie == null)
-		//    GD.PrintErr("Chomper: GetTargetFromDetectionHitBox - Zombie is null");
-		return theZombie;
+
+		Zombie[] zombies = MainGame.Instance.Zombies;
+		int index = Collision.CollisionSystem.PickFirst(zombies, _detectionHitBox, _canChomp);
+		return index < 0 ? null : zombies[index];
 	}
 
 	private void OnChompTimeout()

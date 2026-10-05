@@ -47,6 +47,10 @@ public partial class Global : Node
                 case "--verify-levels":
                     LevelDataVerifier.VerifyAll();
                     break;
+
+                case "--verify-hitbox":
+                    Log.Info(PlantsVsZombies.Collision.HitSelfCheck.Run());
+                    break;
             }
         }
     }

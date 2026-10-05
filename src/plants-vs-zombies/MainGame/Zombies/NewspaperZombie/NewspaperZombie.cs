@@ -1,4 +1,5 @@
 using Godot;
+using Collision = PlantsVsZombies.Collision;
 
 public partial class NewspaperZombie : RegularZombie
 {
@@ -59,7 +60,7 @@ public partial class NewspaperZombie : RegularZombie
         _stateMachine.StateChanged += OnStateChanged;
 
         // 查找节点
-        DefenseHitBox = GetNode<IHitBox>("./DefenseHitBox");
+        DefenseHitBox = GetNode<Collision.IHitBox>("./DefenseHitBox");
         AttackHitBox = GetNode<IHitBox>("./AttackHitBox");
         DefenseHitBox.AttachedNode = this;
         AttackHitBox.AttachedNode = this;

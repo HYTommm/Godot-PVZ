@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Collision = PlantsVsZombies.Collision;
 
 [GlobalClass]
-public partial class NativeHitBox : Area2D, IHitBox
+public partial class NativeHitBox : Area2D, IHitBox, Collision.IHitBox
 {
     public event Action<IHitBox> HitBoxEntered;
 
@@ -45,6 +46,25 @@ public partial class NativeHitBox : Area2D, IHitBox
             Vector2 size = _rectShape.Size;
             return new Rect2(_shapeNode.GlobalPosition - size * 0.5f, size);
         }
+    }
+
+    /// <summary>
+    /// 判定层的新入口：把缓存的那个矩形交出去。
+    ///
+    /// 与 <see cref="GlobalRect"/> 算的是同一个矩形，**差别只在取整**——判定层要的
+    /// 是整数（原版的判定就做在整数域里，浮点下"撑杆把判定点推走"那类行为复刻不出来）。
+    ///
+    /// 没找到矩形形状时返回 0 个形状，调用方按"没形状、判不出相交"处理，
+    /// 与旧字段返回零尺寸矩形的结果一致。
+    /// </summary>
+    public int ShapeCount => _rectShape == null ? 0 : 1;
+
+    public Collision.HitShape GetShape(int index)
+    {
+        Vector2 size = _rectShape.Size;
+        Vector2 topLeft = _shapeNode.GlobalPosition - size * 0.5f;
+        return Collision.HitShape.Rect(
+            (int)topLeft.X, (int)topLeft.Y, (int)size.X, (int)size.Y);
     }
 
     [Export] public NodePath AttachedNodePath { get; set; }
