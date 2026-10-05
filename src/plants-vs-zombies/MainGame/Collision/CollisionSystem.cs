@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 
@@ -33,11 +35,11 @@ public delegate bool HitPredicate<in T>(IHitBox source, T target, IHitBox target
 public static class CollisionSystem
 {
     /// <summary>
-    /// 按候选的**下标顺序**挑第一个接触的，返回它的下标；都不命中返回 -1。
-    /// 接触的定义是交叠 ≥ 0；要别的阈值就用下面那个带谓词的重载。
+    /// 按候选的**下标顺序**挑第一个接触的（遍历顺序本身就是优先级），返回它；
+    /// 都没命中返回 null。接触的定义是交叠 ≥ 0；要别的阈值就用下面那个带谓词的重载。
     /// </summary>
-    public static int PickFirst<T>(IReadOnlyList<T> candidates, IHitBox source)
-        where T : IHittable
+    public static T? PickFirst<T>(IReadOnlyList<T> candidates, IHitBox source)
+        where T : class, IHittable
     {
         // static 无捕获，编译期缓存成单例，不会每帧分配
         return PickFirst(candidates, source, static (s, _, targetBox) => HitMath.OverlapX(s, targetBox) >= 0);
@@ -46,33 +48,17 @@ public static class CollisionSystem
     /// <summary>
     /// 同上，命中规则由调用方给。**特判走这个重载**。
     /// </summary>
-    public static int PickFirst<T>(IReadOnlyList<T> candidates, IHitBox source, HitPredicate<T> hit)
-        where T : IHittable
+    public static T? PickFirst<T>(IReadOnlyList<T> candidates, IHitBox source, HitPredicate<T> hit)
+        where T : class, IHittable
     {
-        for (int i = 0; i < candidates.Count; i++)
+        foreach (T item in candidates)
         {
-            T item = candidates[i];
-
-            // 先问有效性，再碰箱子：候选可能是延迟回收窗口里**已经释放的节点**，
-            // 那个状态下读箱子的节点属性会抛 ObjectDisposedException
-            if (item is null || !item.IsValid)
-            {
-                continue;
-            }
-
-            IHitBox target = item.HitBox;
-            if (target is not { Monitorable: true })
-            {
-                continue;
-            }
-
-            if (hit(source, item, target))
-            {
-                return i;
-            }
+            if (item is not { IsValid: true }) continue;
+            if (item.HitBox is not { Monitorable: true } target) continue;
+            if (hit(source, item, target)) return item;
         }
 
-        return -1;
+        return null;
     }
 
     /// <summary>
@@ -95,21 +81,9 @@ public static class CollisionSystem
     {
         foreach (T item in candidates)
         {
-            if (item is null || !item.IsValid)
-            {
-                continue;
-            }
-
-            IHitBox target = item.HitBox;
-            if (target is not { Monitorable: true })
-            {
-                continue;
-            }
-
-            if (hit(source, item, target))
-            {
-                onHit(item);
-            }
+            if (item is not { IsValid: true }) continue;
+            if (item.HitBox is not { Monitorable: true } target) continue;
+            if (hit(source, item, target)) onHit(item);
         }
     }
 }
