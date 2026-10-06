@@ -51,7 +51,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/open_terminal/plugin.cfg")
+enabled=PackedStringArray("res://addons/LogSettings/plugin.cfg", "res://addons/open_terminal/plugin.cfg")
 
 [input]
 
@@ -73,6 +73,15 @@ mouse_right={
 2d_physics/layer_3="zombies"
 2d_physics/layer_4="bullets"
 2d_physics/layer_5="packets"
+
+[logging]
+
+level="debug"
+backend="console"
+color="auto"
+flush_level="warn"
+stack_trace=true
+file="user://logs/pvz.log"
 
 [memory]
 
