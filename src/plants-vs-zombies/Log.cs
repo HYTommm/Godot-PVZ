@@ -57,7 +57,7 @@ public interface ILogBackend
 /// - 前后缀：<see cref="Prefix"/> / <see cref="Suffix"/>，套在正文外面
 /// - 出口：<see cref="Backend"/>，换掉它就把日志接到别处去
 /// - 刷盘时机：<see cref="FlushLevel"/>，这个等级及以上不等缓冲攒满
-/// - 错误栈帧：<see cref="ErrorStackTrace"/>，打 Error 时附上调用栈
+/// - 栈帧：<see cref="StackTraceLevel"/>，这个等级及以上附上调用栈
 ///
 /// ## 等级怎么选
 ///
@@ -73,7 +73,7 @@ public interface ILogBackend
 /// 先问 <see cref="IsOn"/>，再拼字符串。
 ///
 /// 后端只管"这条字符串往哪写"，组装开销在它之前就付掉了。真正省下的是引擎那一段：
-/// 走引擎通道要把字符串转成 Variant 再分配一次引擎侧内存，换托管出口就没这一步。
+/// 走引擎通道要把字符串转成 godot_string、在 native 堆上再分配一份，换托管出口就没这一步。
 /// 想连每条一次的组装开销一起压下去，得让后端攒批——见 <see cref="BufferedLogBackend"/>。
 /// </summary>
 public static class Log
@@ -112,10 +112,13 @@ public static class Log
 	public static LogLevel FlushLevel = LogLevel.Warn;
 
 	/// <summary>
-	/// 打 Error 时附上调用栈。错误往往离现场很远，没有栈就只能靠猜是哪一处触发的。
-	/// 抓栈不便宜，但错误本来就不该频繁出现。
+	/// 这个等级及以上附上调用栈。错误和"明显不对"都常常离现场很远，
+	/// 没有栈就只能靠猜是哪一处触发的。抓栈要十几微秒，但这两级本来就不该频繁出现。
+	///
+	/// 和 <see cref="MinLevel"/>、<see cref="FlushLevel"/> 一样是"从哪个等级往上"的旋钮，
+	/// 设成 <see cref="LogLevel.Off"/> 就等于谁都不抓。
 	/// </summary>
-	public static bool ErrorStackTrace = true;
+	public static LogLevel StackTraceLevel = LogLevel.Warn;
 
 	/// <summary>
 	/// 栈帧行的前缀。生成栈帧的地方和渲染它的后端得用同一个值，
@@ -213,7 +216,7 @@ public static class Log
 		// 后端自己会打标记的等级就别替它操心，两边都加就是同一句话说两遍
 		string message = Compose(tag, parts, ShowLevelTag && !_backend.AddsLevelLabel(level));
 
-		if (ErrorStackTrace && level == LogLevel.Error)
+		if (level >= StackTraceLevel)
 		{
 			message += StackSuffix();
 		}

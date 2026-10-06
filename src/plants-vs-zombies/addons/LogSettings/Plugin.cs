@@ -38,7 +38,7 @@ namespace LogSettings
             Register("logging/color", Variant.Type.String, "auto", PropertyHint.Enum, "auto,always,never");
             Register("logging/backend", Variant.Type.String, "console", PropertyHint.Enum, BackendOptions);
             Register("logging/file", Variant.Type.String, DefaultLogFile, PropertyHint.File, "*.log");
-            Register("logging/stack_trace", Variant.Type.Bool, true);
+            Register("logging/stack_level", Variant.Type.String, "warn", PropertyHint.Enum, LevelOptions);
         }
 
         /// <summary>

@@ -49,6 +49,10 @@ public partial class Global : Node
                 case "--verify-levels":
                     LevelDataVerifier.VerifyAll();
                     break;
+
+                case "--bench-log":
+                    Log.Info("[Global] 日志基准结果写到 ", LogBench.Run());
+                    break;
             }
         }
     }
@@ -64,7 +68,7 @@ public partial class Global : Node
     {
         Log.MinLevel = ReadLogLevel("logging/level", Log.MinLevel);
         Log.FlushLevel = ReadLogLevel("logging/flush_level", Log.FlushLevel);
-        Log.ErrorStackTrace = ProjectSettings.GetSetting("logging/stack_trace", Log.ErrorStackTrace).AsBool();
+        Log.StackTraceLevel = ReadLogLevel("logging/stack_level", Log.StackTraceLevel);
 
         string color = ProjectSettings.GetSetting("logging/color", "").AsString();
         if (color.Length > 0)
@@ -141,9 +145,9 @@ public partial class Global : Node
     /// --log-level=trace|debug|info|warn|error|off
     /// --log-backend=godot|console|null|file[:路径]|buffered:...
     /// --log-color=auto|always|never
-    /// --log-stack=on|off
+    /// --log-stack=trace|debug|info|warn|error|off
     /// </code>
-    /// 等级的两个参数指的是同一个阈值，同时给时后写的生效。不给就保持 Log 里的默认值。
+    /// 等级的三个参数各指一个阈值，同时给时后写的生效。不给就保持 Log 里的默认值。
     /// 后端规格的语法见 <see cref="LogBackendFactory.Parse"/>；
     /// 配色只对 <see cref="ConsoleLogBackend"/> 有意义，别的后端收了也不算数。
     /// </summary>
@@ -196,13 +200,13 @@ public partial class Global : Node
             else if (argument.StartsWith(logStackArg, StringComparison.Ordinal))
             {
                 string value = argument[logStackArg.Length..];
-                if (value is "on" or "off")
+                if (Enum.TryParse(value, ignoreCase: true, out LogLevel stackLevel))
                 {
-                    Log.ErrorStackTrace = value == "on";
+                    Log.StackTraceLevel = stackLevel;
                 }
                 else
                 {
-                    Log.Warn("[Global] 认不出的日志栈帧开关：", value);
+                    Log.Warn("[Global] 认不出的日志栈帧等级：", value);
                 }
             }
         }

@@ -80,7 +80,7 @@ level="debug"
 backend="console"
 color="auto"
 flush_level="warn"
-stack_trace=true
+stack_level="warn"
 file="user://logs/pvz.log"
 
 [memory]
